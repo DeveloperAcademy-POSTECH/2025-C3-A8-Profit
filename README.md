@@ -33,20 +33,20 @@
 
 
 ## 📆 프로젝트 기간
-- 전체 기간: `YYYY.MM.DD - YYYY.MM.DD`
-- 개발 기간: `YYYY.MM.DD - YYYY.MM.DD`
+- 전체 기간: `2025.05.26 - 2025.06.08`
+- 개발 기간: `2025.05.27 - 2025.06.08`
 
 
 ## 🛠 기술 스택
 
-- Swift / SwiftUI / UIKit / Firebase 등
+- Swift / SwiftUI / Firebase(FirebaseAI, FirebaseCore) / Gemini API
 - 아키텍처: MVVM / MVC / Clean Architecture 등
-- 기타 도구: Figma, Notion, GitHub Projects 등
+- 기타 도구: Figma / GitHub Projects
 
 
 ## 🌟 주요 기능
 
-- ✅ 기능 1
+- ✅ 메뉴관리
 - ✅ 기능 2
 - ✅ 기능 3
 
