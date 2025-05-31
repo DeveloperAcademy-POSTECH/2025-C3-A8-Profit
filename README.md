@@ -5,7 +5,7 @@
 > 간단한 한 줄 소개 – 프로젝트의 핵심 가치 또는 기능
 
 [![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)]()
-[![Xcode](https://img.shields.io/badge/Xcode-15.0-blue.svg)]()
+[![Xcode](https://img.shields.io/badge/Xcode-16.4-blue.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-green.svg)]()
 
 ---
@@ -27,7 +27,7 @@
 
 ## 📱 소개
 
-> 프로젝트의 주요 목적과 사용자가 얻게 될 경험을 설명해주세요.
+> 요식업 사장님 A에게 메뉴사진 한 장으로 재료원가를 알려주고 순수익을 계산해준다.
 
 [🔗 앱스토어/웹 링크](https://example.com)
 
