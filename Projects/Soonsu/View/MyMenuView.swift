@@ -61,8 +61,16 @@ struct MyMenuView: View {
                 
             }
             .padding(16)
-            .navigationTitle("메뉴관리")
-            .navigationBarTitleDisplayMode(.automatic)
+            .navigationTitle("나의 메뉴")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                Button {
+                    showAddMenu = true
+                } label: {
+                    Image(systemName: "plus")
+                        .fontWeight(.bold)
+                }
+            }
             
             // ── “나의 메뉴 +” → IngredientSheetView ─────────
             .navigationDestination(isPresented: $showAddMenu) {
@@ -72,14 +80,14 @@ struct MyMenuView: View {
                 )
             }
         }
-        .toolbar {
-            Button {
-                showAddMenu = true
-            } label: {
-                Image(systemName: "plus")
-                    .fontWeight(.bold)
-            }
-        }
+//        .toolbar {
+//            Button {
+//                showAddMenu = true
+//            } label: {
+//                Image(systemName: "plus")
+//                    .fontWeight(.bold)
+//            }
+//        }
         // ── 디버그: allIngredients의 변화 감지
         .onChange(of: allIngredients.count) { _, newCount in
             print("🔵 [Debug] allIngredients.count changed to \(newCount)")
