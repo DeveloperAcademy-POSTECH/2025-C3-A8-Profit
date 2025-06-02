@@ -12,18 +12,45 @@ struct IngredientResultView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
     
+    
     @Binding var selectedMenuName: String
     @Binding var showAddMenu: Bool
     
     let menuName: String
     let menuPrice: String
     let image: UIImage?
-    let parsedIngredients: [IngredientInfo]
+    //    let parsedIngredients: [IngredientInfo]
+    
+    
+    // AI가 파싱해준 초기 재료들을 이 State 배열로 복사하여 관리합니다.
+    @State private var ingredients: [IngredientInfo]
+    
+    // “재료 추가하기” 네비게이션 푸시 트리거
+    @State private var navigateToSearch = false
     
     
     private var totalCost: Int {
-        parsedIngredients.reduce(0) { $0 + $1.unitPrice }
+        //        parsedIngredients.reduce(0) { $0 + $1.unitPrice }
+        ingredients.reduce(0) { $0 + $1.unitPrice }
     }
+    // 초기화 시 parsedIngredients를 ingredients에 복사
+    init(
+        selectedMenuName: Binding<String>,
+        showAddMenu: Binding<Bool>,
+        menuName: String,
+        menuPrice: String,
+        image: UIImage?,
+        parsedIngredients: [IngredientInfo]
+    ) {
+        _selectedMenuName = selectedMenuName
+        _showAddMenu = showAddMenu
+        self.menuName = menuName
+        self.menuPrice = menuPrice
+        self.image = image
+        // parsedIngredients를 State인 ingredients로 복사
+        _ingredients = State(initialValue: parsedIngredients)
+    }
+    
     
     var body: some View {
         VStack(spacing: 0) {
@@ -65,7 +92,8 @@ struct IngredientResultView: View {
             
             // ── 재료 리스트 ──────────────────────────────────
             List {
-                ForEach(parsedIngredients) { ing in
+                //                ForEach(parsedIngredients) { ing in
+                ForEach(ingredients) { ing in
                     HStack {
                         // 간단 아이콘 (재료 첫 글자 이모지 활용)
                         Text(String(ing.name.first ?? "🥘"))
@@ -90,7 +118,8 @@ struct IngredientResultView: View {
                     .listRowSeparator(.hidden)
                 }
                 Button {
-                    // 추가 로직 Hook (선택)
+                    // 추가 로직 Hook
+                    navigateToSearch = true
                 } label: {
                     HStack {
                         Image(systemName: "plus.circle.fill")
@@ -104,7 +133,6 @@ struct IngredientResultView: View {
             .listStyle(.plain)
             
             Divider()
-            
             
             // ── 하단 합계 + 등록 버튼 ────────────────────────
             VStack(spacing: 16) {
@@ -128,8 +156,31 @@ struct IngredientResultView: View {
             )
         }
         .ignoresSafeArea(.keyboard)
-        .navigationBarBackButtonHidden(true)
+        //        .navigationBarBackButtonHidden(true)
         .navigationTitle("재료관리")
+        
+        .onAppear {
+            print("🟡 [Debug] IngredientResultView 진입, parsedIngredients.count = \(ingredients.count)")
+        }
+        // ── 네비게이션 푸시 방식으로 SSAddIngredientView 연결 ─────────────────────────
+        .navigationDestination(
+            isPresented: $navigateToSearch,
+            destination: {
+                IngredientAddView { selectedItemName in
+                    // 네비게이션에서 돌아올 때 호출됨
+                    // 유효한 재료명이라면 ingredients에 append
+                    if !selectedItemName.isEmpty {
+                        let newIng = IngredientInfo(
+                            name: selectedItemName,
+                            amount: "0g",
+                            unitPrice: 0
+                        )
+                        ingredients.append(newIng)
+                    }
+                    // 화면이 자동으로 뒤로 팝됩니다(SSAddIngredientView에서 dismiss 처리).
+                }
+            }
+        )
     }
     
     // MARK: - 저장 & 루트 복귀
@@ -145,7 +196,7 @@ struct IngredientResultView: View {
             
             // 3️⃣ parsedIngredients 배열을 순회하며, 각 재료마다
             //    “같은 메뉴 이름·가격·이미지”를 포함해 삽입
-            for info in parsedIngredients {
+            for info in ingredients {
                 let entity = IngredientEntity(
                     menuName: menuName,
                     menuPrice: priceValue,
@@ -155,6 +206,7 @@ struct IngredientResultView: View {
                 context.insert(entity)
                 insertedCount += 1
             }
+            print("🚀 [Debug] 삽입할 Entity 수: \(insertedCount)")
             
             // 5️⃣ 실제 저장
             try context.save()
