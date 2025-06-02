@@ -25,7 +25,7 @@ struct SoonsuApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SSContentView()
+            SSTabView()
         }
         .modelContainer(sharedModelContainer)
     }
