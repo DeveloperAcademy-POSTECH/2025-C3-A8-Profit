@@ -1,32 +1,30 @@
+////
+////  HambJaeryoModalApp.swift
+////  HambJaeryoModal
+////
+////  Created by coulson on 5/28/25.
+////
 //
-//  SoonsuApp.swift
-//  Soonsu
-//
-//  Created by coulson on 6/2/25.
-//
-
 import SwiftUI
-import SwiftData
+import FirebaseCore
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+    return true
+  }
+}
 
 @main
 struct SoonsuApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            SSTabView()
+            NavigationView {
+                ContentView()
+            }
+            .modelContainer(for: IngredientEntity.self)
         }
-        .modelContainer(sharedModelContainer)
     }
 }

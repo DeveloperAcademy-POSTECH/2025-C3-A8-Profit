@@ -8,13 +8,13 @@
 import SwiftUI
 import SwiftData
 
-struct SSTabView: View {
-
+struct ContentView: View {
+    
     var body: some View {
         
         TabView {
             
-            SSMyMenuView()
+            MyMenuView()
                 .tabItem {
                     Image(systemName: "house")
                 }
@@ -22,7 +22,6 @@ struct SSTabView: View {
             Text("Second")
                 .tabItem {
                     Image(systemName: "house")
-
                 }
             
             Text("3")
@@ -32,15 +31,13 @@ struct SSTabView: View {
             Text("4")
                 .tabItem {
                     Image(systemName: "house")
-
                 }
         }
-        
-        
-        
     }
 }
 
 #Preview {
-    SSTabView()
+    NavigationStack {
+        ContentView()
+    }
 }
