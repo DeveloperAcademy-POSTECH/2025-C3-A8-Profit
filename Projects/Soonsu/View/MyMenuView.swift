@@ -80,14 +80,7 @@ struct MyMenuView: View {
                 )
             }
         }
-//        .toolbar {
-//            Button {
-//                showAddMenu = true
-//            } label: {
-//                Image(systemName: "plus")
-//                    .fontWeight(.bold)
-//            }
-//        }
+
         // ── 디버그: allIngredients의 변화 감지
         .onChange(of: allIngredients.count) { _, newCount in
             print("🔵 [Debug] allIngredients.count changed to \(newCount)")

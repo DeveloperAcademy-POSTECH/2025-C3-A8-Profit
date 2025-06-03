@@ -1,5 +1,5 @@
 //
-//  IngredientInfo.swift
+//  IngredientEntity.swift
 //  HambJaeryoModal
 //
 //  Created by coulson on 5/29/25.

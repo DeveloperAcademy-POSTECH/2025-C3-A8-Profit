@@ -49,16 +49,16 @@ struct MenuInputView: View {
                         photoLibrary: .shared()
                     ) {
                         if let image = selectedImage {
-                                RoundedRectangle(cornerRadius: 32)
-                                    .fill(Color.clear)
-                                    .frame(height: 360)
-                                    .overlay {
-                                        Image(uiImage: image)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width:360, height: 360)
-                                            .clipShape(RoundedRectangle(cornerRadius: 32))
-                                    }
+                            RoundedRectangle(cornerRadius: 32)
+                                .fill(Color.clear)
+                                .frame(height: 360)
+                                .overlay {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width:360, height: 360)
+                                        .clipShape(RoundedRectangle(cornerRadius: 32))
+                                }
                         } else {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 32)
@@ -100,7 +100,7 @@ struct MenuInputView: View {
                         }
                     }
                 }
-//                    .padding(.top, -20)
+                //                    .padding(.top, -20)
                 .listRowBackground(Color.clear)
                 
                 
@@ -128,15 +128,15 @@ struct MenuInputView: View {
                             .keyboardType(.numberPad)
                     }
                     .padding(.top, 16)
-//                        Divider()
+                    //                        Divider()
                     HStack{}
                 }
-
+                
                 .listRowBackground(Color.clear)
                 
-//                    Divider()
-//                        .listRowBackground(Color.clear)
-
+                //                    Divider()
+                //                        .listRowBackground(Color.clear)
+                
                 
                 Button {
                     isLoading = true
@@ -157,7 +157,7 @@ struct MenuInputView: View {
                 .disabled(isLoading || selectedImage == nil || menuName.isEmpty || menuPrice.isEmpty)
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
-//                    .padding(.top, -30)
+                //                    .padding(.top, -30)
                 
             }
             .padding(.vertical,-40)
@@ -191,11 +191,11 @@ struct MenuInputView: View {
                     }
                 }
             }
-
+            
         }
-//        .onTapGesture { // <-
-//              hideKeyboard()
-//            }
+        //        .onTapGesture { // <-
+        //              hideKeyboard()
+        //            }
         .navigationTitle("재료원가계산")
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -203,90 +203,110 @@ struct MenuInputView: View {
     
     
     // MARK: - Gemini API 호출 및 파싱
+    // MockData
     func analyzeIngredients() async {
-        guard let selectedImage,
-              //        guard let imageData = selectedImage.jpegData(compressionQuality: 0.7) else { return }
-              let model else { return }
-        
-        let prompt = """
-        음식 이름: \(menuName)
-        음식 가격: \(menuPrice)원
-        
-        아래의 음식 이름과 사진을 참고하여, 이 음식에 사용된 재료 정보를 다음 JSON 형식으로 제공해줘:
-        
-        [
-          {
-            "name": "재료명",
-            "amount": "사용량 및 그램단위 (예: 100g)",
-            "unitPrice": 단위 원가 (숫자, 원 단위)
-          },
-          ...
-        ]
-        
-        - 사용된 재료는 주재료 위주로 구성
-        - 'unitPrice'는 'amount'의 단위 만큼만 사용했을 때 얼마인지 계산해줘.
-        - 텍스트 설명 없이 JSON 배열만 출력
-        """
-        
-        do {
-                    let parts: [any PartsRepresentable] = [selectedImage]
-                    var fullText = ""
-                    for try await chunk in try model.generateContentStream(prompt, parts) {
-                        if let text = chunk.text { fullText += text }
-                    }
-                    
-                    // 백틱 제거 및 JSON 추출
-                    let cleaned = fullText
-                        .replacingOccurrences(of: "```json", with: "")
-                        .replacingOccurrences(of: "```", with: "")
-                        .trimmingCharacters(in: .whitespacesAndNewlines)
-                    
-                    guard
-                        let first = cleaned.firstIndex(of: "["),
-                        let last  = cleaned.lastIndex(of: "]"),
-                        let data  = String(cleaned[first...last]).data(using: .utf8)
-                    else { return }
-                    
-                    
-                    let decoded = try JSONDecoder().decode([IngredientInfo].self, from: data)
-                    // 1️⃣ – Main Thread에서 상태 갱신 및 저장 수행
-                    await MainActor.run {
-                        parsedIngredients = decoded
-                        
-                        // 3️⃣ – 저장이 끝나면 화면 전환
-                        navigateToResult = true
-                    }
-                    
-                } catch {
-                    print("Gemini API 호출 실패: \(error)")
-                }
-                
-            }
+        // MockData.json 불러오기
+        guard let url = Bundle.main.url(forResource: "MockData", withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let decoded = try? JSONDecoder().decode([IngredientInfo].self, from: data)
+        else {
+            print("❌ MockData 로드 실패")
+            return
         }
-
-//
-//extension View {
-//  func hideKeyboard() {
-//    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-//  }
-//}
-
-
-#Preview {
-    IngredientSheetViewPreview()
-}
-
-struct IngredientSheetViewPreview: View {
-    @State var isPresented = true
-    @State var showAddMenu = true
-    @State var selectedMenuName = "함박스테이크"
-
-    var body: some View {
-        NavigationStack {
-            MenuInputView(
-                showAddMenu: $showAddMenu,
-                selectedMenuName: $selectedMenuName
-            )
+        
+        // MainActor에서 상태 업데이트
+        await MainActor.run {
+            parsedIngredients = decoded
+            navigateToResult = true
+        }
+    }
+    
+    // 실제 데이터
+    //    func analyzeIngredients() async {
+    //        guard let selectedImage,
+    //              //        guard let imageData = selectedImage.jpegData(compressionQuality: 0.7) else { return }
+    //              let model else { return }
+    //
+    //        let prompt = """
+    //        음식 이름: \(menuName)
+    //        음식 가격: \(menuPrice)원
+    //
+    //        아래의 음식 이름과 사진을 참고하여, 이 음식에 사용된 재료 정보를 다음 JSON 형식으로 제공해줘:
+    //
+    //        [
+    //          {
+    //            "name": "재료명",
+    //            "amount": "사용량 및 그램단위 (예: 100g)",
+    //            "unitPrice": 단위 원가 (숫자, 원 단위)
+    //          },
+    //          ...
+    //        ]
+    //
+    //        - 사용된 재료는 주재료 위주로 구성
+    //        - 'unitPrice'는 'amount'의 단위 만큼만 사용했을 때 얼마인지 계산해줘.
+    //        - 텍스트 설명 없이 JSON 배열만 출력
+    //        """
+    //
+    //        do {
+    //                    let parts: [any PartsRepresentable] = [selectedImage]
+    //                    var fullText = ""
+    //                    for try await chunk in try model.generateContentStream(prompt, parts) {
+    //                        if let text = chunk.text { fullText += text }
+    //                    }
+    //
+    //                    // 백틱 제거 및 JSON 추출
+    //                    let cleaned = fullText
+    //                        .replacingOccurrences(of: "```json", with: "")
+    //                        .replacingOccurrences(of: "```", with: "")
+    //                        .trimmingCharacters(in: .whitespacesAndNewlines)
+    //
+    //                    guard
+    //                        let first = cleaned.firstIndex(of: "["),
+    //                        let last  = cleaned.lastIndex(of: "]"),
+    //                        let data  = String(cleaned[first...last]).data(using: .utf8)
+    //                    else { return }
+    //
+    //
+    //                    let decoded = try JSONDecoder().decode([IngredientInfo].self, from: data)
+    //                    // 1️⃣ – Main Thread에서 상태 갱신 및 저장 수행
+    //                    await MainActor.run {
+    //                        parsedIngredients = decoded
+    //
+    //                        // 3️⃣ – 저장이 끝나면 화면 전환
+    //                        navigateToResult = true
+    //                    }
+    //
+    //                } catch {
+    //                    print("Gemini API 호출 실패: \(error)")
+    //                }
+    //
+    //            }
+    //        }
+    
+    //
+    //extension View {
+    //  func hideKeyboard() {
+    //    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    //  }
+    //}
+    
+    
+    #Preview {
+        IngredientSheetViewPreview()
+    }
+    
+    struct IngredientSheetViewPreview: View {
+        @State var isPresented = true
+        @State var showAddMenu = true
+        @State var selectedMenuName = "함박스테이크"
+        
+        var body: some View {
+            NavigationStack {
+                MenuInputView(
+                    showAddMenu: $showAddMenu,
+                    selectedMenuName: $selectedMenuName
+                )
+            }
         }
     }
 }
