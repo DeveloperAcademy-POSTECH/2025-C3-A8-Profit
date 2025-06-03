@@ -12,9 +12,10 @@ struct IngredientResultView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
     
-    
+    // MyMenuView / MenuInputView 에서 전달받을 모드 플래그
+    let isNew: Bool                   // true = 신규 등록 모드, false = 기존 확인 모드
     @Binding var selectedMenuName: String
-    @Binding var showAddMenu: Bool
+    @Binding var showAddMenu: Bool    // MyMenuView 쪽에서 이 바인딩을 false로 바꿔가며 pop 처리
     
     let menuName: String
     let menuPrice: String
@@ -49,6 +50,7 @@ struct IngredientResultView: View {
     }
     // 초기화 시 parsedIngredients를 ingredients에 복사
     init(
+        isNew: Bool,
         selectedMenuName: Binding<String>,
         showAddMenu: Binding<Bool>,
         menuName: String,
@@ -56,6 +58,7 @@ struct IngredientResultView: View {
         image: UIImage?,
         parsedIngredients: [IngredientInfo]
     ) {
+        self.isNew = isNew
         _selectedMenuName = selectedMenuName
         _showAddMenu = showAddMenu
         self.menuName = menuName
@@ -133,18 +136,21 @@ struct IngredientResultView: View {
                         }
                         .listRowSeparator(.hidden)
                     }
-                    Button {
-                        // 추가 로직 Hook
-                        navigateToSearch = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                            Text("재료 추가하기")
+                    // “재료 추가하기” 버튼은 신규 등록 모드에서만 노출
+                    if isNew {
+                        Button {
+                            // 추가 로직 Hook
+                            navigateToSearch = true
+                        } label: {
+                            HStack {
+                                Image(systemName: "plus.circle.fill")
+                                Text("재료 추가하기")
+                            }
+                            .foregroundColor(.blue)
+                            .frame(maxWidth: .infinity, alignment: .center)
                         }
-                        .foregroundColor(.blue)
-                        .frame(maxWidth: .infinity, alignment: .center)
+                        .listRowSeparator(.hidden)
                     }
-                    .listRowSeparator(.hidden)
                 }
                 .listStyle(.plain)
                 
@@ -155,16 +161,21 @@ struct IngredientResultView: View {
                     Text("재료원가는 \(totalCost.formatted())원입니다")
                         .font(.subheadline)
                     
-                    Button("메뉴 등록") {
-                        //                    saveMenuWithIngredients()
-                        // 팝오버를 먼저 띄움
-                        showProgressPopover = true
+                    // 버튼 레이블을 모드에 따라 다르게 표시
+                    Button(isNew ? "메뉴 등록" : "확인") {
+                        if isNew {
+                            // 신규 등록 모드: 팝오버 띄우기
+                            showProgressPopover = true
+                        } else {
+                            // 기존 확인 모드: 바로 뒤로 팝
+                            dismiss()
+                        }
                     }
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
+                    .background(isNew ? Color.blue : Color.gray.opacity(0.3))
+                    .foregroundColor(isNew ? .white : .black)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
                 .padding()
@@ -275,6 +286,7 @@ struct IngredientResultView: View {
 #Preview {
     NavigationStack {
         IngredientResultView(
+            isNew: true,
             selectedMenuName: .constant("예시메뉴"),
             showAddMenu:      .constant(true),
             menuName:         "된장찌개",

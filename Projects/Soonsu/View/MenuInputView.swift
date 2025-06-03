@@ -165,6 +165,7 @@ struct MenuInputView: View {
             .background(Color(.systemGray6))
             .navigationDestination(isPresented: $navigateToResult) {
                 IngredientResultView(
+                    isNew: true,
                     selectedMenuName: $selectedMenuName,
                     showAddMenu: $showAddMenu,
                     menuName: menuName,
@@ -277,7 +278,7 @@ struct MenuInputView: View {
 }
 
 struct IngredientSheetViewPreview: View {
-    @State var isPresented = true
+//    @State var isPresented = true
     @State var showAddMenu = true
     @State var selectedMenuName = "함박스테이크"
 
