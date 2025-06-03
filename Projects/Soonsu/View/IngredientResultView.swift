@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 
-enum ResultMode {
+enum ResultMode : Equatable {
     case create  // 새로 등록
     case edit(existingEntities: [IngredientEntity])  // 기존 편집
 }
@@ -35,7 +35,7 @@ struct IngredientResultView: View {
     private func handleSave() {
         switch mode {
         case .create:
-            saveMenuWithIngredients()
+            createMenuWithIngredients()
         case .edit(let existingEntities):
             updateIfChanged(existingEntities: existingEntities)
         }
@@ -127,9 +127,9 @@ struct IngredientResultView: View {
                 Text("재료원가는 \(totalCost.formatted())원입니다")
                     .font(.subheadline)
                 
-                Button("메뉴 등록") {
+//                Button("메뉴 등록") {
+                Button(mode == .create ? "메뉴 등록" : "확인") {
                     handleSave()
-//                    saveMenuWithIngredients()
                 }
                 .font(.headline)
                 .frame(maxWidth: .infinity)
@@ -150,7 +150,7 @@ struct IngredientResultView: View {
     }
     
     // MARK: - 저장 & 루트 복귀
-    private func saveMenuWithIngredients() {
+    private func createMenuWithIngredients() {
         do {
             // 1️⃣ 메뉴 가격(String → Int) 변환
             let priceValue = Int(menuPrice) ?? 0

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		26AE58C22DEE842E00E45C4D /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AE58C12DEE842600E45C4D /* MockData.json */; };
+		26AE58C42DEEA42C00E45C4D /* IngredientAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE58C32DEEA42C00E45C4D /* IngredientAddView.swift */; };
 		3E7F2BE12DEDCC8700A20B86 /* MyMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDB2DEDCC8700A20B86 /* MyMenuView.swift */; };
 		3E7F2BE22DEDCC8700A20B86 /* MenuRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDD2DEDCC8700A20B86 /* MenuRowView.swift */; };
 		3E7F2BE32DEDCC8700A20B86 /* SoonsuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDF2DEDCC8700A20B86 /* SoonsuApp.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		26AE58C12DEE842600E45C4D /* MockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockData.json; sourceTree = "<group>"; };
+		26AE58C32DEEA42C00E45C4D /* IngredientAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientAddView.swift; sourceTree = "<group>"; };
 		3E7F2BDA2DEDCC8700A20B86 /* IngredientEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEntity.swift; sourceTree = "<group>"; };
 		3E7F2BDB2DEDCC8700A20B86 /* MyMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMenuView.swift; sourceTree = "<group>"; };
 		3E7F2BDC2DEDCC8700A20B86 /* MenuInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInputView.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				3E7F2BDD2DEDCC8700A20B86 /* MenuRowView.swift */,
 				3E7F2BDE2DEDCC8700A20B86 /* IngredientResultView.swift */,
 				68343B952DED76BE00BD34B4 /* ContentView.swift */,
+				26AE58C32DEEA42C00E45C4D /* IngredientAddView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				3E7F2BE52DEDCC8700A20B86 /* IngredientResultView.swift in Sources */,
 				3E7F2BE62DEDCC8700A20B86 /* IngredientEntity.swift in Sources */,
 				68343B9A2DED76BE00BD34B4 /* ContentView.swift in Sources */,
+				26AE58C42DEEA42C00E45C4D /* IngredientAddView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -62,6 +62,19 @@ struct MenuRowView: View {
         }
     }
     
+    /// 총 원가(Int)
+    private var totalCost: Int {
+        matchedEntities.reduce(0) { $0 + $1.unitPrice }
+    }
+    
+    
+    /// 원가율 (Double 백분율 값, 소수점 첫째자리까지)
+    private var costRateString: String {
+        guard let price = headerEntity?.menuPrice, price > 0 else { return "-" }
+        let rate = (Double(totalCost) / Double(price)) * 100
+        return String(format: "%.1f", rate)
+    }
+    
     var body: some View {
         NavigationLink {
             NavigationStack {
@@ -99,22 +112,16 @@ struct MenuRowView: View {
                             .font(.system(size: 17))
                             .fontWeight(.semibold)
                         Spacer()
-                        if let price = Int(priceString) {
-                            Text("재료원가 \(price.formatted())원")
-                                .font(.footnote)
-                                .fontWeight(.regular)
-                                .foregroundStyle(.secondary)
-                        } else {
-                            Text("재료원가 정보 없음")
-                                .font(.footnote)
-                                .fontWeight(.regular)
-                                .foregroundStyle(.secondary)
-                        }
+                        Text("재료원가 \(totalCost)원")
+                            .font(.footnote)
+                            .fontWeight(.regular)
+                            .foregroundStyle(.secondary)
+                        
                     }
                     HStack {
-                        Text("그래프")
+                        //                        Text("그래프")
                         Spacer()
-                        Text("원가율 \(priceString)%")
+                        Text("원가율 \(costRateString)%")
                             .font(.footnote)
                             .fontWeight(.regular)
                             .foregroundStyle(.blue)

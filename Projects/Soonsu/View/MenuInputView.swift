@@ -11,6 +11,13 @@ import FirebaseAI
 import SwiftData
 
 struct MenuInputView: View {
+    
+    enum Field: Hashable {
+        case menuName
+        case menuPrice
+    }
+
+    
     @Binding var showAddMenu: Bool
     @Binding var selectedMenuName: String
     
@@ -21,6 +28,7 @@ struct MenuInputView: View {
     @State private var menuName: String = ""
     @State private var menuPrice: String = ""
     @State private var parsedIngredients: [IngredientInfo] = []
+    @FocusState private var focusedField: Field?
     
     @Environment(\.modelContext) private var context
     
@@ -41,162 +49,165 @@ struct MenuInputView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                Section {
-                    PhotosPicker(
-                        selection: $selectedItem,
-                        matching: .images,
-                        photoLibrary: .shared()
-                    ) {
-                        if let image = selectedImage {
-                            RoundedRectangle(cornerRadius: 32)
-                                .fill(Color.clear)
-                                .frame(height: 360)
-                                .overlay {
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width:360, height: 360)
-                                        .clipShape(RoundedRectangle(cornerRadius: 32))
-                                }
-                        } else {
-                            ZStack {
+            ZStack {
+                ScrollView {
+                        PhotosPicker(
+                            selection: $selectedItem,
+                            matching: .images,
+                            photoLibrary: .shared()
+                        ) {
+                            if let image = selectedImage {
                                 RoundedRectangle(cornerRadius: 32)
-                                    .fill(Color.white)
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                
-                                VStack {
-                                    ZStack {
-                                        Circle()
-                                            .fill(Color.blue.opacity(0.1))
-                                            .frame(width: 100, height: 100)
-                                        Image(systemName: "photo.badge.plus")
-                                            .font(.system(size: 20))
-                                            .foregroundColor(.blue)
+                                    .fill(Color.clear)
+                                    .frame(height: 360)
+                                    .overlay {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width:360, height: 360)
+                                            .clipShape(RoundedRectangle(cornerRadius: 32))
                                     }
-                                    .padding(.bottom, 52)
-                                    Text(
-                                """
-                                사진을 등록하면 자동으로
-                                재료 원가를 계산해 드릴게요
-                                """
-                                    )
-                                    .multilineTextAlignment(.center)
-                                    .font(.title3)
-                                    .fontWeight(.bold)
+                            } else {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 32)
+                                        .fill(Color.blue.opacity(0.1))
+                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    
+                                    VStack {
+                                        ZStack {
+                                            Circle()
+                                                .fill(Color.white)
+                                                .frame(width: 100, height: 100)
+                                            Image(systemName: "photo.badge.plus")
+                                                .font(.system(size: 20))
+                                                .foregroundColor(.blue)
+                                        }
+                                        .padding(.bottom, 52)
+                                        Text(
+                                           """
+                                           사진을 등록하면 자동으로
+                                           재료 원가를 계산해 드릴게요
+                                           """
+                                        )
+                                        .multilineTextAlignment(.center)
+                                        .font(.title3)
+                                        .fontWeight(.bold)
+                                    }
+                                }
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .contentShape(Rectangle())
+                            }
+                        }
+                        .frame(width: 360, height: 360)
+                        .onChange(of: selectedItem) { _, newItem in
+                            Task {
+                                if let data = try? await newItem?.loadTransferable(type: Data.self),
+                                   let uiImage = UIImage(data: data) {
+                                    selectedImage = uiImage
                                 }
                             }
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .contentShape(Rectangle())
                         }
-                    }
-                    .frame(width: 360, height: 360)
-                    .onChange(of: selectedItem) { _, newItem in
-                        Task {
-                            if let data = try? await newItem?.loadTransferable(type: Data.self),
-                               let uiImage = UIImage(data: data) {
-                                selectedImage = uiImage
-                            }
-                        }
-                    }
-                }
-                //                    .padding(.top, -20)
-                .listRowBackground(Color.clear)
-                
-                
-                Section {
-                    HStack {
-                        Text("메뉴 이름")
-                            .font(.body)
-                            .fontWeight(.regular)
-                        TextField("", text: $menuName)
-                            .multilineTextAlignment(.trailing)
-                            .foregroundStyle(.black)
-                            .font(.body)
-                            .fontWeight(.bold)
-                    }
-                    
-                    HStack {
-                        Text("메뉴 가격")
-                            .font(.body)
-                            .fontWeight(.regular)
-                        TextField("", text: $menuPrice)
-                            .multilineTextAlignment(.trailing)
-                            .foregroundStyle(.black)
-                            .font(.body)
-                            .fontWeight(.bold)
-                            .keyboardType(.numberPad)
-                    }
-                    .padding(.top, 16)
-                    //                        Divider()
-                    HStack{}
-                }
-                
-                .listRowBackground(Color.clear)
-                
-                //                    Divider()
-                //                        .listRowBackground(Color.clear)
-                
-                
-                Button {
-                    isLoading = true
-                    Task {
-                        await analyzeIngredients()
-                        isLoading = false
-                    }
-                } label: {
-                    Text("재료원가 계산하기")
-                        .font(.body)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.white)
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 50)
-                .background((isLoading || selectedImage == nil || menuName.isEmpty || menuPrice.isEmpty) ? Color.gray : Color.blue)
-                .cornerRadius(10)
-                .disabled(isLoading || selectedImage == nil || menuName.isEmpty || menuPrice.isEmpty)
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(Color.clear)
-                //                    .padding(.top, -30)
-                
-            }
-            .padding(.vertical,-40)
-            .scrollContentBackground(.hidden)
-            .background(Color(.systemGray6))
-            .navigationDestination(isPresented: $navigateToResult) {
-                IngredientResultView(
-                    selectedMenuName: $selectedMenuName,
-                    showAddMenu: $showAddMenu,
-                    menuName: menuName,
-                    menuPrice: menuPrice,
-                    image: selectedImage,
-                    parsedIngredients: parsedIngredients,
-                    mode: .create
-                )
-            }
-            .overlay {
-                if isLoading {
-                    ZStack {
-                        Color.black.opacity(0.4).ignoresSafeArea()
-                        VStack(spacing: 8) {
-                            Text("재료를 분석 중이에요...")
+                    // 추가
+                    Group {
+                        HStack {
+                            Text("메뉴 이름")
                                 .font(.body)
                                 .fontWeight(.bold)
-                                .foregroundStyle(.white)
-                                .padding(.bottom, 16)
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                                .scaleEffect(2)
+                            TextField("메뉴 이름을 입력하세요", text: $menuName)
+                                .multilineTextAlignment(.trailing)
+                                .foregroundStyle(.black)
+                                .font(.body)
+                                .fontWeight(.bold)
+                                .focused($focusedField, equals: .menuName)
                         }
-                        .padding()
+                        .padding(.top, 32)
+                        
+                        Divider()
+                        
+                        HStack {
+                            Text("메뉴 가격")
+                                .font(.body)
+                                .fontWeight(.bold)
+                            TextField("메뉴 가격을 입력하세요", text: $menuPrice)
+                                .multilineTextAlignment(.trailing)
+                                .foregroundStyle(.black)
+                                .font(.body)
+                                .fontWeight(.bold)
+                                .keyboardType(.numberPad)
+                                .focused($focusedField, equals: .menuPrice)
+                        }
+                        .padding(.top)
+                        
+                        Divider()
+                        .padding(.bottom, 32)
+                    }
+                    .padding(.horizontal, 16)
+                    
+                    Button {
+                        isLoading = true
+                        Task {
+                            await analyzeIngredients()
+                            isLoading = false
+                        }
+                    } label: {
+                        Text("재료원가 계산하기")
+                            .font(.body)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.white)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
+                    .background((isLoading || selectedImage == nil || menuName.isEmpty || menuPrice.isEmpty) ? Color.gray : Color.blue)
+                    .cornerRadius(10)
+                    .disabled(isLoading || selectedImage == nil || menuName.isEmpty || menuPrice.isEmpty)
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
+                }
+                .padding()
+                .scrollContentBackground(.hidden)
+                .background(Color(.systemGray6))
+                .navigationDestination(isPresented: $navigateToResult) {
+                    IngredientResultView(
+                        selectedMenuName: $selectedMenuName,
+                        showAddMenu: $showAddMenu,
+                        menuName: menuName,
+                        menuPrice: menuPrice,
+                        image: selectedImage,
+                        parsedIngredients: parsedIngredients,
+                        mode: .create
+                    )
+                }
+                .overlay {
+                    if isLoading {
+                        ZStack {
+                            Color.black.opacity(0.4).ignoresSafeArea()
+                            VStack(spacing: 8) {
+                                Text("재료를 분석 중이에요...")
+                                    .font(.body)
+                                    .fontWeight(.bold)
+                                    .foregroundStyle(.white)
+                                    .padding(.bottom, 16)
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                                    .scaleEffect(2)
+                            }
+                            .padding()
+                        }
                     }
                 }
+                
+                if focusedField != nil {
+                    Color.clear
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            focusedField = nil
+                        }
+                }
+                
+
             }
-            
+
         }
-        //        .onTapGesture { // <-
-        //              hideKeyboard()
-        //            }
         .navigationTitle("재료원가계산")
         .navigationBarTitleDisplayMode(.inline)
     }
