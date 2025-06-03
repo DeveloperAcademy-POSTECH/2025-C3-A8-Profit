@@ -53,6 +53,7 @@ struct MyMenuView: View {
                                 .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
                             
                         }
+                        .onDelete(perform: deleteMenus)
                     }
                     .listStyle(.plain)
                     .scrollContentBackground(.hidden)
@@ -80,14 +81,7 @@ struct MyMenuView: View {
                 )
             }
         }
-//        .toolbar {
-//            Button {
-//                showAddMenu = true
-//            } label: {
-//                Image(systemName: "plus")
-//                    .fontWeight(.bold)
-//            }
-//        }
+
         // ── 디버그: allIngredients의 변화 감지
         .onChange(of: allIngredients.count) { _, newCount in
             print("🔵 [Debug] allIngredients.count changed to \(newCount)")
@@ -99,6 +93,21 @@ struct MyMenuView: View {
                 // IngredientSheetView + IngredientResultView가 모두 팝됩니다.
                 showAddMenu = false
             }
+        }
+    }
+    
+    private func deleteMenus(at offsets: IndexSet) {
+        for index in offsets {
+            let name = menuNames[index]
+            let matchingItems = allIngredients.filter { $0.menuName == name }
+            for item in matchingItems {
+                context.delete(item)
+            }
+        }
+        do {
+            try context.save()
+        } catch {
+            print("❌ 삭제 실패: \(error)")
         }
     }
 }
