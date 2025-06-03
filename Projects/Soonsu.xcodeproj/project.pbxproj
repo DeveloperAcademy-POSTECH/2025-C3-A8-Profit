@@ -14,7 +14,6 @@
 		3E7F2BE52DEDCC8700A20B86 /* IngredientResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDE2DEDCC8700A20B86 /* IngredientResultView.swift */; };
 		3E7F2BE62DEDCC8700A20B86 /* IngredientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDA2DEDCC8700A20B86 /* IngredientInfo.swift */; };
 		3E7F2BF32DEDCFBB00A20B86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E7F2BF22DEDCFBB00A20B86 /* GoogleService-Info.plist */; };
-		3E7F2BFC2DEDDE6100A20B86 /* IngredientAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BFB2DEDDE6100A20B86 /* IngredientAddView.swift */; };
 		68343B8F2DED761400BD34B4 /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = 68343B8E2DED761400BD34B4 /* FirebaseAI */; };
 		68343B912DED761400BD34B4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 68343B902DED761400BD34B4 /* FirebaseAnalytics */; };
 		68343B972DED76BE00BD34B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68343B922DED76BE00BD34B4 /* Assets.xcassets */; };
@@ -50,7 +49,6 @@
 		3E7F2BDE2DEDCC8700A20B86 /* IngredientResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientResultView.swift; sourceTree = "<group>"; };
 		3E7F2BDF2DEDCC8700A20B86 /* SoonsuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuApp.swift; sourceTree = "<group>"; };
 		3E7F2BF22DEDCFBB00A20B86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		3E7F2BFB2DEDDE6100A20B86 /* IngredientAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientAddView.swift; sourceTree = "<group>"; };
 		68343B5F2DED74BD00BD34B4 /* Soonsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soonsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68343B6E2DED74BE00BD34B4 /* SoonsuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoonsuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68343B782DED74BE00BD34B4 /* SoonsuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoonsuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,7 +156,6 @@
 		68343BA42DED76D900BD34B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3E7F2BFB2DEDDE6100A20B86 /* IngredientAddView.swift */,
 				3E7F2BF72DEDD10200A20B86 /* Component */,
 				3E7F2BDA2DEDCC8700A20B86 /* IngredientInfo.swift */,
 				3E7F2BDB2DEDCC8700A20B86 /* MyMenuView.swift */,
@@ -328,7 +325,6 @@
 				3E7F2BE32DEDCC8700A20B86 /* SoonsuApp.swift in Sources */,
 				3E7F2BE42DEDCC8700A20B86 /* MenuInputView.swift in Sources */,
 				3E7F2BE52DEDCC8700A20B86 /* IngredientResultView.swift in Sources */,
-				3E7F2BFC2DEDDE6100A20B86 /* IngredientAddView.swift in Sources */,
 				3E7F2BE62DEDCC8700A20B86 /* IngredientInfo.swift in Sources */,
 				68343B9A2DED76BE00BD34B4 /* ContentView.swift in Sources */,
 			);
