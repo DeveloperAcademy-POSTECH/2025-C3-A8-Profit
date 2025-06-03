@@ -12,6 +12,7 @@ struct MenuRowView: View {
     let menuName: String
     
     @Environment(\.modelContext) private var context
+    @State private var showDetail = false
     
     /// 해당 메뉴명에 속한 IngredientEntity를 모두 가져오는 computed 프로퍼티
     private var matchedEntities: [IngredientEntity] {
@@ -35,21 +36,32 @@ struct MenuRowView: View {
     
     /// 헤더 이미지(UIImage?) 준비
     private var headerImage: UIImage? {
-        guard
-            let data = headerEntity?.imageData,
-            let uiImage = UIImage(data: data)
-        else { return nil }
-        return uiImage
+        guard let data = headerEntity?.imageData else { return nil }
+        return UIImage(data: data)
     }
+    /*
+     private var headerImage: UIImage? {
+     guard
+     let data = headerEntity?.imageData,
+     let uiImage = UIImage(data: data)
+     else { return nil }
+     return uiImage
+     }
+     */
     
     /// 헤더 가격(String) 준비
     private var priceString: String {
-        if let price = headerEntity?.menuPrice {
-            return String(price)
-        } else {
-            return ""
-        }
+        headerEntity.map { String($0.menuPrice) } ?? ""
     }
+    /*
+     private var priceString: String {
+     if let price = headerEntity?.menuPrice {
+     return String(price)
+     } else {
+     return ""
+     }
+     }
+     */
     
     /// 재료 리스트용 IngredientInfo 배열
     private var infos: [IngredientInfo] {
@@ -63,19 +75,25 @@ struct MenuRowView: View {
     }
     
     var body: some View {
-        NavigationLink {
-            NavigationStack {
-                IngredientResultView(
-                    selectedMenuName: .constant(menuName),
-                    showAddMenu:      .constant(false),
-                    menuName:         menuName,
-                    menuPrice:        priceString,
-                    image:            headerImage,
-                    parsedIngredients: infos
-                )
-                .navigationBarBackButtonHidden(false)
-            }
-        } label: {
+        /*
+         NavigationLink {
+         NavigationStack {
+         IngredientResultView(
+         selectedMenuName: .constant(menuName),
+         showAddMenu:      .constant(false),
+         menuName:         menuName,
+         menuPrice:        priceString,
+         image:            headerImage,
+         parsedIngredients: infos
+         )
+         .navigationBarBackButtonHidden(false)
+         }
+         }
+         */
+        Button {
+            showDetail = true
+        }
+        label: {
             // Label: 썸네일 + 메뉴 이름 + 가격
             HStack(spacing: 12) {
                 if let thumb = headerImage {
@@ -119,6 +137,18 @@ struct MenuRowView: View {
                             .foregroundStyle(.blue)
                     }
                 }
+            }
+            // ── “기존 확인 모드”로 IngredientResultView를 푸시 ──
+            .navigationDestination(isPresented: $showDetail) {
+                IngredientResultView(
+                    isNew: false,
+                    selectedMenuName: .constant(menuName),
+                    showAddMenu:      .constant(false),   // “기존 모드” 플래그
+                    menuName:         menuName,
+                    menuPrice:        priceString,
+                    image:            headerImage,
+                    parsedIngredients: infos
+                )
             }
         }
     }
