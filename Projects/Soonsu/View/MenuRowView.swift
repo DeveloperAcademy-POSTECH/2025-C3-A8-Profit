@@ -144,13 +144,13 @@ struct MenuRowView: View {
             // ── “기존 확인 모드”로 IngredientResultView를 푸시 ──
             .navigationDestination(isPresented: $showDetail) {
                 IngredientResultView(
-                    isNew: false,
                     selectedMenuName: .constant(menuName),
                     showAddMenu:      .constant(false),   // “기존 모드” 플래그
                     menuName:         menuName,
                     menuPrice:        priceString,
                     image:            headerImage,
-                    parsedIngredients: infos
+                    parsedIngredients: infos,
+                    mode: .create
                 )
             }
         }

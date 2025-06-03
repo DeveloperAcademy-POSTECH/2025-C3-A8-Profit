@@ -107,103 +107,10 @@ struct MenuInputView: View {
                                 }
                             }
                         }
-                    }
-                    .frame(width: 360, height: 360)
-                    .onChange(of: selectedItem) { _, newItem in
-                        Task {
-                            if let data = try? await newItem?.loadTransferable(type: Data.self),
-                               let uiImage = UIImage(data: data) {
-                                selectedImage = uiImage
-                            }
-                        }
-                    }
-                }
-//                    .padding(.top, -20)
-                .listRowBackground(Color.clear)
-                
-                
-                Section {
-                    HStack {
-                        Text("메뉴 이름")
-                            .font(.body)
-                            .fontWeight(.regular)
-                        TextField("", text: $menuName)
-                            .multilineTextAlignment(.trailing)
-                            .foregroundStyle(.black)
-                            .font(.body)
-                            .fontWeight(.bold)
-                    }
-                    
-                    HStack {
-                        Text("메뉴 가격")
-                            .font(.body)
-                            .fontWeight(.regular)
-                        TextField("", text: $menuPrice)
-                            .multilineTextAlignment(.trailing)
-                            .foregroundStyle(.black)
-                            .font(.body)
-                            .fontWeight(.bold)
-                            .keyboardType(.numberPad)
-                    }
-                    .padding(.top, 16)
-//                        Divider()
-                    HStack{}
-                }
-
-                .listRowBackground(Color.clear)
-                
-//                    Divider()
-//                        .listRowBackground(Color.clear)
-
-                
-                Button {
-                    isLoading = true
-                    Task {
-                        await analyzeIngredients()
-                        isLoading = false
-                    }
-                } label: {
-                    Text("재료원가 계산하기")
-                        .font(.body)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.white)
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 50)
-                .background((isLoading || selectedImage == nil || menuName.isEmpty || menuPrice.isEmpty) ? Color.gray : Color.blue)
-                .cornerRadius(10)
-                .disabled(isLoading || selectedImage == nil || menuName.isEmpty || menuPrice.isEmpty)
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(Color.clear)
-//                    .padding(.top, -30)
-                
-            }
-            .padding(.vertical,-40)
-            .scrollContentBackground(.hidden)
-            .background(Color(.systemGray6))
-            .navigationDestination(isPresented: $navigateToResult) {
-                IngredientResultView(
-                    isNew: true,
-                    selectedMenuName: $selectedMenuName,
-                    showAddMenu: $showAddMenu,
-                    menuName: menuName,
-                    menuPrice: menuPrice,
-                    image: selectedImage,
-                    parsedIngredients: parsedIngredients
-                )
-            }
-            .overlay {
-                if isLoading {
-                    ZStack {
-                        Color.black.opacity(0.4).ignoresSafeArea()
-                        VStack(spacing: 8) {
-                            Text("재료를 분석 중이에요...")
-=======
                     // 추가
                     Group {
                         HStack {
                             Text("메뉴 이름")
->>>>>>> temporary
                                 .font(.body)
                                 .fontWeight(.bold)
                             TextField("메뉴 이름을 입력하세요", text: $menuName)
@@ -318,7 +225,7 @@ struct MenuInputView: View {
 //            print("❌ MockData 로드 실패")
 //            return
 //        }
-//        
+//
 //        // MainActor에서 상태 업데이트
 //        await MainActor.run {
 //            parsedIngredients = decoded
@@ -336,7 +243,9 @@ struct MenuInputView: View {
             음식 이름: \(menuName)
             음식 가격: \(menuPrice)원
             
-            아래의 음식 이름과 사진을 참고하여, 이 음식에 사용된 재료 정보를 다음 JSON 형식으로 제공해줘:
+            1. 이 명령은 첨부된 사진을 보고, 해당 음식의 재료원가를 파악하기 위한거야.
+            2. 만약 사진의 내용이 음식이 아니라면 빈 리스트를 제공해줘.
+            3. 음식 이름과 사진을 참고하여 정확하게 어떤 음식인지 파악하고, 이 음식에 사용된 재료 정보를 다음 JSON 형식으로 제공해줘:
             
             [
               {
@@ -347,9 +256,10 @@ struct MenuInputView: View {
               ...
             ]
             
-            - 사용된 재료는 주재료 위주로 구성
+            - 사용된 재료는 주재료 위주로 구성해줘.
+            - 신뢰성있고, 최신의 단가 계산 출처로 파악해줘.
             - 'unitPrice'는 'amount'의 단위 만큼만 사용했을 때 얼마인지 계산해줘.
-            - 텍스트 설명 없이 JSON 배열만 출력
+            - 텍스트 설명 없이 JSON 배열만 출력해줘.
             """
     
             do {
@@ -413,32 +323,4 @@ struct MenuInputView: View {
                 )
             }
         }
-<<<<<<< HEAD
-
-//
-//extension View {
-//  func hideKeyboard() {
-//    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-//  }
-//}
-
-
-#Preview {
-    IngredientSheetViewPreview()
-}
-
-struct IngredientSheetViewPreview: View {
-//    @State var isPresented = true
-    @State var showAddMenu = true
-    @State var selectedMenuName = "함박스테이크"
-
-    var body: some View {
-        NavigationStack {
-            MenuInputView(
-                showAddMenu: $showAddMenu,
-                selectedMenuName: $selectedMenuName
-            )
-        }
-=======
->>>>>>> temporary
     }
