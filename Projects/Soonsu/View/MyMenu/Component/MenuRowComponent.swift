@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct MenuRowView: View {
+struct MenuRowComponent: View {
     let menuName: String
     
     @Environment(\.modelContext) private var context
@@ -159,6 +159,6 @@ struct MenuRowView: View {
 
 #Preview {
     // Preview를 위해 더미 데이터를 넣어볼 수도 있습니다.
-    MenuRowView(menuName: "예시메뉴")
+    MenuRowComponent(menuName: "예시메뉴")
         .modelContainer(for: [IngredientEntity.self], inMemory: true)
 }

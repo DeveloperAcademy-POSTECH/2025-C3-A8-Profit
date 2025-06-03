@@ -49,7 +49,7 @@ struct MyMenuView: View {
                 } else {
                     List {
                         ForEach(menuNames, id: \.self) { name in
-                            MenuRowView(menuName: name)
+                            MenuRowComponent(menuName: name)
                                 .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
                             
                         }
