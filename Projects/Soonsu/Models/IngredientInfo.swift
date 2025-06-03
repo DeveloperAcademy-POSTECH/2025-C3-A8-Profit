@@ -1,49 +1,15 @@
 //
 //  IngredientInfo.swift
-//  HambJaeryoModal
+//  Soonsu
 //
-//  Created by coulson on 5/29/25.
+//  Created by coulson on 6/3/25.
 //
 
-import SwiftUI
+import Foundation
 import SwiftData
+import SwiftUI
 
-@Model
-final class IngredientEntity {
-    @Attribute(.unique) var id: UUID                // 고유 식별자
-    
-    
-    var menuName: String
-    var menuPrice: Int
-    var imageData: Data?
-    
-    
-    var name: String
-    var amount: String
-    var unitPrice: Int
-    var createdAt: Date
-    
-    
-    init(
-        menuName: String,
-        menuPrice: Int,
-        imageData: Data?,
-        info: IngredientInfo,
-        createdAt: Date = .now
-    ) {
-        self.id = info.id
-        self.menuName = menuName
-        self.menuPrice = menuPrice
-        self.imageData = imageData
-        
-        
-        self.name = info.name
-        self.amount = info.amount
-        self.unitPrice = info.unitPrice
-        self.createdAt = createdAt
-    }
-}
-
+/// AI로부터 받은 재료 정보 (UIKit/SwiftUI에서 식별자로 사용됨)
 struct IngredientInfo: Identifiable, Codable {
     // 리스트에 사용될 고유 id (JSON에 없음)
     var id: UUID = UUID()

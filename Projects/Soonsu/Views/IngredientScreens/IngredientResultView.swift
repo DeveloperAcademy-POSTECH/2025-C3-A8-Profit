@@ -74,114 +74,36 @@ struct IngredientResultView: View {
             // ──────────────── 메인 콘텐츠 ─────────────────
             VStack(spacing: 0) {
                 
-                // ── 헤더 영역 ─────────────────────────────────────
-                HStack(alignment: .top, spacing: 16) {
-                    if let uiImage = image {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 64, height: 64)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                    } else {
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(Color.gray.opacity(0.2))
-                            .frame(width: 64, height: 64)
-                            .overlay(
-                                Image(systemName: "fork.knife.circle.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .padding(12)
-                                    .foregroundColor(.orange)
-                            )
-                    }
-                    
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(menuName)
-                            .font(.headline)
-                        Text("\(menuPrice)원")
-                            .font(.title3).bold()
-                    }
-                    
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.top)
+                // ── 상단 헤더: 메뉴 이미지·이름·가격
+                IngredientHeaderView(
+                    menuName: menuName,
+                    menuPrice: menuPrice,
+                    image: image
+                )
                 
                 
-                // ── 재료 리스트 ──────────────────────────────────
-                List {
-                    //                ForEach(parsedIngredients) { ing in
-                    ForEach(ingredients) { ing in
-                        HStack {
-                            // 간단 아이콘 (재료 첫 글자 이모지 활용)
-                            Text(String(ing.name.first ?? "🥘"))
-                                .font(.system(size: 24))
-                            
-                            Text(ing.name)
-                                .font(.body)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            Text(ing.amount)
-                                .font(.subheadline)
-                                .frame(width: 60, alignment: .trailing)
-                            
-                            Text("\(ing.unitPrice.formatted())원")
-                                .font(.subheadline)
-                                .frame(width: 70, alignment: .trailing)
-                            
-                            Image(systemName: "chevron.up")
-                                .font(.caption2)
-                                .foregroundColor(.secondary)
-                        }
-                        .listRowSeparator(.hidden)
-                    }
-                    // “재료 추가하기” 버튼은 신규 등록 모드에서만 노출
-                    if isNew {
-                        Button {
-                            // 추가 로직 Hook
-                            navigateToSearch = true
-                        } label: {
-                            HStack {
-                                Image(systemName: "plus.circle.fill")
-                                Text("재료 추가하기")
-                            }
-                            .foregroundColor(.blue)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                        }
-                        .listRowSeparator(.hidden)
-                    }
-                }
-                .listStyle(.plain)
+                // ── 재료 리스트 + “재료 추가하기” 버튼(신규 등록 모드일 때만)
+                IngredientListView(
+                    ingredients: ingredients,
+                    isNew: isNew,
+                    onAddTapped: { navigateToSearch = true }
+                )
                 
                 Divider()
                 
-                // ── 하단 합계 + 등록 버튼 ────────────────────────
-                VStack(spacing: 16) {
-                    Text("재료원가는 \(totalCost.formatted())원입니다")
-                        .font(.subheadline)
-                    
-                    // 버튼 레이블을 모드에 따라 다르게 표시
-                    Button(isNew ? "메뉴 등록" : "확인") {
+                // ── 하단 합계 + 버튼 (신규 등록: “메뉴 등록”, 기존 확인: “확인”)
+                IngredientResultFooterView(
+                    totalCost: totalCost,
+                    isNew: isNew,
+                    onPrimaryTapped: {
                         if isNew {
                             // 신규 등록 모드: 팝오버 띄우기
                             showProgressPopover = true
                         } else {
-                            // 기존 확인 모드: 바로 뒤로 팝
+                            // 기존 확인 모드: 그냥 뒤로 팝
                             dismiss()
                         }
                     }
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(isNew ? Color.blue : Color.gray.opacity(0.3))
-                    .foregroundColor(isNew ? .white : .black)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                }
-                .padding()
-                .background(
-                    Color(UIColor.systemBackground)
-                        .shadow(color: .black.opacity(0.1), radius: 5, y: -2)
                 )
             }
             .ignoresSafeArea(.keyboard)

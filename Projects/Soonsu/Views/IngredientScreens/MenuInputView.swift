@@ -23,9 +23,6 @@ struct MenuInputView: View {
     @State private var parsedIngredients: [IngredientInfo] = []
     
     @Environment(\.modelContext) private var context
-    
-    
-    
     private var model: GenerativeModel?
     
     

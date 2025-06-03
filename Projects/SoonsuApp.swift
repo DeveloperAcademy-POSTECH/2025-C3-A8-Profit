@@ -7,6 +7,7 @@
 //
 import SwiftUI
 import FirebaseCore
+import SwiftData
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
@@ -21,10 +22,9 @@ struct SoonsuApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                ContentView()
-            }
-            .modelContainer(for: IngredientEntity.self)
+
+                MainTabView()
+            .modelContainer(for: [IngredientEntity.self])
         }
     }
 }
