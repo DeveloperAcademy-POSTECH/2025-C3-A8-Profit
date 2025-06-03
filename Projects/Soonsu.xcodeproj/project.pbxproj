@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		26AE58C22DEE842E00E45C4D /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AE58C12DEE842600E45C4D /* MockData.json */; };
 		26AE58C42DEEA42C00E45C4D /* IngredientAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE58C32DEEA42C00E45C4D /* IngredientAddView.swift */; };
+		26AE58DF2DEEA6EF00E45C4D /* ingredients.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AE58DE2DEEA6EF00E45C4D /* ingredients.json */; };
 		3E7F2BE12DEDCC8700A20B86 /* MyMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDB2DEDCC8700A20B86 /* MyMenuView.swift */; };
 		3E7F2BE22DEDCC8700A20B86 /* MenuRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDD2DEDCC8700A20B86 /* MenuRowView.swift */; };
 		3E7F2BE32DEDCC8700A20B86 /* SoonsuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDF2DEDCC8700A20B86 /* SoonsuApp.swift */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		26AE58C12DEE842600E45C4D /* MockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockData.json; sourceTree = "<group>"; };
 		26AE58C32DEEA42C00E45C4D /* IngredientAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientAddView.swift; sourceTree = "<group>"; };
+		26AE58DE2DEEA6EF00E45C4D /* ingredients.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ingredients.json; sourceTree = "<group>"; };
 		3E7F2BDA2DEDCC8700A20B86 /* IngredientEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEntity.swift; sourceTree = "<group>"; };
 		3E7F2BDB2DEDCC8700A20B86 /* MyMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMenuView.swift; sourceTree = "<group>"; };
 		3E7F2BDC2DEDCC8700A20B86 /* MenuInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInputView.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		68343BA32DED76D300BD34B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				26AE58DE2DEEA6EF00E45C4D /* ingredients.json */,
 				26AE58C12DEE842600E45C4D /* MockData.json */,
 				68343B932DED76BE00BD34B4 /* Item.swift */,
 			);
@@ -300,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68343B972DED76BE00BD34B4 /* Assets.xcassets in Resources */,
+				26AE58DF2DEEA6EF00E45C4D /* ingredients.json in Resources */,
 				3E7F2BF32DEDCFBB00A20B86 /* GoogleService-Info.plist in Resources */,
 				26AE58C22DEE842E00E45C4D /* MockData.json in Resources */,
 			);

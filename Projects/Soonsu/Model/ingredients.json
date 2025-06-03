@@ -1,0 +1,366 @@
+{
+  "쌀": {
+    "unitConversions": {
+      "컵": 180,
+    },
+    "prices": {
+      "g": 2.93
+    },
+    "marketPrice": {
+      "unit": "10000g",
+      "value": 29250
+    }
+  },
+  "감자": {
+    "unitConversions": {
+      "개": 150,
+      "줌": 40
+    },
+    "prices": {
+      "g": 5.9
+    },
+    "marketPrice": {
+      "unit": "100g",
+      "value": 590
+    }
+  },
+  "배추": {
+    "unitConversions": {
+      "개": 3000,
+      "줌": 35
+    },
+    "prices": {
+      "g": 1.24
+    },
+    "marketPrice": {
+      "unit": "개",
+      "value": 3725
+    }
+  },
+  "양배추": {
+    "unitConversions": {
+      "개": 1500,
+      "줌": 25
+    },
+    "prices": {
+      "g": 3.18
+    },
+    "marketPrice": {
+      "unit": "개",
+      "value": 4770
+    }
+  },
+  "토마토": {
+    "unitConversions": {
+      "개": 200,
+    },
+    "prices": {
+      "g": 4.46
+    },
+    "marketPrice": {
+      "unit": "1000g",
+      "value": 4460
+    }
+  },
+  "무": {
+    "unitConversions": {
+      "개": 1500,
+      "줌": 35
+    },
+    "prices": {
+      "g": 1.86
+    },
+    "marketPrice": {
+      "unit": "개",
+      "value": 2790
+    }
+  },
+  "당근": {
+    "unitConversions": {
+      "개": 200,
+      "줌": 35
+    },
+    "prices": {
+      "g": 5.33
+    },
+    "marketPrice": {
+      "unit": "1000g",
+      "value": 5330
+    }
+  },
+  "고추": {
+    "unitConversions": {
+      "개": 15,
+      "줌": 25
+    },
+    "prices": {
+      "g": 1.41
+    },
+    "marketPrice": {
+      "unit": "100g",
+      "value": 1410
+    }
+  },
+  "양파": {
+    "unitConversions": {
+      "개": 250,
+      "줌": 30
+    },
+    "prices": {
+      "g": 1.72
+    },
+    "marketPrice": {
+      "unit": "1000g",
+      "value": 1720
+    }
+  },
+  "파": {
+    "unitConversions": {
+      "개": 80,
+      "줌": 20
+    },
+    "prices": {
+      "g": 2.41
+    },
+    "marketPrice": {
+      "unit": "1000g",
+      "value": 2405
+    }
+  },
+  "피망": {
+    "unitConversions": {
+      "개": 150,
+      "줌": 25
+    },
+    "prices": {
+      "g": 2.03
+    },
+    "marketPrice": {
+      "unit": "100g",
+      "value": 2025
+    }
+  },
+  "파프리카": {
+    "unitConversions": {
+      "개": 200,
+      "줌": 30
+    },
+    "prices": {
+      "g": 7.38
+    },
+    "marketPrice": {
+      "unit": "200g",
+      "value": 1475
+    }
+  },
+  "마늘": {
+    "unitConversions": {
+      "개": 5,
+      "줌": 40
+    },
+    "prices": {
+      "g": 11.5
+    },
+    "marketPrice": {
+      "unit": "1000g",
+      "value": 11500
+    }
+  },
+  "브로콜리": {
+    "unitConversions": {
+      "개": 300,
+      "줌": 35
+    },
+    "prices": {
+      "g": 7.75
+    },
+    "marketPrice": {
+      "unit": "개",
+      "value": 2325
+    }
+  },
+  "콩나물": {
+    "unitConversions": {
+      "줌": 35,
+    },
+    "prices": {
+      "g": 6.88
+    },
+    "marketPrice": {
+      "unit": "340g",
+      "value": 2340
+    }
+  },
+  "쪽파": {
+    "unitConversions": {
+      "개": 20,
+      "줌": 30,
+    },
+    "prices": {
+      "g": 4.66
+    },
+    "marketPrice": {
+      "unit": "1000g",
+      "value": 4660
+    }
+  },
+  "방울토마토": {
+    "unitConversions": {
+      "개": 18,
+    },
+    "prices": {
+      "g": 8.22
+    },
+    "marketPrice": {
+      "unit": "1000g",
+      "value": 8215
+    }
+  },
+  "느타리버섯": {
+    "unitConversions": {
+      "개": 100,
+      "줌": 25
+    },
+    "prices": {
+      "g": 7.60
+    },
+    "marketPrice": {
+      "unit": "100g",
+      "value": 760
+    }
+  },
+  "팽이버섯": {
+    "unitConversions": {
+      "줌": 25,
+    },
+    "prices": {
+      "g": 8.22
+    },
+    "marketPrice": {
+      "unit": "150g",
+      "value": 437
+    }
+  },
+  "사과": {
+    "unitConversions": {
+      "개": 250,
+    },
+    "prices": {
+      "g": 10.48
+    },
+    "marketPrice": {
+      "unit": "10개",
+      "value": 26200
+    }
+  },
+  "배": {
+    "unitConversions": {
+      "개": 400,
+    },
+    "prices": {
+      "g": 11.5
+    },
+    "marketPrice": {
+      "unit": "10개",
+      "value": 46000
+    }
+  },
+  "안심": {
+    "unitConversions": {
+      "g": 1,
+    },
+    "prices": {
+      "g": 128.7
+    },
+    "marketPrice": {
+      "unit": "100g",
+      "value": 12872
+    }
+  },
+  "등심": {
+    "unitConversions": {
+      "g": 1,
+    },
+    "prices": {
+      "g": 95.53
+    },
+    "marketPrice": {
+      "unit": "100g",
+      "value": 9553
+    }
+  },
+  "삼겹살": {
+    "unitConversions": {
+      "g": 1,
+    },
+    "prices": {
+      "g": 24.52
+    },
+    "marketPrice": {
+      "unit": "100g",
+      "value": 2452
+    }
+  },
+  "앞다리": {
+    "unitConversions": {
+      "g": 1,
+    },
+    "prices": {
+      "g": 13.97
+    },
+    "marketPrice": {
+      "unit": "100g",
+      "value": 1397
+    }
+  },
+  "목심": {
+    "unitConversions": {
+      "g": 1,
+    },
+    "prices": {
+      "g": 24.35
+    },
+    "marketPrice": {
+      "unit": "100g",
+      "value": 2435
+    }
+  },
+  "닭": {
+    "unitConversions": {
+      "g": 1,
+    },
+    "prices": {
+      "g": 61.67
+    },
+    "marketPrice": {
+      "unit": "1000g",
+      "value": 6167
+    }
+  },
+  "계란": {
+    "unitConversions": {
+      "개": 60,
+    },
+    "prices": {
+      "g": 4.02
+    },
+    "marketPrice": {
+      "unit": "30개",
+      "value": 7233
+    }
+  },
+  "우유": {
+    "unitConversions": {
+      "컵": 200,
+      "큰술": 15
+    },
+    "prices": {
+      "ml": 2.98
+    },
+    "marketPrice": {
+      "unit": "1000ml",
+      "value": 2988
+    }
+  }
+}
+

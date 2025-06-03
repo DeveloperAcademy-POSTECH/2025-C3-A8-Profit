@@ -24,8 +24,11 @@ struct IngredientResultView: View {
     let menuName: String
     let menuPrice: String
     let image: UIImage?
-    let parsedIngredients: [IngredientInfo]
+//    let parsedIngredients: [IngredientInfo]
+    @State var parsedIngredients: [IngredientInfo]
     let mode: ResultMode
+    
+    @State private var showIngredientAddView = false
     
     
     private var totalCost: Int {
@@ -76,7 +79,7 @@ struct IngredientResultView: View {
                 Spacer()
             }
             .padding(.horizontal)
-            .padding(.top)
+            .padding(.vertical)
             
             
             // ── 재료 리스트 ──────────────────────────────────
@@ -84,8 +87,11 @@ struct IngredientResultView: View {
                 ForEach(parsedIngredients) { ing in
                     HStack {
                         // 간단 아이콘 (재료 첫 글자 이모지 활용)
-                        Text(String(ing.name.first ?? "🥘"))
-                            .font(.system(size: 24))
+                        Image(systemName: "photo")
+                            .font(.system(size: 20))
+                            .foregroundStyle(Color.gray.opacity(0.2))
+//                        Text(String(ing.name.first ?? "🥘"))
+//                            .font(.system(size: 24))
                         
                         Text(ing.name)
                             .font(.body)
@@ -97,6 +103,7 @@ struct IngredientResultView: View {
                         
                         Text("\(ing.unitPrice.formatted())원")
                             .font(.subheadline)
+                            .fontWeight(.bold)
                             .frame(width: 70, alignment: .trailing)
                         
                         Image(systemName: "chevron.up")
@@ -105,8 +112,16 @@ struct IngredientResultView: View {
                     }
                     .listRowSeparator(.hidden)
                 }
+            }
+            .listStyle(.plain)
+            
+            Divider()
+            
+            
+            // ── 하단 합계 + 등록 버튼 ────────────────────────
+            VStack(spacing: 16) {
                 Button {
-                    // 추가 로직 Hook (선택)
+                    showIngredientAddView = true
                 } label: {
                     HStack {
                         Image(systemName: "plus.circle.fill")
@@ -116,16 +131,9 @@ struct IngredientResultView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
                 .listRowSeparator(.hidden)
-            }
-            .listStyle(.plain)
-            
-            Divider()
-            
-            
-            // ── 하단 합계 + 등록 버튼 ────────────────────────
-            VStack(spacing: 16) {
                 Text("재료원가는 \(totalCost.formatted())원입니다")
-                    .font(.subheadline)
+                    .font(.headline)
+                    .fontWeight(.bold)
                 
 //                Button("메뉴 등록") {
                 Button(mode == .create ? "메뉴 등록" : "확인") {
@@ -145,6 +153,13 @@ struct IngredientResultView: View {
             )
         }
         .ignoresSafeArea(.keyboard)
+        .sheet(isPresented: $showIngredientAddView) {
+            IngredientAddView { selectedName in
+                guard !selectedName.isEmpty else { return }
+                let newIngredient = IngredientInfo(name: selectedName, amount: "", unitPrice: 0)
+                parsedIngredients.append(newIngredient)
+            }
+        }
         .navigationBarBackButtonHidden(true)
         .navigationTitle("재료관리")
     }
