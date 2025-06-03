@@ -29,19 +29,10 @@ struct IngredientResultView: View {
     let mode: ResultMode
     
     @State private var showIngredientAddView = false
-    @State private var showProgressPopover = false
     
     
     private var totalCost: Int {
         parsedIngredients.reduce(0) { $0 + $1.unitPrice }
-    }
-    
-    // 원가율 계산 (재료원가 합계 / 메뉴가격 * 100)
-    private var percentage: Double {
-        let totalCost = parsedIngredients.reduce(0) { $0 + $1.unitPrice }
-        let menuValue = Double(Int(menuPrice) ?? 1)
-        guard menuValue > 0 else { return 0 }
-        return (Double(totalCost) / menuValue) * 100.0
     }
     
     private func handleSave() {
@@ -54,159 +45,124 @@ struct IngredientResultView: View {
     }
     
     var body: some View {
-        ZStack {
-            VStack(spacing: 0) {
-                
-                // ── 헤더 영역 ─────────────────────────────────────
-                HStack(alignment: .top, spacing: 16) {
-                    if let uiImage = image {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 64, height: 64)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                    } else {
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(Color.gray.opacity(0.2))
-                            .frame(width: 64, height: 64)
-                            .overlay(
-                                Image(systemName: "fork.knife.circle.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .padding(12)
-                                    .foregroundColor(.orange)
-                            )
-                    }
-                    
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(menuName)
-                            .font(.headline)
-                        Text("\(menuPrice)원")
-                            .font(.title3).bold()
-                    }
-                    
-                    Spacer()
+        VStack(spacing: 0) {
+            
+            // ── 헤더 영역 ─────────────────────────────────────
+            HStack(alignment: .top, spacing: 16) {
+                if let uiImage = image {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 64, height: 64)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                } else {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.gray.opacity(0.2))
+                        .frame(width: 64, height: 64)
+                        .overlay(
+                            Image(systemName: "fork.knife.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .padding(12)
+                                .foregroundColor(.orange)
+                        )
                 }
-                .padding(.horizontal)
-                .padding(.vertical)
                 
                 
-                // ── 재료 리스트 ──────────────────────────────────
-                List {
-                    ForEach(parsedIngredients) { ing in
-                        HStack {
-                            // 간단 아이콘 (재료 첫 글자 이모지 활용)
-                            Image(systemName: "photo")
-                                .font(.system(size: 20))
-                                .foregroundStyle(Color.gray.opacity(0.2))
-                            //                        Text(String(ing.name.first ?? "🥘"))
-                            //                            .font(.system(size: 24))
-                            
-                            Text(ing.name)
-                                .font(.body)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            Text(ing.amount)
-                                .font(.subheadline)
-                                .frame(width: 60, alignment: .trailing)
-                            
-                            Text("\(ing.unitPrice.formatted())원")
-                                .font(.subheadline)
-                                .fontWeight(.bold)
-                                .frame(width: 70, alignment: .trailing)
-                            
-                            Image(systemName: "chevron.up")
-                                .font(.caption2)
-                                .foregroundColor(.secondary)
-                        }
-                        .listRowSeparator(.hidden)
-                    }
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(menuName)
+                        .font(.headline)
+                    Text("\(menuPrice)원")
+                        .font(.title3).bold()
                 }
-                .listStyle(.plain)
                 
-                Divider()
-                
-                
-                // ── 하단 합계 + 등록 버튼 ────────────────────────
-                VStack(spacing: 16) {
-                    Button {
-                        showIngredientAddView = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                            Text("재료 추가하기")
-                        }
-                        .foregroundColor(.blue)
-                        .frame(maxWidth: .infinity, alignment: .center)
+                Spacer()
+            }
+            .padding(.horizontal)
+            .padding(.vertical)
+            
+            
+            // ── 재료 리스트 ──────────────────────────────────
+            List {
+                ForEach(parsedIngredients) { ing in
+                    HStack {
+                        // 간단 아이콘 (재료 첫 글자 이모지 활용)
+                        Image(systemName: "photo")
+                            .font(.system(size: 20))
+                            .foregroundStyle(Color.gray.opacity(0.2))
+//                        Text(String(ing.name.first ?? "🥘"))
+//                            .font(.system(size: 24))
+                        
+                        Text(ing.name)
+                            .font(.body)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Text(ing.amount)
+                            .font(.subheadline)
+                            .frame(width: 60, alignment: .trailing)
+                        
+                        Text("\(ing.unitPrice.formatted())원")
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+                            .frame(width: 70, alignment: .trailing)
+                        
+                        Image(systemName: "chevron.up")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
                     }
                     .listRowSeparator(.hidden)
-                    Text("재료원가는 \(totalCost.formatted())원입니다")
-                        .font(.headline)
-                        .fontWeight(.bold)
-                    
-                    //                Button("메뉴 등록") {
-                    Button(mode == .create ? "메뉴 등록" : "확인") {
-                        showProgressPopover = true
-                        //                    handleSave()
-                    }
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                }
-                .padding()
-                .background(
-                    Color(UIColor.systemBackground)
-                        .shadow(color: .black.opacity(0.1), radius: 5, y: -2)
-                )
-            }
-            .ignoresSafeArea(.keyboard)
-            .sheet(isPresented: $showIngredientAddView) {
-                IngredientAddView { selectedName in
-                    guard !selectedName.isEmpty else { return }
-                    let newIngredient = IngredientInfo(name: selectedName, amount: "", unitPrice: 0)
-                    parsedIngredients.append(newIngredient)
                 }
             }
-            .navigationBarBackButtonHidden(true)
-            .navigationTitle("재료관리")
+            .listStyle(.plain)
             
-            if showProgressPopover {
-                // 배경을 어둡게 깔아줌
-                Color.black.opacity(0.4)
-                    .ignoresSafeArea()
-                
-                
-                // 터치 시 팝오버 해제 + 저장 로직 실행
-                    .onTapGesture {
-                        closePopoverAndSave()
+            Divider()
+            
+            
+            // ── 하단 합계 + 등록 버튼 ────────────────────────
+            VStack(spacing: 16) {
+                Button {
+                    showIngredientAddView = true
+                } label: {
+                    HStack {
+                        Image(systemName: "plus.circle.fill")
+                        Text("재료 추가하기")
                     }
-                
-                SSCircularProgressComponent(
-                    percentage: percentage,
-                    menuName: menuName
-                ) {
-                    // “완료” 버튼 눌렀을 때
-                    closePopoverAndSave()
+                    .foregroundColor(.blue)
+                    .frame(maxWidth: .infinity, alignment: .center)
                 }
-                // ZStack의 중앙에 위치하도록 전체 프레임을 채우고 정렬
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .zIndex(1)
+                .listRowSeparator(.hidden)
+                Text("재료원가는 \(totalCost.formatted())원입니다")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                
+//                Button("메뉴 등록") {
+                Button(mode == .create ? "메뉴 등록" : "확인") {
+                    handleSave()
+                }
+                .font(.headline)
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+            .padding()
+            .background(
+                Color(UIColor.systemBackground)
+                    .shadow(color: .black.opacity(0.1), radius: 5, y: -2)
+            )
+        }
+        .ignoresSafeArea(.keyboard)
+        .sheet(isPresented: $showIngredientAddView) {
+            IngredientAddView { selectedName in
+                guard !selectedName.isEmpty else { return }
+                let newIngredient = IngredientInfo(name: selectedName, amount: "", unitPrice: 0)
+                parsedIngredients.append(newIngredient)
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationTitle("재료관리")
     }
-
-    
-    private func closePopoverAndSave() {
-        showProgressPopover = false
-        handleSave()
-    }
-        
-    
-    
     
     // MARK: - 저장 & 루트 복귀
     private func createMenuWithIngredients() {
