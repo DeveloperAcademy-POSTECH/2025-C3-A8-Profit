@@ -170,7 +170,8 @@ struct MenuInputView: View {
                     menuName: menuName,
                     menuPrice: menuPrice,
                     image: selectedImage,
-                    parsedIngredients: parsedIngredients
+                    parsedIngredients: parsedIngredients,
+                    mode: .create
                 )
             }
             .overlay {

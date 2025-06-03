@@ -71,7 +71,8 @@ struct MenuRowView: View {
                     menuName:         menuName,
                     menuPrice:        priceString,
                     image:            headerImage,
-                    parsedIngredients: infos
+                    parsedIngredients: infos,
+                    mode: .edit(existingEntities: matchedEntities)
                 )
                 .navigationBarBackButtonHidden(false)
             }
