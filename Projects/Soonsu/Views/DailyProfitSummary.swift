@@ -21,7 +21,8 @@ struct DailyProfitSummary: View {
                     Text("\(vm.selectedDate.formatted(.dateTime.month().day())) \(vm.weekdayKorean(vm.selectedDate))요일 순이익")
                         .font(.headline)
                         .padding(.top, 6)
-                    Text("\(net.formatted(.number.grouping(.automatic))) 원")
+                    let netString = "\(net > 0 ? "+" : "-")\(abs(net).formatted(.number.grouping(.automatic))) 원"
+                    Text(netString)
                         .font(.system(size: 32, weight: .bold))
                         .foregroundColor(net > 0 ? .blue : .red)
                         .padding(.bottom, 2)
@@ -42,6 +43,11 @@ struct DailyProfitSummary: View {
                         Spacer()
                         Text("- \(dailyFixed.formatted(.number.grouping(.automatic))) 원")
                             .foregroundColor(.red)
+                    }
+                    if !vm.isFixedCostSet {
+                        Text("※ 기본 고정비 300만원(일할 \(dailyFixed.formatted(.number.grouping(.automatic)))원) 기준입니다.")
+                            .font(.caption2)
+                            .foregroundColor(.gray)
                     }
                 }
                 .font(.system(size: 15, weight: .medium))
@@ -83,11 +89,22 @@ struct DailyProfitSummary: View {
                         .foregroundColor(.purple)
                 }
             } else {
+                let dailyFixed = vm.dailyFixedCost(for: vm.selectedDate)
+                
+                
                 VStack {
-                    Text("\(vm.selectedDate.formatted(.dateTime.month().day())) \(vm.weekdayKorean(vm.selectedDate))요일 판매량을 입력해주세요.")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                        .padding(.top, 20)
+                    HStack {
+                        Text("고정비 (일별):")
+                            .padding(.trailing, 8)
+                        Text("- \(dailyFixed.formatted(.number.grouping(.automatic))) 원")
+                            .foregroundColor(.red)
+                    }
+                    
+                    if !vm.isFixedCostSet {
+                        Text("※ 임시 고정비 300만원(일할 \(dailyFixed.formatted(.number.grouping(.automatic)))원) 기준입니다.")
+                            .font(.caption2)
+                            .foregroundColor(.gray)
+                    }
                     Button {
                         vm.showSalesInputSheet = true
                     } label: {
@@ -103,6 +120,9 @@ struct DailyProfitSummary: View {
                     }
                     .padding(.top, 16)
                 }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
             }
         }
         .padding()
@@ -110,4 +130,8 @@ struct DailyProfitSummary: View {
         .cornerRadius(14)
         .shadow(color: .black.opacity(0.03), radius: 4, x: 0, y: 2)
     }
+}
+
+#Preview {
+    DailyProfitSummary(vm: ProfitViewModel())
 }

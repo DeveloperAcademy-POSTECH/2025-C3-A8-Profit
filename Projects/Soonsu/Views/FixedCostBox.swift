@@ -11,6 +11,7 @@ import SwiftUI
 struct FixedCostBox: View {
     @ObservedObject var vm: ProfitViewModel
     @State private var inputCost: String = ""
+    @State private var inputDays: String = ""
     @State private var saveMsg: String = ""
     
     var body: some View {
@@ -18,20 +19,35 @@ struct FixedCostBox: View {
             Text("월 고정비 설정")
                 .font(.headline)
             HStack {
-                TextField("월세, 인건비 등 총 고정비(만원)", text: $inputCost)
-                    .keyboardType(.numberPad)
-                    .padding(12)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                Text("만원")
-                    .foregroundColor(.gray)
+                HStack {
+                    TextField("총 고정비", text: $inputCost)
+                        .keyboardType(.numberPad)
+                        .padding(12)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                    Text("만원")
+                        .foregroundColor(.gray)
+                }
+                HStack {
+                    TextField("영업일수", text: $inputDays)
+                        .keyboardType(.numberPad)
+                        .padding(12)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                    Text("일")
+                        .foregroundColor(.gray)
+                }
             }
             Button {
-                if let num = Int(inputCost), num >= 0 {
+                if let num = Int(inputCost), num >= 0,
+                   let days = Int(inputDays), days > 0   {
                     vm.monthlyFixedCost = num * 10_000   // 만원 → 원
+                    vm.operatingDays    = days
+                    vm.isFixedCostSet   = true
                     vm.lastFixedCostUpdate = Date()
                     saveMsg = "고정비가 저장되었습니다."
                     inputCost = ""
+                    inputDays = ""
                 } else {
                     saveMsg = "유효한 금액을 입력하세요."
                 }
@@ -49,6 +65,28 @@ struct FixedCostBox: View {
             }
             .padding(.top, 3)
             
+            
+            // --- 총 고정비/영업일수 요약 (저장 후)
+            if vm.isFixedCostSet {
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack {
+                        Text("총 고정비")
+                        Spacer()
+                        Text("\(vm.monthlyFixedCost.formatted(.number.grouping(.automatic))) 원")
+                            .fontWeight(.semibold)
+                    }
+                    HStack {
+                        Text("영업일수")
+                        Spacer()
+                        Text("\(vm.operatingDays)일")
+                            .fontWeight(.semibold)
+                    }
+                }
+                .font(.footnote)
+                .padding(12)
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+            }
             Text("마지막 업데이트: \(koreaDateFormatter.string(from: vm.lastFixedCostUpdate))")
                 .font(.caption2)
                 .foregroundColor(.gray)
@@ -69,4 +107,12 @@ struct FixedCostBox: View {
         .cornerRadius(14)
         .shadow(color: .black.opacity(0.03), radius: 4, x: 0, y: 2)
     }
+}
+
+#Preview {
+    // ProfitViewModel을 초기화하여 미리보기에 전달
+    FixedCostBox(vm: ProfitViewModel())
+        .previewLayout(.sizeThatFits)
+        .padding()
+        .background(Color(.systemGray6).ignoresSafeArea())
 }

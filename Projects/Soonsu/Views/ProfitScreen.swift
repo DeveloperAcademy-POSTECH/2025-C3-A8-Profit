@@ -10,6 +10,7 @@ import SwiftUI
 /// ‘수익관리’ 탭 전체 화면 (달력, 고정비, 일별 요약)
 struct ProfitScreen: View {
     @StateObject var vm = ProfitViewModel()
+//    @State private var showFixedCostEditor: Bool = false  // 요약 카드가 생긴 후에만 사용
     
     var body: some View {
         ScrollView {

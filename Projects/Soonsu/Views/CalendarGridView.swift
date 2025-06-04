@@ -79,7 +79,8 @@ struct CalendarGridView: View {
                             .font(.system(size: 15, weight: .bold))
                             .foregroundColor(isSelected ? .white : .primary)
                         if let profit = netProfit {
-                            Text(vm.shortCurrency(profit))
+                            let profitStr = "\(profit > 0 ? "+" : "-")\(vm.shortCurrency(abs(profit)))"
+                            Text(profitStr)
                                 .font(.system(size: 12, weight: .medium))
                                 .foregroundColor(isSelected ? .white.opacity(0.7) : (profit > 0 ? .green : .red))
                         }
@@ -104,4 +105,8 @@ struct CalendarGridView: View {
     private func dayDate(year: Int, month: Int, day: Int) -> Date {
         Calendar.current.date(from: DateComponents(year: year, month: month, day: day))!
     }
+}
+
+#Preview {
+    CalendarGridView(vm: ProfitViewModel())
 }

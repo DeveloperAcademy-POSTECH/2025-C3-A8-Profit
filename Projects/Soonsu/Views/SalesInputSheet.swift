@@ -104,3 +104,14 @@ struct SalesInputSheet: View {
         }
     }
 }
+
+
+#Preview {
+    // 뷰모델과 초기 items 배열 준비
+    let previewVM = ProfitViewModel()
+    let initialItems = previewVM.menuMaster.map {
+        SoldItem(id: $0.id, name: $0.name, price: $0.price, qty: 1, image: "")
+    }
+    SalesInputSheet(vm: previewVM, items: initialItems)
+        .previewLayout(.sizeThatFits)
+}

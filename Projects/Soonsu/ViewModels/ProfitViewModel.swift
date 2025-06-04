@@ -13,22 +13,21 @@ class ProfitViewModel: ObservableObject {
     @Published var currentMonth: Date = Date()
     @Published var selectedDate: Date = Date()
     @Published var monthlyFixedCost: Int = 3_000_000  // 단위: 원
+    @Published var operatingDays: Int = 30
     @Published var lastFixedCostUpdate: Date = Date()
     @Published var showSalesInputSheet: Bool = false
     @Published var showTips: Bool = false
     @Published var tipText: String = ""
+    @Published var isFixedCostSet: Bool = false
     
     /// key: "yyyy-MM-dd", value: 하루 매출
+//    @Published var dailySalesData: [String: DailySales] = [:]
     @Published var dailySalesData: [String: DailySales] = [
-        "2024-06-26": DailySales(
-            revenue: 325_000,
-            materialCost: 125_000,
-            items: [
-                SoldItem(id: 1, name: "함박 스테이크", price: 15000, qty: 10, image: ""),
-                SoldItem(id: 2, name: "돈까스", price: 12000, qty: 8, image: ""),
-                SoldItem(id: 3, name: "샐러드", price: 8000, qty: 7, image: "")
-            ]
-        )
+        "2024-06-26": DailySales(revenue: 325_000, materialCost: 125_000, items: [
+            SoldItem(id: 1, name: "함박 스테이크", price: 15000, qty: 10, image: ""),
+            SoldItem(id: 2, name: "돈까스", price: 12000, qty: 8, image: ""),
+            SoldItem(id: 3, name: "샐러드", price: 8000, qty: 7, image: "")
+        ])
     ]
     
     /// 메뉴 마스터 데이터 (예시)
@@ -49,8 +48,8 @@ class ProfitViewModel: ObservableObject {
     
     // MARK: - 일할 고정비
     func dailyFixedCost(for date: Date) -> Int {
-        let daysInMonth = Calendar.current.range(of: .day, in: .month, for: date)!.count
-        return monthlyFixedCost / daysInMonth
+        let days = operatingDays > 0 ? operatingDays : Calendar.current.range(of: .day, in: .month, for: date)!.count
+        return days > 0 ? monthlyFixedCost / days : 0
     }
     
     // MARK: - 순이익 계산
@@ -66,21 +65,18 @@ class ProfitViewModel: ObservableObject {
     
     // MARK: - 판매량 업데이트
     func updateSales(for date: Date, soldItems: [SoldItem]) {
-        let revenue = soldItems.reduce(0) { $0 + $1.price * $1.qty }
-        let materialCost = soldItems.reduce(0) { partial, item in
-            let costPer = menuMaster.first(where: { $0.id == item.id })?.materialCostPerUnit ?? 0
-            return partial + costPer * item.qty
+            let revenue = soldItems.map { $0.price * $0.qty }.reduce(0, +)
+            let materialCost = soldItems.map {
+                let costPer = menuMaster.first(where: { $0.id == $0.id })?.materialCostPerUnit ?? 0
+                return costPer * $0.qty
+            }.reduce(0, +)
+
+            if soldItems.allSatisfy({ $0.qty == 0 }) {
+                dailySalesData.removeValue(forKey: format(date))
+            } else {
+                dailySalesData[format(date)] = DailySales(revenue: revenue, materialCost: materialCost, items: soldItems)
+            }
         }
-        if soldItems.filter({ $0.qty > 0 }).isEmpty {
-            dailySalesData.removeValue(forKey: format(date))
-        } else {
-            dailySalesData[format(date)] = DailySales(
-                revenue: revenue,
-                materialCost: materialCost,
-                items: soldItems
-            )
-        }
-    }
     
     // MARK: - 단축 통화 포맷 (예: 12345 → "1만")
     func shortCurrency(_ amount: Int) -> String {
@@ -93,7 +89,7 @@ class ProfitViewModel: ObservableObject {
     
     // MARK: - 요일을 한글로 반환 (일/월/화/…)
     func weekdayKorean(_ date: Date) -> String {
-        let idx = Calendar.current.component(.weekday, from: date)
-        return ["일","월","화","수","목","금","토"][idx - 1]
+        let week = Calendar.current.component(.weekday, from: date)
+        return ["일","월","화","수","목","금","토"][week - 1]
     }
 }
