@@ -21,14 +21,16 @@ struct IngredientResultView: View {
     @Binding var selectedMenuName: String
     @Binding var showAddMenu: Bool
     
-    @State var parsedIngredients: [IngredientInfo]
-    @State private var showIngredientAddView = false
-    @State private var showProgressPopover = false
-    
     let menuName: String
     let menuPrice: String
     let image: UIImage?
+//    let parsedIngredients: [IngredientInfo]
+    @State var parsedIngredients: [IngredientInfo]
     let mode: ResultMode
+    
+    @State private var showIngredientAddView = false
+    @State private var showProgressPopover = false
+    
     
     private var totalCost: Int {
         parsedIngredients.reduce(0) { $0 + $1.unitPrice }
