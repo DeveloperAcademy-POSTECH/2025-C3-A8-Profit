@@ -1,5 +1,5 @@
 //
-//  FixedCostBox.swift
+//  FixedCostEditor.swift
 //  Soonsu
 //
 //  Created by coulson on 6/3/25.
@@ -8,11 +8,18 @@
 import SwiftUI
 
 /// 매월 고정비를 입력·저장할 수 있는 박스
-struct FixedCostBox: View {
+struct FixedCostEditor: View {
     @ObservedObject var vm: ProfitViewModel
     @State private var inputCost: String = ""
     @State private var inputDays: String = ""
     @State private var saveMsg: String = ""
+    
+    //키보드 숨기기
+    @FocusState private var focusedField: Field?
+    
+    enum Field: Hashable {
+            case cost, days
+        }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -49,7 +56,7 @@ struct FixedCostBox: View {
                     inputCost = ""
                     inputDays = ""
                 } else {
-                    saveMsg = "유효한 금액을 입력하세요."
+                    saveMsg = "유효한 금액과 영업일수를 입력하세요."
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now()+1.2) {
                     saveMsg = ""
@@ -106,12 +113,20 @@ struct FixedCostBox: View {
         .background(Color.white)
         .cornerRadius(14)
         .shadow(color: .black.opacity(0.03), radius: 4, x: 0, y: 2)
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("완료") {
+                    focusedField = nil // SwiftUI 방식 키보드 숨기기
+                }
+            }
+        }
     }
 }
 
 #Preview {
     // ProfitViewModel을 초기화하여 미리보기에 전달
-    FixedCostBox(vm: ProfitViewModel())
+    FixedCostEditor(vm: ProfitViewModel())
         .previewLayout(.sizeThatFits)
         .padding()
         .background(Color(.systemGray6).ignoresSafeArea())

@@ -9,8 +9,23 @@ import SwiftUI
 import SwiftData
 
 struct MainTabView: View {
+    
+    @Environment(\.modelContext) private var context
+    
     @State private var selectedTab: TabType = .home
-
+    
+    //    @Query(sort: \IngredientEntity.createdAt, order: .reverse)
+    //    private var allIngredients: [IngredientEntity]
+    
+    //    @StateObject private var menuVM = MenuViewModel()
+    @StateObject private var profitVM = ProfitViewModel()
+//    @StateObject private var menuVM = MenuViewModel.empty
+    @StateObject private var menuVM: MenuViewModel
+    
+    init() {
+        _menuVM = StateObject(wrappedValue: MenuViewModel())
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             // 1) 탭 선택에 따라 본문을 바꿔줍니다.
@@ -24,25 +39,30 @@ struct MainTabView: View {
             case .menu:
                 // 두 번째 탭: 메뉴관리 → MyMenuView
                 NavigationStack {
-                    MyMenuView()
+                    MyMenuView(viewModel: menuVM)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
             case .profit:
-                // 세 번째 탭: 수익관리 → ProfitScreen
-                ProfitScreen()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
+                ProfitScreen(viewModel: profitVM, menuViewModel: menuVM, selectedTab: $selectedTab)
+                    .onAppear {
+                        profitVM.loadMenuMaster(from: menuVM.allIngredients)
+                    }
             case .cost:
                 // 네 번째 탭: 비용관리 (임시로 Text로 처리)
                 Text("비용관리 화면")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color(.systemBackground))
             }
-
+            
             // 2) 하단 탭 바
             TabBarView(selectedTab: $selectedTab)
         }
+        .onAppear {
+                    menuVM.setContextIfNeeded(context)
+                }
+        //        .onAppear {
+        //            profitVM.loadMenuMaster(from: allIngredients)
+        //        }
         // 이 부분에서 SwiftData의 modelContainer를 전달해야 MyMenuView가 정상 동작합니다.
         .modelContainer(for: [IngredientEntity.self])
     }

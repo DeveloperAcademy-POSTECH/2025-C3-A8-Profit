@@ -12,10 +12,16 @@ struct SalesInputSheet: View {
     @ObservedObject var vm: ProfitViewModel
     @Environment(\.dismiss) var dismiss
     @State var items: [SoldItem]
-
+    
+    @FocusState private var focusedFieldID: Int?
+    
+    
+    // MARK: - 수량 관련 함수
     private func quantity(for id: Int) -> Int {
         items.first(where: { $0.id == id })?.qty ?? 0
     }
+    
+    
     private func updateQty(for id: Int, delta: Int) {
         if let idx = items.firstIndex(where: { $0.id == id }) {
             let newQty = max(items[idx].qty + delta, 0)
@@ -29,7 +35,21 @@ struct SalesInputSheet: View {
             items.append(SoldItem(id: menu.id, name: menu.name, price: menu.price, qty: delta, image: ""))
         }
     }
-
+    
+    
+    private func updateQtyDirect(for id: Int, to newQty: Int) {
+        if newQty <= 0 {
+            if let idx = items.firstIndex(where: { $0.id == id }) {
+                items.remove(at: idx)
+            }
+        } else if let idx = items.firstIndex(where: { $0.id == id }) {
+            items[idx].qty = newQty
+        } else if let menu = vm.menuMaster.first(where: { $0.id == id }) {
+            items.append(SoldItem(id: menu.id, name: menu.name, price: menu.price, qty: newQty, image: ""))
+        }
+    }
+    
+    
     var body: some View {
         NavigationView {
             List {
@@ -43,14 +63,23 @@ struct SalesInputSheet: View {
                                     .font(.caption)
                                     .foregroundColor(.gray)
                             )
-                        VStack(alignment: .leading) {
+                        
+                        
+                        VStack(alignment: .leading, spacing: 2) {
                             Text(menu.name)
                                 .font(.headline)
                             Text("단가: \(menu.price.formatted(.number.grouping(.automatic))) 원")
                                 .font(.caption)
                                 .foregroundColor(.gray)
+                            Text("원가: \(menu.materialCostPerUnit.formatted(.number.grouping(.automatic))) 원")
+                                .font(.caption)
+                                .foregroundColor(.gray)
                         }
+                        
+                        
                         Spacer()
+                        
+                        
                         HStack(spacing: 0) {
                             Button {
                                 updateQty(for: menu.id, delta: -1)
@@ -61,9 +90,22 @@ struct SalesInputSheet: View {
                                     .foregroundColor(.gray)
                             }
                             .buttonStyle(.plain)
-                            Text("\(quantity(for: menu.id))")
-                                .frame(width: 32)
-                                .font(.title3)
+                            
+                            
+                            // 수량 입력 필드
+                            TextField("", value: Binding(
+                                get: { quantity(for: menu.id) },
+                                set: { newVal in updateQtyDirect(for: menu.id, to: newVal) }
+                            ), formatter: NumberFormatter())
+                            .keyboardType(.numberPad)
+                            .multilineTextAlignment(.center)
+                            .frame(minWidth: 40)
+                            .fixedSize(horizontal: true, vertical: false)
+                            .textFieldStyle(.roundedBorder)
+                            .font(.title3)
+                            .focused($focusedFieldID, equals: menu.id)
+                            
+                            
                             Button {
                                 updateQty(for: menu.id, delta: 1)
                             } label: {
@@ -74,14 +116,21 @@ struct SalesInputSheet: View {
                             }
                             .buttonStyle(.plain)
                         }
-                        Button {
+                        Button(action: {
                             // 설명 생성 기능(추후 AI 연동)
-                        } label: {
-                            Text("✨ 설명 생성")
-                                .font(.caption)
-                                .padding(6)
-                                .background(Color.purple.opacity(0.15))
-                                .cornerRadius(8)
+                        }) {
+                            HStack(alignment: .top, spacing: 2) {
+                                Text("✨")
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text("설명")
+                                    Text("생성")
+                                }
+                            }
+                            .font(.caption)
+                            .foregroundColor(.primary)
+                            .padding(6)
+                            .background(Color.purple.opacity(0.15))
+                            .cornerRadius(8)
                         }
                     }
                     .padding(.vertical, 6)
@@ -100,18 +149,24 @@ struct SalesInputSheet: View {
                         dismiss()
                     }
                 }
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("완료") {
+                        focusedFieldID = nil // 키보드 숨기기
+                    }
+                }
             }
         }
     }
 }
 
 
-#Preview {
-    // 뷰모델과 초기 items 배열 준비
-    let previewVM = ProfitViewModel()
-    let initialItems = previewVM.menuMaster.map {
-        SoldItem(id: $0.id, name: $0.name, price: $0.price, qty: 1, image: "")
-    }
-    SalesInputSheet(vm: previewVM, items: initialItems)
-        .previewLayout(.sizeThatFits)
-}
+//#Preview {
+//    // 뷰모델과 초기 items 배열 준비
+//    let previewVM = ProfitViewModel()
+//    let initialItems = previewVM.menuMaster.map {
+//        SoldItem(id: $0.id, name: $0.name, price: $0.price, qty: 1, image: "")
+//    }
+//    SalesInputSheet(vm: previewVM, items: initialItems)
+//        .previewLayout(.sizeThatFits)
+//}

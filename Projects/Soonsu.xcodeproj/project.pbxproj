@@ -30,7 +30,7 @@
 		68F7DAE52DEF33DF00A5633A /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAE42DEF33CB00A5633A /* MenuViewModel.swift */; };
 		68F7DAE72DEF347100A5633A /* ProfitScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAE62DEF346F00A5633A /* ProfitScreen.swift */; };
 		68F7DAE92DEF34A800A5633A /* CalendarGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAE82DEF34A600A5633A /* CalendarGridView.swift */; };
-		68F7DAEB2DEF34EB00A5633A /* FixedCostBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAEA2DEF34EA00A5633A /* FixedCostBox.swift */; };
+		68F7DAEB2DEF34EB00A5633A /* FixedCostEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAEA2DEF34EA00A5633A /* FixedCostEditor.swift */; };
 		68F7DAED2DEF350A00A5633A /* DailyProfitSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAEC2DEF350800A5633A /* DailyProfitSummary.swift */; };
 		68F7DAEF2DEF352400A5633A /* SalesInputSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAEE2DEF352100A5633A /* SalesInputSheet.swift */; };
 		68F7DAF32DEF37B800A5633A /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAF22DEF37B700A5633A /* DateFormatters.swift */; };
@@ -82,7 +82,7 @@
 		68F7DAE42DEF33CB00A5633A /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		68F7DAE62DEF346F00A5633A /* ProfitScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitScreen.swift; sourceTree = "<group>"; };
 		68F7DAE82DEF34A600A5633A /* CalendarGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarGridView.swift; sourceTree = "<group>"; };
-		68F7DAEA2DEF34EA00A5633A /* FixedCostBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedCostBox.swift; sourceTree = "<group>"; };
+		68F7DAEA2DEF34EA00A5633A /* FixedCostEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedCostEditor.swift; sourceTree = "<group>"; };
 		68F7DAEC2DEF350800A5633A /* DailyProfitSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyProfitSummary.swift; sourceTree = "<group>"; };
 		68F7DAEE2DEF352100A5633A /* SalesInputSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesInputSheet.swift; sourceTree = "<group>"; };
 		68F7DAF22DEF37B700A5633A /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 			children = (
 				68F7DAE62DEF346F00A5633A /* ProfitScreen.swift */,
 				68F7DAE82DEF34A600A5633A /* CalendarGridView.swift */,
-				68F7DAEA2DEF34EA00A5633A /* FixedCostBox.swift */,
+				68F7DAEA2DEF34EA00A5633A /* FixedCostEditor.swift */,
 				68F7DAEC2DEF350800A5633A /* DailyProfitSummary.swift */,
 				68F7DAEE2DEF352100A5633A /* SalesInputSheet.swift */,
 				68F7DAF02DEF355D00A5633A /* IngredientScreens */,
@@ -402,7 +402,7 @@
 				68F7DAD92DEF2CF300A5633A /* MenuItem.swift in Sources */,
 				68F7DADA2DEF2CF300A5633A /* SoldItem.swift in Sources */,
 				68F7DAED2DEF350A00A5633A /* DailyProfitSummary.swift in Sources */,
-				68F7DAEB2DEF34EB00A5633A /* FixedCostBox.swift in Sources */,
+				68F7DAEB2DEF34EB00A5633A /* FixedCostEditor.swift in Sources */,
 				3E7F2BE52DEDCC8700A20B86 /* IngredientResultView.swift in Sources */,
 				68F7DAE52DEF33DF00A5633A /* MenuViewModel.swift in Sources */,
 				3E7F2BFC2DEDDE6100A20B86 /* IngredientAddView.swift in Sources */,

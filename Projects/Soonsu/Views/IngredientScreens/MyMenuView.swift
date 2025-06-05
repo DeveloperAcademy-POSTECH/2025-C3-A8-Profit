@@ -9,19 +9,29 @@ import SwiftUI
 import SwiftData
 
 struct MyMenuView: View {
+    
+    @ObservedObject var viewModel: MenuViewModel
     @State private var showAddMenu      = false
     @State private var selectedMenuName = ""
     
-    // SwiftData에서 모든 IngredientEntity를 최신순(createdAt)으로 가져옴
-    @Query(sort: \IngredientEntity.createdAt, order: .reverse)
-    private var allIngredients: [IngredientEntity]
+    init(viewModel: MenuViewModel) {
+        self.viewModel = viewModel
+        self._showAddMenu = State(initialValue: false)
+        self._selectedMenuName = State(initialValue: "")
+    }
     
-    @Environment(\.modelContext) private var context
+    // SwiftData에서 모든 IngredientEntity를 최신순(createdAt)으로 가져옴
+    //    @Query(sort: \IngredientEntity.createdAt, order: .reverse)
+    private var allIngredients: [IngredientEntity]{
+        viewModel.allIngredients
+    }
+    
+    //    @Environment(\.modelContext) private var context
     
     /// 중복 없이 최신순으로 정리한 메뉴 이름 배열
     private var menuNames: [String] {
         var seen: Set<String> = []
-        return allIngredients.compactMap { entity in
+        return viewModel.allIngredients.compactMap { entity in
             guard !seen.contains(entity.menuName) else { return nil }
             seen.insert(entity.menuName)
             return entity.menuName
@@ -29,9 +39,9 @@ struct MyMenuView: View {
     }
     
     var body: some View {
+        let menuNames = Set(viewModel.allIngredients.map(\.menuName)).sorted(by: >)
         NavigationStack {
             VStack {
-                
                 if menuNames.isEmpty {
                     Spacer()
                     Text(
@@ -51,7 +61,6 @@ struct MyMenuView: View {
                         ForEach(menuNames, id: \.self) { name in
                             MenuRowView(menuName: name)
                                 .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
-                            
                         }
                     }
                     .listStyle(.plain)
@@ -80,14 +89,13 @@ struct MyMenuView: View {
                 )
             }
         }
-//        .toolbar {
-//            Button {
-//                showAddMenu = true
-//            } label: {
-//                Image(systemName: "plus")
-//                    .fontWeight(.bold)
-//            }
-//        }
+        .onChange(of: selectedMenuName) { _, newValue in
+            if !newValue.isEmpty {
+                showAddMenu = false
+                viewModel.fetchAllIngredients() // 새로 등록한 메뉴 반영
+            }
+        }
+        
         // ── 디버그: allIngredients의 변화 감지
         .onChange(of: allIngredients.count) { _, newCount in
             print("🔵 [Debug] allIngredients.count changed to \(newCount)")
@@ -103,9 +111,9 @@ struct MyMenuView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        MyMenuView()
-            .modelContainer(for: [IngredientEntity.self], inMemory: true)
-    }
-}
+//#Preview {
+//    NavigationStack {
+//        MyMenuView(viewModel: MenuViewModel())
+//            .modelContainer(for: [IngredientEntity.self], inMemory: true)
+//    }
+//}

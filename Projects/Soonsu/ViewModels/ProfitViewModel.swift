@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 /// 수익(달력/고정비/일별매출) 화면 전용 ViewModel
 class ProfitViewModel: ObservableObject {
@@ -21,23 +22,32 @@ class ProfitViewModel: ObservableObject {
     @Published var isFixedCostSet: Bool = false
     
     /// key: "yyyy-MM-dd", value: 하루 매출
-//    @Published var dailySalesData: [String: DailySales] = [:]
-    @Published var dailySalesData: [String: DailySales] = [
-        "2024-06-26": DailySales(revenue: 325_000, materialCost: 125_000, items: [
-            SoldItem(id: 1, name: "함박 스테이크", price: 15000, qty: 10, image: ""),
-            SoldItem(id: 2, name: "돈까스", price: 12000, qty: 8, image: ""),
-            SoldItem(id: 3, name: "샐러드", price: 8000, qty: 7, image: "")
-        ])
-    ]
+    @Published var dailySalesData: [String: DailySales] = [:]
     
-    /// 메뉴 마스터 데이터 (예시)
-    @Published var menuMaster: [MenuItem] = [
-        MenuItem(id: 1, name: "함박 스테이크", price: 15000, materialCostPerUnit: 5000, image: ""),
-        MenuItem(id: 2, name: "돈까스", price: 12000, materialCostPerUnit: 4000, image: ""),
-        MenuItem(id: 3, name: "샐러드", price: 8000, materialCostPerUnit: 2500, image: ""),
-        MenuItem(id: 4, name: "파스타", price: 13000, materialCostPerUnit: 4500, image: ""),
-        MenuItem(id: 5, name: "음료수", price: 2000, materialCostPerUnit: 500, image: "")
-    ]
+    
+    @Published var salesByDate: [Date: [SoldItem]] = [:]
+    
+    /// IngredientEntity에서 가져온 사용자 메뉴 데이터
+    @Published var menuMaster: [MenuItem] = []
+    
+    // MARK: - 사용자 정의 메뉴 불러오기
+    func loadMenuMaster(from ingredients: [IngredientEntity]) {
+        let grouped = Dictionary(grouping: ingredients, by: { $0.menuName })
+        
+        menuMaster = grouped.compactMap { (menuName, entries) in
+            guard let first = entries.first else { return nil }
+            let totalCost = entries.map { $0.unitPrice }.reduce(0, +)
+            return MenuItem(
+                id: menuName.hashValue,
+                name: menuName,
+                price: first.menuPrice,
+                materialCostPerUnit: totalCost,
+                image: "" // 실제 UIImage는 View에서 imageData를 직접 해석
+            )
+        }
+    }
+
+
     
     // MARK: - 날짜 포맷터
     private func format(_ date: Date) -> String {
@@ -62,6 +72,7 @@ class ProfitViewModel: ObservableObject {
     func salesData(for date: Date) -> DailySales? {
         dailySalesData[format(date)]
     }
+
     
     // MARK: - 판매량 업데이트
     func updateSales(for date: Date, soldItems: [SoldItem]) {
