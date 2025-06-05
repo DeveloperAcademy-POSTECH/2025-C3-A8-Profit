@@ -11,39 +11,49 @@ struct ProfitScreen: View {
     
     // Combine 구독을 위한 저장
     @State private var cancellables: Set<AnyCancellable> = []
-
-
+    
+    
+    ///인건비/간접비/감가상각비 탭 또는 뷰로 이동 대비
+    @State private var navigateToNextView = false
+    
+    
+    
     var body: some View {
-        ScrollView {
-            VStack(spacing: 16) {
-                CalendarGridView(vm: viewModel)
-                    .padding(.top, 12)
-
-                fixedCostSection
-
-                DailyProfitSummary(vm: viewModel)
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 16) {
+                    CalendarGridView(vm: viewModel)
+                        .padding(.top, 12)
+                    
+                    fixedCostSection
+                    
+                    DailyProfitSummary(vm: viewModel)
+                }
+                .padding(.horizontal, 12)
+                .padding(.bottom, 48)
             }
-            .padding(.horizontal, 12)
-            .padding(.bottom, 48)
-        }
-        .onTapGesture {
-            isInputFocused = false
-        }
-        .background(Color(.systemGray6).ignoresSafeArea())
-        .sheet(isPresented: $viewModel.showSalesInputSheet) {
-            let items = viewModel.salesData(for: viewModel.selectedDate)?.items
+            .onTapGesture {
+                isInputFocused = false
+            }
+            .background(Color(.systemGray6).ignoresSafeArea())
+            .sheet(isPresented: $viewModel.showSalesInputSheet) {
+                let items = viewModel.salesData(for: viewModel.selectedDate)?.items
                 ?? viewModel.menuMaster.map {
                     SoldItem(id: $0.id, name: $0.name, price: $0.price, qty: 0, image: "")
                 }
-            SalesInputSheet(vm: viewModel, items: items)
-        }
-        .onAppear {
-            menuViewModel.$allIngredients
-                .receive(on: DispatchQueue.main)
-                .sink { ingredients in
-                    viewModel.loadMenuMaster(from: ingredients)
-                }
-                .store(in: &cancellables)
+                SalesInputSheet(vm: viewModel, items: items)
+            }
+            .onAppear {
+                menuViewModel.$allIngredients
+                    .receive(on: DispatchQueue.main)
+                    .sink { ingredients in
+                        viewModel.loadMenuMaster(from: ingredients)
+                    }
+                    .store(in: &cancellables)
+            }
+            .navigationDestination(isPresented: $navigateToNextView) {
+                NextView()
+            }
         }
     }
     
@@ -52,10 +62,13 @@ struct ProfitScreen: View {
     private var fixedCostSection: some View {
         if viewModel.isFixedCostSet {
             VStack(spacing: 0) {
+                //                Button(action: {
+                //                    withAnimation {
+                //                        showFixedCostEditor.toggle()
+                //                    }
+                //                }) {
                 Button(action: {
-                    withAnimation {
-                        showFixedCostEditor.toggle()
-                    }
+                    navigateToNextView = true
                 }) {
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
@@ -69,7 +82,7 @@ struct ProfitScreen: View {
                             Text("\(viewModel.operatingDays)일")
                                 .fontWeight(.semibold)
                         }
-                        Image(systemName: showFixedCostEditor ? "chevron.up" : "chevron.down")
+                        Image(systemName: "chevron.right")
                             .foregroundColor(.gray)
                     }
                     .padding(12)
@@ -82,19 +95,43 @@ struct ProfitScreen: View {
                     .foregroundColor(.primary)
                 }
                 .buttonStyle(.plain)
-
-                if showFixedCostEditor {
-                    FixedCostEditor(vm: viewModel)
-                        .transition(.move(edge: .top).combined(with: .opacity))
-                        .focused($isInputFocused)
-                }
-            }
-            .onChange(of: viewModel.isFixedCostSet) { newVal in
-                if newVal { showFixedCostEditor = false }
+                /*
+                 if showFixedCostEditor {
+                 FixedCostEditor(vm: viewModel)
+                 .transition(.move(edge: .top).combined(with: .opacity))
+                 .focused($isInputFocused)
+                 }*/
             }
         } else {
-            FixedCostEditor(vm: viewModel)
-                .focused($isInputFocused)
+            FixedCostEditor(vm: viewModel).focused($isInputFocused)
+            /*
+             .onChange(of: viewModel.isFixedCostSet) { newVal in
+             if newVal { showFixedCostEditor = false }
+             }
+             } else {
+             FixedCostEditor(vm: viewModel)
+             .focused($isInputFocused)
+             }*/
         }
+    }
+}
+
+//다음 뷰 
+struct NextView: View {
+    var body: some View {
+        VStack(spacing: 24) {
+            Text("새로운 뷰입니다.")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            
+            Text("여기서 인건비, 간접비, 감가상각비 등을 입력할 수 있게 확장 가능!")
+                .font(.body)
+                .foregroundColor(.secondary)
+            
+            Spacer()
+        }
+        .padding()
+        .navigationTitle("세부 고정비 관리")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

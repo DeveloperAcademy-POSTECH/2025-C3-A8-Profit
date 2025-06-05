@@ -39,29 +39,17 @@ struct MenuRowView: View {
         guard let data = headerEntity?.imageData else { return nil }
         return UIImage(data: data)
     }
-    /*
-     private var headerImage: UIImage? {
-     guard
-     let data = headerEntity?.imageData,
-     let uiImage = UIImage(data: data)
-     else { return nil }
-     return uiImage
-     }
-     */
+    
     
     /// 헤더 가격(String) 준비
     private var priceString: String {
         headerEntity.map { String($0.menuPrice) } ?? ""
     }
-    /*
-     private var priceString: String {
-     if let price = headerEntity?.menuPrice {
-     return String(price)
-     } else {
-     return ""
-     }
-     }
-     */
+    
+//    private var price: Int {
+//            headerEntity?.menuPrice ?? 0
+//        }
+    
     
     /// 재료 리스트용 IngredientInfo 배열
     private var infos: [IngredientInfo] {
@@ -96,8 +84,8 @@ struct MenuRowView: View {
         label: {
             // Label: 썸네일 + 메뉴 이름 + 가격
             HStack(spacing: 12) {
-                if let thumb = headerImage {
-                    Image(uiImage: thumb)
+                if let image = headerImage {
+                    Image(uiImage: image)
                         .resizable()
                         .scaledToFill()
                         .frame(width: 63, height: 63)
