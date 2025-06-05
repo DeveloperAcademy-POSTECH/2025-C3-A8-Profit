@@ -64,14 +64,73 @@
 ## 🧱 폴더 구조
 
 ```
-📦ProjectName
-┣ 📂Feature
-┃ ┣ 📂SceneA
-┃ ┗ 📂SceneB
-┣ 📂Core
-┣ 📂UI
-┣ 📂Test
-┗ 📂Resources
+.
+├── Projects
+│   ├── Assets.xcassets
+│   │   ├── AccentColor.colorset
+│   │   │   └── Contents.json
+│   │   ├── AppIcon.appiconset
+│   │   │   └── Contents.json
+│   │   └── Contents.json
+│   ├── File.txt
+│   ├── GoogleService-Info.plist
+│   ├── Soonsu
+│   │   ├── Component
+│   │   │   ├── SSCircularProgressComponent.swift
+│   │   │   ├── SSCostRateProgressComponent.swift
+│   │   │   └── SSMenuRowComponent.swift
+│   │   ├── Models
+│   │   │   ├── DailySales.swift
+│   │   │   ├── IngredientEntity.swift
+│   │   │   ├── IngredientInfo.swift
+│   │   │   ├── MenuItem.swift
+│   │   │   └── SoldItem.swift
+│   │   ├── Utilities
+│   │   │   └── DateFormatters.swift
+│   │   ├── ViewModels
+│   │   │   ├── MenuViewModel.swift
+│   │   │   └── ProfitViewModel.swift
+│   │   └── Views
+│   │       ├── CalendarGridView.swift
+│   │       ├── DailyProfitSummary.swift
+│   │       ├── FixedCostBox.swift
+│   │       ├── IngredientScreens
+│   │       │   ├── IngredientAddView.swift
+│   │       │   ├── IngredientHeaderView.swift
+│   │       │   ├── IngredientListView.swift
+│   │       │   ├── IngredientResultFooterView.swift
+│   │       │   ├── IngredientResultView.swift
+│   │       │   ├── MenuInputView.swift
+│   │       │   ├── MenuRowView.swift
+│   │       │   └── MyMenuView.swift
+│   │       ├── MainTabView.swift
+│   │       ├── MyNameView.swift
+│   │       ├── ProfitScreen.swift
+│   │       ├── SalesInputSheet.swift
+│   │       └── TabBarView.swift
+│   ├── Soonsu.xcodeproj
+│   │   ├── project.pbxproj
+│   │   ├── project.xcworkspace
+│   │   │   ├── contents.xcworkspacedata
+│   │   │   ├── xcshareddata
+│   │   │   │   └── swiftpm
+│   │   │   │       ├── configuration
+│   │   │   │       └── Package.resolved
+│   │   │   └── xcuserdata
+│   │   │       └── coulson.xcuserdatad
+│   │   │           └── UserInterfaceState.xcuserstate
+│   │   └── xcuserdata
+│   │       └── coulson.xcuserdatad
+│   │           └── xcschemes
+│   │               └── xcschememanagement.plist
+│   ├── SoonsuApp.swift
+│   ├── SoonsuTests
+│   │   └── SoonsuTests.swift
+│   └── SoonsuUITests
+│       ├── SoonsuUITests.swift
+│       └── SoonsuUITestsLaunchTests.swift
+└── README.md
+
 ```
 
 
