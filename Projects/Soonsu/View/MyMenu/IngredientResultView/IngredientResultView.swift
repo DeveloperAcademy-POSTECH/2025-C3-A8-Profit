@@ -166,21 +166,10 @@ struct IngredientResultView: View {
                 )
             }
             .ignoresSafeArea(.keyboard)
-            .sheet(isPresented: $showIngredientAddView) {
-                IngredientAddView { selectedName in
-                    guard !selectedName.isEmpty else { return }
-                    let newIngredient = IngredientInfo(name: selectedName, amount: "", unitPrice: 0)
-                    parsedIngredients.append(newIngredient)
-                }
-            }
             .navigationBarBackButtonHidden(true)
             .navigationTitle("재료관리")
-            .sheet(isPresented: $showIngredientModifySheet) {
-                if let selIngredient = selectedIngredient {
-                    IngredientModifySheet(ingredient: selIngredient)
-                        .presentationDetents([.medium])
-                }
-            }
+            .ingredientAddSheet(isPresented: $showIngredientAddView, parsedIngredients: $parsedIngredients)
+            .ingredientModifySheet(isPresented: $showIngredientModifySheet, selectedIngredient: selectedIngredient)
             
             if showProgressPopover {
                 // 배경을 어둡게 깔아줌
@@ -206,6 +195,7 @@ struct IngredientResultView: View {
             }
         }
     }
+
 
     // MARK: 재료 추가 & 시트 닫기
     private func closePopoverAndSave() {
@@ -254,8 +244,6 @@ struct IngredientResultView: View {
             print("SwiftData save error:", error)
         }
     }
-    
-    
     private func updateIfChanged(existingEntities: [Ingredient]) {
         var changed = false
 
@@ -297,3 +285,29 @@ struct IngredientResultView: View {
 
 
 
+
+private extension View {
+    func ingredientAddSheet(
+        isPresented: Binding<Bool>,
+        parsedIngredients: Binding<[IngredientInfo]>
+    ) -> some View {
+        self.sheet(isPresented: isPresented) {
+            IngredientAddView { selectedName in
+                guard !selectedName.isEmpty else { return }
+                let newIngredient = IngredientInfo(name: selectedName, amount: "", unitPrice: 0)
+                parsedIngredients.wrappedValue.append(newIngredient)
+            }
+        }
+    }
+}
+
+    private extension View {
+        func ingredientModifySheet(isPresented: Binding<Bool>, selectedIngredient: IngredientInfo?) -> some View {
+            self.sheet(isPresented: isPresented) {
+            if let selIngredient = selectedIngredient {
+                IngredientModifySheet(ingredient: selIngredient)
+                    .presentationDetents([.medium])
+            }
+        }
+    }
+}
