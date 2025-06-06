@@ -57,7 +57,7 @@ struct IngredientResultView: View {
     }
     
     var body: some View {
-        NavigationStack {
+
             ZStack {
                 VStack(spacing: 0) {
                     
@@ -192,7 +192,6 @@ struct IngredientResultView: View {
                     .zIndex(1)
                 }
             }
-        }
     }
 
 
