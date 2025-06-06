@@ -125,6 +125,7 @@ struct IngredientResultView: View {
                             showIngredientModifySheet = true
                         }
                     }
+                    .onDelete(perform: deleteIngredient)
                 }
                 .listStyle(.plain)
                 
@@ -206,14 +207,16 @@ struct IngredientResultView: View {
         }
     }
 
-    
+    // MARK: 재료 추가 & 시트 닫기
     private func closePopoverAndSave() {
         showProgressPopover = false
         handleSave()
     }
-        
     
-    
+    // MARK: 재료 슬라이드 삭제
+    private func deleteIngredient(at offsets: IndexSet) {
+        parsedIngredients.remove(atOffsets: offsets)
+    }
     
     // MARK: - 저장 & 루트 복귀
     private func createMenuWithIngredients() {
