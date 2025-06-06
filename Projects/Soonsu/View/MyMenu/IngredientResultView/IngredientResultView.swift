@@ -20,17 +20,18 @@ struct IngredientResultView: View {
     
     @Binding var selectedMenuName: String
     @Binding var showAddMenu: Bool
-    
     let menuName: String
     let menuPrice: String
     let image: UIImage?
-//    let parsedIngredients: [IngredientInfo]
     @State var parsedIngredients: [IngredientInfo]
     let mode: ResultMode
     
+    
     @State private var showIngredientAddView = false
     @State private var showProgressPopover = false
-    
+    @State private var selectedIngredient: IngredientInfo? = nil
+    @State private var showIngredientModifySheet = false
+
     
     private var totalCost: Int {
         parsedIngredients.reduce(0) { $0 + $1.unitPrice }
@@ -119,6 +120,10 @@ struct IngredientResultView: View {
                                 .foregroundColor(.secondary)
                         }
                         .listRowSeparator(.hidden)
+                        .onTapGesture {
+                            selectedIngredient = ing
+                            showIngredientModifySheet = true
+                        }
                     }
                 }
                 .listStyle(.plain)
@@ -169,6 +174,12 @@ struct IngredientResultView: View {
             }
             .navigationBarBackButtonHidden(true)
             .navigationTitle("재료관리")
+            .sheet(isPresented: $showIngredientModifySheet) {
+                if let selIngredient = selectedIngredient {
+                    IngredientModifySheet(ingredient: selIngredient)
+                        .presentationDetents([.medium])
+                }
+            }
             
             if showProgressPopover {
                 // 배경을 어둡게 깔아줌
@@ -278,5 +289,54 @@ struct IngredientResultView: View {
             print("✅ 변경사항 없음 - 저장 생략")
         }
         dismiss()
+    }
+}
+
+
+struct IngredientModifySheet: View {
+    let ingredient: IngredientInfo
+    
+    @State private var segmentMode: SegmentMode = .auto
+    @State private var customAmount: String = ""
+    
+    enum SegmentMode: String, CaseIterable {
+        case auto = "자동계산"
+        case manual = "직접입력"
+    }
+
+    var body: some View {
+        VStack(spacing: 16) {
+
+            
+            Picker("모드", selection: $segmentMode) {
+                ForEach(SegmentMode.allCases, id: \.self) {
+                    segmentMode in Text(segmentMode.rawValue).tag(segmentMode)
+                }
+            }
+            .pickerStyle(.segmented)
+            
+            Image(systemName: "photo")
+                .font(.system(size: 48))
+                .foregroundStyle(Color.gray.opacity(0.2))
+            
+            Text(ingredient.name)
+                .font(.title)
+                .bold()
+            
+            if segmentMode == .auto {
+                Text("수량: \(ingredient.amount)")
+                Text("단가: \(ingredient.unitPrice.formatted())원")
+            } else {
+                TextField("수량입력", text: $customAmount)
+                    .textFieldStyle(.plain)
+                    .keyboardType(.default)
+            }
+
+            Spacer()
+        }
+        .padding()
+        .onAppear {
+            customAmount = ingredient.amount
+        }
     }
 }
