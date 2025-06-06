@@ -53,31 +53,26 @@ struct IngredientAddView: View {
         }
     }
     
-    // 검색 내용에 따른 필터 적용
     private var filteredItems: [String] {
         let trimmed = searchText.trimmingCharacters(in: .whitespaces)
         if trimmed.isEmpty {
-            return allItems
+            return []
         } else {
-            return allItems.filter {
+            return ingredients.filter {
                 $0.localizedStandardContains(trimmed)
             }
         }
     }
     var body: some View {
-//        Text("Add View")
-        
-        List {
-            ForEach(ingredients.filter {
-                searchText.isEmpty ? true : $0.localizedStandardContains(searchText)
-            }, id: \.self) { item in
-                Button(action: {
-                }) {
-                    Text(item)
-                }
-            }
+        List(filteredItems, id: \.self) { item in
+            Text(item)
         }
         .navigationTitle("재료 추가")
-        .searchable(text: $searchText, prompt: "검색어를 입력하세요")
+        .searchable(text: $searchText, placement: .toolbar, prompt: "검색어를 입력하세요")
     }
+}
+
+#Preview {
+    IngredientAddView()
+        .modelContainer(for: Ingredient.self)
 }

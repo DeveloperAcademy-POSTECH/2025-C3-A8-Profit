@@ -137,15 +137,6 @@ struct IngredientResultView: View {
                     
                     // ── 하단 합계 + 등록 버튼 ────────────────────────
                     VStack(spacing: 16) {
-//                        NavigationLink(value: "IngredientAddView") {
-//                            HStack {
-//                                Image(systemName: "plus.circle.fill")
-//                                Text("재료 추가하기")
-//                            }
-//                            .foregroundColor(.blue)
-//                            .frame(maxWidth: .infinity, alignment: .center)
-//                        }
-
                         NavigationLink("재료 추가하기") {
                             IngredientAddView()
                         }
@@ -198,20 +189,7 @@ struct IngredientResultView: View {
                     .zIndex(1)
                 }
             }
-//            .navigationDestination(for: String.self) { value in
-//                if value == "IngredientAddView" {
-//                    IngredientAddView()
-//                    IngredientAddView(onSelect: {
-//                        selectedName in
-//                        guard !selectedName.isEmpty else {return}
-//                        let newIngreident = IngredientInfo(name: selectedName, amount: "10g", unitPrice: 1000)
-//                        parsedIngredients.append(newIngreident)
-//                    })
-//                }
-//            }
         }
-
-        
     }
 
 
