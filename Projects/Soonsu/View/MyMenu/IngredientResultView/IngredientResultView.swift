@@ -185,7 +185,7 @@ struct IngredientResultView: View {
                         closePopoverAndSave()
                     }
                 
-                SSCircularProgressComponent(
+                CircularProgressComponent(
                     percentage: percentage,
                     menuName: menuName
                 ) {

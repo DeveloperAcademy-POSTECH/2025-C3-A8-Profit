@@ -60,11 +60,6 @@
 			path = MyMenu;
 			sourceTree = "<group>";
 		};
-		3E7F2BF72DEDD10200A20B86 /* Component */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Component;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				262FE4BB2DF27491003F67BF /* MyMenu */,
-				3E7F2BF72DEDD10200A20B86 /* Component */,
 				68343B952DED76BE00BD34B4 /* TabBarView.swift */,
 			);
 			path = View;
@@ -188,7 +182,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				262FE4BB2DF27491003F67BF /* MyMenu */,
-				3E7F2BF72DEDD10200A20B86 /* Component */,
 			);
 			name = Soonsu;
 			packageProductDependencies = (
