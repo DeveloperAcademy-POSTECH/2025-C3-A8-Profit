@@ -47,9 +47,9 @@ final class Ingredient {
 struct IngredientInfo: Identifiable, Codable {
     // 리스트에 사용될 고유 id (JSON에 없음)
     var id: UUID = UUID()
-    let name: String
-    let amount: String
-    let unitPrice: Int
+    var name: String
+    var amount: String
+    var unitPrice: Int
     
     enum CodingKeys: String, CodingKey {
         case name, amount, unitPrice

@@ -167,7 +167,7 @@ struct IngredientResultView: View {
                 .ignoresSafeArea(.keyboard)
 //                .navigationBarBackButtonHidden(true)
                 .navigationTitle("재료관리")
-                .ingredientModifySheet(isPresented: $showIngredientModifySheet, selectedIngredient: selectedIngredient)
+                .ingredientModifySheet(isPresented: $showIngredientModifySheet, parsedIngredients: $parsedIngredients, selectedIngredient: $selectedIngredient)
                 
                 if showProgressPopover {
                     // 배경을 어둡게 깔아줌
@@ -282,12 +282,12 @@ struct IngredientResultView: View {
     }
 }
 
-    private extension View {
-        func ingredientModifySheet(isPresented: Binding<Bool>, selectedIngredient: IngredientInfo?) -> some View {
-            self.sheet(isPresented: isPresented) {
-            if let selIngredient = selectedIngredient {
-                IngredientModifySheet(ingredient: selIngredient)
-                    .presentationDetents([.medium])
+private extension View {
+    func ingredientModifySheet(isPresented: Binding<Bool>, parsedIngredients: Binding<[IngredientInfo]>, selectedIngredient: Binding<IngredientInfo?>) -> some View {
+        self.sheet(isPresented: isPresented) {
+            if let selIngredient = selectedIngredient.wrappedValue,
+               let index = parsedIngredients.wrappedValue.firstIndex(where: { $0.id == selIngredient.id }) {
+                IngredientModifySheet(ingredient: parsedIngredients[index])
             }
         }
     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct IngredientModifySheet: View {
-    let ingredient: IngredientInfo
+    @Binding var ingredient: IngredientInfo
     
     @State private var segmentMode: SegmentMode = .auto
     @State private var customAmount: String = ""
@@ -44,6 +44,9 @@ struct IngredientModifySheet: View {
                     TextField("수량입력", text: $customAmount)
                         .textFieldStyle(.plain)
                         .keyboardType(.default)
+                        .onChange(of: customAmount) {
+                            ingredient.amount = customAmount
+                        }
                 }
                 
                 Spacer()
@@ -67,5 +70,8 @@ struct IngredientModifySheet: View {
 }
 
 #Preview {
-    IngredientModifySheet(ingredient: IngredientInfo(name: "양배추", amount: "30g", unitPrice: 1000))
+    IngredientModifySheet(ingredient: .constant(IngredientInfo(
+        name: "양배추",
+        amount: "30g",
+        unitPrice: 1000)))
 }
