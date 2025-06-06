@@ -23,6 +23,7 @@ struct MenuInputView: View {
     
     @State private var isLoading = false
     @State private var navigateToResult = false
+    @State private var showBackConfirmDialog = false
     @State private var selectedItem: PhotosPickerItem?
     @State private var selectedImage: UIImage?
     @State private var menuName: String = ""
@@ -31,6 +32,8 @@ struct MenuInputView: View {
     @FocusState private var focusedField: Field?
     
     @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) private var dismiss
+    
     
     
     
@@ -166,17 +169,6 @@ struct MenuInputView: View {
             .padding()
             .scrollContentBackground(.hidden)
             .background(Color(.systemGray6))
-            .navigationDestination(isPresented: $navigateToResult) {
-                IngredientResultView(
-                    selectedMenuName: $selectedMenuName,
-                    showAddMenu: $showAddMenu,
-                    menuName: menuName,
-                    menuPrice: menuPrice,
-                    image: selectedImage,
-                    parsedIngredients: parsedIngredients,
-                    mode: .create
-                )
-            }
             .overlay {
                 if isLoading {
                     ZStack {
@@ -206,8 +198,44 @@ struct MenuInputView: View {
             
             
         }
+        .navigationDestination(isPresented: $navigateToResult) {
+            IngredientResultView(
+                selectedMenuName: $selectedMenuName,
+                showAddMenu: $showAddMenu,
+                menuName: menuName,
+                menuPrice: menuPrice,
+                image: selectedImage,
+                parsedIngredients: parsedIngredients,
+                mode: .create
+            )
+        }
         .navigationTitle("재료원가계산")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    let hasInput = selectedImage != nil || !menuName.isEmpty || !menuPrice.isEmpty
+                    if hasInput {
+                        showBackConfirmDialog = true
+                    } else {
+                        dismiss()
+                    }
+                } label: {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                            .fontWeight(.bold)
+                        Text("나의메뉴")
+                    }
+                }
+            }
+        }
+        .confirmationDialog("입력한 정보가 사라집니다. 뒤로 가시겠어요?", isPresented: $showBackConfirmDialog, titleVisibility: .visible) {
+            Button("뒤로가기", role: .destructive) {
+                dismiss()
+            }
+            Button("취소", role: .cancel) {}
+        }
         
         
     }
