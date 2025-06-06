@@ -22,7 +22,7 @@ struct SoonsuApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView()
+                TabBarView()
             }
             .modelContainer(for: Ingredient.self)
         }

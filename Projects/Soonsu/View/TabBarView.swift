@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct ContentView: View {
+struct TabBarView: View {
     
     var body: some View {
         
@@ -38,6 +38,6 @@ struct ContentView: View {
 
 #Preview {
     NavigationStack {
-        ContentView()
+        TabBarView()
     }
 }
