@@ -100,8 +100,6 @@ struct IngredientResultView: View {
                             Image(systemName: "photo")
                                 .font(.system(size: 20))
                                 .foregroundStyle(Color.gray.opacity(0.2))
-                            //                        Text(String(ing.name.first ?? "🥘"))
-                            //                            .font(.system(size: 24))
                             
                             Text(ing.name)
                                 .font(.body)
@@ -145,10 +143,8 @@ struct IngredientResultView: View {
                         .font(.headline)
                         .fontWeight(.bold)
                     
-                    //                Button("메뉴 등록") {
                     Button(mode == .create ? "메뉴 등록" : "확인") {
                         showProgressPopover = true
-                        //                    handleSave()
                     }
                     .font(.headline)
                     .frame(maxWidth: .infinity)
