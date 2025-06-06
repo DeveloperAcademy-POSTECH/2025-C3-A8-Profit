@@ -8,13 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		26AE58C22DEE842E00E45C4D /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AE58C12DEE842600E45C4D /* MockData.json */; };
-		26AE58C42DEEA42C00E45C4D /* IngredientAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE58C32DEEA42C00E45C4D /* IngredientAddView.swift */; };
-		26AE58DF2DEEA6EF00E45C4D /* ingredients.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AE58DE2DEEA6EF00E45C4D /* ingredients.json */; };
-		3E7F2BE12DEDCC8700A20B86 /* MyMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDB2DEDCC8700A20B86 /* MyMenuView.swift */; };
-		3E7F2BE22DEDCC8700A20B86 /* MenuRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDD2DEDCC8700A20B86 /* MenuRowView.swift */; };
+		26AE58DF2DEEA6EF00E45C4D /* Ingredients.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AE58DE2DEEA6EF00E45C4D /* Ingredients.json */; };
 		3E7F2BE32DEDCC8700A20B86 /* SoonsuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDF2DEDCC8700A20B86 /* SoonsuApp.swift */; };
-		3E7F2BE42DEDCC8700A20B86 /* MenuInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDC2DEDCC8700A20B86 /* MenuInputView.swift */; };
-		3E7F2BE52DEDCC8700A20B86 /* IngredientResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDE2DEDCC8700A20B86 /* IngredientResultView.swift */; };
 		3E7F2BE62DEDCC8700A20B86 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDA2DEDCC8700A20B86 /* Ingredient.swift */; };
 		3E7F2BF32DEDCFBB00A20B86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E7F2BF22DEDCFBB00A20B86 /* GoogleService-Info.plist */; };
 		68343B8F2DED761400BD34B4 /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = 68343B8E2DED761400BD34B4 /* FirebaseAI */; };
@@ -45,13 +40,8 @@
 
 /* Begin PBXFileReference section */
 		26AE58C12DEE842600E45C4D /* MockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockData.json; sourceTree = "<group>"; };
-		26AE58C32DEEA42C00E45C4D /* IngredientAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientAddView.swift; sourceTree = "<group>"; };
-		26AE58DE2DEEA6EF00E45C4D /* ingredients.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ingredients.json; sourceTree = "<group>"; };
+		26AE58DE2DEEA6EF00E45C4D /* Ingredients.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Ingredients.json; sourceTree = "<group>"; };
 		3E7F2BDA2DEDCC8700A20B86 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
-		3E7F2BDB2DEDCC8700A20B86 /* MyMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMenuView.swift; sourceTree = "<group>"; };
-		3E7F2BDC2DEDCC8700A20B86 /* MenuInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuInputView.swift; sourceTree = "<group>"; };
-		3E7F2BDD2DEDCC8700A20B86 /* MenuRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRowView.swift; sourceTree = "<group>"; };
-		3E7F2BDE2DEDCC8700A20B86 /* IngredientResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientResultView.swift; sourceTree = "<group>"; };
 		3E7F2BDF2DEDCC8700A20B86 /* SoonsuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuApp.swift; sourceTree = "<group>"; };
 		3E7F2BF22DEDCFBB00A20B86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		68343B5F2DED74BD00BD34B4 /* Soonsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soonsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +55,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		262FE4BB2DF27491003F67BF /* MyMenu */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MyMenu;
+			sourceTree = "<group>";
+		};
 		3E7F2BF72DEDD10200A20B86 /* Component */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Component;
@@ -152,7 +147,7 @@
 		68343BA32DED76D300BD34B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				26AE58DE2DEEA6EF00E45C4D /* ingredients.json */,
+				26AE58DE2DEEA6EF00E45C4D /* Ingredients.json */,
 				26AE58C12DEE842600E45C4D /* MockData.json */,
 				3E7F2BDA2DEDCC8700A20B86 /* Ingredient.swift */,
 			);
@@ -162,13 +157,9 @@
 		68343BA42DED76D900BD34B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				262FE4BB2DF27491003F67BF /* MyMenu */,
 				3E7F2BF72DEDD10200A20B86 /* Component */,
-				3E7F2BDB2DEDCC8700A20B86 /* MyMenuView.swift */,
-				3E7F2BDC2DEDCC8700A20B86 /* MenuInputView.swift */,
-				3E7F2BDD2DEDCC8700A20B86 /* MenuRowView.swift */,
-				3E7F2BDE2DEDCC8700A20B86 /* IngredientResultView.swift */,
 				68343B952DED76BE00BD34B4 /* TabBarView.swift */,
-				26AE58C32DEEA42C00E45C4D /* IngredientAddView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,6 +187,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				262FE4BB2DF27491003F67BF /* MyMenu */,
 				3E7F2BF72DEDD10200A20B86 /* Component */,
 			);
 			name = Soonsu;
@@ -300,7 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68343B972DED76BE00BD34B4 /* Assets.xcassets in Resources */,
-				26AE58DF2DEEA6EF00E45C4D /* ingredients.json in Resources */,
+				26AE58DF2DEEA6EF00E45C4D /* Ingredients.json in Resources */,
 				3E7F2BF32DEDCFBB00A20B86 /* GoogleService-Info.plist in Resources */,
 				26AE58C22DEE842E00E45C4D /* MockData.json in Resources */,
 			);
@@ -327,14 +319,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E7F2BE12DEDCC8700A20B86 /* MyMenuView.swift in Sources */,
-				3E7F2BE22DEDCC8700A20B86 /* MenuRowView.swift in Sources */,
 				3E7F2BE32DEDCC8700A20B86 /* SoonsuApp.swift in Sources */,
-				3E7F2BE42DEDCC8700A20B86 /* MenuInputView.swift in Sources */,
-				3E7F2BE52DEDCC8700A20B86 /* IngredientResultView.swift in Sources */,
 				3E7F2BE62DEDCC8700A20B86 /* Ingredient.swift in Sources */,
 				68343B9A2DED76BE00BD34B4 /* TabBarView.swift in Sources */,
-				26AE58C42DEEA42C00E45C4D /* IngredientAddView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
