@@ -34,6 +34,7 @@ struct IngredientAddView: View {
     @Environment(\.modelContext) private var context
     // 검색창 텍스트
     @State private var searchText: String = ""
+    var onIngredientSelected: ((String) -> Void)? = nil
     
     
     
@@ -65,7 +66,11 @@ struct IngredientAddView: View {
     }
     var body: some View {
         List(filteredItems, id: \.self) { item in
-            Text(item)
+            Button {
+                onIngredientSelected?(item)
+            } label: {
+                Text(item)
+            }
         }
         .navigationTitle("재료 추가")
         .searchable(text: $searchText, placement: .toolbar, prompt: "검색어를 입력하세요")

@@ -53,10 +53,10 @@ struct IngredientModifySheet: View {
                 customAmount = ingredient.amount
             }
             .toolbar {
-//                ToolbarItem(placement: .topBarLeading) {
-//                    Text("삭제")
-//                        .foregroundStyle(Color.red)
-//                }
+                ToolbarItem(placement: .topBarLeading) {
+                    Text("삭제")
+                        .foregroundStyle(Color.red)
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Text("수정")
                         .foregroundStyle(Color.blue)

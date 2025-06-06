@@ -138,7 +138,10 @@ struct IngredientResultView: View {
                     // ── 하단 합계 + 등록 버튼 ────────────────────────
                     VStack(spacing: 16) {
                         NavigationLink("재료 추가하기") {
-                            IngredientAddView()
+                            IngredientAddView(onIngredientSelected: { selectedName in
+                                let newInfo = IngredientInfo(name: selectedName, amount: "10g", unitPrice: 100)
+                                parsedIngredients.append(newInfo)
+                            })
                         }
                         
                         Text("재료원가는 \(totalCost.formatted())원입니다")
