@@ -43,7 +43,7 @@ struct IngredientAddView: View {
     
     // MARK: - SwiftData에서 불러온 모든 고유 재료명
     private var allItems: [String] {
-        let descriptor = FetchDescriptor<IngredientEntity>(
+        let descriptor = FetchDescriptor<Ingredient>(
             predicate: nil,
             sortBy: [SortDescriptor(\.name, order: .forward)]
         )

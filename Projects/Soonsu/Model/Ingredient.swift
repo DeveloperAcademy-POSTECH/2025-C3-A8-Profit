@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @Model
-final class IngredientEntity {
+final class Ingredient {
     @Attribute(.unique) var id: UUID                // 고유 식별자
     
     

@@ -24,7 +24,7 @@ struct SoonsuApp: App {
             NavigationView {
                 ContentView()
             }
-            .modelContainer(for: IngredientEntity.self)
+            .modelContainer(for: Ingredient.self)
         }
     }
 }

@@ -13,8 +13,8 @@ struct MyMenuView: View {
     @State private var selectedMenuName = ""
     
     // SwiftData에서 모든 IngredientEntity를 최신순(createdAt)으로 가져옴
-    @Query(sort: \IngredientEntity.createdAt, order: .reverse)
-    private var allIngredients: [IngredientEntity]
+    @Query(sort: \Ingredient.createdAt, order: .reverse)
+    private var allIngredients: [Ingredient]
     
     @Environment(\.modelContext) private var context
     
@@ -115,6 +115,6 @@ struct MyMenuView: View {
 #Preview {
     NavigationStack {
         MyMenuView()
-            .modelContainer(for: [IngredientEntity.self], inMemory: true)
+            .modelContainer(for: [Ingredient.self], inMemory: true)
     }
 }

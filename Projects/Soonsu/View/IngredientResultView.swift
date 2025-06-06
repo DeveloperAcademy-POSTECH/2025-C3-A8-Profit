@@ -11,7 +11,7 @@ import SwiftData
 
 enum ResultMode : Equatable {
     case create  // 새로 등록
-    case edit(existingEntities: [IngredientEntity])  // 기존 편집
+    case edit(existingEntities: [Ingredient])  // 기존 편집
 }
 
 struct IngredientResultView: View {
@@ -222,7 +222,7 @@ struct IngredientResultView: View {
             // 3️⃣ parsedIngredients 배열을 순회하며, 각 재료마다
             //    “같은 메뉴 이름·가격·이미지”를 포함해 삽입
             for info in parsedIngredients {
-                let entity = IngredientEntity(
+                let entity = Ingredient(
                     menuName: menuName,
                     menuPrice: priceValue,
                     imageData: imageData,
@@ -246,7 +246,7 @@ struct IngredientResultView: View {
     }
     
     
-    private func updateIfChanged(existingEntities: [IngredientEntity]) {
+    private func updateIfChanged(existingEntities: [Ingredient]) {
         var changed = false
 
         for info in parsedIngredients {
@@ -260,7 +260,7 @@ struct IngredientResultView: View {
                 }
             } else {
                 // 새로 추가된 재료인 경우 삽입
-                let entity = IngredientEntity(
+                let entity = Ingredient(
                     menuName: menuName,
                     menuPrice: Int(menuPrice) ?? 0,
                     imageData: image?.jpegData(compressionQuality: 0.8),
