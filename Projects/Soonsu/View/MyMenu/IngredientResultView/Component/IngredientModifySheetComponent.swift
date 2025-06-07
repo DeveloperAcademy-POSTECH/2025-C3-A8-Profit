@@ -33,10 +33,10 @@ struct IngredientModifySheet: View {
                     }
                 }
                 .pickerStyle(.segmented)
-                
-                Image(systemName: "photo")
-                    .font(.system(size: 48))
-                    .foregroundStyle(Color.gray.opacity(0.2))
+                Image(uiImage: UIImage(named: ingredient.name) ?? UIImage(named: "포항초")!)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 128, height: 128)
                 
                 Text(editableIngredient.name)
                     .font(.title)

@@ -100,10 +100,11 @@ struct IngredientResultView: View {
                     List {
                         ForEach(parsedIngredients) { ing in
                             HStack {
-                                // 간단 아이콘 (재료 첫 글자 이모지 활용)
-                                Image(systemName: "photo")
-                                    .font(.system(size: 20))
-                                    .foregroundStyle(Color.gray.opacity(0.2))
+
+                                Image(uiImage: UIImage(named: ing.name) ?? UIImage(named: "포항초")!)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 24, height: 24)
                                 
                                 Text(ing.name)
                                     .font(.body)
