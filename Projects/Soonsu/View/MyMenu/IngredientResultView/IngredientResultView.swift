@@ -63,12 +63,12 @@ struct IngredientResultView: View {
                 VStack(spacing: 0) {
                     
                     // ── 헤더 영역 ─────────────────────────────────────
-                    HStack(alignment: .top, spacing: 16) {
+                    HStack(spacing: 16) {
                         if let uiImage = image {
                             Image(uiImage: uiImage)
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: 64, height: 64)
+                                .frame(width: 80, height: 80)
                                 .clipShape(RoundedRectangle(cornerRadius: 12))
                         } else {
                             RoundedRectangle(cornerRadius: 12)
@@ -86,9 +86,9 @@ struct IngredientResultView: View {
                         
                         VStack(alignment: .leading, spacing: 4) {
                             Text(menuName)
-                                .font(.headline)
-                            Text("\(menuPrice)원")
                                 .font(.title3).bold()
+                            Text("\(menuPrice)원")
+                                .font(.headline).bold()
                         }
                         
                         Spacer()
@@ -111,18 +111,19 @@ struct IngredientResultView: View {
                                     .font(.body)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 
-                                Text(ing.amount)
+                                Text("\(ing.amount)\(ing.unit)")
                                     .font(.subheadline)
                                     .frame(width: 60, alignment: .trailing)
                                 
                                 Text("\(ing.unitPrice.formatted())원")
                                     .font(.subheadline)
-                                    .fontWeight(.bold)
+//                                    .fontWeight(.bold)
+                                    .foregroundStyle(.gray)
                                     .frame(width: 70, alignment: .trailing)
                                 
-                                Image(systemName: "chevron.up")
-                                    .font(.caption2)
-                                    .foregroundColor(.secondary)
+                                Image(systemName: "pencil")
+                                    .font(.body)
+                                    .foregroundColor(.blue)
                             }
                             .listRowSeparator(.hidden)
                             .onTapGesture {
@@ -139,17 +140,36 @@ struct IngredientResultView: View {
                     
                     // ── 하단 합계 + 등록 버튼 ────────────────────────
                     VStack(spacing: 16) {
-                        NavigationLink("재료 추가하기") {
-                            IngredientAddView(onIngredientSelected: { selectedName in
-                                guard !parsedIngredients.contains(where: { $0.name == selectedName }) else { return }
-                                let newInfo = IngredientInfo(name: selectedName, amount: "10", unit:"g", unitPrice: 100)
-                                parsedIngredients.append(newInfo)
-                            })
+                        
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                                .foregroundStyle(.blue)
+                            NavigationLink("재료 추가하기") {
+                                IngredientAddView(onIngredientSelected: { selectedName in
+                                    guard !parsedIngredients.contains(where: { $0.name == selectedName }) else { return }
+                                    let newInfo = IngredientInfo(name: selectedName, amount: "10", unit:"g", unitPrice: 100)
+                                    parsedIngredients.append(newInfo)
+                                })
+                            }
                         }
                         
-                        Text("재료원가는 \(totalCost.formatted())원입니다")
-                            .font(.headline)
+
+                        
+                        HStack(spacing:0) {
+                            Group {
+                                Text("재료원가는")
+                                    .foregroundStyle(.gray)
+                                Text(totalCost.formatted())
+                                    .foregroundStyle(.blue)
+                                Text("원입니다")
+                                    .foregroundStyle(.gray)
+                            }
+                            .font(.title3)
                             .fontWeight(.bold)
+                        }
+                        .padding(.bottom)
+                        
+
                         
                         Button(mode == .create ? "메뉴 등록" : "확인") {
                             showProgressPopover = true
