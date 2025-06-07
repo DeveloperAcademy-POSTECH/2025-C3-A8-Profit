@@ -24,8 +24,30 @@ struct IngredientModifySheet: View {
     }
     
     var body: some View {
-        NavigationStack {
             VStack(spacing: 16) {
+                
+                HStack {
+                    Button("삭제") {
+                        if let index = parsedIngredients.firstIndex(where: { $0.id == editableIngredient.id }) {
+                            parsedIngredients.remove(at: index)
+                        }
+                        dismiss()
+                    }
+                    .foregroundStyle(Color.red)
+                    
+                    Spacer()
+                    
+                    Button("수정") {
+                        if segmentMode == .manual {
+                            updateUnitPrice()
+                        }
+                        if let index = parsedIngredients.firstIndex(where: { $0.id == editableIngredient.id }) {
+                            parsedIngredients[index] = editableIngredient
+                        }
+                        dismiss()
+                    }
+                    
+                }
                 
                 Picker("모드", selection: $segmentMode) {
                     ForEach(SegmentMode.allCases, id: \.self) {
@@ -62,35 +84,13 @@ struct IngredientModifySheet: View {
                 }
                 
                 Spacer()
+                
             }
             .padding()
             .onAppear {
                 editableIngredient = ingredient
                 recipeAmount = ingredient.amount
             }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("삭제") {
-                        if let index = parsedIngredients.firstIndex(where: { $0.id == editableIngredient.id }) {
-                            parsedIngredients.remove(at: index)
-                        }
-                        dismiss()
-                    }
-                    .foregroundStyle(Color.red)
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("수정") {
-                        if segmentMode == .manual {
-                            updateUnitPrice()
-                        }
-                        if let index = parsedIngredients.firstIndex(where: { $0.id == editableIngredient.id }) {
-                            parsedIngredients[index] = editableIngredient
-                        }
-                        dismiss()
-                    }
-                }
-            }
-        }
     }
     
     private func updateUnitPrice() {

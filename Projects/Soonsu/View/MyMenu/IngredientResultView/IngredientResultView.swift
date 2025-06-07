@@ -298,5 +298,6 @@ private extension View {
                 )
             }
         }
+//        .presentationDetents([.medium])
     }
 }
