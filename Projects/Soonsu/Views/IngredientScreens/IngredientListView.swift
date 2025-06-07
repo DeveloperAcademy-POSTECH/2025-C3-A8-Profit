@@ -62,5 +62,5 @@ struct IngredientListView: View {
         isNew: true,
         onAddTapped: { print("추가 버튼 눌림") }
     )
-    .modelContainer(for: [IngredientEntity.self], inMemory: true)
+    .modelContainer(for: [Ingredient.self], inMemory: true)
 }

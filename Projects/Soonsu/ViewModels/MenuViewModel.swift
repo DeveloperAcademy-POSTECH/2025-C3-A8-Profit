@@ -16,7 +16,7 @@ class MenuViewModel: ObservableObject {
     //    @Environment(\.modelContext) private var context
     
     /// SwiftData에 저장된 모든 IngredientEntity를 최신순(createdAt)으로 가져옴
-    @Published var allIngredients: [IngredientEntity] = []
+    @Published var allIngredients: [Ingredient] = []
     private var context: ModelContext?
     
     static var empty: MenuViewModel {
@@ -62,7 +62,7 @@ class MenuViewModel: ObservableObject {
             print("⚠️ ModelContext not set")
             return
         }
-        let descriptor = FetchDescriptor<IngredientEntity>(
+        let descriptor = FetchDescriptor<Ingredient>(
             sortBy: [SortDescriptor(\.createdAt, order: .reverse)]
         )
         do {
@@ -74,13 +74,13 @@ class MenuViewModel: ObservableObject {
     }
     
     /// 특정 메뉴명에 속한 IngredientEntity만 fetch
-    func fetchEntities(for menuName: String) -> [IngredientEntity] {
+    func fetchEntities(for menuName: String) -> [Ingredient] {
         guard let context else {
                     print("⚠️ ModelContext not set")
                     return []
                 }
-        let predicate = #Predicate<IngredientEntity> { $0.menuName == menuName }
-        let descriptor = FetchDescriptor<IngredientEntity>(
+        let predicate = #Predicate<Ingredient> { $0.menuName == menuName }
+        let descriptor = FetchDescriptor<Ingredient>(
             predicate: predicate,
             sortBy: [SortDescriptor(\.createdAt, order: .reverse)]
         )
@@ -105,7 +105,7 @@ class MenuViewModel: ObservableObject {
         }
         let imageData = image?.jpegData(compressionQuality: 0.8)
         for info in ingredientInfos {
-            let entity = IngredientEntity(
+            let entity = Ingredient(
                 menuName:  menuName,
                 menuPrice: menuPrice,
                 imageData: imageData,

@@ -1,10 +1,12 @@
 import SwiftUI
 import Combine
+import SwiftData
 
 struct ProfitScreen: View {
     @ObservedObject var viewModel : ProfitViewModel
     @ObservedObject var menuViewModel: MenuViewModel
     @Binding var selectedTab: TabType
+    @Environment(\.modelContext) private var context
     
     @State private var showFixedCostEditor: Bool = false
     @FocusState private var isInputFocused: Bool
@@ -50,7 +52,18 @@ struct ProfitScreen: View {
                         viewModel.loadMenuMaster(from: ingredients)
                     }
                     .store(in: &cancellables)
+                
+                // ✅ 앱 시작 시 현재 월 고정비도 불러오기
+                viewModel.loadMonthlyFixedCost(from: context)
             }
+            
+            
+            //0607 add
+            .onChange(of: viewModel.currentMonth) { _ in
+                viewModel.loadMonthlyFixedCost(from: context)
+            }
+            
+            
             .navigationDestination(isPresented: $navigateToNextView) {
                 NextView()
             }
@@ -62,11 +75,6 @@ struct ProfitScreen: View {
     private var fixedCostSection: some View {
         if viewModel.isFixedCostSet {
             VStack(spacing: 0) {
-                //                Button(action: {
-                //                    withAnimation {
-                //                        showFixedCostEditor.toggle()
-                //                    }
-                //                }) {
                 Button(action: {
                     navigateToNextView = true
                 }) {
@@ -95,39 +103,23 @@ struct ProfitScreen: View {
                     .foregroundColor(.primary)
                 }
                 .buttonStyle(.plain)
-                /*
-                 if showFixedCostEditor {
-                 FixedCostEditor(vm: viewModel)
-                 .transition(.move(edge: .top).combined(with: .opacity))
-                 .focused($isInputFocused)
-                 }*/
             }
         } else {
             FixedCostEditor(vm: viewModel).focused($isInputFocused)
-            /*
-             .onChange(of: viewModel.isFixedCostSet) { newVal in
-             if newVal { showFixedCostEditor = false }
-             }
-             } else {
-             FixedCostEditor(vm: viewModel)
-             .focused($isInputFocused)
-             }*/
         }
     }
 }
 
-//다음 뷰 
+//다음 뷰
 struct NextView: View {
     var body: some View {
         VStack(spacing: 24) {
             Text("새로운 뷰입니다.")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-            
             Text("여기서 인건비, 간접비, 감가상각비 등을 입력할 수 있게 확장 가능!")
                 .font(.body)
                 .foregroundColor(.secondary)
-            
             Spacer()
         }
         .padding()

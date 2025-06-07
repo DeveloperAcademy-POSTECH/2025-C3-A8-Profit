@@ -15,3 +15,8 @@ struct SoldItem: Identifiable, Codable, Hashable {
     var qty: Int
     let image: String
 }
+extension SoldItem {
+    func toModel(parentDate: String) -> SoldItemModel {
+        SoldItemModel(id: id, name: name, price: price, qty: qty, image: image, parentDate: parentDate)
+    }
+}

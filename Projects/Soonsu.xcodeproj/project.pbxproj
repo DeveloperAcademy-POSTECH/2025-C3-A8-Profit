@@ -25,7 +25,7 @@
 		68F7DADA2DEF2CF300A5633A /* SoldItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAD72DEF2CF300A5633A /* SoldItem.swift */; };
 		68F7DADC2DEF2D3000A5633A /* DailySales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DADB2DEF2D2600A5633A /* DailySales.swift */; };
 		68F7DADE2DEF2D5900A5633A /* IngredientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DADD2DEF2D4F00A5633A /* IngredientInfo.swift */; };
-		68F7DAE02DEF2DD500A5633A /* IngredientEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DADF2DEF2DD000A5633A /* IngredientEntity.swift */; };
+		68F7DAE02DEF2DD500A5633A /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DADF2DEF2DD000A5633A /* Ingredient.swift */; };
 		68F7DAE32DEF2EE500A5633A /* ProfitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAE22DEF2EE100A5633A /* ProfitViewModel.swift */; };
 		68F7DAE52DEF33DF00A5633A /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAE42DEF33CB00A5633A /* MenuViewModel.swift */; };
 		68F7DAE72DEF347100A5633A /* ProfitScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAE62DEF346F00A5633A /* ProfitScreen.swift */; };
@@ -38,6 +38,9 @@
 		68F7DAF72DEF3AE200A5633A /* IngredientListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAF62DEF3AE100A5633A /* IngredientListView.swift */; };
 		68F7DAF92DEF3B6B00A5633A /* IngredientResultFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAF82DEF3B6900A5633A /* IngredientResultFooterView.swift */; };
 		68F7DAFB2DEF3EF100A5633A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DAFA2DEF3EEE00A5633A /* MainTabView.swift */; };
+		68F7DB092DF150C300A5633A /* SoldItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DB082DF150C000A5633A /* SoldItemModel.swift */; };
+		68F7DB0B2DF150E900A5633A /* DailySalesRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DB0A2DF150E600A5633A /* DailySalesRecord.swift */; };
+		68F7DB112DF4112400A5633A /* ProfitViewModelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F7DB102DF4111300A5633A /* ProfitViewModelStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +80,7 @@
 		68F7DAD72DEF2CF300A5633A /* SoldItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoldItem.swift; sourceTree = "<group>"; };
 		68F7DADB2DEF2D2600A5633A /* DailySales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySales.swift; sourceTree = "<group>"; };
 		68F7DADD2DEF2D4F00A5633A /* IngredientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInfo.swift; sourceTree = "<group>"; };
-		68F7DADF2DEF2DD000A5633A /* IngredientEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEntity.swift; sourceTree = "<group>"; };
+		68F7DADF2DEF2DD000A5633A /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		68F7DAE22DEF2EE100A5633A /* ProfitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitViewModel.swift; sourceTree = "<group>"; };
 		68F7DAE42DEF33CB00A5633A /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		68F7DAE62DEF346F00A5633A /* ProfitScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitScreen.swift; sourceTree = "<group>"; };
@@ -90,6 +93,9 @@
 		68F7DAF62DEF3AE100A5633A /* IngredientListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientListView.swift; sourceTree = "<group>"; };
 		68F7DAF82DEF3B6900A5633A /* IngredientResultFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientResultFooterView.swift; sourceTree = "<group>"; };
 		68F7DAFA2DEF3EEE00A5633A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		68F7DB082DF150C000A5633A /* SoldItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoldItemModel.swift; sourceTree = "<group>"; };
+		68F7DB0A2DF150E600A5633A /* DailySalesRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySalesRecord.swift; sourceTree = "<group>"; };
+		68F7DB102DF4111300A5633A /* ProfitViewModelStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitViewModelStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -198,10 +204,12 @@
 			isa = PBXGroup;
 			children = (
 				68F7DADD2DEF2D4F00A5633A /* IngredientInfo.swift */,
-				68F7DADF2DEF2DD000A5633A /* IngredientEntity.swift */,
+				68F7DADF2DEF2DD000A5633A /* Ingredient.swift */,
 				68F7DAD62DEF2CF300A5633A /* MenuItem.swift */,
 				68F7DAD72DEF2CF300A5633A /* SoldItem.swift */,
+				68F7DB082DF150C000A5633A /* SoldItemModel.swift */,
 				68F7DADB2DEF2D2600A5633A /* DailySales.swift */,
+				68F7DB0A2DF150E600A5633A /* DailySalesRecord.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,6 +219,7 @@
 			children = (
 				68F7DAE42DEF33CB00A5633A /* MenuViewModel.swift */,
 				68F7DAE22DEF2EE100A5633A /* ProfitViewModel.swift */,
+				68F7DB102DF4111300A5633A /* ProfitViewModelStorage.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -391,12 +400,15 @@
 				3E7F2BE22DEDCC8700A20B86 /* MenuRowView.swift in Sources */,
 				68F7DAE72DEF347100A5633A /* ProfitScreen.swift in Sources */,
 				68F7DAF72DEF3AE200A5633A /* IngredientListView.swift in Sources */,
+				68F7DB112DF4112400A5633A /* ProfitViewModelStorage.swift in Sources */,
 				68F7DAE92DEF34A800A5633A /* CalendarGridView.swift in Sources */,
 				3E7F2BE32DEDCC8700A20B86 /* SoonsuApp.swift in Sources */,
 				3E7F2BE42DEDCC8700A20B86 /* MenuInputView.swift in Sources */,
 				68F7DAF32DEF37B800A5633A /* DateFormatters.swift in Sources */,
 				68F7DADE2DEF2D5900A5633A /* IngredientInfo.swift in Sources */,
-				68F7DAE02DEF2DD500A5633A /* IngredientEntity.swift in Sources */,
+				68F7DAE02DEF2DD500A5633A /* Ingredient.swift in Sources */,
+				68F7DB0B2DF150E900A5633A /* DailySalesRecord.swift in Sources */,
+				68F7DB092DF150C300A5633A /* SoldItemModel.swift in Sources */,
 				68F7DADC2DEF2D3000A5633A /* DailySales.swift in Sources */,
 				68F7DAEF2DEF352400A5633A /* SalesInputSheet.swift in Sources */,
 				68F7DAD92DEF2CF300A5633A /* MenuItem.swift in Sources */,

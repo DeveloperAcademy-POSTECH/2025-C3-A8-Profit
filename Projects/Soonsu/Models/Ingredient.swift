@@ -10,7 +10,7 @@ import SwiftData
 import SwiftUI
 
 @Model
-final class IngredientEntity {
+final class Ingredient {
     @Attribute(.unique) var id: UUID      // IngredientInfo.id와 동일하게 사용
     
     var menuName: String

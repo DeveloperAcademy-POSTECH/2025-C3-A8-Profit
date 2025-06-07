@@ -13,14 +13,14 @@ enum TabType: String, CaseIterable {
     case home  = "홈"
     case menu  = "메뉴관리"
     case profit = "수익관리"
-    case cost  = "비용관리"
+//    case cost  = "비용관리"
     
     var iconName: String {
         switch self {
         case .home:   return "house"
         case .menu:   return "list.bullet.rectangle"
         case .profit: return "calendar"
-        case .cost:   return "banknote"
+//        case .cost:   return "banknote"
         }
     }
 }

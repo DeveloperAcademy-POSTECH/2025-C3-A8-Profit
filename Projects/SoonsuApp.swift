@@ -22,9 +22,12 @@ struct SoonsuApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-
-                MainTabView()
-            .modelContainer(for: [IngredientEntity.self])
+            MainTabView()
+                .modelContainer(for: [
+                    Ingredient.self,
+                    SoldItemModel.self,  // ✅ SwiftData에 새로 등록
+                    DailySalesRecord.self
+                ])
         }
     }
 }

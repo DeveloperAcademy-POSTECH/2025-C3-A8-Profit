@@ -15,9 +15,9 @@ struct MenuRowView: View {
     @State private var showDetail = false
     
     /// 해당 메뉴명에 속한 IngredientEntity를 모두 가져오는 computed 프로퍼티
-    private var matchedEntities: [IngredientEntity] {
-        let predicate = #Predicate<IngredientEntity> { $0.menuName == menuName }
-        let descriptor = FetchDescriptor<IngredientEntity>(
+    private var matchedEntities: [Ingredient] {
+        let predicate = #Predicate<Ingredient> { $0.menuName == menuName }
+        let descriptor = FetchDescriptor<Ingredient>(
             predicate: predicate,
             sortBy:    [SortDescriptor(\.createdAt, order: .reverse)]
         )
@@ -30,7 +30,7 @@ struct MenuRowView: View {
     }
     
     /// 헤더용 엔티티(이미지·가격)로 사용할 첫 번째 항목
-    private var headerEntity: IngredientEntity? {
+    private var headerEntity: Ingredient? {
         matchedEntities.first
     }
     
@@ -145,5 +145,5 @@ struct MenuRowView: View {
 #Preview {
     // Preview를 위해 더미 데이터를 넣어볼 수도 있습니다.
     MenuRowView(menuName: "예시메뉴")
-        .modelContainer(for: [IngredientEntity.self], inMemory: true)
+        .modelContainer(for: [Ingredient.self], inMemory: true)
 }

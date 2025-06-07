@@ -179,7 +179,7 @@ struct IngredientResultView: View {
             // 3️⃣ parsedIngredients 배열을 순회하며, 각 재료마다
             //    “같은 메뉴 이름·가격·이미지”를 포함해 삽입
             for info in ingredients {
-                let entity = IngredientEntity(
+                let entity = Ingredient(
                     menuName: menuName,
                     menuPrice: priceValue,
                     imageData: imageData,
@@ -221,5 +221,5 @@ struct IngredientResultView: View {
             ]
         )
     }
-    .modelContainer(for: [IngredientEntity.self], inMemory: true)
+    .modelContainer(for: [Ingredient.self], inMemory: true)
 }

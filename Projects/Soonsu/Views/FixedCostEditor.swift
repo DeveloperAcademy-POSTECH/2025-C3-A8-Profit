@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 /// 매월 고정비를 입력·저장할 수 있는 박스
 struct FixedCostEditor: View {
     @ObservedObject var vm: ProfitViewModel
+    @Environment(\.modelContext) private var modelContext
+    
     @State private var inputCost: String = ""
     @State private var inputDays: String = ""
     @State private var saveMsg: String = ""
@@ -18,8 +21,8 @@ struct FixedCostEditor: View {
     @FocusState private var focusedField: Field?
     
     enum Field: Hashable {
-            case cost, days
-        }
+        case cost, days
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -53,6 +56,14 @@ struct FixedCostEditor: View {
                     vm.isFixedCostSet   = true
                     vm.lastFixedCostUpdate = Date()
                     saveMsg = "고정비가 저장되었습니다."
+                    
+                    
+                    // ✅ 저장 시 SwiftData에도 기록
+                    //                    if let modelContext = try? vm.mainActorContext() {
+                    vm.saveMonthlyFixedCost(to: modelContext)
+                    //                    }
+                    
+                    
                     inputCost = ""
                     inputDays = ""
                 } else {

@@ -47,11 +47,11 @@ struct MainTabView: View {
                     .onAppear {
                         profitVM.loadMenuMaster(from: menuVM.allIngredients)
                     }
-            case .cost:
-                // 네 번째 탭: 비용관리 (임시로 Text로 처리)
-                Text("비용관리 화면")
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color(.systemBackground))
+//            case .cost:
+//                // 네 번째 탭: 비용관리 (임시로 Text로 처리)
+//                Text("비용관리 화면")
+//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                    .background(Color(.systemBackground))
             }
             
             // 2) 하단 탭 바
@@ -64,12 +64,12 @@ struct MainTabView: View {
         //            profitVM.loadMenuMaster(from: allIngredients)
         //        }
         // 이 부분에서 SwiftData의 modelContainer를 전달해야 MyMenuView가 정상 동작합니다.
-        .modelContainer(for: [IngredientEntity.self])
+        .modelContainer(for: [Ingredient.self])
     }
 }
 
 #Preview {
     // SwiftData in-memory 컨테이너를 연결해서 미리보기도 가능합니다.
     MainTabView()
-        .modelContainer(for: [IngredientEntity.self], inMemory: true)
+        .modelContainer(for: [Ingredient.self], inMemory: true)
 }
