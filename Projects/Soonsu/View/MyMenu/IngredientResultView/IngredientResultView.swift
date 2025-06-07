@@ -33,6 +33,7 @@ struct IngredientResultView: View {
     @State private var showProgressPopover = false
     @State private var selectedIngredient: IngredientInfo? = nil
     @State private var showIngredientModifySheet = false
+    
 
     
     private var totalCost: Int {
@@ -94,53 +95,77 @@ struct IngredientResultView: View {
                         Spacer()
                     }
                     .padding(.horizontal)
-                    .padding(.vertical)
+                    .padding(.top)
+                    .padding(.bottom,4)
                     
                     
                     // ── 재료 리스트 ──────────────────────────────────
-                    List {
-                        ForEach(parsedIngredients) { ing in
-                            HStack {
-
-                                Image(uiImage: UIImage(named: ing.name) ?? UIImage(named: "포항초")!)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 24, height: 24)
-                                
-                                Text(ing.name)
-                                    .font(.body)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                
-                                Text("\(ing.amount)\(ing.unit)")
-                                    .font(.subheadline)
-                                    .frame(width: 60, alignment: .trailing)
-                                
-                                Text("\(ing.unitPrice.formatted())원")
-                                    .font(.subheadline)
-//                                    .fontWeight(.bold)
-                                    .foregroundStyle(.gray)
-                                    .frame(width: 70, alignment: .trailing)
-                                
-                                Image(systemName: "pencil")
-                                    .font(.body)
-                                    .foregroundColor(.blue)
+                    
+                    ZStack(alignment: .bottom) {
+                        VStack {
+                            Spacer()
+                                .frame(height: 24)
+                            List {
+                                ForEach(parsedIngredients) { ing in
+                                    HStack {
+                                        
+                                        Image(uiImage: UIImage(named: ing.name) ?? UIImage(named: "포항초")!)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 24, height: 24)
+                                        
+                                        Text(ing.name)
+                                            .font(.body)
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                        
+                                        Text("\(ing.amount)\(ing.unit)")
+                                            .font(.subheadline)
+                                            .frame(width: 60, alignment: .trailing)
+                                        
+                                        Text("\(ing.unitPrice.formatted())원")
+                                            .font(.subheadline)
+                                            .foregroundStyle(.gray)
+                                            .frame(width: 70, alignment: .trailing)
+                                        
+                                        Image(systemName: "pencil")
+                                            .font(.body)
+                                            .foregroundColor(.blue)
+                                    }
+                                    .listRowSeparator(.hidden)
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        selectedIngredient = ing
+                                        showIngredientModifySheet = true
+                                    }
+                                }
+                                .onDelete(perform: deleteIngredient)
                             }
-                            .listRowSeparator(.hidden)
-                            .onTapGesture {
-                                selectedIngredient = ing
-                                showIngredientModifySheet = true
-                            }
+                            .padding(.horizontal, 4)
+                            .scrollIndicators(.hidden)
+                            .listStyle(.plain)
+                            Spacer()
+                                .frame(height: 24)
                         }
-                        .onDelete(perform: deleteIngredient)
+
+                        
+                        VStack {
+                            LinearGradient(colors: [.white, .white.opacity(0)], startPoint: .top, endPoint: .bottom)
+                                .frame(height: 64)
+                                .allowsHitTesting(false)
+                            
+                            Spacer()
+                            
+                            LinearGradient(colors: [.white, .white.opacity(0)], startPoint: .bottom, endPoint: .top)
+                                .frame(height: 64)
+                                .allowsHitTesting(false)
+                        }
+                        
                     }
-                    .listStyle(.plain)
                     
-                    Divider()
-                    
+
                     
                     // ── 하단 합계 + 등록 버튼 ────────────────────────
                     VStack(spacing: 16) {
-                        
                         HStack {
                             Image(systemName: "plus.circle.fill")
                                 .foregroundStyle(.blue)
@@ -182,10 +207,6 @@ struct IngredientResultView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
                     .padding()
-                    .background(
-                        Color(UIColor.systemBackground)
-                            .shadow(color: .black.opacity(0.1), radius: 5, y: -2)
-                    )
                 }
                 .ignoresSafeArea(.keyboard)
 //                .navigationBarBackButtonHidden(true)
