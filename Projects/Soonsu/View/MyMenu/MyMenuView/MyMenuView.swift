@@ -12,7 +12,7 @@ struct MyMenuView: View {
     @State private var showAddMenu      = false
     @State private var selectedMenuName = ""
     
-    // SwiftData에서 모든 IngredientEntity를 최신순(createdAt)으로 가져옴
+    // SwiftData에서 모든 Ingredient를 최신순(createdAt)으로 가져옴
     @Query(sort: \Ingredient.createdAt, order: .reverse)
     private var allIngredients: [Ingredient]
     

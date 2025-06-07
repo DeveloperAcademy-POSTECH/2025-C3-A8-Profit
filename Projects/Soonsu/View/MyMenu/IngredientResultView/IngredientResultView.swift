@@ -48,6 +48,7 @@ struct IngredientResultView: View {
     }
     
     private func handleSave() {
+        print("📌 handleSave() 실행됨. mode: \(mode)")
         switch mode {
         case .create:
             createMenuWithIngredients()
@@ -199,8 +200,11 @@ struct IngredientResultView: View {
 
     // MARK: 재료 추가 & 시트 닫기
     private func closePopoverAndSave() {
+        print("📌 closePopoverAndSave() 실행됨")
         showProgressPopover = false
         handleSave()
+//        print("✅ [Debug] context.save() 성공, 총 엔티티 개수: \(context)")
+
     }
     
     // MARK: 재료 슬라이드 삭제
@@ -238,7 +242,7 @@ struct IngredientResultView: View {
             
             // 6️⃣ 저장 후 루트 복귀
             selectedMenuName = "\(menuName)-\(UUID().uuidString)"
-            dismiss()
+//            dismiss()
             
         } catch {
             print("SwiftData save error:", error)
