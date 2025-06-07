@@ -67,8 +67,9 @@ struct MenuRowView: View {
     private var infos: [IngredientInfo] {
         matchedEntities.map {
             IngredientInfo(
-                name:      $0.name,
-                amount:    $0.amount,
+                name: $0.name,
+                amount: $0.amount,
+                unit: $0.unit,
                 unitPrice: $0.unitPrice
             )
         }

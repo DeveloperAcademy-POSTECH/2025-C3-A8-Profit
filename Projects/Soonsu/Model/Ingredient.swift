@@ -20,6 +20,7 @@ final class Ingredient {
     
     var name: String
     var amount: String
+    var unit: String
     var unitPrice: Int
     var createdAt: Date
     
@@ -39,6 +40,7 @@ final class Ingredient {
         
         self.name = info.name
         self.amount = info.amount
+        self.unit = info.unit
         self.unitPrice = info.unitPrice
         self.createdAt = createdAt
     }
@@ -49,10 +51,11 @@ struct IngredientInfo: Identifiable, Codable {
     var id: UUID = UUID()
     var name: String
     var amount: String
+    var unit: String
     var unitPrice: Int
     
     enum CodingKeys: String, CodingKey {
-        case name, amount, unitPrice
+        case name, amount, unit, unitPrice
     }
     
     // JSON → 모델 디코딩 시 id는 새로 생성
@@ -60,14 +63,16 @@ struct IngredientInfo: Identifiable, Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode(String.self, forKey: .name)
         self.amount = try container.decode(String.self, forKey: .amount)
+        self.unit = try container.decode(String.self, forKey: .unit)
         self.unitPrice = try container.decode(Int.self, forKey: .unitPrice)
         self.id = UUID()
     }
     
     // 수동 생성 시 convenience 이니셜라이저
-    init(name: String, amount: String, unitPrice: Int) {
+    init(name: String, amount: String, unit: String, unitPrice: Int) {
         self.name = name
         self.amount = amount
+        self.unit = unit
         self.unitPrice = unitPrice
     }
 }

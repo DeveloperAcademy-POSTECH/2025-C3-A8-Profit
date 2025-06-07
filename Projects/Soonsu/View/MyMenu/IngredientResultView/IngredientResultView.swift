@@ -141,7 +141,7 @@ struct IngredientResultView: View {
                         NavigationLink("재료 추가하기") {
                             IngredientAddView(onIngredientSelected: { selectedName in
                                 guard !parsedIngredients.contains(where: { $0.name == selectedName }) else { return }
-                                let newInfo = IngredientInfo(name: selectedName, amount: "10g", unitPrice: 100)
+                                let newInfo = IngredientInfo(name: selectedName, amount: "10", unit:"g", unitPrice: 100)
                                 parsedIngredients.append(newInfo)
                             })
                         }
@@ -298,6 +298,7 @@ private extension View {
                 )
             }
         }
-//        .presentationDetents([.medium])
+        .presentationDetents([.medium])
+        .presentationDragIndicator(.visible)
     }
 }

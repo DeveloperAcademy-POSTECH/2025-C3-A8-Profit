@@ -14,6 +14,7 @@ struct InputRowComponent: View {
     var keyboardType: UIKeyboardType = .default
     var focusedField: FocusState<MenuInputView.Field?>.Binding?
     var isEnabled: Bool = true
+    var unit: String? = nil
 
     var body: some View {
         
@@ -23,6 +24,7 @@ struct InputRowComponent: View {
                     .font(.body)
                     .fontWeight(.bold)
                     .foregroundStyle(.gray)
+                Spacer()
                 if let binding = focusedField {
                     TextField(placeholder, text: $text)
                         .multilineTextAlignment(.trailing)
@@ -40,6 +42,12 @@ struct InputRowComponent: View {
                         .fontWeight(.bold)
                         .keyboardType(keyboardType)
                         .disabled(!isEnabled)
+                }
+                if let unit {
+                    Text(unit)
+//                        .foregroundStyle(.gray)
+                        .font(.body)
+                        .padding(.leading, 4)
                 }
             }
             .padding(.horizontal)

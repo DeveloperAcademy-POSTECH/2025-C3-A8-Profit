@@ -16,7 +16,7 @@ struct IngredientModifySheet: View {
     @State private var purchasePrice: String = ""
     @State private var purchaseAmount: String = ""
     @State private var recipeAmount: String = ""
-    @State private var editableIngredient: IngredientInfo = IngredientInfo(name: "", amount: "", unitPrice: 0)
+    @State private var editableIngredient: IngredientInfo = IngredientInfo(name: "", amount: "",  unit: "g" ,unitPrice: 0)
     
     enum SegmentMode: String, CaseIterable {
         case auto = "자동계산"
@@ -24,8 +24,8 @@ struct IngredientModifySheet: View {
     }
     
     var body: some View {
-            VStack(spacing: 16) {
-                
+        VStack(spacing: 16) {
+            
                 HStack {
                     Button("삭제") {
                         if let index = parsedIngredients.firstIndex(where: { $0.id == editableIngredient.id }) {
@@ -73,24 +73,26 @@ struct IngredientModifySheet: View {
                     InputRowComponent(title: "단가", text: .constant("\(editableIngredient.unitPrice.formatted())원"), isEnabled: false)
                 } else {
                     Group {
-                        InputRowComponent(title: "구매 금액", placeholder: "예: 1000", text: $purchasePrice, keyboardType: .numberPad)
+                        InputRowComponent(title: "구매 금액", placeholder: "1000", text: $purchasePrice, keyboardType: .numberPad, unit: "원")
                         Divider()
                             .padding(.horizontal)
-                        InputRowComponent(title: "구매 수량", placeholder: "예: 500g", text: $purchaseAmount, keyboardType: .numberPad)
+                        InputRowComponent(title: "구매 수량", placeholder: "500", text: $purchaseAmount, keyboardType: .numberPad, unit: "g")
                         Divider()
                             .padding(.horizontal)
-                        InputRowComponent(title: "레시피 수량", placeholder: "예: 30g", text: $recipeAmount, keyboardType: .numberPad)
+                        InputRowComponent(title: "레시피 수량", placeholder: "30", text: $recipeAmount, keyboardType: .numberPad, unit: "g")
                     }
                 }
                 
                 Spacer()
                 
-            }
-            .padding()
-            .onAppear {
-                editableIngredient = ingredient
-                recipeAmount = ingredient.amount
-            }
+            
+
+        }
+        .padding()
+        .onAppear {
+            editableIngredient = ingredient
+            recipeAmount = ingredient.amount
+        }
     }
     
     private func updateUnitPrice() {
@@ -100,7 +102,7 @@ struct IngredientModifySheet: View {
               purchaseAmountValue != 0 else {
             return
         }
-
+        
         let pricePerGram = Double(price) / purchaseAmountValue
         let calculatedUnitPrice = Int(pricePerGram * recipeAmountValue)
         editableIngredient.unitPrice = calculatedUnitPrice
@@ -111,10 +113,12 @@ struct IngredientModifySheet: View {
 #Preview {
     IngredientModifySheet(ingredient: IngredientInfo(
         name: "양배추",
-        amount: "30g",
+        amount: "30",
+        unit: "g",
         unitPrice: 1000),
                           parsedIngredients: .constant([IngredientInfo(
                             name: "양배추",
-                            amount: "30g",
+                            amount: "30",
+                            unit: "g",
                             unitPrice: 1000)]))
 }
