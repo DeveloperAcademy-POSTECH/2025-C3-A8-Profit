@@ -112,33 +112,23 @@ struct MenuInputView: View {
                 }
                 // 추가
                 Group {
-                    HStack {
-                        Text("메뉴 이름")
-                            .font(.body)
-                            .fontWeight(.bold)
-                        TextField("메뉴 이름을 입력하세요", text: $menuName)
-                            .multilineTextAlignment(.trailing)
-                            .foregroundStyle(.black)
-                            .font(.body)
-                            .fontWeight(.bold)
-                            .focused($focusedField, equals: .menuName)
-                    }
-                    .padding(.top, 32)
+                    InputRowComponent(
+                        title: "메뉴 이름",
+                        placeholder: "메뉴 이름을 입력하세요",
+                        text: $menuName,
+                        focusedField: $focusedField
+                    )
                     
                     Divider()
                     
-                    HStack {
-                        Text("메뉴 가격")
-                            .font(.body)
-                            .fontWeight(.bold)
-                        TextField("메뉴 가격을 입력하세요", text: $menuPrice)
-                            .multilineTextAlignment(.trailing)
-                            .foregroundStyle(.black)
-                            .font(.body)
-                            .fontWeight(.bold)
-                            .keyboardType(.numberPad)
-                            .focused($focusedField, equals: .menuPrice)
-                    }
+                    
+                    InputRowComponent(
+                        title: "메뉴 가격",
+                        placeholder: "메뉴 가격을 입력하세요",
+                        text: $menuPrice,
+                        keyboardType: .numberPad,
+                        focusedField: $focusedField
+                    )
                     .padding(.top)
                     
                     Divider()

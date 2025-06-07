@@ -283,11 +283,18 @@ struct IngredientResultView: View {
 }
 
 private extension View {
-    func ingredientModifySheet(isPresented: Binding<Bool>, parsedIngredients: Binding<[IngredientInfo]>, selectedIngredient: Binding<IngredientInfo?>) -> some View {
+    func ingredientModifySheet(
+        isPresented: Binding<Bool>,
+        parsedIngredients: Binding<[IngredientInfo]>,
+        selectedIngredient: Binding<IngredientInfo?>
+    ) -> some View {
         self.sheet(isPresented: isPresented) {
             if let selIngredient = selectedIngredient.wrappedValue,
                let index = parsedIngredients.wrappedValue.firstIndex(where: { $0.id == selIngredient.id }) {
-                IngredientModifySheet(ingredient: parsedIngredients[index])
+                IngredientModifySheet(
+                    ingredient: parsedIngredients.wrappedValue[index],
+                    parsedIngredients: parsedIngredients
+                )
             }
         }
     }
