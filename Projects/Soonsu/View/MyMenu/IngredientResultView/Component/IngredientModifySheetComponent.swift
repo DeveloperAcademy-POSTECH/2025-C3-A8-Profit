@@ -45,8 +45,6 @@ struct IngredientModifySheet: View {
                 
                 
                 if segmentMode == .auto {
-//                    Text("수량: \(ingredient.amount)")
-//                    Text("단가: \(ingredient.unitPrice.formatted())원")
                     Text("수량: \(editableIngredient.amount)")
                     Text("단가: \(editableIngredient.unitPrice.formatted())원")
                 } else {
@@ -55,9 +53,6 @@ struct IngredientModifySheet: View {
                         InputRowComponent(title: "구매 수량", placeholder: "예: 500g", text: $purchaseAmount, keyboardType: .default)
                         InputRowComponent(title: "레시피 수량", placeholder: "예: 30g", text: $recipeAmount, keyboardType: .default)
                     }
-//                    .onChange(of: purchasePrice, updateUnitPrice)
-//                    .onChange(of: purchaseAmount, updateUnitPrice)
-//                    .onChange(of: recipeAmount, updateUnitPrice)
                 }
                 
                 Spacer()
@@ -71,7 +66,6 @@ struct IngredientModifySheet: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("삭제") {
                         if let index = parsedIngredients.firstIndex(where: { $0.id == editableIngredient.id }) {
-//                        if let index = parsedIngredients.firstIndex(where: { $0.id == ingredient.id }) {
                             parsedIngredients.remove(at: index)
                         }
                         dismiss()
@@ -103,19 +97,15 @@ struct IngredientModifySheet: View {
 
         let pricePerGram = Double(price) / purchaseAmountValue
         let calculatedUnitPrice = Int(pricePerGram * recipeAmountValue)
-//        ingredient.unitPrice = calculatedUnitPrice
-//        ingredient.amount = recipeAmount
         editableIngredient.unitPrice = calculatedUnitPrice
         editableIngredient.amount = recipeAmount
     }
 }
 
 #Preview {
-//    IngredientModifySheet(ingredient: .constant(IngredientInfo(
     IngredientModifySheet(ingredient: IngredientInfo(
         name: "양배추",
         amount: "30g",
-//        unitPrice: 1000)),
         unitPrice: 1000),
                           parsedIngredients: .constant([IngredientInfo(
                             name: "양배추",
