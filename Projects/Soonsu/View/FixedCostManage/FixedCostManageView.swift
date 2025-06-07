@@ -41,16 +41,17 @@ struct FixedCostManageView: View {
                 }
             }
             .background(Color(UIColor.systemGroupedBackground))
-            
-        }
-        .navigationTitle("고정비 관리")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            Button {
-                //버튼 동작
-            } label: {
-                Text("적용")
+            .navigationTitle("고정비 관리")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar(.hidden, for: .tabBar)
+            .toolbar {
+                Button {
+                    //버튼 동작
+                } label: {
+                    Text("적용")
+                }
             }
+            
         }
     }
 }

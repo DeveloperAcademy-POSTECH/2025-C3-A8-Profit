@@ -19,7 +19,6 @@ struct FixedCostDetailView: View {
         let totalFixed = vm.monthlyFixedCost
 
         
-        NavigationStack {
             VStack {
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
@@ -75,9 +74,9 @@ struct FixedCostDetailView: View {
                 
                 
                 VStack(spacing: 12) {
-                    NavigationLink(destination: Text("인건비 입력 화면")) {
+                    NavigationLink(destination: LaborCostManageView()) {
                         HStack {
-                            Text("인건비 입력하기")
+                            Text("인건비 입력하기(월간)")
                                 .font(.title2)
                                 .fontWeight(.bold)
                                 .foregroundStyle(.black)
@@ -92,9 +91,9 @@ struct FixedCostDetailView: View {
                     }
                     .padding(.top, 28)
                     
-                    NavigationLink(destination: Text("간접비 입력 화면")) {
+                    NavigationLink(destination: OverheadCostManageView()) {
                         HStack {
-                            Text("간접비 입력하기")
+                            Text("간접비 입력하기(월간)")
                                 .font(.title2)
                                 .fontWeight(.bold)
                                 .foregroundStyle(.black)
@@ -129,7 +128,6 @@ struct FixedCostDetailView: View {
                 
             }
             .background(Color(UIColor.systemGroupedBackground))
-        }
     }
 }
 
