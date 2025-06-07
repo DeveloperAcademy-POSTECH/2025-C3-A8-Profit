@@ -9,11 +9,11 @@ import SwiftUI
 
 struct InputRowComponent: View {
     let title: String
-    let placeholder: String
+    var placeholder: String = ""
     @Binding var text: String
     var keyboardType: UIKeyboardType = .default
-//    @FocusState.Binding var focusedField: MenuInputView.Field??
     var focusedField: FocusState<MenuInputView.Field?>.Binding?
+    var isEnabled: Bool = true
 
     var body: some View {
         HStack {
@@ -28,6 +28,7 @@ struct InputRowComponent: View {
                     .fontWeight(.bold)
                     .keyboardType(keyboardType)
                     .focused(binding, equals: title == "메뉴 이름" ? .menuName : .menuPrice)
+                    .disabled(!isEnabled)
             } else {
                 TextField(placeholder, text: $text)
                     .multilineTextAlignment(.trailing)
@@ -35,6 +36,7 @@ struct InputRowComponent: View {
                     .font(.body)
                     .fontWeight(.bold)
                     .keyboardType(keyboardType)
+                    .disabled(!isEnabled)
             }
         }
     }
