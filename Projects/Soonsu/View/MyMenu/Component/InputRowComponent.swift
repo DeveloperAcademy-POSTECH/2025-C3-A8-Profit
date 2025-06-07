@@ -16,28 +16,35 @@ struct InputRowComponent: View {
     var isEnabled: Bool = true
 
     var body: some View {
-        HStack {
-            Text(title)
-                .font(.body)
-                .fontWeight(.bold)
-            if let binding = focusedField {
-                TextField(placeholder, text: $text)
-                    .multilineTextAlignment(.trailing)
-                    .foregroundStyle(.black)
+        
+        VStack {
+            HStack {
+                Text(title)
                     .font(.body)
                     .fontWeight(.bold)
-                    .keyboardType(keyboardType)
-                    .focused(binding, equals: title == "메뉴 이름" ? .menuName : .menuPrice)
-                    .disabled(!isEnabled)
-            } else {
-                TextField(placeholder, text: $text)
-                    .multilineTextAlignment(.trailing)
-                    .foregroundStyle(.black)
-                    .font(.body)
-                    .fontWeight(.bold)
-                    .keyboardType(keyboardType)
-                    .disabled(!isEnabled)
+                    .foregroundStyle(.gray)
+                if let binding = focusedField {
+                    TextField(placeholder, text: $text)
+                        .multilineTextAlignment(.trailing)
+                        .foregroundStyle(isEnabled ? .blue : .black)
+                        .font(.body)
+                        .fontWeight(.bold)
+                        .keyboardType(keyboardType)
+                        .focused(binding, equals: title == "메뉴 이름" ? .menuName : .menuPrice)
+                        .disabled(!isEnabled)
+                } else {
+                    TextField(placeholder, text: $text)
+                        .multilineTextAlignment(.trailing)
+                        .foregroundStyle(isEnabled ? .blue : .black)
+                        .font(.body)
+                        .fontWeight(.bold)
+                        .keyboardType(keyboardType)
+                        .disabled(!isEnabled)
+                }
             }
+            .padding(.horizontal)
+            .padding(.vertical,8)
         }
+
     }
 }

@@ -46,11 +46,17 @@ struct IngredientModifySheet: View {
                 
                 if segmentMode == .auto {
                     InputRowComponent(title: "수량", text: .constant(editableIngredient.amount), isEnabled: false)
+                    Divider()
+                        .padding(.horizontal)
                     InputRowComponent(title: "단가", text: .constant("\(editableIngredient.unitPrice.formatted())원"), isEnabled: false)
                 } else {
                     Group {
                         InputRowComponent(title: "구매 금액", placeholder: "예: 1000", text: $purchasePrice, keyboardType: .numberPad)
+                        Divider()
+                            .padding(.horizontal)
                         InputRowComponent(title: "구매 수량", placeholder: "예: 500g", text: $purchaseAmount, keyboardType: .numberPad)
+                        Divider()
+                            .padding(.horizontal)
                         InputRowComponent(title: "레시피 수량", placeholder: "예: 30g", text: $recipeAmount, keyboardType: .numberPad)
                     }
                 }

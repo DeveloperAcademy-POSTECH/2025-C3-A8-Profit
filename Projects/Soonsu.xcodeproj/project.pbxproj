@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		26AE58C22DEE842E00E45C4D /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AE58C12DEE842600E45C4D /* MockData.json */; };
 		26AE58DF2DEEA6EF00E45C4D /* Ingredients.json in Resources */ = {isa = PBXBuildFile; fileRef = 26AE58DE2DEEA6EF00E45C4D /* Ingredients.json */; };
+		26D3EB922DF4093800D052D1 /* data.csv in Resources */ = {isa = PBXBuildFile; fileRef = 26D3EB912DF4093100D052D1 /* data.csv */; };
 		3E7F2BE32DEDCC8700A20B86 /* SoonsuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDF2DEDCC8700A20B86 /* SoonsuApp.swift */; };
 		3E7F2BE62DEDCC8700A20B86 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDA2DEDCC8700A20B86 /* Ingredient.swift */; };
 		3E7F2BF32DEDCFBB00A20B86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E7F2BF22DEDCFBB00A20B86 /* GoogleService-Info.plist */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		26AE58C12DEE842600E45C4D /* MockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockData.json; sourceTree = "<group>"; };
 		26AE58DE2DEEA6EF00E45C4D /* Ingredients.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Ingredients.json; sourceTree = "<group>"; };
+		26D3EB912DF4093100D052D1 /* data.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = data.csv; sourceTree = "<group>"; };
 		3E7F2BDA2DEDCC8700A20B86 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		3E7F2BDF2DEDCC8700A20B86 /* SoonsuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuApp.swift; sourceTree = "<group>"; };
 		3E7F2BF22DEDCFBB00A20B86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		68343BA32DED76D300BD34B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				26D3EB912DF4093100D052D1 /* data.csv */,
 				26AE58DE2DEEA6EF00E45C4D /* Ingredients.json */,
 				26AE58C12DEE842600E45C4D /* MockData.json */,
 				3E7F2BDA2DEDCC8700A20B86 /* Ingredient.swift */,
@@ -286,6 +289,7 @@
 			files = (
 				68343B972DED76BE00BD34B4 /* Assets.xcassets in Resources */,
 				26AE58DF2DEEA6EF00E45C4D /* Ingredients.json in Resources */,
+				26D3EB922DF4093800D052D1 /* data.csv in Resources */,
 				3E7F2BF32DEDCFBB00A20B86 /* GoogleService-Info.plist in Resources */,
 				26AE58C22DEE842E00E45C4D /* MockData.json in Resources */,
 			);
