@@ -48,6 +48,7 @@ struct IngredientModifySheet: View {
                     }
                     
                 }
+                .padding(.vertical)
                 
                 Picker("모드", selection: $segmentMode) {
                     ForEach(SegmentMode.allCases, id: \.self) {

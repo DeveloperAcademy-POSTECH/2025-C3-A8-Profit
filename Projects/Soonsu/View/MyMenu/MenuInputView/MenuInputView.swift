@@ -114,27 +114,30 @@ struct MenuInputView: View {
                 Group {
                     InputRowComponent(
                         title: "메뉴 이름",
-                        placeholder: "메뉴 이름을 입력하세요",
+                        placeholder: "함박스테이크",
                         text: $menuName,
                         focusedField: $focusedField
                     )
+                    .padding(.top)
                     
                     Divider()
                     
                     
                     InputRowComponent(
                         title: "메뉴 가격",
-                        placeholder: "메뉴 가격을 입력하세요",
+                        placeholder: "10000",
                         text: $menuPrice,
                         keyboardType: .numberPad,
-                        focusedField: $focusedField
+                        focusedField: $focusedField,
+                        unit: "원"
                     )
                     .padding(.top)
                     
                     Divider()
                         .padding(.bottom, 32)
                 }
-                .padding(.horizontal, 16)
+
+//                .padding(.horizontal, 16)
                 
                 Button {
                     isLoading = true

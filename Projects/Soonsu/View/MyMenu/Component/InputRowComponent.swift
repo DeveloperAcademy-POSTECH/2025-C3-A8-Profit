@@ -19,7 +19,7 @@ struct InputRowComponent: View {
     var body: some View {
         
         VStack {
-            HStack {
+            HStack(spacing: 0) {
                 Text(title)
                     .font(.body)
                     .fontWeight(.bold)
@@ -45,9 +45,9 @@ struct InputRowComponent: View {
                 }
                 if let unit {
                     Text(unit)
-//                        .foregroundStyle(.gray)
+                        .foregroundStyle(.blue)
                         .font(.body)
-                        .padding(.leading, 4)
+                        .fontWeight(.bold)
                 }
             }
             .padding(.horizontal)
