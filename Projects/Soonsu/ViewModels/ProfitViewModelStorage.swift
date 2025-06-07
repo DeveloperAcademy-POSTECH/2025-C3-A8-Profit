@@ -47,6 +47,7 @@ extension ProfitViewModel {
     }
 
     func saveMonthlyFixedCost(to context: ModelContext) {
+        print("📦 고정비 불러오기 시도")
         let key = formatMonth(currentMonth)
 //        let predicate = #Predicate<MonthlyFixedCostRecord> { $0.monthKey == key }
         let predicate = #Predicate<MonthlyFixedCostRecord> { record in record.monthKey == key }
@@ -108,6 +109,7 @@ extension ProfitViewModel {
     }
 
     func loadPersistedSales(_ context: ModelContext) {
+        print("📦 판매 데이터 불러오기 시도")
         let descriptor = FetchDescriptor<DailySalesRecord>()
         do {
             let records = try context.fetch(descriptor)
@@ -141,6 +143,12 @@ extension ProfitViewModel {
         formatter.dateFormat = "yyyy-MM"
         return formatter.string(from: date)
     }
+    
+    func loadFromStorage(context: ModelContext) {
+        print("🔄 loadFromStorage 호출됨")
+            loadMonthlyFixedCost(from: context)
+            loadPersistedSales(context)
+        }
 }
 
 

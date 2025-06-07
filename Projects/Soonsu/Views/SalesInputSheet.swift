@@ -11,6 +11,9 @@ import SwiftUI
 struct SalesInputSheet: View {
     @ObservedObject var vm: ProfitViewModel
     @Environment(\.dismiss) var dismiss
+    
+    @Environment(\.modelContext) private var context
+
     @State var items: [SoldItem]
     
     @FocusState private var focusedFieldID: Int?
@@ -146,6 +149,10 @@ struct SalesInputSheet: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("등록") {
                         vm.updateSales(for: vm.selectedDate, soldItems: items)
+                        
+                        // ✅ SwiftData에 판매 데이터 저장
+                        vm.persistSalesData(context)
+                        
                         dismiss()
                     }
                 }

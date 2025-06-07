@@ -22,6 +22,9 @@ struct MainTabView: View {
 //    @StateObject private var menuVM = MenuViewModel.empty
     @StateObject private var menuVM: MenuViewModel
     
+    // 최초 1회만 저장된 데이터 로드용 플래그
+    @State private var isLoaded = false
+    
     init() {
         _menuVM = StateObject(wrappedValue: MenuViewModel())
     }
@@ -58,13 +61,27 @@ struct MainTabView: View {
             TabBarView(selectedTab: $selectedTab)
         }
         .onAppear {
-                    menuVM.setContextIfNeeded(context)
-                }
+            menuVM.setContextIfNeeded(context)
+            
+            // ✅ ProfitViewModel의 데이터는 앱 실행 시 1회만 불러오도록
+            if !isLoaded {
+                profitVM.loadFromStorage(context: context)
+                isLoaded = true
+            }
+        }
         //        .onAppear {
         //            profitVM.loadMenuMaster(from: allIngredients)
         //        }
         // 이 부분에서 SwiftData의 modelContainer를 전달해야 MyMenuView가 정상 동작합니다.
-        .modelContainer(for: [Ingredient.self])
+            
+            //
+        //        .modelContainer(for: [Ingredient.self])
+        .modelContainer(for: [
+            Ingredient.self,
+            SoldItemModel.self,
+            DailySalesRecord.self,
+            MonthlyFixedCostRecord.self
+        ])
     }
 }
 

@@ -26,7 +26,8 @@ struct SoonsuApp: App {
                 .modelContainer(for: [
                     Ingredient.self,
                     SoldItemModel.self,  // ✅ SwiftData에 새로 등록
-                    DailySalesRecord.self
+                    DailySalesRecord.self,
+                    MonthlyFixedCostRecord.self
                 ])
         }
     }
