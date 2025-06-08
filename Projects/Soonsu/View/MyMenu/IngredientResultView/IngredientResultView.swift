@@ -89,7 +89,8 @@ struct IngredientResultView: View {
                             Text(menuName)
                                 .font(.title3).bold()
                             Text("\(menuPrice)원")
-                                .font(.headline).bold()
+                                .font(.title3).bold()
+                                .foregroundStyle(.blue)
                         }
                         
                         Spacer()
