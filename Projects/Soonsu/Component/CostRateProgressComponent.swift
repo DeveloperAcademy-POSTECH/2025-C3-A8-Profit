@@ -11,7 +11,7 @@ import SwiftUI
 // MARK: - 원가율 바게이지 컴포넌트
  
 /// 원가율을 175×9.49px 바게이지와 텍스트로 표시하는 컴포넌트
-struct SSCostRateProgressComponent: View {
+struct CostRateProgressComponent: View {
     let costRate: Int           // 원가율 (퍼센트)
     let menuName: String        // 메뉴명
     
@@ -35,7 +35,7 @@ struct SSCostRateProgressComponent: View {
  
 // MARK: - 구성 요소
  
-extension SSCostRateProgressComponent {
+extension CostRateProgressComponent {
     
     /// 원가율 바게이지
     private var progressBar: some View {
@@ -67,10 +67,10 @@ extension SSCostRateProgressComponent {
  
 #Preview {
     VStack(spacing: 20) {
-        SSCostRateProgressComponent(costRate: 25, menuName: "샐러드")      // 파란색
-        SSCostRateProgressComponent(costRate: 30, menuName: "함박스테이크")  // 파란색
-        SSCostRateProgressComponent(costRate: 35, menuName: "스테이크")     // 파란색
-        SSCostRateProgressComponent(costRate: 36, menuName: "치킨버거")     // 빨간색
+        CostRateProgressComponent(costRate: 25, menuName: "샐러드")      // 파란색
+        CostRateProgressComponent(costRate: 30, menuName: "함박스테이크")  // 파란색
+        CostRateProgressComponent(costRate: 35, menuName: "스테이크")     // 파란색
+        CostRateProgressComponent(costRate: 36, menuName: "치킨버거")     // 빨간색
     }
     .padding()
 }

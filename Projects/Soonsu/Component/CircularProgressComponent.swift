@@ -17,7 +17,7 @@ import SwiftUI
 * - 적정성 텍스트 표시
 * - 완료 버튼으로 다음 화면 이동
 */
-struct SSCircularProgressComponent: View {
+struct CircularProgressComponent: View {
     // MARK: - Properties
     let percentage: Double          // 원가율 (재료원가/메뉴가격 * 100)
     let menuName: String           // 메뉴명
@@ -88,7 +88,7 @@ struct SSCircularProgressComponent: View {
  
 // MARK: - View Components
  
-extension SSCircularProgressComponent {
+extension CircularProgressComponent {
     
     /// 상단 제목 섹션
     private var titleSection: some View {
@@ -162,14 +162,14 @@ extension SSCircularProgressComponent {
 #Preview {
     VStack(spacing: 30) {
         // 적정 원가율 예시 (32%)
-        SSCircularProgressComponent(
+        CircularProgressComponent(
             percentage: 32,
             menuName: "함박스테이크",
             onComplete: { print("적정 원가율 완료") }
         )
         
         // 높은 원가율 예시 (38%)
-        SSCircularProgressComponent(
+        CircularProgressComponent(
             percentage: 38,
             menuName: "함박스테이크",
             onComplete: { print("높은 원가율 완료") }

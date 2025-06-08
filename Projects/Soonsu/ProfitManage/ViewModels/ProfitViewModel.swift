@@ -32,7 +32,7 @@ class ProfitViewModel: ObservableObject {
     @Published var menuMaster: [MenuItem] = []
     
     // MARK: - 사용자 정의 메뉴 불러오기
-    func loadMenuMaster(from ingredients: [Ingredient]) {
+    func loadMenuMaster(from ingredients: [IngredientCoulson]) {
         let grouped = Dictionary(grouping: ingredients, by: { $0.menuName })
         
         menuMaster = grouped.compactMap { (menuName, entries) in

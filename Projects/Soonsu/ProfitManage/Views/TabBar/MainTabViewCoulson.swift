@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct MainTabView: View {
+struct MainTabViewCoulson: View {
     
     @Environment(\.modelContext) private var context
     
@@ -58,7 +58,7 @@ struct MainTabView: View {
             }
             
             // 2) 하단 탭 바
-            TabBarView(selectedTab: $selectedTab)
+            TabBarViewCoulson(selectedTab: $selectedTab)
         }
         .onAppear {
             menuVM.setContextIfNeeded(context)
@@ -77,7 +77,7 @@ struct MainTabView: View {
             //
         //        .modelContainer(for: [Ingredient.self])
         .modelContainer(for: [
-            Ingredient.self,
+            IngredientCoulson.self,
             SoldItemModel.self,
             DailySalesRecord.self,
             MonthlyFixedCostRecord.self
@@ -87,6 +87,6 @@ struct MainTabView: View {
 
 #Preview {
     // SwiftData in-memory 컨테이너를 연결해서 미리보기도 가능합니다.
-    MainTabView()
-        .modelContainer(for: [Ingredient.self], inMemory: true)
+    MainTabViewCoulson()
+        .modelContainer(for: [IngredientCoulson.self], inMemory: true)
 }

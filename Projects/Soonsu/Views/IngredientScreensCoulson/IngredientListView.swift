@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct IngredientListView: View {
-    let ingredients: [IngredientInfo]
+    let ingredients: [IngredientInfoCoulson]
     let isNew: Bool
     let onAddTapped: () -> Void
 
@@ -55,12 +55,12 @@ struct IngredientListView: View {
 #Preview {
     IngredientListView(
         ingredients: [
-            IngredientInfo(name: "당근", amount: "100g", unitPrice: 500),
-            IngredientInfo(name: "감자", amount: "200g", unitPrice: 800),
-            IngredientInfo(name: "양파", amount: "50g", unitPrice: 300)
+            IngredientInfoCoulson(name: "당근", amount: "100g", unitPrice: 500),
+            IngredientInfoCoulson(name: "감자", amount: "200g", unitPrice: 800),
+            IngredientInfoCoulson(name: "양파", amount: "50g", unitPrice: 300)
         ],
         isNew: true,
         onAddTapped: { print("추가 버튼 눌림") }
     )
-    .modelContainer(for: [Ingredient.self], inMemory: true)
+    .modelContainer(for: [IngredientCoulson.self], inMemory: true)
 }

@@ -10,7 +10,7 @@ import SwiftData
 import SwiftUI
 
 @Model
-final class Ingredient {
+final class IngredientCoulson {
     @Attribute(.unique) var id: UUID      // IngredientInfo.id와 동일하게 사용
     
     var menuName: String
@@ -26,7 +26,7 @@ final class Ingredient {
         menuName: String,
         menuPrice: Int,
         imageData: Data?,
-        info: IngredientInfo,
+        info: IngredientInfoCoulson,
         createdAt: Date = .now
     ) {
         self.id = info.id

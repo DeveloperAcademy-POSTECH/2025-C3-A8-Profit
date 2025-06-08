@@ -24,7 +24,7 @@ struct IngredientResultView: View {
     
     
     // AI가 파싱해준 초기 재료들을 이 State 배열로 복사하여 관리합니다.
-    @State private var ingredients: [IngredientInfo]
+    @State private var ingredients: [IngredientInfoCoulson]
     
     
     // “재료 추가하기” 네비게이션 푸시 트리거
@@ -56,7 +56,7 @@ struct IngredientResultView: View {
         menuName: String,
         menuPrice: String,
         image: UIImage?,
-        parsedIngredients: [IngredientInfo]
+        parsedIngredients: [IngredientInfoCoulson]
     ) {
         self.isNew = isNew
         _selectedMenuName = selectedMenuName
@@ -121,7 +121,7 @@ struct IngredientResultView: View {
                         // 네비게이션에서 돌아올 때 호출됨
                         // 유효한 재료명이라면 ingredients에 append
                         if !selectedItemName.isEmpty {
-                            let newIng = IngredientInfo(
+                            let newIng = IngredientInfoCoulson(
                                 name: selectedItemName,
                                 amount: "0g",
                                 unitPrice: 0
@@ -145,7 +145,7 @@ struct IngredientResultView: View {
                         closePopoverAndSave()
                     }
                 
-                SSCircularProgressComponent(
+                CircularProgressComponent(
                     percentage: percentage,
                     menuName: menuName
                 ) {
@@ -179,7 +179,7 @@ struct IngredientResultView: View {
             // 3️⃣ parsedIngredients 배열을 순회하며, 각 재료마다
             //    “같은 메뉴 이름·가격·이미지”를 포함해 삽입
             for info in ingredients {
-                let entity = Ingredient(
+                let entity = IngredientCoulson(
                     menuName: menuName,
                     menuPrice: priceValue,
                     imageData: imageData,
@@ -215,11 +215,11 @@ struct IngredientResultView: View {
             menuPrice:        "9000",
             image:            nil,
             parsedIngredients: [
-                IngredientInfo(name: "당근", amount: "100g", unitPrice: 500),
-                IngredientInfo(name: "감자", amount: "200g", unitPrice: 800),
-                IngredientInfo(name: "양파", amount: "50g", unitPrice: 300)
+                IngredientInfoCoulson(name: "당근", amount: "100g", unitPrice: 500),
+                IngredientInfoCoulson(name: "감자", amount: "200g", unitPrice: 800),
+                IngredientInfoCoulson(name: "양파", amount: "50g", unitPrice: 300)
             ]
         )
     }
-    .modelContainer(for: [Ingredient.self], inMemory: true)
+    .modelContainer(for: [IngredientCoulson.self], inMemory: true)
 }

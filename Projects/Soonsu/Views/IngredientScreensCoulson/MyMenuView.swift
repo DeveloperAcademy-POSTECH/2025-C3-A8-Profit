@@ -22,7 +22,7 @@ struct MyMenuView: View {
     
     // SwiftData에서 모든 IngredientEntity를 최신순(createdAt)으로 가져옴
     //    @Query(sort: \IngredientEntity.createdAt, order: .reverse)
-    private var allIngredients: [Ingredient]{
+    private var allIngredients: [IngredientCoulson]{
         viewModel.allIngredients
     }
     

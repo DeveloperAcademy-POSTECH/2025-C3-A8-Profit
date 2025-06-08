@@ -27,7 +27,7 @@ enum TabType: String, CaseIterable {
 
 
 /// 하단 탭 바 (각 탭별로 아이콘과 텍스트)
-struct TabBarView: View {
+struct TabBarViewCoulson: View {
     @Binding var selectedTab: TabType
 
     var body: some View {
@@ -58,5 +58,5 @@ struct TabBarView: View {
 
 
 #Preview {
-        TabBarView(selectedTab: .constant(.menu)).previewLayout(.sizeThatFits)
+        TabBarViewCoulson(selectedTab: .constant(.menu)).previewLayout(.sizeThatFits)
 }

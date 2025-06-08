@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseCore
 import SwiftData
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+class AppDelegateCoulson: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
@@ -18,13 +18,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 }
 
 @main
-struct SoonsuApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+struct SoonsuAppCoulson: App {
+    @UIApplicationDelegateAdaptor(AppDelegateCoulson.self) var delegate
     var body: some Scene {
         WindowGroup {
-            MainTabView()
+            MainTabViewCoulson()
                 .modelContainer(for: [
-                    Ingredient.self,
+                    IngredientCoulson.self,
                     SoldItemModel.self,  // ✅ SwiftData에 새로 등록
                     DailySalesRecord.self,
                     MonthlyFixedCostRecord.self

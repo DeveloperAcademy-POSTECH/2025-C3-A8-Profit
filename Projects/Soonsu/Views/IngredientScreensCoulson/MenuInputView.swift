@@ -20,7 +20,7 @@ struct MenuInputView: View {
     @State private var selectedImage: UIImage?
     @State private var menuName: String = ""
     @State private var menuPrice: String = ""
-    @State private var parsedIngredients: [IngredientInfo] = []
+    @State private var parsedIngredients: [IngredientInfoCoulson] = []
     
     @Environment(\.modelContext) private var context
     private var model: GenerativeModel?
@@ -246,7 +246,7 @@ struct MenuInputView: View {
                     else { return }
                     
                     
-                    let decoded = try JSONDecoder().decode([IngredientInfo].self, from: data)
+                    let decoded = try JSONDecoder().decode([IngredientInfoCoulson].self, from: data)
                     // 1️⃣ – Main Thread에서 상태 갱신 및 저장 수행
                     await MainActor.run {
                         parsedIngredients = decoded
