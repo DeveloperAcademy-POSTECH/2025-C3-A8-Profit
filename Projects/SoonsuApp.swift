@@ -21,9 +21,9 @@ struct SoonsuApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView()
+                TabBarView()
             }
-            .modelContainer(for: [IngredientEntity.self, LaborCost.self])
+            .modelContainer(for: [Ingredient.self, LaborCost.self])
         }
     }
 }

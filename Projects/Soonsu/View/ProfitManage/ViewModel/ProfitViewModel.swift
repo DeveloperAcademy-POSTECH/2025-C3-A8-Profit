@@ -39,17 +39,16 @@ class ProfitViewModel: ObservableObject {
     @Published var menuMaster: [MenuItem] = []
     
     // MARK: - 사용자 정의 메뉴 불러오기
-    func loadMenuMaster(from ingredients: [IngredientEntity]) {
+    func loadMenuMaster(from ingredients: [Ingredient]) {
         let grouped = Dictionary(grouping: ingredients, by: { $0.menuName })
-        
         menuMaster = grouped.compactMap { (menuName, entries) in
-            guard let first = entries.first else { return nil }
+            guard let first = entries.first else { return (nil as MenuItem?)! }
             let totalCost = entries.map { $0.unitPrice }.reduce(0, +)
             return MenuItem(
                 id: menuName.hashValue,
                 name: menuName,
                 price: first.menuPrice,
-                materialCostPerUnit: totalCost,
+                materialCostPerUnit: Int(totalCost),
                 image: "" // 실제 UIImage는 View에서 imageData를 직접 해석
             )
         }
