@@ -7,15 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		265FB4502DF59FA500D171FA /* DailySalesRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB44F2DF59FA500D171FA /* DailySalesRecord.swift */; };
+		265FB4522DF59FB600D171FA /* IngredientCoulson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4512DF59FB600D171FA /* IngredientCoulson.swift */; };
+		265FB4542DF59FBC00D171FA /* IngredientInfoCoulson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4532DF59FBC00D171FA /* IngredientInfoCoulson.swift */; };
+		265FB4562DF59FC900D171FA /* SoldItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4552DF59FC800D171FA /* SoldItemModel.swift */; };
+		265FB4692DF5A00A00D171FA /* ProfitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4582DF5A00A00D171FA /* ProfitViewModel.swift */; };
+		265FB46A2DF5A00A00D171FA /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4572DF5A00A00D171FA /* MenuViewModel.swift */; };
+		265FB46B2DF5A00A00D171FA /* FixedCostEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB45F2DF5A00A00D171FA /* FixedCostEditor.swift */; };
+		265FB46C2DF5A00A00D171FA /* SalesInputSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB45B2DF5A00A00D171FA /* SalesInputSheet.swift */; };
+		265FB46D2DF5A00A00D171FA /* DailyProfitSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB45E2DF5A00A00D171FA /* DailyProfitSummary.swift */; };
+		265FB46E2DF5A00A00D171FA /* ProfitScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4612DF5A00A00D171FA /* ProfitScreen.swift */; };
+		265FB46F2DF5A00A00D171FA /* MainTabViewCoulson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4632DF5A00A00D171FA /* MainTabViewCoulson.swift */; };
+		265FB4702DF5A00A00D171FA /* CalendarGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB45D2DF5A00A00D171FA /* CalendarGridView.swift */; };
+		265FB4712DF5A00A00D171FA /* SoonsuAppCoulson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4672DF5A00A00D171FA /* SoonsuAppCoulson.swift */; };
+		265FB4722DF5A00A00D171FA /* TabBarViewCoulson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4642DF5A00A00D171FA /* TabBarViewCoulson.swift */; };
+		265FB4732DF5A00A00D171FA /* ProfitViewModelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4592DF5A00A00D171FA /* ProfitViewModelStorage.swift */; };
 		3E4278DE2DF5791C00AD1EE5 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4278DC2DF5791C00AD1EE5 /* TabBarView.swift */; };
 		3E6688EA2DF5799E00DE2298 /* IngredientsCham.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E22DF5799E00DE2298 /* IngredientsCham.json */; };
 		3E6688EB2DF5799E00DE2298 /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E72DF5799E00DE2298 /* MockData.json */; };
 		3E6688EC2DF5799E00DE2298 /* IngredientsKamis.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E32DF5799E00DE2298 /* IngredientsKamis.json */; };
-		3E6688ED2DF5799E00DE2298 /* File.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688DF2DF5799E00DE2298 /* File.txt */; };
 		3E6688EE2DF5799E00DE2298 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6688E62DF5799E00DE2298 /* MenuItem.swift */; };
 		3E6688EF2DF5799E00DE2298 /* DailySales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6688DE2DF5799E00DE2298 /* DailySales.swift */; };
 		3E6688F02DF5799E00DE2298 /* OverheadCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6688E82DF5799E00DE2298 /* OverheadCost.swift */; };
-		3E6688F12DF5799E00DE2298 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6688E42DF5799E00DE2298 /* Item.swift */; };
 		3E6688F22DF5799E00DE2298 /* SoldItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6688E92DF5799E00DE2298 /* SoldItem.swift */; };
 		3E6688F42DF5799E00DE2298 /* IngredientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6688E12DF5799E00DE2298 /* IngredientInfo.swift */; };
 		3E6688F52DF5799E00DE2298 /* LaborCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6688E52DF5799E00DE2298 /* LaborCost.swift */; };
@@ -47,13 +60,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		265FB44F2DF59FA500D171FA /* DailySalesRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySalesRecord.swift; sourceTree = "<group>"; };
+		265FB4512DF59FB600D171FA /* IngredientCoulson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCoulson.swift; sourceTree = "<group>"; };
+		265FB4532DF59FBC00D171FA /* IngredientInfoCoulson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInfoCoulson.swift; sourceTree = "<group>"; };
+		265FB4552DF59FC800D171FA /* SoldItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoldItemModel.swift; sourceTree = "<group>"; };
+		265FB4572DF5A00A00D171FA /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
+		265FB4582DF5A00A00D171FA /* ProfitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitViewModel.swift; sourceTree = "<group>"; };
+		265FB4592DF5A00A00D171FA /* ProfitViewModelStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitViewModelStorage.swift; sourceTree = "<group>"; };
+		265FB45B2DF5A00A00D171FA /* SalesInputSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesInputSheet.swift; sourceTree = "<group>"; };
+		265FB45D2DF5A00A00D171FA /* CalendarGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarGridView.swift; sourceTree = "<group>"; };
+		265FB45E2DF5A00A00D171FA /* DailyProfitSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyProfitSummary.swift; sourceTree = "<group>"; };
+		265FB45F2DF5A00A00D171FA /* FixedCostEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedCostEditor.swift; sourceTree = "<group>"; };
+		265FB4612DF5A00A00D171FA /* ProfitScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitScreen.swift; sourceTree = "<group>"; };
+		265FB4632DF5A00A00D171FA /* MainTabViewCoulson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewCoulson.swift; sourceTree = "<group>"; };
+		265FB4642DF5A00A00D171FA /* TabBarViewCoulson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewCoulson.swift; sourceTree = "<group>"; };
+		265FB4672DF5A00A00D171FA /* SoonsuAppCoulson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuAppCoulson.swift; sourceTree = "<group>"; };
 		3E4278DC2DF5791C00AD1EE5 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		3E6688DE2DF5799E00DE2298 /* DailySales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySales.swift; sourceTree = "<group>"; };
-		3E6688DF2DF5799E00DE2298 /* File.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = File.txt; sourceTree = "<group>"; };
 		3E6688E12DF5799E00DE2298 /* IngredientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInfo.swift; sourceTree = "<group>"; };
 		3E6688E22DF5799E00DE2298 /* IngredientsCham.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IngredientsCham.json; sourceTree = "<group>"; };
 		3E6688E32DF5799E00DE2298 /* IngredientsKamis.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IngredientsKamis.json; sourceTree = "<group>"; };
-		3E6688E42DF5799E00DE2298 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		3E6688E52DF5799E00DE2298 /* LaborCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaborCost.swift; sourceTree = "<group>"; };
 		3E6688E62DF5799E00DE2298 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		3E6688E72DF5799E00DE2298 /* MockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockData.json; sourceTree = "<group>"; };
@@ -79,11 +105,6 @@
 		3EBF44302DF17E0400C6F319 /* MyMenu */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = MyMenu;
-			sourceTree = "<group>";
-		};
-		3EBF44CB2DF1864C00C6F319 /* ProfitManage */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ProfitManage;
 			sourceTree = "<group>";
 		};
 		3EC4A2EB2DF0946C007CE029 /* FixedCostManage */ = {
@@ -120,6 +141,71 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		265FB45A2DF5A00A00D171FA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				265FB4572DF5A00A00D171FA /* MenuViewModel.swift */,
+				265FB4582DF5A00A00D171FA /* ProfitViewModel.swift */,
+				265FB4592DF5A00A00D171FA /* ProfitViewModelStorage.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		265FB45C2DF5A00A00D171FA /* ProfitScreenSheet */ = {
+			isa = PBXGroup;
+			children = (
+				265FB45B2DF5A00A00D171FA /* SalesInputSheet.swift */,
+			);
+			path = ProfitScreenSheet;
+			sourceTree = "<group>";
+		};
+		265FB4602DF5A00A00D171FA /* ProfitScreenComponent */ = {
+			isa = PBXGroup;
+			children = (
+				265FB45C2DF5A00A00D171FA /* ProfitScreenSheet */,
+				265FB45D2DF5A00A00D171FA /* CalendarGridView.swift */,
+				265FB45E2DF5A00A00D171FA /* DailyProfitSummary.swift */,
+				265FB45F2DF5A00A00D171FA /* FixedCostEditor.swift */,
+			);
+			path = ProfitScreenComponent;
+			sourceTree = "<group>";
+		};
+		265FB4622DF5A00A00D171FA /* ProfitScreenView */ = {
+			isa = PBXGroup;
+			children = (
+				265FB4612DF5A00A00D171FA /* ProfitScreen.swift */,
+			);
+			path = ProfitScreenView;
+			sourceTree = "<group>";
+		};
+		265FB4652DF5A00A00D171FA /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				265FB4632DF5A00A00D171FA /* MainTabViewCoulson.swift */,
+				265FB4642DF5A00A00D171FA /* TabBarViewCoulson.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		265FB4662DF5A00A00D171FA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				265FB4602DF5A00A00D171FA /* ProfitScreenComponent */,
+				265FB4622DF5A00A00D171FA /* ProfitScreenView */,
+				265FB4652DF5A00A00D171FA /* TabBar */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		265FB4682DF5A00A00D171FA /* ProfitManage */ = {
+			isa = PBXGroup;
+			children = (
+				265FB45A2DF5A00A00D171FA /* ViewModels */,
+				265FB4662DF5A00A00D171FA /* Views */,
+			);
+			path = ProfitManage;
+			sourceTree = "<group>";
+		};
 		68343B562DED74BD00BD34B4 = {
 			isa = PBXGroup;
 			children = (
@@ -174,16 +260,18 @@
 			isa = PBXGroup;
 			children = (
 				3E6688DE2DF5799E00DE2298 /* DailySales.swift */,
-				3E6688DF2DF5799E00DE2298 /* File.txt */,
+				265FB44F2DF59FA500D171FA /* DailySalesRecord.swift */,
+				265FB4512DF59FB600D171FA /* IngredientCoulson.swift */,
+				265FB4532DF59FBC00D171FA /* IngredientInfoCoulson.swift */,
 				3E6688E12DF5799E00DE2298 /* IngredientInfo.swift */,
 				3E6688E22DF5799E00DE2298 /* IngredientsCham.json */,
 				3E6688E32DF5799E00DE2298 /* IngredientsKamis.json */,
-				3E6688E42DF5799E00DE2298 /* Item.swift */,
+				3E6688E72DF5799E00DE2298 /* MockData.json */,
 				3E6688E52DF5799E00DE2298 /* LaborCost.swift */,
 				3E6688E62DF5799E00DE2298 /* MenuItem.swift */,
-				3E6688E72DF5799E00DE2298 /* MockData.json */,
 				3E6688E82DF5799E00DE2298 /* OverheadCost.swift */,
 				3E6688E92DF5799E00DE2298 /* SoldItem.swift */,
+				265FB4552DF59FC800D171FA /* SoldItemModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -191,10 +279,11 @@
 		68343BA42DED76D900BD34B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3EBF44CB2DF1864C00C6F319 /* ProfitManage */,
 				3EBF44302DF17E0400C6F319 /* MyMenu */,
 				3EC4A2EB2DF0946C007CE029 /* FixedCostManage */,
 				3E4278DC2DF5791C00AD1EE5 /* TabBarView.swift */,
+				265FB4682DF5A00A00D171FA /* ProfitManage */,
+				265FB4672DF5A00A00D171FA /* SoonsuAppCoulson.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -217,7 +306,6 @@
 			fileSystemSynchronizedGroups = (
 				3EBF442F2DF17DF300C6F319 /* Utilities */,
 				3EBF44302DF17E0400C6F319 /* MyMenu */,
-				3EBF44CB2DF1864C00C6F319 /* ProfitManage */,
 				3EC4A2EB2DF0946C007CE029 /* FixedCostManage */,
 			);
 			name = Soonsu;
@@ -325,7 +413,6 @@
 				3E6688EA2DF5799E00DE2298 /* IngredientsCham.json in Resources */,
 				3E6688EB2DF5799E00DE2298 /* MockData.json in Resources */,
 				3E6688EC2DF5799E00DE2298 /* IngredientsKamis.json in Resources */,
-				3E6688ED2DF5799E00DE2298 /* File.txt in Resources */,
 				3E7F2BF32DEDCFBB00A20B86 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,10 +440,24 @@
 			files = (
 				3E6688EE2DF5799E00DE2298 /* MenuItem.swift in Sources */,
 				3E6688EF2DF5799E00DE2298 /* DailySales.swift in Sources */,
+				265FB4692DF5A00A00D171FA /* ProfitViewModel.swift in Sources */,
+				265FB46A2DF5A00A00D171FA /* MenuViewModel.swift in Sources */,
+				265FB46B2DF5A00A00D171FA /* FixedCostEditor.swift in Sources */,
+				265FB46C2DF5A00A00D171FA /* SalesInputSheet.swift in Sources */,
+				265FB46D2DF5A00A00D171FA /* DailyProfitSummary.swift in Sources */,
+				265FB46E2DF5A00A00D171FA /* ProfitScreen.swift in Sources */,
+				265FB46F2DF5A00A00D171FA /* MainTabViewCoulson.swift in Sources */,
+				265FB4702DF5A00A00D171FA /* CalendarGridView.swift in Sources */,
+				265FB4712DF5A00A00D171FA /* SoonsuAppCoulson.swift in Sources */,
+				265FB4722DF5A00A00D171FA /* TabBarViewCoulson.swift in Sources */,
+				265FB4732DF5A00A00D171FA /* ProfitViewModelStorage.swift in Sources */,
 				3E6688F02DF5799E00DE2298 /* OverheadCost.swift in Sources */,
-				3E6688F12DF5799E00DE2298 /* Item.swift in Sources */,
+				265FB4522DF59FB600D171FA /* IngredientCoulson.swift in Sources */,
+				265FB4542DF59FBC00D171FA /* IngredientInfoCoulson.swift in Sources */,
 				3E6688F22DF5799E00DE2298 /* SoldItem.swift in Sources */,
 				3E6688F42DF5799E00DE2298 /* IngredientInfo.swift in Sources */,
+				265FB4502DF59FA500D171FA /* DailySalesRecord.swift in Sources */,
+				265FB4562DF59FC900D171FA /* SoldItemModel.swift in Sources */,
 				3E6688F52DF5799E00DE2298 /* LaborCost.swift in Sources */,
 				3E4278DE2DF5791C00AD1EE5 /* TabBarView.swift in Sources */,
 				3E7F2BE32DEDCC8700A20B86 /* SoonsuApp.swift in Sources */,
