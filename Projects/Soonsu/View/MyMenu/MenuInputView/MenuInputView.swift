@@ -180,7 +180,7 @@ struct MenuInputView: View {
                     }
                 }
             }
-            
+            // MARK: 키보드 숨김처리
             if focusedField != nil {
                 Color.clear
                     .contentShape(Rectangle())
