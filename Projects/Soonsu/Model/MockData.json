@@ -1,52 +1,64 @@
+
+
 [
   {
     "name": "소고기",
-    "amount": "150g",
-    "unitPrice": 12000
-  },
-  {
-    "name": "돼지고기",
-    "amount": "50g",
-    "unitPrice": 4000
-  },
-  {
-    "name": "빵가루",
-    "amount": "30g",
-    "unitPrice": 1000
-  },
-  {
-    "name": "양파",
-    "amount": "50g",
-    "unitPrice": 800
-  },
-  {
-    "name": "계란",
-    "amount": "1개",
-    "unitPrice": 300
-  },
-  {
-    "name": "우유",
-    "amount": "30ml",
-    "unitPrice": 200
-  },
-  {
-    "name": "밥",
-    "amount": "200g",
-    "unitPrice": 500
-  },
-  {
-    "name": "감자튀김",
-    "amount": "100g",
+    "amount": 150,
+    "unit": "g",
     "unitPrice": 1500
   },
   {
-    "name": "옥수수",
-    "amount": "50g",
-    "unitPrice": 700
+    "name": "돼지고기",
+    "amount": 50,
+    "unit": "g",
+    "unitPrice": 250
   },
   {
-    "name": "데미그라스 소스",
-    "amount": "100ml",
-    "unitPrice": 2000
+    "name": "양파",
+    "amount": 30,
+    "unit": "g",
+    "unitPrice": 30
+  },
+  {
+    "name": "빵가루",
+    "amount": 10,
+    "unit": "g",
+    "unitPrice": 5
+  },
+  {
+    "name": "계란",
+    "amount": 1,
+    "unit": "개",
+    "unitPrice": 300
+  },
+  {
+    "name": "밥",
+    "amount": 150,
+    "unit": "g",
+    "unitPrice": 300
+  },
+  {
+    "name": "감자튀김",
+    "amount": 50,
+    "unit": "g",
+    "unitPrice": 150
+  },
+  {
+    "name": "옥수수",
+    "amount": 50,
+    "unit": "g",
+    "unitPrice": 100
+  },
+  {
+    "name": "숙주",
+    "amount": 50,
+    "unit": "g",
+    "unitPrice": 50
+  },
+   {
+    "name": "함박스테이크 소스",
+    "amount": 50,
+    "unit": "ml",
+    "unitPrice": 100
   }
 ]
