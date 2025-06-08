@@ -19,7 +19,7 @@ struct TabBarView: View {
                     Image(systemName: "house")
                 }
             
-            Text("Second")
+            FixedCostManageView(viewModel: ProfitViewModel())
                 .tabItem {
                     Image(systemName: "house")
                 }

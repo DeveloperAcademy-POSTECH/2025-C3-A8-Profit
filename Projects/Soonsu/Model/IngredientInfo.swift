@@ -1,12 +1,9 @@
-//
-//  IngredientEntity.swift
-//  HambJaeryoModal
-//
-//  Created by coulson on 5/29/25.
-//
 
-import SwiftUI
+
+import Foundation
 import SwiftData
+import SwiftUI
+
 
 @Model
 final class Ingredient {
@@ -45,7 +42,6 @@ final class Ingredient {
         self.createdAt = createdAt
     }
 }
-
 struct IngredientInfo: Identifiable, Codable {
     // 리스트에 사용될 고유 id (JSON에 없음)
     var id: UUID = UUID()

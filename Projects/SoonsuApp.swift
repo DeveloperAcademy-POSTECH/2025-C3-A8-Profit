@@ -4,7 +4,6 @@
 ////
 ////  Created by coulson on 5/28/25.
 ////
-//
 import SwiftUI
 import FirebaseCore
 
@@ -24,7 +23,7 @@ struct SoonsuApp: App {
             NavigationView {
                 TabBarView()
             }
-            .modelContainer(for: Ingredient.self)
+            .modelContainer(for: [Ingredient.self, LaborCost.self])
         }
     }
 }
