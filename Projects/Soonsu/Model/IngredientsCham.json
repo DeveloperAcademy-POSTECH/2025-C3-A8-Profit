@@ -1,10 +1,10 @@
-{
+[
      {
        "name": "소면",
        "productName": "백설 소면(900g)",
        "updateDate": "2025-04-18",
        "price": 3290,
-       "weight": 900,
+       "amount": 900,
        "unit": "g",
        "unitPrice": 3.66,
        "brand": "CJ제일제당"
@@ -14,7 +14,7 @@
        "productName": "얄피꽉찬 쌀물만두(1kg)",
        "updateDate": "2025-04-18",
        "price": 10990,
-       "weight": 1000,
+       "amount": 1000,
        "unit": "g",
        "unitPrice": 10.99,
        "brand": "풀무원"
@@ -24,7 +24,7 @@
        "productName": "백설 자른 햇당면(300g)",
        "updateDate": "2025-04-18",
        "price": 3490,
-       "weight": 300,
+       "amount": 300,
        "unit": "g",
        "unitPrice": 11.63,
        "brand": "CJ제일제당"
@@ -34,7 +34,7 @@
        "productName": "신라면(5개입)",
        "updateDate": "2025-04-18",
        "price": 4150,
-       "weight": 5,
+       "amount": 5,
        "unit": "개",
        "unitPrice": 830,
        "brand": "농심"
@@ -44,7 +44,7 @@
        "productName": "백설 박력 밀가루(1kg)",
        "updateDate": "2025-04-18",
        "price": 2700,
-       "weight": 1000,
+       "amount": 1000,
        "unit": "g",
        "unitPrice": 2.7,
        "brand": "CJ제일제당"
@@ -54,7 +54,7 @@
        "productName": "백설 중력 밀가루(1kg)",
        "updateDate": "2025-04-18",
        "price": 2020,
-       "weight": 1000,
+       "amount": 1000,
        "unit": "g",
        "unitPrice": 2.02,
        "brand": "CJ제일제당"
@@ -64,7 +64,7 @@
        "productName": "백설 찰밀가루(1kg)",
        "updateDate": "2025-04-18",
        "price": 2980,
-       "weight": 1000,
+       "amount": 1000,
        "unit": "g",
        "unitPrice": 2.98,
        "brand": "CJ제일제당"
@@ -74,7 +74,7 @@
        "productName": "백설 5가지 재료 부침가루(1kg)",
        "updateDate": "2025-04-18",
        "price": 4280,
-       "weight": 1000,
+       "amount": 1000,
        "unit": "g",
        "unitPrice": 4.28,
        "brand": "CJ제일제당"
@@ -84,7 +84,7 @@
        "productName": "보노 콘스프(3개입)",
        "updateDate": "2025-04-18",
        "price": 3820,
-       "weight": 3,
+       "amount": 3,
        "unit": "개",
        "unitPrice": 1273.33,
        "brand": "농심"
@@ -94,7 +94,7 @@
        "productName": "보노 포르치니버섯스프(3개입)",
        "updateDate": "2025-04-18",
        "price": 3850,
-       "weight": 3,
+       "amount": 3,
        "unit": "개",
        "unitPrice": 1283.33,
        "brand": "농심"
@@ -104,7 +104,7 @@
        "productName": "오뚜기 크림스프(80g)",
        "updateDate": "2025-04-18",
        "price": 2620,
-       "weight": 80,
+       "amount": 80,
        "unit": "g",
        "unitPrice": 32.75,
        "brand": "오뚜기"
@@ -114,7 +114,7 @@
        "productName": "3분 쇠고기짜장(200g)",
        "updateDate": "2025-04-18",
        "price": 2480,
-       "weight": 200,
+       "amount": 200,
        "unit": "g",
        "unitPrice": 12.4,
        "brand": "오뚜기"
@@ -124,7 +124,7 @@
        "productName": "3분 쇠고기카레(200g)",
        "updateDate": "2025-04-18",
        "price": 2480,
-       "weight": 200,
+       "amount": 200,
        "unit": "g",
        "unitPrice": 12.4,
        "brand": "오뚜기"
@@ -134,7 +134,7 @@
        "productName": "오뚜기밥(3개입)",
        "updateDate": "2025-04-18",
        "price": 2950,
-       "weight": 3,
+       "amount": 3,
        "unit": "개",
        "unitPrice": 983.33,
        "brand": "오뚜기"
@@ -144,7 +144,7 @@
        "productName": "햇반(3개입)",
        "updateDate": "2025-04-18",
        "price": 5480,
-       "weight": 3,
+       "amount": 3,
        "unit": "개",
        "unitPrice": 1826.67,
        "brand": "CJ제일제당"
@@ -154,7 +154,7 @@
        "productName": "오뚜기 프레스코 스파게티(500g)",
        "updateDate": "2025-04-18",
        "price": 3990,
-       "weight": 500,
+       "amount": 500,
        "unit": "g",
        "unitPrice": 7.98,
        "brand": "오뚜기"
@@ -164,7 +164,7 @@
        "productName": "델몬트 후레쉬컷 슬라이스 파인애플(836g)",
        "updateDate": "2025-04-18",
        "price": 4940,
-       "weight": 836,
+       "amount": 836,
        "unit": "g",
        "unitPrice": 5.91,
        "brand": "삼경프라자"
@@ -174,7 +174,7 @@
        "productName": "알쿠니아 황도(840g)",
        "updateDate": "2025-04-18",
        "price": 5980,
-       "weight": 840,
+       "amount": 840,
        "unit": "g",
        "unitPrice": 7.12,
        "brand": "농심"
@@ -184,7 +184,7 @@
        "productName": "하선정 4무첨가 김밥단무지(370g)",
        "updateDate": "2025-04-18",
        "price": 2190,
-       "weight": 370,
+       "amount": 370,
        "unit": "g",
        "unitPrice": 5.92,
        "brand": "CJ제일제당"
@@ -194,7 +194,7 @@
        "productName": "들기름 재래 도시락김(12팩)",
        "updateDate": "2025-04-18",
        "price": 7980,
-       "weight": 12,
+       "amount": 12,
        "unit": "팩",
        "unitPrice": 665,
        "brand": "풀무원"
@@ -204,7 +204,7 @@
        "productName": "동원 싱싱맛살 실속(500g)",
        "updateDate": "2025-04-18",
        "price": 2920,
-       "weight": 500,
+       "amount": 500,
        "unit": "g",
        "unitPrice": 5.84,
        "brand": "동원에프앤비"
@@ -214,7 +214,7 @@
        "productName": "오뚜기 옛날 미역(100g)",
        "updateDate": "2025-04-18",
        "price": 4990,
-       "weight": 100,
+       "amount": 100,
        "unit": "g",
        "unitPrice": 49.9,
        "brand": "오뚜기"
@@ -224,7 +224,7 @@
        "productName": "삼호 안심 부산어묵(400g)",
        "updateDate": "2025-04-18",
        "price": 4190,
-       "weight": 400,
+       "amount": 400,
        "unit": "g",
        "unitPrice": 10.48,
        "brand": "CJ제일제당"
@@ -234,7 +234,7 @@
        "productName": "동원참치 라이트스탠다드(4캔)",
        "updateDate": "2025-04-18",
        "price": 9980,
-       "weight": 4,
+       "amount": 4,
        "unit": "캔",
        "unitPrice": 2495,
        "brand": "동원"
@@ -244,7 +244,7 @@
        "productName": "양조간장 501(500ml)",
        "updateDate": "2025-04-18",
        "price": 6400,
-       "weight": 500,
+       "amount": 500,
        "unit": "ml",
        "unitPrice": 12.8,
        "brand": "샘표"
@@ -254,7 +254,7 @@
        "productName": "진간장 금F3(860ml)",
        "updateDate": "2025-04-18",
        "price": 7580,
-       "weight": 860,
+       "amount": 860,
        "unit": "ml",
        "unitPrice": 8.81,
        "brand": "샘표"
@@ -264,7 +264,7 @@
        "productName": "에스앤비 생와사비(43g)",
        "updateDate": "2025-04-18",
        "price": 3950,
-       "weight": 43,
+       "amount": 43,
        "unit": "g",
        "unitPrice": 91.86,
        "brand": "훼밀리인터내셔날"
@@ -274,7 +274,7 @@
        "productName": "청정원 서해안 까나리액젓 골드(750g)",
        "updateDate": "2025-04-18",
        "price": 5790,
-       "weight": 750,
+       "amount": 750,
        "unit": "g",
        "unitPrice": 7.72,
        "brand": "대상"
@@ -284,7 +284,7 @@
        "productName": "샘표 토장(900g)",
        "updateDate": "2025-04-18",
        "price": 7240,
-       "weight": 900,
+       "amount": 900,
        "unit": "g",
        "unitPrice": 8.04,
        "brand": "샘표"
@@ -294,7 +294,7 @@
        "productName": "순창 재래식안심생된장(1kg)",
        "updateDate": "2025-04-18",
        "price": 9290,
-       "weight": 1000,
+       "amount": 1000,
        "unit": "g",
        "unitPrice": 9.29,
        "brand": "대상"
@@ -304,7 +304,7 @@
        "productName": "청정원 발사믹 드레싱(325g)",
        "updateDate": "2025-04-18",
        "price": 3980,
-       "weight": 325,
+       "amount": 325,
        "unit": "g",
        "unitPrice": 12.25,
        "brand": "대상"
@@ -314,7 +314,7 @@
        "productName": "청정원 오리엔탈 드레싱(325g)",
        "updateDate": "2025-04-18",
        "price": 3980,
-       "weight": 325,
+       "amount": 325,
        "unit": "g",
        "unitPrice": 12.25,
        "brand": "대상"
@@ -324,7 +324,7 @@
        "productName": "오뚜기 고소한 골드 마요네즈(500g)",
        "updateDate": "2025-04-18",
        "price": 7580,
-       "weight": 500,
+       "amount": 500,
        "unit": "g",
        "unitPrice": 15.16,
        "brand": "오뚜기"
@@ -334,7 +334,7 @@
        "productName": "청정원 대나무숙성 멸치액젓(750g)",
        "updateDate": "2025-04-18",
        "price": 4730,
-       "weight": 750,
+       "amount": 750,
        "unit": "g",
        "unitPrice": 6.31,
        "brand": "대상"
@@ -344,7 +344,7 @@
        "productName": "백설 요리 올리고당(1.2kg)",
        "updateDate": "2025-04-18",
        "price": 4480,
-       "weight": 1200,
+       "amount": 1200,
        "unit": "g",
        "unitPrice": 3.73,
        "brand": "CJ제일제당"
@@ -354,7 +354,7 @@
        "productName": "오뚜기 옛날 물엿(1.2kg)",
        "updateDate": "2025-04-18",
        "price": 5880,
-       "weight": 1200,
+       "amount": 1200,
        "unit": "g",
        "unitPrice": 4.9,
        "brand": "오뚜기"
@@ -364,7 +364,7 @@
        "productName": "백설 갈색설탕(1kg)",
        "updateDate": "2025-04-18",
        "price": 3480,
-       "weight": 1000,
+       "amount": 1000,
        "unit": "g",
        "unitPrice": 3.48,
        "brand": "CJ제일제당"
@@ -374,7 +374,7 @@
        "productName": "백설 브라운 자일로스 설탕(1kg)",
        "updateDate": "2025-04-18",
        "price": 5250,
-       "weight": 1000,
+       "amount": 1000,
        "unit": "g",
        "unitPrice": 5.25,
        "brand": "CJ제일제당"
@@ -384,7 +384,7 @@
        "productName": "백설 하얀설탕(1kg)",
        "updateDate": "2025-04-18",
        "price": 2950,
-       "weight": 1000,
+       "amount": 1000,
        "unit": "g",
        "unitPrice": 2.95,
        "brand": "CJ제일제당"
@@ -394,7 +394,7 @@
        "productName": "백설 흑설탕(1kg)",
        "updateDate": "2025-04-18",
        "price": 3680,
-       "weight": 1000,
+       "amount": 1000,
        "unit": "g",
        "unitPrice": 3.68,
        "brand": "CJ제일제당"
@@ -404,7 +404,7 @@
        "productName": "청정원 미원 맛소금(500g)",
        "updateDate": "2025-04-18",
        "price": 3250,
-       "weight": 500,
+       "amount": 500,
        "unit": "g",
        "unitPrice": 6.5,
        "brand": "대상"
@@ -414,7 +414,7 @@
        "productName": "오뚜기 콩기름(900ml)",
        "updateDate": "2025-04-18",
        "price": 5990,
-       "weight": 900,
+       "amount": 900,
        "unit": "ml",
        "unitPrice": 6.66,
        "brand": "오뚜기"
@@ -424,7 +424,7 @@
        "productName": "해표 맑고 신선한 식용유(900ml)",
        "updateDate": "2025-04-18",
        "price": 5830,
-       "weight": 900,
+       "amount": 900,
        "unit": "ml",
        "unitPrice": 6.48,
        "brand": "해표"
@@ -434,7 +434,7 @@
        "productName": "해표 카놀라유(900ml)",
        "updateDate": "2025-04-18",
        "price": 9500,
-       "weight": 900,
+       "amount": 900,
        "unit": "ml",
        "unitPrice": 10.56,
        "brand": "사조대림"
@@ -444,7 +444,7 @@
        "productName": "해표 포도씨유(900ml)",
        "updateDate": "2025-04-18",
        "price": 16000,
-       "weight": 900,
+       "amount": 900,
        "unit": "ml",
        "unitPrice": 17.78,
        "brand": "사조대림"
@@ -454,7 +454,7 @@
        "productName": "백설 건강발효 사과식초(800ml)",
        "updateDate": "2025-04-18",
        "price": 4280,
-       "weight": 800,
+       "amount": 800,
        "unit": "ml",
        "unitPrice": 5.35,
        "brand": "CJ제일제당"
@@ -464,7 +464,7 @@
        "productName": "청정원 순창 양념듬뿍 쌈장(500g)",
        "updateDate": "2025-04-18",
        "price": 5490,
-       "weight": 500,
+       "amount": 500,
        "unit": "g",
        "unitPrice": 10.98,
        "brand": "대상"
@@ -474,7 +474,7 @@
        "productName": "복음자리 딸기잼(380g)",
        "updateDate": "2025-04-18",
        "price": 7350,
-       "weight": 380,
+       "amount": 380,
        "unit": "g",
        "unitPrice": 19.34,
        "brand": "복음자리"
@@ -484,7 +484,7 @@
        "productName": "백설 고소함가득 참기름(320ml)",
        "updateDate": "2025-04-18",
        "price": 10900,
-       "weight": 320,
+       "amount": 320,
        "unit": "ml",
        "unitPrice": 34.06,
        "brand": "CJ제일제당"
@@ -494,7 +494,7 @@
        "productName": "오뚜기카레 순한맛(100g)",
        "updateDate": "2025-04-18",
        "price": 2720,
-       "weight": 100,
+       "amount": 100,
        "unit": "g",
        "unitPrice": 27.2,
        "brand": "오뚜기"
@@ -504,7 +504,7 @@
        "productName": "오뚜기 토마토 케찹(500g)",
        "updateDate": "2025-04-18",
        "price": 4150,
-       "weight": 500,
+       "amount": 500,
        "unit": "g",
        "unitPrice": 8.3,
        "brand": "오뚜기"
@@ -514,7 +514,7 @@
        "productName": "백설 쇠고기 다시다(300g)",
        "updateDate": "2025-04-18",
        "price": 10520,
-       "weight": 300,
+       "amount": 300,
        "unit": "g",
        "unitPrice": 35.07,
        "brand": "CJ제일제당"
@@ -524,7 +524,7 @@
        "productName": "고메 바삭튀겨낸 통등심돈카츠(450g)",
        "updateDate": "2025-04-18",
        "price": 9990,
-       "weight": 450,
+       "amount": 450,
        "unit": "g",
        "unitPrice": 22.2,
        "brand": "CJ제일제당"
@@ -534,7 +534,7 @@
        "productName": "서울우유 버터(450g)",
        "updateDate": "2025-04-18",
        "price": 11590,
-       "weight": 450,
+       "amount": 450,
        "unit": "g",
        "unitPrice": 25.76,
        "brand": "서울우유"
@@ -544,7 +544,7 @@
        "productName": "백설 햄스빌 베이컨(330g)",
        "updateDate": "2025-04-18",
        "price": 10990,
-       "weight": 330,
+       "amount": 330,
        "unit": "g",
        "unitPrice": 33.3,
        "brand": "CJ제일제당"
@@ -554,7 +554,7 @@
        "productName": "더 건강한 그릴후랑크(600g)",
        "updateDate": "2025-04-18",
        "price": 7990,
-       "weight": 600,
+       "amount": 600,
        "unit": "g",
        "unitPrice": 13.32,
        "brand": "CJ제일제당"
@@ -564,7 +564,7 @@
        "productName": "매일우유 오리지널(900ml)",
        "updateDate": "2025-04-18",
        "price": 3300,
-       "weight": 900,
+       "amount": 900,
        "unit": "ml",
        "unitPrice": 3.67,
        "brand": "매일유업"
@@ -574,7 +574,7 @@
        "productName": "서울우유 체다슬라이스치즈(360g)",
        "updateDate": "2025-04-18",
        "price": 9600,
-       "weight": 360,
+       "amount": 360,
        "unit": "g",
        "unitPrice": 26.67,
        "brand": "서울우유"
@@ -584,7 +584,7 @@
        "productName": "스팸 클래식(200g)",
        "updateDate": "2025-04-18",
        "price": 5350,
-       "weight": 200,
+       "amount": 200,
        "unit": "g",
        "unitPrice": 26.75,
        "brand": "CJ제일제당"
@@ -594,7 +594,7 @@
        "productName": "1등급 다향 훈제오리(500g)",
        "updateDate": "2025-04-18",
        "price": 19900,
-       "weight": 500,
+       "amount": 500,
        "unit": "g",
        "unitPrice": 39.8,
        "brand": "팜덕"
@@ -604,7 +604,7 @@
        "productName": "오뚜기 옛날 볶음참깨(200g)",
        "updateDate": "2025-04-18",
        "price": 6990,
-       "weight": 200,
+       "amount": 200,
        "unit": "g",
        "unitPrice": 34.95,
        "brand": "오뚜기"
@@ -614,7 +614,7 @@
        "productName": "불릴필요없는 병아리콩(2kg)",
        "updateDate": "2025-04-18",
        "price": 9990,
-       "weight": 2000,
+       "amount": 2000,
        "unit": "g",
        "unitPrice": 5,
        "brand": "농업회사법인대상"
@@ -624,7 +624,7 @@
        "productName": "항공직송 동원생연어(320g)",
        "updateDate": "2025-04-18",
        "price": 21900,
-       "weight": 320,
+       "amount": 320,
        "unit": "g",
        "unitPrice": 68.44,
        "brand": "동원산업"
@@ -634,9 +634,9 @@
        "productName": "풀무원 동물복지 목초란(15개)",
        "updateDate": "2025-04-18",
        "price": 10990,
-       "weight": 15,
+       "amount": 15,
        "unit": "개",
        "unitPrice": 732.67,
        "brand": "풀무원"
      }
-}
+]

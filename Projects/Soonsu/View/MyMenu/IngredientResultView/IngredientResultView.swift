@@ -36,7 +36,7 @@ struct IngredientResultView: View {
     
 
     
-    private var totalCost: Int {
+    private var totalCost: Double {
         parsedIngredients.reduce(0) { $0 + $1.unitPrice }
     }
     
@@ -172,7 +172,7 @@ struct IngredientResultView: View {
                             NavigationLink("재료 추가하기") {
                                 IngredientAddView(onIngredientSelected: { selectedName in
                                     guard !parsedIngredients.contains(where: { $0.name == selectedName }) else { return }
-                                    let newInfo = IngredientInfo(name: selectedName, amount: "10", unit:"g", unitPrice: 100)
+                                    let newInfo = IngredientInfo(name: selectedName, amount: 10, unit:"g", unitPrice: 100)
                                     parsedIngredients.append(newInfo)
                                 })
                             }

@@ -76,7 +76,7 @@ struct MenuRowView: View {
     }
     
     /// 총 원가(Int)
-    private var totalCost: Int {
+    private var totalCost: Double {
         matchedEntities.reduce(0) { $0 + $1.unitPrice }
     }
     

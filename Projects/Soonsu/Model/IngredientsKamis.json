@@ -1,10 +1,10 @@
-{
+[
     {
       "name": "쌀",
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 29250,
-      "weight": 10000,
+      "amount": 10000,
       "unit": "g",
       "unitPrice": 2.93,
       "brand": "_"
@@ -14,7 +14,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 590,
-      "weight": 100,
+      "amount": 100,
       "unit": "g",
       "unitPrice": 5.9,
       "brand": "_"
@@ -24,7 +24,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 3725,
-      "weight": 1,
+      "amount": 1,
       "unit": "개",
       "unitPrice": 3725,
       "brand": "_"
@@ -34,7 +34,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 4770,
-      "weight": 1,
+      "amount": 1,
       "unit": "개",
       "unitPrice": 4770,
       "brand": "_"
@@ -44,7 +44,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 4460,
-      "weight": 1000,
+      "amount": 1000,
       "unit": "g",
       "unitPrice": 4.46,
       "brand": "_"
@@ -54,7 +54,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 2790,
-      "weight": 1,
+      "amount": 1,
       "unit": "개",
       "unitPrice": 2790,
       "brand": "_"
@@ -64,7 +64,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 5330,
-      "weight": 1000,
+      "amount": 1000,
       "unit": "g",
       "unitPrice": 5.33,
       "brand": "_"
@@ -74,7 +74,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 1410,
-      "weight": 100,
+      "amount": 100,
       "unit": "g",
       "unitPrice": 1.41,
       "brand": "_"
@@ -84,7 +84,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 1720,
-      "weight": 1000,
+      "amount": 1000,
       "unit": "g",
       "unitPrice": 1.72,
       "brand": "_"
@@ -94,7 +94,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 2405,
-      "weight": 1000,
+      "amount": 1000,
       "unit": "g",
       "unitPrice": 2.41,
       "brand": "_"
@@ -104,7 +104,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 2025,
-      "weight": 100,
+      "amount": 100,
       "unit": "g",
       "unitPrice": 2.03,
       "brand": "_"
@@ -114,7 +114,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 1475,
-      "weight": 200,
+      "amount": 200,
       "unit": "g",
       "unitPrice": 7.38,
       "brand": "_"
@@ -124,7 +124,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 11500,
-      "weight": 1000,
+      "amount": 1000,
       "unit": "g",
       "unitPrice":11.5,
       "brand": "_"
@@ -134,7 +134,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 2325,
-      "weight": 1,
+      "amount": 1,
       "unit": "개",
       "unitPrice": 2325,
       "brand": "_"
@@ -144,7 +144,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 2340,
-      "weight": 340,
+      "amount": 340,
       "unit": "g",
       "unitPrice": 6.88,
       "brand": "_"
@@ -154,7 +154,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 4660,
-      "weight": 1000,
+      "amount": 1000,
       "unit": "g",
       "unitPrice": 4.66,
       "brand": "_"
@@ -164,7 +164,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 8215,
-      "weight": 1000,
+      "amount": 1000,
       "unit": "g",
       "unitPrice": 8.22,
       "brand": "_"
@@ -174,7 +174,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 760,
-      "weight": 100,
+      "amount": 100,
       "unit": "g",
       "unitPrice": 7.60,
       "brand": "_"
@@ -184,7 +184,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 437,
-      "weight": 150,
+      "amount": 150,
       "unit": "g",
       "unitPrice": 8.22,
       "brand": "_"
@@ -194,7 +194,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 26200,
-      "weight": 10,
+      "amount": 10,
       "unit": "개",
       "unitPrice": 2620,
       "brand": "_"
@@ -204,7 +204,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 46000,
-      "weight": 10,
+      "amount": 10,
       "unit": "개",
       "unitPrice": 4600,
       "brand": "_"
@@ -214,7 +214,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 12872,
-      "weight": 100,
+      "amount": 100,
       "unit": "g",
       "unitPrice": 128.7,
       "brand": "_"
@@ -224,7 +224,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 9553,
-      "weight": 100,
+      "amount": 100,
       "unit": "g",
       "unitPrice": 95.53,
       "brand": "_"
@@ -234,7 +234,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 2452,
-      "weight": 100,
+      "amount": 100,
       "unit": "g",
       "unitPrice": 24.52,
       "brand": "_"
@@ -244,7 +244,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 1397,
-      "weight": 100,
+      "amount": 100,
       "unit": "g",
       "unitPrice": 13.97,
       "brand": "_"
@@ -254,7 +254,7 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 2435,
-      "weight": 100,
+      "amount": 100,
       "unit": "g",
       "unitPrice": 24.35,
       "brand": "_"
@@ -264,30 +264,10 @@
       "productName": "_",
       "updateDate": "2025-06-05",
       "price": 6167,
-      "weight": 1000,
+      "amount": 1000,
       "unit": "g",
       "unitPrice": 6.167,
       "brand": "_"
-    },
-    {
-      "name": "계란",
-      "productName": "_",
-      "updateDate": "2025-06-05",
-      "price": 7233,
-      "weight": 30,
-      "unit": "개",
-      "unitPrice": 4.02,
-      "brand": "_"
-    },
-    {
-      "name": "우유",
-      "productName": "_",
-      "updateDate": "2025-06-05",
-      "price": 2988,
-      "weight": 1000,
-      "unit": "ml",
-      "unitPrice": 2.99,
-      "brand": "_"
     }
-}
+]
 

@@ -13,10 +13,10 @@ struct IngredientModifySheet: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var segmentMode: SegmentMode = .auto
-    @State private var purchasePrice: String = ""
-    @State private var purchaseAmount: String = ""
-    @State private var recipeAmount: String = ""
-    @State private var editableIngredient: IngredientInfo = IngredientInfo(name: "", amount: "",  unit: "g" ,unitPrice: 0)
+    @State private var purchasePrice: Double = 0
+    @State private var purchaseAmount: Double = 0
+    @State private var recipeAmount: Double = 0
+    @State private var editableIngredient: IngredientInfo = IngredientInfo(name: "", amount: 0,  unit: "g" ,unitPrice: 0)
     
     enum SegmentMode: String, CaseIterable {
         case auto = "자동계산"
@@ -68,19 +68,19 @@ struct IngredientModifySheet: View {
                 
                 
                 if segmentMode == .auto {
-                    InputRowComponent(title: "수량", text: .constant(editableIngredient.amount), isEnabled: false)
+                    InputRowComponent(title: "수량", text: doubleToStringBinding(.constant(editableIngredient.amount)), isEnabled: false)
                     Divider()
                         .padding(.horizontal)
-                    InputRowComponent(title: "단가", text: .constant("\(editableIngredient.unitPrice.formatted())원"), isEnabled: false)
+                    InputRowComponent(title: "단가", text: doubleToStringBinding(.constant(editableIngredient.unitPrice)), isEnabled: false)
                 } else {
                     Group {
-                        InputRowComponent(title: "구매 금액", placeholder: "1000", text: $purchasePrice, keyboardType: .numberPad, unit: "원")
+                        InputRowComponent(title: "구매 금액", placeholder: "1000", text: doubleToStringBinding($purchasePrice), keyboardType: .numberPad, unit: "원")
                         Divider()
                             .padding(.horizontal)
-                        InputRowComponent(title: "구매 수량", placeholder: "500", text: $purchaseAmount, keyboardType: .numberPad, unit: "g")
+                        InputRowComponent(title: "구매 수량", placeholder: "500", text: doubleToStringBinding($purchaseAmount), keyboardType: .numberPad, unit: "g")
                         Divider()
                             .padding(.horizontal)
-                        InputRowComponent(title: "레시피 수량", placeholder: "30", text: $recipeAmount, keyboardType: .numberPad, unit: "g")
+                        InputRowComponent(title: "레시피 수량", placeholder: "30", text: doubleToStringBinding($recipeAmount), keyboardType: .numberPad, unit: "g")
                     }
                 }
                 
@@ -97,29 +97,36 @@ struct IngredientModifySheet: View {
     }
     
     private func updateUnitPrice() {
-        guard let price = Int(purchasePrice),
-              let recipeAmountValue = Double(recipeAmount.filter("0123456789.".contains)),
-              let purchaseAmountValue = Double(purchaseAmount.filter("0123456789.".contains)),
-              purchaseAmountValue != 0 else {
-            return
-        }
         
-        let pricePerGram = Double(price) / purchaseAmountValue
-        let calculatedUnitPrice = Int(pricePerGram * recipeAmountValue)
+        let pricePerGram = purchasePrice / purchaseAmount
+        let calculatedUnitPrice = pricePerGram * recipeAmount
         editableIngredient.unitPrice = calculatedUnitPrice
         editableIngredient.amount = recipeAmount
+    }
+    
+    private func doubleToStringBinding(_ doubleBinding: Binding<Double>) -> Binding<String> {
+        Binding<String>(
+            get: {
+                String(format: "%.2f", doubleBinding.wrappedValue)
+            },
+            set: { newValue in
+                if let value = Double(newValue) {
+                    doubleBinding.wrappedValue = value
+                }
+            }
+        )
     }
 }
 
 #Preview {
     IngredientModifySheet(ingredient: IngredientInfo(
         name: "양배추",
-        amount: "30",
+        amount: 30,
         unit: "g",
         unitPrice: 1000),
                           parsedIngredients: .constant([IngredientInfo(
                             name: "양배추",
-                            amount: "30",
+                            amount: 30,
                             unit: "g",
                             unitPrice: 1000)]))
 }
