@@ -118,9 +118,11 @@ struct IngredientResultView: View {
                                             .font(.body)
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                         
-                                        Text("\(ing.amount)\(ing.unit)")
+                                        
+                                        Text("\(String(format: "%.0f", ing.amount))\(ing.unit)")
                                             .font(.subheadline)
                                             .frame(width: 60, alignment: .trailing)
+                                            
                                         
                                         Text("\(ing.unitPrice.formatted())원")
                                             .font(.subheadline)

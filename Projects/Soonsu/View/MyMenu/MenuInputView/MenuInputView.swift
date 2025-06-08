@@ -253,10 +253,6 @@ struct MenuInputView: View {
             print("❌ JSON 디코딩 실패")
             return
         }
-//        else {
-//            print("❌ MockData 로드 실패")
-//            return
-//        }
         
         // MainActor에서 상태 업데이트
         await MainActor.run {
