@@ -1,0 +1,1192 @@
+[
+ {
+   "name": "소면",
+   "productName": "백설 소면(900g)",
+   "updateDate": "2025-04-18",
+   "price": 3290,
+   "weight": 900,
+   "unit": "g",
+   "unitPrice": 3.66,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "소면",
+   "productName": "옛날국수 소면(900g)",
+   "updateDate": "2025-04-18",
+   "price": 4620,
+   "weight": 900,
+   "unit": "g",
+   "unitPrice": 5.13,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "물만두",
+   "productName": "얄피꽉찬 쌀물만두(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 10990,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 10.99,
+   "brand": "풀무원"
+ },
+ {
+   "name": "당면",
+   "productName": "백설 자른 햇당면(300g)",
+   "updateDate": "2025-04-18",
+   "price": 3490,
+   "weight": 300,
+   "unit": "g",
+   "unitPrice": 11.63,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "당면",
+   "productName": "옛날 자른당면(300g)",
+   "updateDate": "2025-04-18",
+   "price": 5250,
+   "weight": 300,
+   "unit": "g",
+   "unitPrice": 17.5,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "라면",
+   "productName": "너구리(5개입)",
+   "updateDate": "2025-04-18",
+   "price": 4360,
+   "weight": 5,
+   "unit": "개입",
+   "unitPrice": 872,
+   "brand": "농심"
+ },
+ {
+   "name": "라면",
+   "productName": "맛있는라면(5개입)",
+   "updateDate": "2025-04-18",
+   "price": 5350,
+   "weight": 5,
+   "unit": "개입",
+   "unitPrice": 1070,
+   "brand": "삼양식품"
+ },
+ {
+   "name": "라면",
+   "productName": "삼양라면(5개입)",
+   "updateDate": "2025-04-18",
+   "price": 3690,
+   "weight": 5,
+   "unit": "개입",
+   "unitPrice": 738,
+   "brand": "삼양식품"
+ },
+ {
+   "name": "라면",
+   "productName": "신라면(5개입)",
+   "updateDate": "2025-04-18",
+   "price": 4150,
+   "weight": 5,
+   "unit": "개입",
+   "unitPrice": 830,
+   "brand": "농심"
+ },
+ {
+   "name": "라면",
+   "productName": "안성탕면(5개입)",
+   "updateDate": "2025-04-18",
+   "price": 4010,
+   "weight": 5,
+   "unit": "개입",
+   "unitPrice": 802,
+   "brand": "농심"
+ },
+ {
+   "name": "라면",
+   "productName": "열라면(5개입)",
+   "updateDate": "2025-04-18",
+   "price": 3580,
+   "weight": 5,
+   "unit": "개입",
+   "unitPrice": 716,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "라면",
+   "productName": "진라면 매운맛(5개입)",
+   "updateDate": "2025-04-18",
+   "price": 3580,
+   "weight": 5,
+   "unit": "개입",
+   "unitPrice": 716,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "라면",
+   "productName": "진라면 순한맛(5개입)",
+   "updateDate": "2025-04-18",
+   "price": 3580,
+   "weight": 5,
+   "unit": "개입",
+   "unitPrice": 716,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "라면",
+   "productName": "틈새라면(5개입)",
+   "updateDate": "2025-04-18",
+   "price": 5350,
+   "weight": 5,
+   "unit": "개입",
+   "unitPrice": 1070,
+   "brand": "팔도"
+ },
+ {
+   "name": "중력분",
+   "productName": "곰표 밀가루 중력다목적용(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 2100,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 2.1,
+   "brand": "대한제분"
+ },
+ {
+   "name": "박력분",
+   "productName": "백설 박력 밀가루(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 2700,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 2.7,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "중력분",
+   "productName": "백설 중력 밀가루(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 2020,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 2.02,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "밀가루",
+   "productName": "백설 찰밀가루(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 2980,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 2.98,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "부침가루",
+   "productName": "백설 5가지 재료 부침가루(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 4280,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 4.28,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "부침가루",
+   "productName": "오뚜기 부침가루(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 3990,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 3.99,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "콘스프",
+   "productName": "보노 콘스프(3개입)",
+   "updateDate": "2025-04-18",
+   "price": 3820,
+   "weight": 3,
+   "unit": "개입",
+   "unitPrice": 1273.33,
+   "brand": "농심"
+ },
+ {
+   "name": "버섯스프",
+   "productName": "보노 포르치니버섯스프(3개입)",
+   "updateDate": "2025-04-18",
+   "price": 3850,
+   "weight": 3,
+   "unit": "개입",
+   "unitPrice": 1283.33,
+   "brand": "농심"
+ },
+ {
+   "name": "크림스프",
+   "productName": "오뚜기 크림스프(80g)",
+   "updateDate": "2025-04-18",
+   "price": 2620,
+   "weight": 80,
+   "unit": "g",
+   "unitPrice": 32.75,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "카레",
+   "productName": "3분 백세카레 약간 매운맛(200g)",
+   "updateDate": "2025-04-18",
+   "price": 3710,
+   "weight": 200,
+   "unit": "g",
+   "unitPrice": 18.55,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "카레",
+   "productName": "3분 쇠고기짜장(200g)",
+   "updateDate": "2025-04-18",
+   "price": 2480,
+   "weight": 200,
+   "unit": "g",
+   "unitPrice": 12.4,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "카레",
+   "productName": "3분 쇠고기카레(200g)",
+   "updateDate": "2025-04-18",
+   "price": 2480,
+   "weight": 200,
+   "unit": "g",
+   "unitPrice": 12.4,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "오뚜기밥",
+   "productName": "오뚜기밥(3개입)",
+   "updateDate": "2025-04-18",
+   "price": 2950,
+   "weight": 3,
+   "unit": "개입",
+   "unitPrice": 983.33,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "햇반",
+   "productName": "햇반(210g)",
+   "updateDate": "2025-04-18",
+   "price": 2080,
+   "weight": 210,
+   "unit": "g",
+   "unitPrice": 9.9,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "햇반",
+   "productName": "햇반(3개입)",
+   "updateDate": "2025-04-18",
+   "price": 5480,
+   "weight": 3,
+   "unit": "개입",
+   "unitPrice": 1826.67,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "햇반",
+   "productName": "햇반(6개입)",
+   "updateDate": "2025-04-18",
+   "price": 7480,
+   "weight": 6,
+   "unit": "개입",
+   "unitPrice": 1246.67,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "파스타",
+   "productName": "백설 파스타(500g)",
+   "updateDate": "2025-04-18",
+   "price": 2990,
+   "weight": 500,
+   "unit": "g",
+   "unitPrice": 5.98,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "파스타",
+   "productName": "오뚜기 프레스코 스파게티(500g)",
+   "updateDate": "2025-04-18",
+   "price": 3990,
+   "weight": 500,
+   "unit": "g",
+   "unitPrice": 7.98,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "파스타",
+   "productName": "청정원 스파게티(500g)",
+   "updateDate": "2025-04-18",
+   "price": 3790,
+   "weight": 500,
+   "unit": "g",
+   "unitPrice": 7.58,
+   "brand": "대상"
+ },
+ {
+   "name": "파스타",
+   "productName": "폰타나 이탈리아 캄파니아 스파게티(500g)",
+   "updateDate": "2025-04-18",
+   "price": 4790,
+   "weight": 500,
+   "unit": "g",
+   "unitPrice": 9.58,
+   "brand": "샘표"
+ },
+ {
+   "name": "파인애플",
+   "productName": "델몬트 후레쉬컷 슬라이스 파인애플(836g)",
+   "updateDate": "2025-04-18",
+   "price": 4940,
+   "weight": 836,
+   "unit": "g",
+   "unitPrice": 5.91,
+   "brand": "삼경프라자"
+ },
+ {
+   "name": "황도",
+   "productName": "알쿠니아 황도(840g)",
+   "updateDate": "2025-04-18",
+   "price": 5980,
+   "weight": 840,
+   "unit": "g",
+   "unitPrice": 7.12,
+   "brand": "농심"
+ },
+ {
+   "name": "황도",
+   "productName": "오뚜기 황도(400g)",
+   "updateDate": "2025-04-18",
+   "price": 3990,
+   "weight": 400,
+   "unit": "g",
+   "unitPrice": 9.98,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "단무지",
+   "productName": "일가집 비타 김밥단무지(400g)",
+   "updateDate": "2025-04-18",
+   "price": 3290,
+   "weight": 400,
+   "unit": "g",
+   "unitPrice": 8.22,
+   "brand": "일미농수산"
+ },
+ {
+   "name": "단무지",
+   "productName": "하선정 4무첨가 김밥단무지(370g)",
+   "updateDate": "2025-04-18",
+   "price": 2190,
+   "weight": 370,
+   "unit": "g",
+   "unitPrice": 5.92,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "김",
+   "productName": "들기름 재래 도시락김(12팩)",
+   "updateDate": "2025-04-18",
+   "price": 7980,
+   "weight": 12,
+   "unit": "팩",
+   "unitPrice": 665,
+   "brand": "풀무원"
+ },
+ {
+   "name": "맛살",
+   "productName": "동원 싱싱맛살 실속(500g)",
+   "updateDate": "2025-04-18",
+   "price": 2920,
+   "weight": 500,
+   "unit": "g",
+   "unitPrice": 5.84,
+   "brand": "동원에프앤비"
+ },
+ {
+   "name": "미역",
+   "productName": "오뚜기 옛날 미역(100g)",
+   "updateDate": "2025-04-18",
+   "price": 4990,
+   "weight": 100,
+   "unit": "g",
+   "unitPrice": 49.9,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "미역",
+   "productName": "오뚜기 옛날 자른미역(50g)",
+   "updateDate": "2025-04-18",
+   "price": 2990,
+   "weight": 50,
+   "unit": "g",
+   "unitPrice": 59.8,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "어묵",
+   "productName": "삼호 안심 부산어묵(400g)",
+   "updateDate": "2025-04-18",
+   "price": 4190,
+   "weight": 400,
+   "unit": "g",
+   "unitPrice": 10.48,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "참치캔",
+   "productName": "동원참치 라이트스탠다드(4캔)",
+   "updateDate": "2025-04-18",
+   "price": 9980,
+   "weight": 4,
+   "unit": "캔",
+   "unitPrice": 2495,
+   "brand": "동원"
+ },
+ {
+   "name": "참치캔",
+   "productName": "사조참치 살코기 안심따개(4캔)",
+   "updateDate": "2025-04-18",
+   "price": 8980,
+   "weight": 4,
+   "unit": "캔",
+   "unitPrice": 2245,
+   "brand": "사조대림"
+ },
+ {
+   "name": "참치캔",
+   "productName": "오뚜기 가벼운참치 더마일드(4캔)",
+   "updateDate": "2025-04-18",
+   "price": 8480,
+   "weight": 4,
+   "unit": "캔",
+   "unitPrice": 2120,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "간장",
+   "productName": "양조간장 501(500ml)",
+   "updateDate": "2025-04-18",
+   "price": 6400,
+   "weight": 500,
+   "unit": "ml",
+   "unitPrice": 12.8,
+   "brand": "샘표"
+ },
+ {
+   "name": "진간장",
+   "productName": "진간장 금F3(860ml)",
+   "updateDate": "2025-04-18",
+   "price": 7580,
+   "weight": 860,
+   "unit": "ml",
+   "unitPrice": 8.81,
+   "brand": "샘표"
+ },
+ {
+   "name": "와사비",
+   "productName": "에스앤비 생와사비(43g)",
+   "updateDate": "2025-04-18",
+   "price": 3950,
+   "weight": 43,
+   "unit": "g",
+   "unitPrice": 91.86,
+   "brand": "훼밀리인터내셔날"
+ },
+ {
+   "name": "와사비",
+   "productName": "오뚜기 생와사비(43g)",
+   "updateDate": "2025-04-18",
+   "price": 4800,
+   "weight": 43,
+   "unit": "g",
+   "unitPrice": 111.63,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "와사비",
+   "productName": "움트리 생와사비(120g)",
+   "updateDate": "2025-04-18",
+   "price": 5780,
+   "weight": 120,
+   "unit": "g",
+   "unitPrice": 48.17,
+   "brand": "움트리"
+ },
+ {
+   "name": "까나리액젓",
+   "productName": "청정원 서해안 까나리액젓 골드(750g)",
+   "updateDate": "2025-04-18",
+   "price": 5790,
+   "weight": 750,
+   "unit": "g",
+   "unitPrice": 7.72,
+   "brand": "대상"
+ },
+ {
+   "name": "까나리액젓",
+   "productName": "하선정 까나리액젓(800g)",
+   "updateDate": "2025-04-18",
+   "price": 5990,
+   "weight": 800,
+   "unit": "g",
+   "unitPrice": 7.49,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "토장",
+   "productName": "샘표 토장(900g)",
+   "updateDate": "2025-04-18",
+   "price": 7240,
+   "weight": 900,
+   "unit": "g",
+   "unitPrice": 8.04,
+   "brand": "샘표"
+ },
+ {
+   "name": "된장",
+   "productName": "순창 재래식안심생된장(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 9290,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 9.29,
+   "brand": "대상"
+ },
+ {
+   "name": "된장",
+   "productName": "해찬들 재래식 된장(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 5980,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 5.98,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "발사믹드레싱",
+   "productName": "청정원 발사믹 드레싱(325g)",
+   "updateDate": "2025-04-18",
+   "price": 3980,
+   "weight": 325,
+   "unit": "g",
+   "unitPrice": 12.25,
+   "brand": "대상"
+ },
+ {
+   "name": "오리엔탈드레싱",
+   "productName": "청정원 오리엔탈 드레싱(325g)",
+   "updateDate": "2025-04-18",
+   "price": 3980,
+   "weight": 325,
+   "unit": "g",
+   "unitPrice": 12.25,
+   "brand": "대상"
+ },
+ {
+   "name": "마요네즈",
+   "productName": "오뚜기 고소한 골드 마요네즈(500g)",
+   "updateDate": "2025-04-18",
+   "price": 7580,
+   "weight": 500,
+   "unit": "g",
+   "unitPrice": 15.16,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "마요네즈",
+   "productName": "청정원 고소한 마요네즈(500g)",
+   "updateDate": "2025-04-18",
+   "price": 4480,
+   "weight": 500,
+   "unit": "g",
+   "unitPrice": 8.96,
+   "brand": "대상"
+ },
+ {
+   "name": "멸치액젓",
+   "productName": "청정원 대나무숙성 멸치액젓(750g)",
+   "updateDate": "2025-04-18",
+   "price": 4730,
+   "weight": 750,
+   "unit": "g",
+   "unitPrice": 6.31,
+   "brand": "대상"
+ },
+ {
+   "name": "멸치액젓",
+   "productName": "하선정 멸치액젓 골드(800g)",
+   "updateDate": "2025-04-18",
+   "price": 6300,
+   "weight": 800,
+   "unit": "g",
+   "unitPrice": 7.88,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "올리고당",
+   "productName": "백설 요리 올리고당(1.2kg)",
+   "updateDate": "2025-04-18",
+   "price": 4480,
+   "weight": 1200,
+   "unit": "g",
+   "unitPrice": 3.73,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "물엿",
+   "productName": "오뚜기 옛날 물엿(1.2kg)",
+   "updateDate": "2025-04-18",
+   "price": 5880,
+   "weight": 1200,
+   "unit": "g",
+   "unitPrice": 4.9,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "갈색설탕",
+   "productName": "백설 갈색설탕(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 3480,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 3.48,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "자일로스설탕",
+   "productName": "백설 브라운 자일로스 설탕(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 5250,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 5.25,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "설탕",
+   "productName": "백설 하얀설탕(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 2950,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 2.95,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "흑설탕",
+   "productName": "백설 흑설탕(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 3680,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 3.68,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "갈색설탕",
+   "productName": "큐원 갈색설탕(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 3420,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 3.42,
+   "brand": "삼양사"
+ },
+ {
+   "name": "설탕",
+   "productName": "큐원 하얀설탕(1kg)",
+   "updateDate": "2025-04-18",
+   "price": 3200,
+   "weight": 1000,
+   "unit": "g",
+   "unitPrice": 3.2,
+   "brand": "삼양사"
+ },
+ {
+   "name": "맛소금",
+   "productName": "청정원 미원 맛소금(500g)",
+   "updateDate": "2025-04-18",
+   "price": 3250,
+   "weight": 500,
+   "unit": "g",
+   "unitPrice": 6.5,
+   "brand": "대상"
+ },
+ {
+   "name": "카놀라유",
+   "productName": "백설 카놀라유(900ml)",
+   "updateDate": "2025-04-18",
+   "price": 9500,
+   "weight": 900,
+   "unit": "ml",
+   "unitPrice": 10.56,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "포도씨유",
+   "productName": "백설 포도씨유(900ml)",
+   "updateDate": "2025-04-18",
+   "price": 14980,
+   "weight": 900,
+   "unit": "ml",
+   "unitPrice": 16.64,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "콩기름",
+   "productName": "오뚜기 콩기름(900ml)",
+   "updateDate": "2025-04-18",
+   "price": 5990,
+   "weight": 900,
+   "unit": "ml",
+   "unitPrice": 6.66,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "식용유",
+   "productName": "해표 맑고 신선한 식용유(900ml)",
+   "updateDate": "2025-04-18",
+   "price": 5830,
+   "weight": 900,
+   "unit": "ml",
+   "unitPrice": 6.48,
+   "brand": "해표"
+ },
+ {
+   "name": "카놀라유",
+   "productName": "해표 카놀라유(900ml)",
+   "updateDate": "2025-04-18",
+   "price": 9500,
+   "weight": 900,
+   "unit": "ml",
+   "unitPrice": 10.56,
+   "brand": "사조대림"
+ },
+ {
+   "name": "포도씨유",
+   "productName": "해표 포도씨유(900ml)",
+   "updateDate": "2025-04-18",
+   "price": 16000,
+   "weight": 900,
+   "unit": "ml",
+   "unitPrice": 17.78,
+   "brand": "사조대림"
+ },
+ {
+   "name": "식초",
+   "productName": "백설 건강발효 사과식초(800ml)",
+   "updateDate": "2025-04-18",
+   "price": 4280,
+   "weight": 800,
+   "unit": "ml",
+   "unitPrice": 5.35,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "식초",
+   "productName": "오뚜기 사과식초(900ml)",
+   "updateDate": "2025-04-18",
+   "price": 4090,
+   "weight": 900,
+   "unit": "ml",
+   "unitPrice": 4.54,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "쌈장",
+   "productName": "청정원 순창 양념듬뿍 쌈장(500g)",
+   "updateDate": "2025-04-18",
+   "price": 5490,
+   "weight": 500,
+   "unit": "g",
+   "unitPrice": 10.98,
+   "brand": "대상"
+ },
+ {
+   "name": "쌈장",
+   "productName": "해찬들 사계절 쌈장(500g)",
+   "updateDate": "2025-04-18",
+   "price": 5980,
+   "weight": 500,
+   "unit": "g",
+   "unitPrice": 11.96,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "딸기잼",
+   "productName": "복음자리 딸기잼(380g)",
+   "updateDate": "2025-04-18",
+   "price": 7350,
+   "weight": 380,
+   "unit": "g",
+   "unitPrice": 19.34,
+   "brand": "복음자리"
+ },
+ {
+   "name": "딸기잼",
+   "productName": "오뚜기 딸기잼(500g)",
+   "updateDate": "2025-04-18",
+   "price": 7350,
+   "weight": 500,
+   "unit": "g",
+   "unitPrice": 14.7,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "참기름",
+   "productName": "백설 고소함가득 참기름(320ml)",
+   "updateDate": "2025-04-18",
+   "price": 10900,
+   "weight": 320,
+   "unit": "ml",
+   "unitPrice": 34.06,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "참기름",
+   "productName": "오뚜기 참기름(320ml)",
+   "updateDate": "2025-04-18",
+   "price": 12980,
+   "weight": 320,
+   "unit": "ml",
+   "unitPrice": 40.56,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "카레",
+   "productName": "오뚜기카레 순한맛(100g)",
+   "updateDate": "2025-04-18",
+   "price": 2720,
+   "weight": 100,
+   "unit": "g",
+   "unitPrice": 27.2,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "카레",
+   "productName": "청정원 카레여왕 구운마늘&양파(108g)",
+   "updateDate": "2025-04-18",
+   "price": 5980,
+   "weight": 108,
+   "unit": "g",
+   "unitPrice": 55.37,
+   "brand": "대상"
+ },
+ {
+   "name": "케찹",
+   "productName": "오뚜기 토마토 케찹(500g)",
+   "updateDate": "2025-04-18",
+   "price": 4150,
+   "weight": 500,
+   "unit": "g",
+   "unitPrice": 8.3,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "다시다",
+   "productName": "백설 쇠고기 다시다(300g)",
+   "updateDate": "2025-04-18",
+   "price": 10520,
+   "weight": 300,
+   "unit": "g",
+   "unitPrice": 35.07,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "돈까스",
+   "productName": "고메 바삭튀겨낸 통등심돈카츠(450g)",
+   "updateDate": "2025-04-18",
+   "price": 9990,
+   "weight": 450,
+   "unit": "g",
+   "unitPrice": 22.2,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "돈까스",
+   "productName": "풀무원 통등심돈카츠(450g)",
+   "updateDate": "2025-04-18",
+   "price": 10990,
+   "weight": 450,
+   "unit": "g",
+   "unitPrice": 24.42,
+   "brand": "풀무원"
+ },
+ {
+   "name": "버터",
+   "productName": "서울우유 버터(450g)",
+   "updateDate": "2025-04-18",
+   "price": 11590,
+   "weight": 450,
+   "unit": "g",
+   "unitPrice": 25.76,
+   "brand": "서울우유"
+ },
+ {
+   "name": "버터",
+   "productName": "알라 무염버터(400g)",
+   "updateDate": "2025-04-18",
+   "price": 11190,
+   "weight": 400,
+   "unit": "g",
+   "unitPrice": 27.98,
+   "brand": "매일유업"
+ },
+ {
+   "name": "베이컨",
+   "productName": "백설 햄스빌 두툼한 굿베이컨(340g)",
+   "updateDate": "2025-04-18",
+   "price": 11990,
+   "weight": 340,
+   "unit": "g",
+   "unitPrice": 35.26,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "베이컨",
+   "productName": "백설 햄스빌 베이컨(330g)",
+   "updateDate": "2025-04-18",
+   "price": 10990,
+   "weight": 330,
+   "unit": "g",
+   "unitPrice": 33.3,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "베이컨",
+   "productName": "전G베이컨(200g)",
+   "updateDate": "2025-04-18",
+   "price": 4090,
+   "weight": 200,
+   "unit": "g",
+   "unitPrice": 20.45,
+   "brand": "에쓰푸드"
+ },
+ {
+   "name": "소세지",
+   "productName": "더 건강한 그릴후랑크(600g)",
+   "updateDate": "2025-04-18",
+   "price": 7990,
+   "weight": 600,
+   "unit": "g",
+   "unitPrice": 13.32,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "우유",
+   "productName": "남양유업 맛있는우유GT(900ml)",
+   "updateDate": "2025-04-18",
+   "price": 3090,
+   "weight": 900,
+   "unit": "ml",
+   "unitPrice": 3.43,
+   "brand": "남양유업"
+ },
+ {
+   "name": "우유",
+   "productName": "덴마크 대니쉬우유 오리지널(900ml)",
+   "updateDate": "2025-04-18",
+   "price": 2990,
+   "weight": 900,
+   "unit": "ml",
+   "unitPrice": 3.32,
+   "brand": "동원에프앤비"
+ },
+ {
+   "name": "우유",
+   "productName": "덴마크 산양우유(750ml)",
+   "updateDate": "2025-04-18",
+   "price": 6990,
+   "weight": 750,
+   "unit": "ml",
+   "unitPrice": 9.32,
+   "brand": "동원에프앤비"
+ },
+ {
+   "name": "우유",
+   "productName": "매일 소화가 잘되는 우유(930ml)",
+   "updateDate": "2025-04-18",
+   "price": 3990,
+   "weight": 930,
+   "unit": "ml",
+   "unitPrice": 4.29,
+   "brand": "매일유업"
+ },
+ {
+   "name": "우유",
+   "productName": "매일우유 오리지널(900ml)",
+   "updateDate": "2025-04-18",
+   "price": 3300,
+   "weight": 900,
+   "unit": "ml",
+   "unitPrice": 3.67,
+   "brand": "매일유업"
+ },
+ {
+   "name": "우유",
+   "productName": "서울 저지방 우유(1L)",
+   "updateDate": "2025-04-18",
+   "price": 3390,
+   "weight": 1000,
+   "unit": "ml",
+   "unitPrice": 3.39,
+   "brand": "서울우유"
+ },
+ {
+   "name": "우유",
+   "productName": "서울우유 흰우유(1L)",
+   "updateDate": "2025-04-18",
+   "price": 3150,
+   "weight": 1000,
+   "unit": "ml",
+   "unitPrice": 3.15,
+   "brand": "서울우유"
+ },
+ {
+   "name": "우유",
+   "productName": "파스퇴르우유 후레쉬(900ml)",
+   "updateDate": "2025-04-18",
+   "price": 3690,
+   "weight": 900,
+   "unit": "ml",
+   "unitPrice": 4.1,
+   "brand": "롯데삼강"
+ },
+ {
+   "name": "치즈",
+   "productName": "드빈치 뼈가튼튼 고칼슘치즈(15매)",
+   "updateDate": "2025-04-18",
+   "price": 9990,
+   "weight": 15,
+   "unit": "매",
+   "unitPrice": 666,
+   "brand": "남양유업"
+ },
+ {
+   "name": "치즈",
+   "productName": "서울우유 체다슬라이스치즈(360g)",
+   "updateDate": "2025-04-18",
+   "price": 9600,
+   "weight": 360,
+   "unit": "g",
+   "unitPrice": 26.67,
+   "brand": "서울우유"
+ },
+ {
+   "name": "스팸",
+   "productName": "스팸 클래식(200g)",
+   "updateDate": "2025-04-18",
+   "price": 5350,
+   "weight": 200,
+   "unit": "g",
+   "unitPrice": 26.75,
+   "brand": "CJ제일제당"
+ },
+ {
+   "name": "훈제오리",
+   "productName": "1등급 다향 훈제오리(500g)",
+   "updateDate": "2025-04-18",
+   "price": 19900,
+   "weight": 500,
+   "unit": "g",
+   "unitPrice": 39.8,
+   "brand": "팜덕"
+ },
+ {
+   "name": "참깨",
+   "productName": "오뚜기 옛날 볶음참깨(200g)",
+   "updateDate": "2025-04-18",
+   "price": 6990,
+   "weight": 200,
+   "unit": "g",
+   "unitPrice": 34.95,
+   "brand": "오뚜기"
+ },
+ {
+   "name": "병아리콩",
+   "productName": "불릴필요없는 병아리콩(2kg)",
+   "updateDate": "2025-04-18",
+   "price": 9990,
+   "weight": 2000,
+   "unit": "g",
+   "unitPrice": 5,
+   "brand": "농업회사법인대상"
+ },
+ {
+   "name": "연어",
+   "productName": "바로 먹는 그라브락스 연어(150g)",
+   "updateDate": "2025-04-18",
+   "price": 11900,
+   "weight": 150,
+   "unit": "g",
+   "unitPrice": 79.33,
+   "brand": "선도씨푸드"
+ },
+ {
+   "name": "연어",
+   "productName": "항공직송 동원생연어(320g)",
+   "updateDate": "2025-04-18",
+   "price": 21900,
+   "weight": 320,
+   "unit": "g",
+   "unitPrice": 68.44,
+   "brand": "동원산업"
+ },
+ {
+   "name": "연어",
+   "productName": "항공직송 동원생연어(350g)",
+   "updateDate": "2025-04-18",
+   "price": 22900,
+   "weight": 350,
+   "unit": "g",
+   "unitPrice": 65.43,
+   "brand": "동원산업"
+ },
+ {
+   "name": "계란",
+   "productName": "목초를 먹고 자란 건강한 닭이 낳은 달걀(대란 15개)",
+   "updateDate": "2025-04-18",
+   "price": 9490,
+   "weight": 15,
+   "unit": "개",
+   "unitPrice": 632.67,
+   "brand": "풀무원"
+ },
+ {
+   "name": "계란",
+   "productName": "청정원 행복놀이터 동물복지 유정란(15개)",
+   "updateDate": "2025-04-18",
+   "price": 9990,
+   "weight": 15,
+   "unit": "개",
+   "unitPrice": 666,
+   "brand": "대상"
+ },
+ {
+   "name": "계란",
+   "productName": "풀무원 동물복지 목초란(15개)",
+   "updateDate": "2025-04-18",
+   "price": 10990,
+   "weight": 15,
+   "unit": "개",
+   "unitPrice": 732.67,
+   "brand": "풀무원"
+ },
+ {
+   "name": "계란",
+   "productName": "풀무원 동물복지 유정란(10개)",
+   "updateDate": "2025-04-18",
+   "price": 9990,
+   "weight": 10,
+   "unit": "개",
+   "unitPrice": 999,
+   "brand": "풀무원"
+ }
+]

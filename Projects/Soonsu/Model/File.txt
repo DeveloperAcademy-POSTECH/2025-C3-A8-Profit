@@ -1,0 +1,21 @@
+[
+    {
+        "name": "소면",
+        "productName": "백설 소면(900g)",
+        "updateDate": "2025-04-18",
+        "price": "3290",
+        "weight": "900.0",
+        "unit": "g",
+        "unitPrice": "3.66",
+        "brand": "CJ제일제당"
+    },
+    {
+        "name": "소면",
+        "productName": "옛날국수 소면(900g)",
+        "updateDate": "2025-04-18",
+        "price": "4620",
+        "weight": "900.0",
+        "unit": "g",
+        "unitPrice": "5.13",
+        "brand": "오뚜기"
+    },
