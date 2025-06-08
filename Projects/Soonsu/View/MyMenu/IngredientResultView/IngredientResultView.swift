@@ -339,7 +339,7 @@ private extension View {
         self.sheet(isPresented: isPresented) {
             if let selIngredient = selectedIngredient.wrappedValue,
                let index = parsedIngredients.wrappedValue.firstIndex(where: { $0.id == selIngredient.id }) {
-                IngredientModifySheet(
+                IngredientModifyComponent(
                     ingredient: parsedIngredients.wrappedValue[index],
                     parsedIngredients: parsedIngredients
                 )

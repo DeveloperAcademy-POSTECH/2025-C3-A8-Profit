@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IngredientModifySheet: View {
+struct IngredientModifyComponent: View {
     let ingredient: IngredientInfo
     @Binding var parsedIngredients: [IngredientInfo]
     @Environment(\.dismiss) private var dismiss
@@ -119,7 +119,7 @@ struct IngredientModifySheet: View {
 }
 
 #Preview {
-    IngredientModifySheet(ingredient: IngredientInfo(
+    IngredientModifyComponent(ingredient: IngredientInfo(
         name: "양배추",
         amount: 30,
         unit: "g",

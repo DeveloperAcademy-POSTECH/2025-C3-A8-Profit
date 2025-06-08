@@ -47,15 +47,16 @@ struct IngredientAddView: View {
         }
     }
     var body: some View {
-        List(filteredItems, id: \.name) { item in
-            Button {
-                onIngredientSelected?(item.name)
-            } label: {
-                Text(item.name)
+            List(filteredItems, id: \.name) { item in
+                NavigationLink(destination: IngredientDetailView(name: item.name)) {
+                    Text(item.name)
+                }
+                .onTapGesture {
+                    onIngredientSelected?(item.name)
+                }
             }
-        }
-        .navigationTitle("재료 추가")
-        .searchable(text: $searchText, placement: .toolbar, prompt: "검색어를 입력하세요")
+            .navigationTitle("재료 추가")
+            .searchable(text: $searchText, placement: .toolbar, prompt: "검색어를 입력하세요")
     }
 }
 
