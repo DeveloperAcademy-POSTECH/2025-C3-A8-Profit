@@ -48,6 +48,11 @@ struct InputRowComponent: View {
                         .foregroundStyle(.blue)
                         .font(.body)
                         .fontWeight(.bold)
+                } else {
+                    Text("g")
+                        .foregroundStyle(isEnabled ? .blue : .black)
+                        .font(.body)
+                        .fontWeight(.bold)
                 }
             }
             .padding(.horizontal)

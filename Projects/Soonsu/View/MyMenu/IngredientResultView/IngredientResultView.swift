@@ -173,7 +173,7 @@ struct IngredientResultView: View {
                             Image(systemName: "plus.circle.fill")
                                 .foregroundStyle(.blue)
                             NavigationLink("재료 추가하기") {
-                                IngredientAddView(onIngredientSelected: { selectedName in
+                                IngredientAddView(parsedIngredients: $parsedIngredients, onIngredientSelected: { selectedName in
                                     guard !parsedIngredients.contains(where: { $0.name == selectedName }) else { return }
                                     let newInfo = IngredientInfo(name: selectedName, amount: 10, unit:"g", unitPrice: 100)
                                     parsedIngredients.append(newInfo)

@@ -68,7 +68,7 @@ struct IngredientModifyComponent: View {
                 
                 
                 if segmentMode == .auto {
-                    InputRowComponent(title: "수량", text: doubleToStringBinding(.constant(editableIngredient.amount)), isEnabled: false)
+                    InputRowComponent(title: "레시피 수량", text: doubleToStringBinding(.constant(editableIngredient.amount)), isEnabled: false)
                     Divider()
                         .padding(.horizontal)
                     InputRowComponent(title: "단가", text: doubleToStringBinding(.constant(editableIngredient.unitPrice)), isEnabled: false)
@@ -107,7 +107,7 @@ struct IngredientModifyComponent: View {
     private func doubleToStringBinding(_ doubleBinding: Binding<Double>) -> Binding<String> {
         Binding<String>(
             get: {
-                String(format: "%.2f", doubleBinding.wrappedValue)
+                String(format: "%.0f", doubleBinding.wrappedValue)
             },
             set: { newValue in
                 if let value = Double(newValue) {

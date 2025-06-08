@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26D3EB922DF4093800D052D1 /* data.csv in Resources */ = {isa = PBXBuildFile; fileRef = 26D3EB912DF4093100D052D1 /* data.csv */; };
 		26D3EB992DF43AB300D052D1 /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 26D3EB982DF43AA800D052D1 /* MockData.json */; };
 		26ED5CC72DF523D10011B2E1 /* IngredientsCham.json in Resources */ = {isa = PBXBuildFile; fileRef = 26ED5CC62DF523C20011B2E1 /* IngredientsCham.json */; };
 		26ED5CD12DF52CC80011B2E1 /* IngredientsKamis.json in Resources */ = {isa = PBXBuildFile; fileRef = 26ED5CD02DF52CC80011B2E1 /* IngredientsKamis.json */; };
@@ -41,7 +40,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		26D3EB912DF4093100D052D1 /* data.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = data.csv; sourceTree = "<group>"; };
 		26D3EB982DF43AA800D052D1 /* MockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockData.json; sourceTree = "<group>"; };
 		26ED5CC62DF523C20011B2E1 /* IngredientsCham.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IngredientsCham.json; sourceTree = "<group>"; };
 		26ED5CD02DF52CC80011B2E1 /* IngredientsKamis.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IngredientsKamis.json; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				26D3EB982DF43AA800D052D1 /* MockData.json */,
-				26D3EB912DF4093100D052D1 /* data.csv */,
 				26ED5CC62DF523C20011B2E1 /* IngredientsCham.json */,
 				26ED5CD02DF52CC80011B2E1 /* IngredientsKamis.json */,
 				3E7F2BDA2DEDCC8700A20B86 /* Ingredient.swift */,
@@ -293,7 +290,6 @@
 				68343B972DED76BE00BD34B4 /* Assets.xcassets in Resources */,
 				26ED5CD12DF52CC80011B2E1 /* IngredientsKamis.json in Resources */,
 				26ED5CC72DF523D10011B2E1 /* IngredientsCham.json in Resources */,
-				26D3EB922DF4093800D052D1 /* data.csv in Resources */,
 				3E7F2BF32DEDCFBB00A20B86 /* GoogleService-Info.plist in Resources */,
 				26D3EB992DF43AB300D052D1 /* MockData.json in Resources */,
 			);

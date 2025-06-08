@@ -12,10 +12,12 @@ import SwiftData
 struct IngredientAddView: View {
 
     @Environment(\.modelContext) private var context
+    @Binding var parsedIngredients: [IngredientInfo]
+    var onIngredientSelected: ((String) -> Void)? = nil
     // 검색창 텍스트
     @State private var searchText: String = ""
     private let ingredients = loadAllIngredientsFromJSON()
-    var onIngredientSelected: ((String) -> Void)? = nil
+    
     
     
     
@@ -48,7 +50,7 @@ struct IngredientAddView: View {
     }
     var body: some View {
             List(filteredItems, id: \.name) { item in
-                NavigationLink(destination: IngredientDetailView(name: item.name)) {
+                NavigationLink(destination: IngredientDetailView(ingredient: item, parsedIngredients: $parsedIngredients)) {
                     Text(item.name)
                 }
                 .onTapGesture {
@@ -59,8 +61,8 @@ struct IngredientAddView: View {
             .searchable(text: $searchText, placement: .toolbar, prompt: "검색어를 입력하세요")
     }
 }
-
-#Preview {
-    IngredientAddView()
-        .modelContainer(for: Ingredient.self)
-}
+//
+//#Preview {
+//    IngredientAddView()
+//        .modelContainer(for: Ingredient.self)
+//}
