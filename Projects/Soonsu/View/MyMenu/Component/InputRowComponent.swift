@@ -61,3 +61,21 @@ struct InputRowComponent: View {
 
     }
 }
+
+
+#Preview {
+    struct Preview: View {
+        @State private var value = "1000"
+        var body: some View {
+            InputRowComponent(
+                title: "구매 금액",
+                placeholder: "1000",
+                text: $value,
+                keyboardType: .numberPad,
+                isEnabled: true,
+                unit: "원"
+            )
+        }
+    }
+    return Preview()
+}

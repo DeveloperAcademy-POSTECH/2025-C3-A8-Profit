@@ -110,21 +110,48 @@ struct ProfitScreen: View {
         }
     }
 }
-//
-////다음 뷰
-//struct NextView: View {
-//    var body: some View {
-//        VStack(spacing: 24) {
-//            Text("새로운 뷰입니다.")
-//                .font(.largeTitle)
-//                .fontWeight(.bold)
-//            Text("여기서 인건비, 간접비, 감가상각비 등을 입력할 수 있게 확장 가능!")
-//                .font(.body)
-//                .foregroundColor(.secondary)
-//            Spacer()
-//        }
-//        .padding()
-//        .navigationTitle("세부 고정비 관리")
-//        .navigationBarTitleDisplayMode(.inline)
-//    }
-//}
+
+
+#Preview {
+    let profitVM = ProfitViewModel()
+    let menuVM = MenuViewModel()
+    
+    // 날짜 포맷 함수 (format private 대체)
+    func format(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
+    }
+    
+    let today = Date()
+    
+    // 샘플 menuMaster
+    profitVM.menuMaster = [
+        MenuItem(id: 1, name: "돈까스", price: 8000, materialCostPerUnit: 2500, image: ""),
+        MenuItem(id: 2, name: "우동", price: 6000, materialCostPerUnit: 1800, image: "")
+    ]
+    
+    // 샘플 매출
+    profitVM.dailySalesData[format(today)] = DailySales(
+        revenue: 20000,
+        materialCost: 5500,
+        items: [
+            SoldItem(id: 1, name: "돈까스", price: 8000, qty: 2, image: ""),
+            SoldItem(id: 2, name: "우동", price: 6000, qty: 1, image: "")
+        ]
+    )
+    
+    // 기본 고정비 설정
+    profitVM.monthlyFixedCost = 3000000
+    profitVM.operatingDays = 30
+    profitVM.isFixedCostSet = true
+    
+    // selectedTab을 위한 @State
+    @State var tab: TabType = .profit
+    
+    return ProfitScreen(
+        viewModel: profitVM,
+        menuViewModel: menuVM,
+        selectedTab: .constant(tab)
+    )
+}
