@@ -15,12 +15,10 @@ struct LaborCostEditView: View {
 
     var labor: TempLaborCost
     var onSave: (TempLaborCost) -> Void
-    var onCancel: () -> Void
 
     init(labor: TempLaborCost, onSave: @escaping (TempLaborCost) -> Void, onCancel: @escaping () -> Void) {
         self.labor = labor
         self.onSave = onSave
-        self.onCancel = onCancel
         _employeeName = State(initialValue: labor.employeeName)
         _employeeTime = State(initialValue: String(labor.employeeTime))
         _employeeSalary = State(initialValue: String(labor.employeeSalary))
@@ -78,16 +76,6 @@ struct LaborCostEditView: View {
                 Spacer()
 
                 HStack {
-                    Button {
-                        onCancel()
-                    } label: {
-                        Text("취소")
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 50)
-                            .background(Color.gray)
-                            .cornerRadius(10)
-                    }
 
                     Button {
                         if let time = Int(employeeTime), let salary = Int(employeeSalary) {

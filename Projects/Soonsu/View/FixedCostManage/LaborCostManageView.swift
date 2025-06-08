@@ -48,7 +48,7 @@ struct LaborCostManageView: View {
     var body: some View {
         ZStack {
             Color(UIColor.systemGroupedBackground)
-                        .ignoresSafeArea()
+                .ignoresSafeArea()
             
             VStack {
                 HStack {
@@ -80,6 +80,7 @@ struct LaborCostManageView: View {
                                             .frame(width: 33, height: 33)
                                             .foregroundColor(.black)
                                         Text(labor.employeeName)
+                                            .foregroundStyle(.black)
                                             .font(.headline)
                                             .fontWeight(.bold)
                                         Spacer()
@@ -102,14 +103,13 @@ struct LaborCostManageView: View {
                             isModified = true
                         }
                     }
-//                    .listStyle()
-//                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    //                    .listStyle()
+                    //                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                 }
                 
-                // Summary block: total hours & cost
                 let totalHours = laborCosts.reduce(0) { $0 + $1.employeeTime }
                 let totalCost = laborCosts.reduce(0) { $0 + ($1.employeeTime * $1.employeeSalary) }
-
+                
                 VStack(alignment: .leading, spacing: 4) {
                     ForEach(laborCosts, id: \.id) { labor in
                         let cost = labor.employeeTime * labor.employeeSalary
@@ -117,7 +117,7 @@ struct LaborCostManageView: View {
                             .font(.caption)
                             .foregroundColor(.gray)
                     }
-
+                    
                     HStack {
                         Text("월 총 근무시간")
                             .font(.headline)
@@ -125,7 +125,7 @@ struct LaborCostManageView: View {
                         Text("\(totalHours) 시간")
                             .font(.headline)
                     }
-
+                    
                     HStack {
                         Text("월 총 인건비")
                             .font(.headline)
@@ -135,7 +135,7 @@ struct LaborCostManageView: View {
                     }
                 }
                 .padding(.top)
-
+                
                 Button("인건비 저장") {
                     do {
                         let existing = try modelContext.fetch(FetchDescriptor<LaborCost>())
@@ -143,7 +143,7 @@ struct LaborCostManageView: View {
                         for item in existing {
                             modelContext.delete(item)
                         }
-
+                        
                         for temp in laborCosts {
                             let newLabor = LaborCost(
                                 employeeName: temp.employeeName,
@@ -153,7 +153,7 @@ struct LaborCostManageView: View {
                             )
                             modelContext.insert(newLabor)
                         }
-
+                        
                         try modelContext.save()
                         
                         loadLaborCosts()
@@ -174,61 +174,61 @@ struct LaborCostManageView: View {
             .padding(16)
         }
         
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showAddEmployee = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "plus")
-                        }
-                        .font(.headline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    showAddEmployee = true
+                } label: {
+                    HStack {
+                        Image(systemName: "plus")
                     }
+                    .font(.headline)
                 }
             }
-            .navigationDestination(isPresented: $showAddEmployee) {
-                LaborCostAddView { newLabor in
-                    laborCosts.append(
-                        TempLaborCost(
-                            employeeName: newLabor.employeeName,
-                            employeeTime: newLabor.employeeTime,
-                            employeeSalary: newLabor.employeeSalary
-                        )
+        }
+        .navigationDestination(isPresented: $showAddEmployee) {
+            LaborCostAddView { newLabor in
+                laborCosts.append(
+                    TempLaborCost(
+                        employeeName: newLabor.employeeName,
+                        employeeTime: newLabor.employeeTime,
+                        employeeSalary: newLabor.employeeSalary
                     )
-                    isModified = true
-                }
+                )
+                isModified = true
             }
-            .navigationDestination(isPresented: $showEditView) {
-                if let labor = selectedLabor {
-                    LaborCostEditView(
-                        labor: labor,
-                        onSave: { edited in
-                            if let index = laborCosts.firstIndex(where: { $0.id == edited.id }) {
-                                laborCosts[index] = edited
-                                isModified = true
-                            }
-                            showEditView = false
-                        },
-                        onCancel: {
-                            showEditView = false
+        }
+        .navigationDestination(isPresented: $showEditView) {
+            if let labor = selectedLabor {
+                LaborCostEditView(
+                    labor: labor,
+                    onSave: { edited in
+                        if let index = laborCosts.firstIndex(where: { $0.id == edited.id }) {
+                            laborCosts[index] = edited
+                            isModified = true
                         }
-                    )
-                }
-                
-            }
-            .onChange(of: showEditView) { _, newValue in
-                // no action needed
+                        showEditView = false
+                    },
+                    onCancel: {
+                        showEditView = false
+                    }
+                )
             }
             
-            .navigationTitle(Text("인건비 관리"))
-            .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                if !didLoad {
-                    loadLaborCosts()
-                    didLoad = true
-                }
+        }
+        .onChange(of: showEditView) { _, newValue in
+            // no action needed
+        }
+        
+        .navigationTitle(Text("인건비 관리"))
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            if !didLoad {
+                loadLaborCosts()
+                didLoad = true
             }
-//            .toolbar(.hidden, for: .tabBar)
+        }
+        //            .toolbar(.hidden, for: .tabBar)
     }
 }
 
