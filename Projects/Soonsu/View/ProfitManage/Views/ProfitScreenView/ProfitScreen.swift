@@ -110,21 +110,21 @@ struct ProfitScreen: View {
         }
     }
 }
-
-//다음 뷰
-struct NextView: View {
-    var body: some View {
-        VStack(spacing: 24) {
-            Text("새로운 뷰입니다.")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            Text("여기서 인건비, 간접비, 감가상각비 등을 입력할 수 있게 확장 가능!")
-                .font(.body)
-                .foregroundColor(.secondary)
-            Spacer()
-        }
-        .padding()
-        .navigationTitle("세부 고정비 관리")
-        .navigationBarTitleDisplayMode(.inline)
-    }
-}
+//
+////다음 뷰
+//struct NextView: View {
+//    var body: some View {
+//        VStack(spacing: 24) {
+//            Text("새로운 뷰입니다.")
+//                .font(.largeTitle)
+//                .fontWeight(.bold)
+//            Text("여기서 인건비, 간접비, 감가상각비 등을 입력할 수 있게 확장 가능!")
+//                .font(.body)
+//                .foregroundColor(.secondary)
+//            Spacer()
+//        }
+//        .padding()
+//        .navigationTitle("세부 고정비 관리")
+//        .navigationBarTitleDisplayMode(.inline)
+//    }
+//}

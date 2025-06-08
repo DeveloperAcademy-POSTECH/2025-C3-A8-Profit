@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		265FB4502DF59FA500D171FA /* DailySalesRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB44F2DF59FA500D171FA /* DailySalesRecord.swift */; };
-		265FB4522DF59FB600D171FA /* IngredientCoulson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4512DF59FB600D171FA /* IngredientCoulson.swift */; };
-		265FB4542DF59FBC00D171FA /* IngredientInfoCoulson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4532DF59FBC00D171FA /* IngredientInfoCoulson.swift */; };
+		265FB4522DF59FB600D171FA /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4512DF59FB600D171FA /* Ingredient.swift */; };
+		265FB4542DF59FBC00D171FA /* IngredientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4532DF59FBC00D171FA /* IngredientInfo.swift */; };
 		265FB4562DF59FC900D171FA /* SoldItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4552DF59FC800D171FA /* SoldItemModel.swift */; };
 		265FB4692DF5A00A00D171FA /* ProfitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4582DF5A00A00D171FA /* ProfitViewModel.swift */; };
 		265FB46A2DF5A00A00D171FA /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4572DF5A00A00D171FA /* MenuViewModel.swift */; };
@@ -19,10 +19,9 @@
 		265FB46E2DF5A00A00D171FA /* ProfitScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4612DF5A00A00D171FA /* ProfitScreen.swift */; };
 		265FB46F2DF5A00A00D171FA /* MainTabViewCoulson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4632DF5A00A00D171FA /* MainTabViewCoulson.swift */; };
 		265FB4702DF5A00A00D171FA /* CalendarGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB45D2DF5A00A00D171FA /* CalendarGridView.swift */; };
-		265FB4712DF5A00A00D171FA /* SoonsuAppCoulson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4672DF5A00A00D171FA /* SoonsuAppCoulson.swift */; };
+		265FB4712DF5A00A00D171FA /* SoonsuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4672DF5A00A00D171FA /* SoonsuApp.swift */; };
 		265FB4722DF5A00A00D171FA /* TabBarViewCoulson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4642DF5A00A00D171FA /* TabBarViewCoulson.swift */; };
 		265FB4732DF5A00A00D171FA /* ProfitViewModelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4592DF5A00A00D171FA /* ProfitViewModelStorage.swift */; };
-		3E4278DE2DF5791C00AD1EE5 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4278DC2DF5791C00AD1EE5 /* TabBarView.swift */; };
 		3E6688EA2DF5799E00DE2298 /* IngredientsCham.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E22DF5799E00DE2298 /* IngredientsCham.json */; };
 		3E6688EB2DF5799E00DE2298 /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E72DF5799E00DE2298 /* MockData.json */; };
 		3E6688EC2DF5799E00DE2298 /* IngredientsKamis.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E32DF5799E00DE2298 /* IngredientsKamis.json */; };
@@ -30,9 +29,7 @@
 		3E6688EF2DF5799E00DE2298 /* DailySales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6688DE2DF5799E00DE2298 /* DailySales.swift */; };
 		3E6688F02DF5799E00DE2298 /* OverheadCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6688E82DF5799E00DE2298 /* OverheadCost.swift */; };
 		3E6688F22DF5799E00DE2298 /* SoldItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6688E92DF5799E00DE2298 /* SoldItem.swift */; };
-		3E6688F42DF5799E00DE2298 /* IngredientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6688E12DF5799E00DE2298 /* IngredientInfo.swift */; };
 		3E6688F52DF5799E00DE2298 /* LaborCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6688E52DF5799E00DE2298 /* LaborCost.swift */; };
-		3E7F2BE32DEDCC8700A20B86 /* SoonsuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F2BDF2DEDCC8700A20B86 /* SoonsuApp.swift */; };
 		3E7F2BF32DEDCFBB00A20B86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E7F2BF22DEDCFBB00A20B86 /* GoogleService-Info.plist */; };
 		68343B8F2DED761400BD34B4 /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = 68343B8E2DED761400BD34B4 /* FirebaseAI */; };
 		68343B912DED761400BD34B4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 68343B902DED761400BD34B4 /* FirebaseAnalytics */; };
@@ -61,8 +58,8 @@
 
 /* Begin PBXFileReference section */
 		265FB44F2DF59FA500D171FA /* DailySalesRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySalesRecord.swift; sourceTree = "<group>"; };
-		265FB4512DF59FB600D171FA /* IngredientCoulson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCoulson.swift; sourceTree = "<group>"; };
-		265FB4532DF59FBC00D171FA /* IngredientInfoCoulson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInfoCoulson.swift; sourceTree = "<group>"; };
+		265FB4512DF59FB600D171FA /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		265FB4532DF59FBC00D171FA /* IngredientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInfo.swift; sourceTree = "<group>"; };
 		265FB4552DF59FC800D171FA /* SoldItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoldItemModel.swift; sourceTree = "<group>"; };
 		265FB4572DF5A00A00D171FA /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		265FB4582DF5A00A00D171FA /* ProfitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitViewModel.swift; sourceTree = "<group>"; };
@@ -74,10 +71,8 @@
 		265FB4612DF5A00A00D171FA /* ProfitScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitScreen.swift; sourceTree = "<group>"; };
 		265FB4632DF5A00A00D171FA /* MainTabViewCoulson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewCoulson.swift; sourceTree = "<group>"; };
 		265FB4642DF5A00A00D171FA /* TabBarViewCoulson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewCoulson.swift; sourceTree = "<group>"; };
-		265FB4672DF5A00A00D171FA /* SoonsuAppCoulson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuAppCoulson.swift; sourceTree = "<group>"; };
-		3E4278DC2DF5791C00AD1EE5 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		265FB4672DF5A00A00D171FA /* SoonsuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuApp.swift; sourceTree = "<group>"; };
 		3E6688DE2DF5799E00DE2298 /* DailySales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySales.swift; sourceTree = "<group>"; };
-		3E6688E12DF5799E00DE2298 /* IngredientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInfo.swift; sourceTree = "<group>"; };
 		3E6688E22DF5799E00DE2298 /* IngredientsCham.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IngredientsCham.json; sourceTree = "<group>"; };
 		3E6688E32DF5799E00DE2298 /* IngredientsKamis.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IngredientsKamis.json; sourceTree = "<group>"; };
 		3E6688E52DF5799E00DE2298 /* LaborCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaborCost.swift; sourceTree = "<group>"; };
@@ -85,7 +80,6 @@
 		3E6688E72DF5799E00DE2298 /* MockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockData.json; sourceTree = "<group>"; };
 		3E6688E82DF5799E00DE2298 /* OverheadCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverheadCost.swift; sourceTree = "<group>"; };
 		3E6688E92DF5799E00DE2298 /* SoldItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoldItem.swift; sourceTree = "<group>"; };
-		3E7F2BDF2DEDCC8700A20B86 /* SoonsuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuApp.swift; sourceTree = "<group>"; };
 		3E7F2BF22DEDCFBB00A20B86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		68343B5F2DED74BD00BD34B4 /* Soonsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Soonsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68343B6E2DED74BE00BD34B4 /* SoonsuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoonsuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,7 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				68343B962DED76BE00BD34B4 /* Soonsu */,
-				3E7F2BDF2DEDCC8700A20B86 /* SoonsuApp.swift */,
+				265FB4672DF5A00A00D171FA /* SoonsuApp.swift */,
 				68343B922DED76BE00BD34B4 /* Assets.xcassets */,
 				68343B9C2DED76C100BD34B4 /* SoonsuTests */,
 				68343BA02DED76C400BD34B4 /* SoonsuUITests */,
@@ -261,9 +255,8 @@
 			children = (
 				3E6688DE2DF5799E00DE2298 /* DailySales.swift */,
 				265FB44F2DF59FA500D171FA /* DailySalesRecord.swift */,
-				265FB4512DF59FB600D171FA /* IngredientCoulson.swift */,
-				265FB4532DF59FBC00D171FA /* IngredientInfoCoulson.swift */,
-				3E6688E12DF5799E00DE2298 /* IngredientInfo.swift */,
+				265FB4512DF59FB600D171FA /* Ingredient.swift */,
+				265FB4532DF59FBC00D171FA /* IngredientInfo.swift */,
 				3E6688E22DF5799E00DE2298 /* IngredientsCham.json */,
 				3E6688E32DF5799E00DE2298 /* IngredientsKamis.json */,
 				3E6688E72DF5799E00DE2298 /* MockData.json */,
@@ -281,9 +274,7 @@
 			children = (
 				3EBF44302DF17E0400C6F319 /* MyMenu */,
 				3EC4A2EB2DF0946C007CE029 /* FixedCostManage */,
-				3E4278DC2DF5791C00AD1EE5 /* TabBarView.swift */,
 				265FB4682DF5A00A00D171FA /* ProfitManage */,
-				265FB4672DF5A00A00D171FA /* SoonsuAppCoulson.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -448,19 +439,16 @@
 				265FB46E2DF5A00A00D171FA /* ProfitScreen.swift in Sources */,
 				265FB46F2DF5A00A00D171FA /* MainTabViewCoulson.swift in Sources */,
 				265FB4702DF5A00A00D171FA /* CalendarGridView.swift in Sources */,
-				265FB4712DF5A00A00D171FA /* SoonsuAppCoulson.swift in Sources */,
+				265FB4712DF5A00A00D171FA /* SoonsuApp.swift in Sources */,
 				265FB4722DF5A00A00D171FA /* TabBarViewCoulson.swift in Sources */,
 				265FB4732DF5A00A00D171FA /* ProfitViewModelStorage.swift in Sources */,
 				3E6688F02DF5799E00DE2298 /* OverheadCost.swift in Sources */,
-				265FB4522DF59FB600D171FA /* IngredientCoulson.swift in Sources */,
-				265FB4542DF59FBC00D171FA /* IngredientInfoCoulson.swift in Sources */,
+				265FB4522DF59FB600D171FA /* Ingredient.swift in Sources */,
+				265FB4542DF59FBC00D171FA /* IngredientInfo.swift in Sources */,
 				3E6688F22DF5799E00DE2298 /* SoldItem.swift in Sources */,
-				3E6688F42DF5799E00DE2298 /* IngredientInfo.swift in Sources */,
 				265FB4502DF59FA500D171FA /* DailySalesRecord.swift in Sources */,
 				265FB4562DF59FC900D171FA /* SoldItemModel.swift in Sources */,
 				3E6688F52DF5799E00DE2298 /* LaborCost.swift in Sources */,
-				3E4278DE2DF5791C00AD1EE5 /* TabBarView.swift in Sources */,
-				3E7F2BE32DEDCC8700A20B86 /* SoonsuApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

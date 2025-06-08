@@ -117,16 +117,16 @@ struct IngredientModifyComponent: View {
         )
     }
 }
-
-#Preview {
-    IngredientModifyComponent(ingredient: IngredientInfo(
-        name: "양배추",
-        amount: 30,
-        unit: "g",
-        unitPrice: 1000),
-                          parsedIngredients: .constant([IngredientInfo(
-                            name: "양배추",
-                            amount: 30,
-                            unit: "g",
-                            unitPrice: 1000)]))
-}
+//
+//#Preview {
+//    IngredientModifyComponent(ingredient: IngredientInfo(
+//        name: "양배추",
+//        amount: 30,
+//        unit: "g",
+//        unitPrice: 1000),
+//                          parsedIngredients: .constant([IngredientInfo(
+//                            name: "양배추",
+//                            amount: 30,
+//                            unit: "g",
+//                            unitPrice: 1000)]))
+//}
