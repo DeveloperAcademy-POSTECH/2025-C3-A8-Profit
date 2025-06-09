@@ -13,7 +13,7 @@ struct MenuItem: Identifiable, Codable, Hashable {
     let id: Int
     let name: String
     let price: Int
-//    let materialCostPerUnit: Int
-    let materialCostPerUnit: Double
+    let materialCostPerUnit: Int
+//    let materialCostPerUnit: Double
     let image: String
 }

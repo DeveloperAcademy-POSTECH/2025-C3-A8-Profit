@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 import SwiftUI
 
-/*
+
 @Model
 final class Ingredient {
     @Attribute(.unique) var id: UUID      // IngredientInfo.id와 동일하게 사용
@@ -41,7 +41,7 @@ final class Ingredient {
         self.createdAt = createdAt
     }
 }
-*/
+/*
 @Model
 final class Ingredient {
     @Attribute(.unique) var id: UUID                // 고유 식별자
@@ -79,3 +79,4 @@ final class Ingredient {
         self.createdAt = createdAt
     }
 }
+*/

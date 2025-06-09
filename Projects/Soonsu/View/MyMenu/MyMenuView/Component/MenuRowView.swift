@@ -69,45 +69,36 @@ struct MenuRowView: View {
             IngredientInfo(
                 name: $0.name,
                 amount: $0.amount,
-                unit: $0.unit,
+                //                unit: $0.unit,
                 unitPrice: $0.unitPrice
             )
         }
     }
     
-    /// 총 원가(Int)
-    private var totalCost: Double {
-        matchedEntities.reduce(0) { $0 + $1.unitPrice }
-    }
+    //    /// 총 원가(Int)
+    //    private var totalCost: Double {
+    //        matchedEntities.reduce(0) { $0 + $1.unitPrice }
+    //    }
     
     
-    /// 원가율 (Double 백분율 값, 소수점 첫째자리까지)
-    private var costRateString: String {
-        guard let price = headerEntity?.menuPrice, price > 0 else { return "-" }
-        let rate = (Double(totalCost) / Double(price)) * 100
-        return String(format: "%.1f", rate)
-    }
+    //    /// 원가율 (Double 백분율 값, 소수점 첫째자리까지)
+    //    private var costRateString: String {
+    //        guard let price = headerEntity?.menuPrice, price > 0 else { return "-" }
+    //        let rate = (Double(totalCost) / Double(price)) * 100
+    //        return String(format: "%.1f", rate)
+    //    }
     
     var body: some View {
-
-        NavigationLink {
-            NavigationStack {
-                IngredientResultView(
-                    selectedMenuName: .constant(menuName),
-                    showAddMenu:      .constant(false),
-                    menuName:         menuName,
-                    menuPrice:        priceString,
-                    image:            headerImage,
-                    parsedIngredients: infos,
-                    mode: .edit(existingEntities: matchedEntities)
-                )
-                .navigationBarBackButtonHidden(false)
-            }
-        } label: {
+        
+        
+        Button {
+            showDetail = true
+        }
+        label: {
             // Label: 썸네일 + 메뉴 이름 + 가격
             HStack(spacing: 12) {
-                if let thumb = headerImage {
-                    Image(uiImage: thumb)
+                if let image = headerImage {
+                    Image(uiImage: image)
                         .resizable()
                         .scaledToFill()
                         .frame(width: 63, height: 63)
@@ -126,16 +117,22 @@ struct MenuRowView: View {
                             .font(.system(size: 17))
                             .fontWeight(.semibold)
                         Spacer()
-                        Text("재료원가 \(Int(totalCost))원")
-                            .font(.footnote)
-                            .fontWeight(.regular)
-                            .foregroundStyle(.secondary)
-                        
+                        if let price = Int(priceString) {
+                            Text("재료원가 \(price.formatted())원")
+                                .font(.footnote)
+                                .fontWeight(.regular)
+                                .foregroundStyle(.secondary)
+                        } else {
+                            Text("재료원가 정보 없음")
+                                .font(.footnote)
+                                .fontWeight(.regular)
+                                .foregroundStyle(.secondary)
+                        }
                     }
                     HStack {
-                        //                        Text("그래프")
+                        Text("그래프")
                         Spacer()
-                        Text("원가율 \(costRateString)%")
+                        Text("원가율 \(priceString)%")
                             .font(.footnote)
                             .fontWeight(.regular)
                             .foregroundStyle(.blue)
@@ -145,21 +142,85 @@ struct MenuRowView: View {
             // ── “기존 확인 모드”로 IngredientResultView를 푸시 ──
             .navigationDestination(isPresented: $showDetail) {
                 IngredientResultView(
+                    isNew: false,
                     selectedMenuName: .constant(menuName),
                     showAddMenu:      .constant(false),   // “기존 모드” 플래그
                     menuName:         menuName,
                     menuPrice:        priceString,
                     image:            headerImage,
-                    parsedIngredients: infos,
-                    mode: .create
+                    parsedIngredients: infos
                 )
             }
         }
     }
-}
-
-#Preview {
-    // Preview를 위해 더미 데이터를 넣어볼 수도 있습니다.
-    MenuRowView(menuName: "예시메뉴")
-        .modelContainer(for: [Ingredient.self], inMemory: true)
+    
+    
+    /*
+     NavigationLink {
+     NavigationStack {
+     IngredientResultView(
+     selectedMenuName: .constant(menuName),
+     showAddMenu:      .constant(false),
+     menuName:         menuName,
+     menuPrice:        priceString,
+     image:            headerImage,
+     parsedIngredients: infos,
+     mode: .edit(existingEntities: matchedEntities)
+     )
+     .navigationBarBackButtonHidden(false)
+     }
+     } label: {
+     // Label: 썸네일 + 메뉴 이름 + 가격
+     HStack(spacing: 12) {
+     if let thumb = headerImage {
+     Image(uiImage: thumb)
+     .resizable()
+     .scaledToFill()
+     .frame(width: 63, height: 63)
+     .clipShape(RoundedRectangle(cornerRadius: 12))
+     } else {
+     RoundedRectangle(cornerRadius: 12)
+     .fill(Color.gray.opacity(0.2))
+     .frame(width: 63, height: 63)
+     .overlay(
+     Image(systemName: "fork.knife")
+     )
+     }
+     VStack {
+     HStack {
+     Text(menuName)
+     .font(.system(size: 17))
+     .fontWeight(.semibold)
+     Spacer()
+     Text("재료원가 \(Int(totalCost))원")
+     .font(.footnote)
+     .fontWeight(.regular)
+     .foregroundStyle(.secondary)
+     
+     }
+     HStack {
+     //                        Text("그래프")
+     Spacer()
+     Text("원가율 \(costRateString)%")
+     .font(.footnote)
+     .fontWeight(.regular)
+     .foregroundStyle(.blue)
+     }
+     }
+     }
+     // ── “기존 확인 모드”로 IngredientResultView를 푸시 ──
+     .navigationDestination(isPresented: $showDetail) {
+     IngredientResultView(
+     selectedMenuName: .constant(menuName),
+     showAddMenu:      .constant(false),   // “기존 모드” 플래그
+     menuName:         menuName,
+     menuPrice:        priceString,
+     image:            headerImage,
+     parsedIngredients: infos,
+     mode: .create
+     )
+     }
+     }
+     }
+     */
 }

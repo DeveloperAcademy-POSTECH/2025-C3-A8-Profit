@@ -9,19 +9,26 @@ import SwiftUI
 import SwiftData
 
 struct MyMenuView: View {
+    
+    @Environment(\.modelContext) private var context
+    @ObservedObject var viewModel: MenuViewModel
     @State private var showAddMenu      = false
     @State private var selectedMenuName = ""
     
-    // SwiftData에서 모든 Ingredient를 최신순(createdAt)으로 가져옴
-    @Query(sort: \Ingredient.createdAt, order: .reverse)
-    private var allIngredients: [Ingredient]
+    init(viewModel: MenuViewModel) {
+        self.viewModel = viewModel
+        self._showAddMenu = State(initialValue: false)
+        self._selectedMenuName = State(initialValue: "")
+    }
     
-    @Environment(\.modelContext) private var context
+    private var allIngredients: [Ingredient]{
+        viewModel.allIngredients
+    }
     
     /// 중복 없이 최신순으로 정리한 메뉴 이름 배열
     private var menuNames: [String] {
         var seen: Set<String> = []
-        return allIngredients.compactMap { entity in
+        return viewModel.allIngredients.compactMap { entity in
             guard !seen.contains(entity.menuName) else { return nil }
             seen.insert(entity.menuName)
             return entity.menuName
@@ -29,6 +36,7 @@ struct MyMenuView: View {
     }
     
     var body: some View {
+        let menuNames = Set(viewModel.allIngredients.map(\.menuName)).sorted(by: >)
         NavigationStack {
             VStack {
                 
@@ -82,10 +90,20 @@ struct MyMenuView: View {
             }
         }
 
+        .onChange(of: selectedMenuName) { _, newValue in
+            if !newValue.isEmpty {
+                showAddMenu = false
+                viewModel.fetchAllIngredients() // 새로 등록한 메뉴 반영
+            }
+        }
+        
+        
         // ── 디버그: allIngredients의 변화 감지
         .onChange(of: allIngredients.count) { _, newCount in
             print("🔵 [Debug] allIngredients.count changed to \(newCount)")
         }
+        
+        
         // ── 디버그: selectedMenuName이 바뀌면 showAddMenu를 false로 (IngredientSheetView를 강제 팝)
         .onChange(of: selectedMenuName) { _, newValue in
             if !newValue.isEmpty {
@@ -109,12 +127,5 @@ struct MyMenuView: View {
         } catch {
             print("❌ 삭제 실패: \(error)")
         }
-    }
-}
-
-#Preview {
-    NavigationStack {
-        MyMenuView()
-            .modelContainer(for: [Ingredient.self], inMemory: true)
     }
 }

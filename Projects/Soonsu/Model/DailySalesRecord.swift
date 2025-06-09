@@ -29,11 +29,11 @@ final class DailySalesRecord {
     @Attribute(.unique) var dateKey: String
     var revenue: Int
 //    var materialCost: Int
-    var materialCost: Double
+    var materialCost: Int
     var items: [SoldItemModel]
 
 //    init(dateKey: String, revenue: Int, materialCost: Int, items: [SoldItemModel]) {
-    init(dateKey: String, revenue: Int, materialCost: Double, items: [SoldItemModel]) {
+    init(dateKey: String, revenue: Int, materialCost: Int, items: [SoldItemModel]) {
         self.dateKey = dateKey
         self.revenue = revenue
         self.materialCost = materialCost

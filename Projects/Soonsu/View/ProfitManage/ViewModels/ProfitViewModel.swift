@@ -97,9 +97,9 @@ class ProfitViewModel: ObservableObject {
     func updateSales(for date: Date, soldItems: [SoldItem]) {
         let revenue = soldItems.map { $0.price * $0.qty }.reduce(0, +)
         let materialCost = soldItems.map {
-            let costPer = menuMaster.first(where: { $0.id == $0.id })?.materialCostPerUnit ?? 0.0
-            return costPer * Double($0.qty)
-        }.reduce(0.0, +)
+            let costPer = menuMaster.first(where: { $0.id == $0.id })?.materialCostPerUnit ?? 0
+            return costPer * $0.qty
+        }.reduce(0, +)
         
         let key = format(date)
         if soldItems.allSatisfy({ $0.qty == 0 }) {
