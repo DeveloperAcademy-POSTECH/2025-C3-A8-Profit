@@ -77,7 +77,7 @@ struct MainTabViewCoulson: View {
             //
         //        .modelContainer(for: [Ingredient.self])
         .modelContainer(for: [
-            IngredientCoulson.self,
+            Ingredient.self,
             SoldItemModel.self,
             DailySalesRecord.self,
             MonthlyFixedCostRecord.self
@@ -88,5 +88,5 @@ struct MainTabViewCoulson: View {
 #Preview {
     // SwiftData in-memory 컨테이너를 연결해서 미리보기도 가능합니다.
     MainTabViewCoulson()
-        .modelContainer(for: [IngredientCoulson.self], inMemory: true)
+        .modelContainer(for: [Ingredient.self], inMemory: true)
 }

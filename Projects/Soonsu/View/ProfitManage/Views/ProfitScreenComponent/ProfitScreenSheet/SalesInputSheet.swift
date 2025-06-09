@@ -168,12 +168,34 @@ struct SalesInputSheet: View {
 }
 
 
-//#Preview {
-//    // 뷰모델과 초기 items 배열 준비
-//    let previewVM = ProfitViewModel()
-//    let initialItems = previewVM.menuMaster.map {
-//        SoldItem(id: $0.id, name: $0.name, price: $0.price, qty: 1, image: "")
-//    }
-//    SalesInputSheet(vm: previewVM, items: initialItems)
-//        .previewLayout(.sizeThatFits)
-//}
+#Preview {
+    struct SalesInputSheetPreview: View {
+        @StateObject private var vm = ProfitViewModel()
+        @State private var items: [SoldItem] = []
+
+        var body: some View {
+            SalesInputSheet(vm: vm, items: items)
+        }
+
+        init() {
+            let previewVM = ProfitViewModel()
+            
+            // 💡 미리보기용 메뉴 데이터 구성
+            previewVM.menuMaster = [
+                MenuItem(id: 1, name: "김치찌개", price: 9000, materialCostPerUnit: 2500.0, image: ""),
+                MenuItem(id: 2, name: "된장찌개", price: 8500, materialCostPerUnit: 2300.0, image: "")
+            ]
+            previewVM.selectedDate = Date()
+            
+            _vm = StateObject(wrappedValue: previewVM)
+            
+            // ⚙️ 초기 판매 수량 세팅
+            let initialItems = previewVM.menuMaster.map {
+                SoldItem(id: $0.id, name: $0.name, price: $0.price, qty: 1, image: "")
+            }
+            _items = State(initialValue: initialItems)
+        }
+    }
+
+    return SalesInputSheetPreview()
+}

@@ -32,7 +32,7 @@ class ProfitViewModel: ObservableObject {
     @Published var menuMaster: [MenuItem] = []
     
     // MARK: - 사용자 정의 메뉴 불러오기
-    func loadMenuMaster(from ingredients: [IngredientCoulson]) {
+    func loadMenuMaster(from ingredients: [Ingredient]) {
         let grouped = Dictionary(grouping: ingredients, by: { $0.menuName })
         
         menuMaster = grouped.compactMap { (menuName, entries) in
@@ -72,7 +72,7 @@ class ProfitViewModel: ObservableObject {
 //    }
     func netProfit(for date: Date) -> Int? {
         guard let sales = salesData(for: date) else { return nil }
-        return sales.revenue - sales.materialCost - dailyFixedCost(for: date)
+        return sales.revenue - Int(sales.materialCost) - dailyFixedCost(for: date)
     }
     
     func salesData(for date: Date) -> DailySales? {
@@ -97,9 +97,9 @@ class ProfitViewModel: ObservableObject {
     func updateSales(for date: Date, soldItems: [SoldItem]) {
         let revenue = soldItems.map { $0.price * $0.qty }.reduce(0, +)
         let materialCost = soldItems.map {
-            let costPer = menuMaster.first(where: { $0.id == $0.id })?.materialCostPerUnit ?? 0
-            return costPer * $0.qty
-        }.reduce(0, +)
+            let costPer = menuMaster.first(where: { $0.id == $0.id })?.materialCostPerUnit ?? 0.0
+            return costPer * Double($0.qty)
+        }.reduce(0.0, +)
         
         let key = format(date)
         if soldItems.allSatisfy({ $0.qty == 0 }) {
