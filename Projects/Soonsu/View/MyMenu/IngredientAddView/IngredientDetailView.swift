@@ -123,15 +123,20 @@ struct IngredientDetailView: View {
     }
 }
 
-//#Preview {
-//    IngredientModifyComponent(ingredient: IngredientInfo(
-//        name: "양배추",
-//        amount: 30,
-//        unit: "g",
-//        unitPrice: 1000),
-//                          parsedIngredients: .constant([IngredientInfo(
-//                            name: "양배추",
-//                            amount: 30,
-//                            unit: "g",
-//                            unitPrice: 1000)]))
-//}
+#Preview {
+    struct PreviewWrapper: View {
+        @State private var ingredients: [IngredientInfo] = [
+            IngredientInfo(name: "양배추", amount: 30, unit: "g", unitPrice: 1000)
+        ]
+
+        var body: some View {
+            IngredientDetailView(
+                ingredient: ingredients[0],
+                parsedIngredients: $ingredients
+            )
+        }
+    }
+
+    return PreviewWrapper()
+}
+

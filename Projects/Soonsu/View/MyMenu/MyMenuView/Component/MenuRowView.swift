@@ -126,7 +126,7 @@ struct MenuRowView: View {
                             .font(.system(size: 17))
                             .fontWeight(.semibold)
                         Spacer()
-                        Text("재료원가 \(totalCost)원")
+                        Text("재료원가 \(Int(totalCost))원")
                             .font(.footnote)
                             .fontWeight(.regular)
                             .foregroundStyle(.secondary)

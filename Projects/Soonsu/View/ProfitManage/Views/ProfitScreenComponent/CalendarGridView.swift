@@ -108,5 +108,41 @@ struct CalendarGridView: View {
 }
 
 #Preview {
-    CalendarGridView(vm: ProfitViewModel())
+    let previewVM = ProfitViewModel()
+    let today = Date()
+
+    // 날짜 포맷 함수 (private format 대체)
+    func format(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
+    }
+
+    // 샘플 SoldItem
+    let sampleItems = [
+        SoldItem(id: 1, name: "김밥", price: 3000, qty: 2, image: ""),
+        SoldItem(id: 2, name: "라면", price: 4000, qty: 1, image: "")
+    ]
+
+    // menuMaster 샘플 등록
+    previewVM.menuMaster = [
+        MenuItem(id: 1, name: "김밥", price: 3000, materialCostPerUnit: 1000, image: ""),
+        MenuItem(id: 2, name: "라면", price: 4000, materialCostPerUnit: 1200, image: "")
+    ]
+
+    // 선택된 날짜 설정
+    previewVM.selectedDate = today
+
+    // 해당 날짜에 대한 매출 기록 추가
+    previewVM.dailySalesData[format(today)] = DailySales(
+        revenue: 10_000,
+        materialCost: 2200.0,
+        items: sampleItems
+    )
+
+    return CalendarGridView(vm: previewVM)
+        .padding()
+        .previewLayout(.sizeThatFits)
 }
+
+

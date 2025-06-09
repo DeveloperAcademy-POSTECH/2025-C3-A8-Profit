@@ -350,3 +350,31 @@ private extension View {
         .presentationDragIndicator(.visible)
     }
 }
+
+
+#Preview {
+    struct IngredientResultPreview: View {
+        @State private var selectedMenuName = "테스트메뉴"
+        @State private var showAddMenu = false
+        @State private var ingredients: [IngredientInfo] = [
+            IngredientInfo(name: "양배추", amount: 30, unit: "g", unitPrice: 1000),
+            IngredientInfo(name: "돼지고기", amount: 50, unit: "g", unitPrice: 2500)
+        ]
+
+        var body: some View {
+            NavigationStack {
+                IngredientResultView(
+                    selectedMenuName: $selectedMenuName,
+                    showAddMenu: $showAddMenu,
+                    menuName: "함박스테이크",
+                    menuPrice: "12000",
+                    image: UIImage(systemName: "photo"),
+                    parsedIngredients: ingredients,
+                    mode: .create
+                )
+            }
+        }
+    }
+
+    return IngredientResultPreview()
+}

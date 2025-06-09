@@ -15,7 +15,7 @@ struct DailyProfitSummary: View {
         VStack(spacing: 16) {
             if let sales = vm.salesData(for: vm.selectedDate) {
                 let dailyFixed = vm.dailyFixedCost(for: vm.selectedDate)
-                let net = sales.revenue - sales.materialCost - dailyFixed
+                let net = sales.revenue - Int(sales.materialCost) - dailyFixed
                 
                 VStack(alignment: .leading, spacing: 6) {
                     Text("\(vm.selectedDate.formatted(.dateTime.month().day())) \(vm.weekdayKorean(vm.selectedDate))요일 순이익")
