@@ -12,24 +12,24 @@ struct LaborCostAddView: View {
     @State private var employeeTime: String = ""
     @State private var employeeSalary: String = ""
     @Environment(\.dismiss) private var dismiss
-
+    
     var onAdd: (TempLaborCost) -> Void
-
+    
     private var isFormValid: Bool {
         !employeeName.isEmpty && !employeeTime.isEmpty && !employeeSalary.isEmpty
     }
-
+    
     var body: some View {
         ZStack {
             Color(UIColor.systemGroupedBackground)
                 .ignoresSafeArea()
-
+            
             VStack(alignment: .leading, spacing: 16) {
                 Text("직원 등록")
                     .font(.title)
                     .fontWeight(.bold)
                     .padding(.bottom, 20)
-
+                
                 VStack(alignment: .leading) {
                     Text("알바생 이름")
                     TextField("홍길동", text: $employeeName)
@@ -40,7 +40,7 @@ struct LaborCostAddView: View {
                 .padding()
                 .background(Color.white)
                 .cornerRadius(8)
-
+                
                 VStack(alignment: .leading) {
                     Text("근무 시간")
                     TextField("24", text: $employeeTime)
@@ -52,7 +52,7 @@ struct LaborCostAddView: View {
                 .padding()
                 .background(Color.white)
                 .cornerRadius(8)
-
+                
                 VStack(alignment: .leading) {
                     Text("시급")
                     TextField("10,030", text: $employeeSalary)
@@ -64,9 +64,9 @@ struct LaborCostAddView: View {
                 .padding()
                 .background(Color.white)
                 .cornerRadius(8)
-
+                
                 Spacer()
-
+                
                 Button {
                     guard let time = Int(employeeTime),
                           let salary = Int(employeeSalary) else { return }
@@ -90,9 +90,20 @@ struct LaborCostAddView: View {
             .padding(16)
             .navigationTitle("인건비 추가")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.blue)
+                    }
+                }
+            }
         }
     }
-
+    
 }
 
 #Preview {
