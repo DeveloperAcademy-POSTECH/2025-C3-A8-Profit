@@ -14,31 +14,35 @@ import SwiftData
 /// 매월 고정비를 입력·저장할 수 있는 박스
 struct FixedCostTemporaryComponent: View {
     @ObservedObject var vm: ProfitViewModel
+    @State private var inputCost: String = ""
+    @State private var inputDays: String = ""
     @State private var saveMsg: String = ""
-    
+    @State private var refreshTrigger = false
+    @State private var totalFixed: Int = 0
+    @State private var dailyFixed: Int = 0
+    @State private var displayedOperatingDays: Int = 0
+    @Environment(\.modelContext) private var modelContext
+    @Query(FetchDescriptor<FixedCostTemporary>(sortBy: [SortDescriptor(\FixedCostTemporary.date, order: .reverse)]))
+    private var temporaries: [FixedCostTemporary]
     //키보드 숨기기
     @FocusState private var focusedField: Field?
-    
-    @Environment(\.modelContext) private var context
-    
-    @Query private var savedFixedCosts: [FixedCostTemporary]
     
     enum Field: Hashable {
             case cost, days
         }
     
+    var latestTemporary: FixedCostTemporary? {
+        temporaries.first
+    }
+    
     var body: some View {
-        let totalFixed = vm.tempMonthlyFixedCost ?? vm.monthlyFixedCost
-        let operatingDays = vm.tempOperatingDays ?? vm.operatingDays
-        let dailyFixed = operatingDays > 0 ? totalFixed / operatingDays : 0
-        
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text("총 고정비")
                     .font(.title2)
                     .fontWeight(.bold)
                 Spacer()
-                Text("-\(totalFixed) 원")
+                Text("-\(self.totalFixed) 원")
                     .foregroundColor(.red)
                     .font(.title2)
                     .fontWeight(.bold)
@@ -50,19 +54,19 @@ struct FixedCostTemporaryComponent: View {
                     .font(.title2)
                     .fontWeight(.bold)
                 Spacer()
-                Text("- \(dailyFixed.formatted(.number.grouping(.automatic))) 원")
+                Text("- \(self.dailyFixed.formatted(.number.grouping(.automatic))) 원")
                     .foregroundColor(.red)
                     .font(.title2)
                     .fontWeight(.bold)
             }
-            .padding(.bottom, 27)
             
+            Divider()
             
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
-                    Text("영업일수 :")
+                    Text("영업 일수:")
                     Spacer()
-                    Text("\(operatingDays)일")
+                    Text("\(displayedOperatingDays != 0 ? displayedOperatingDays : vm.operatingDays)일")
                 }
             }
             .font(.subheadline)
@@ -70,16 +74,53 @@ struct FixedCostTemporaryComponent: View {
         }
         .padding()
         .background(Color.white)
-        .cornerRadius(12)
+        .cornerRadius(16)
         .padding(.horizontal)
-            
+        .onChange(of: temporaries) { _ in
+            print("Temporary fixed cost updated. UI will refresh.")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                if let latest = temporaries.first {
+                    totalFixed = latest.monthlyFixedCost
+                    dailyFixed = latest.operatingDays > 0 ? latest.monthlyFixedCost / latest.operatingDays : 0
+                    displayedOperatingDays = latest.operatingDays
+                } else {
+                    totalFixed = vm.monthlyFixedCost
+                    dailyFixed = vm.operatingDays > 0 ? vm.monthlyFixedCost / vm.operatingDays : 0
+                    displayedOperatingDays = vm.operatingDays
+                }
+            }
+        }
+        .onAppear {
+            if let latest = temporaries.first {
+                totalFixed = latest.monthlyFixedCost
+                dailyFixed = latest.operatingDays > 0 ? latest.monthlyFixedCost / latest.operatingDays : 0
+                displayedOperatingDays = latest.operatingDays
+            } else {
+                totalFixed = vm.monthlyFixedCost
+                dailyFixed = vm.operatingDays > 0 ? vm.monthlyFixedCost / vm.operatingDays : 0
+                displayedOperatingDays = vm.operatingDays
+            }
+        }
+        .task {
+            if let latest = temporaries.first {
+                totalFixed = latest.monthlyFixedCost
+                dailyFixed = latest.operatingDays > 0 ? latest.monthlyFixedCost / latest.operatingDays : 0
+                displayedOperatingDays = latest.operatingDays
+            } else {
+                totalFixed = vm.monthlyFixedCost
+                dailyFixed = vm.operatingDays > 0 ? vm.monthlyFixedCost / vm.operatingDays : 0
+                displayedOperatingDays = vm.operatingDays
+            }
+        }
+        
+        
+        
         VStack(alignment: .leading, spacing: 8) {
             Text("임시 고정비")
                 .font(.headline)
             HStack {
                 HStack {
-                    TextField("총 고정비", text: $vm.tempInputCost)
-                        .foregroundStyle(.black)
+                    TextField("총 고정비", text: $inputCost)
                         .keyboardType(.numberPad)
                         .padding(12)
                         .background(Color(.systemGray6))
@@ -88,7 +129,7 @@ struct FixedCostTemporaryComponent: View {
                         .foregroundColor(.gray)
                 }
                 HStack {
-                    TextField("영업일수", text: $vm.tempInputDays)
+                    TextField("영업일수", text: $inputDays)
                         .keyboardType(.numberPad)
                         .padding(12)
                         .background(Color(.systemGray6))
@@ -98,31 +139,23 @@ struct FixedCostTemporaryComponent: View {
                 }
             }
             Button {
-                if let num = Int(vm.tempInputCost), num >= 0,
-                   let days = Int(vm.tempInputDays), days > 0   {
-                    vm.tempMonthlyFixedCost = num * 10_000   // 만원 → 원
-                    vm.tempOperatingDays = days
-                    vm.lastFixedCostUpdate = Date()
-                    if let existing = savedFixedCosts.first {
-                        context.delete(existing)
-                    }
-                    let fixedCost = FixedCostTemporary(
-                        date: Date(),
-                        monthlyFixedCost: vm.tempMonthlyFixedCost ?? 0,
-                        operatingDays: vm.tempOperatingDays ?? 0
-                                            )
-                    context.insert(fixedCost)
-                    do {
-                        try context.save()
-                        vm.tempMonthlyFixedCost = fixedCost.monthlyFixedCost
-                        vm.tempOperatingDays = fixedCost.operatingDays
-                        vm.lastFixedCostUpdate = fixedCost.date ?? Date()
-                        vm.tempInputCost = String(fixedCost.monthlyFixedCost / 10_000)
-                        vm.tempInputDays = String(fixedCost.operatingDays)
-                    } catch {
-                        print("🔥 저장 실패: \(error)")
-                    }
+                if let num = Int(inputCost), num >= 0,
+                   let days = Int(inputDays), days > 0   {
+                    let newTemporary = FixedCostTemporary(
+                        date: vm.selectedDate,
+                        monthlyFixedCost: num * 10_000,
+                        operatingDays: days
+                    )
+                    modelContext.insert(newTemporary)
+                    print("Saved temporary fixed cost: \(newTemporary.monthlyFixedCost), days: \(newTemporary.operatingDays), date: \(String(describing: newTemporary.date))")
+                    inputCost = ""
+                    inputDays = ""
                     saveMsg = "고정비가 저장되었습니다."
+                    refreshTrigger.toggle()
+                    totalFixed = newTemporary.monthlyFixedCost
+                    dailyFixed = newTemporary.operatingDays > 0 ? newTemporary.monthlyFixedCost / newTemporary.operatingDays : 0
+                    displayedOperatingDays = newTemporary.operatingDays
+                    try? modelContext.save()
                 } else {
                     saveMsg = "유효한 금액과 영업일수를 입력하세요."
                 }
@@ -135,7 +168,7 @@ struct FixedCostTemporaryComponent: View {
                     .padding()
                     .foregroundColor(.white)
                     .background(Color.blue)
-                    .cornerRadius(10)
+                    .cornerRadius(6)
                     .font(.headline)
             }
             .padding(.top, 3)
@@ -158,20 +191,6 @@ struct FixedCostTemporaryComponent: View {
         .padding()
         .background(Color.white)
         .cornerRadius(7)
-        .onAppear {
-            
-            DispatchQueue.main.async {
-                print("🧾 저장된 데이터 개수: \(savedFixedCosts.count)")
-                if let saved = savedFixedCosts.first {
-                    print("📦 저장된 고정비: \(saved.monthlyFixedCost), \(saved.operatingDays)")
-                    vm.tempMonthlyFixedCost = saved.monthlyFixedCost
-                    vm.tempOperatingDays = saved.operatingDays
-                    vm.lastFixedCostUpdate = saved.date ?? Date()
-                    vm.tempInputCost = String(saved.monthlyFixedCost / 10_000)
-                    vm.tempInputDays = String(saved.operatingDays)
-                }
-            }
-        }
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 enum Tabs: String, CaseIterable {
     case detailTab = "상세 고정비"
@@ -47,13 +48,20 @@ struct FixedCostManageView: View {
             .toolbar(.hidden, for: .tabBar)
             .toolbar {
                 Button {
-                    if let tempCost = viewModel.tempMonthlyFixedCost,
-                       let tempDays = viewModel.tempOperatingDays {
-                        viewModel.monthlyFixedCost = tempCost
-                        viewModel.operatingDays = tempDays
+                    print("툴바 버튼 클릭됨")
+                    let latest = try? context.fetch(FetchDescriptor<FixedCostTemporary>(sortBy: [SortDescriptor(\FixedCostTemporary.date, order: .reverse)])).first
+                    print("가져온 latest: \(String(describing: latest))")
+
+                    if let latest {
+                        print("✅ 임시 고정비 값 적용 시작")
+                        viewModel.monthlyFixedCost = latest.monthlyFixedCost
+                        viewModel.operatingDays = latest.operatingDays
                         viewModel.isFixedCostSet = true
-                        viewModel.objectWillChange.send()
+                        viewModel.lastFixedCostUpdate = Date()
+                        print("🟢 적용 완료: \(viewModel.monthlyFixedCost), \(viewModel.operatingDays)")
                         dismiss()
+                    } else {
+                        print("❌ 최신 임시 고정비 데이터를 찾을 수 없음")
                     }
                 } label: {
                     Text("적용")

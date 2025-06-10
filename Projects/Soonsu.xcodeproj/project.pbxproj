@@ -22,6 +22,7 @@
 		265FB4712DF5A00A00D171FA /* SoonsuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4672DF5A00A00D171FA /* SoonsuApp.swift */; };
 		265FB4722DF5A00A00D171FA /* TabBarViewCoulson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4642DF5A00A00D171FA /* TabBarViewCoulson.swift */; };
 		265FB4732DF5A00A00D171FA /* ProfitViewModelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4592DF5A00A00D171FA /* ProfitViewModelStorage.swift */; };
+		3E1F3C142DF836A900582D3A /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = 3E1F3C132DF836A900582D3A /* GoogleGenerativeAI */; };
 		3E6688EA2DF5799E00DE2298 /* IngredientsCham.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E22DF5799E00DE2298 /* IngredientsCham.json */; };
 		3E6688EB2DF5799E00DE2298 /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E72DF5799E00DE2298 /* MockData.json */; };
 		3E6688EC2DF5799E00DE2298 /* IngredientsKamis.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E32DF5799E00DE2298 /* IngredientsKamis.json */; };
@@ -115,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E1F3C142DF836A900582D3A /* GoogleGenerativeAI in Frameworks */,
 				68343B912DED761400BD34B4 /* FirebaseAnalytics in Frameworks */,
 				68343B8F2DED761400BD34B4 /* FirebaseAI in Frameworks */,
 			);
@@ -306,6 +308,7 @@
 			packageProductDependencies = (
 				68343B8E2DED761400BD34B4 /* FirebaseAI */,
 				68343B902DED761400BD34B4 /* FirebaseAnalytics */,
+				3E1F3C132DF836A900582D3A /* GoogleGenerativeAI */,
 			);
 			productName = Soonsu;
 			productReference = 68343B5F2DED74BD00BD34B4 /* Soonsu.app */;
@@ -385,6 +388,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				68343B8D2DED761400BD34B4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				3E1F3C122DF836A900582D3A /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 68343B602DED74BD00BD34B4 /* Products */;
@@ -617,7 +621,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CZXX5QRBG6;
+				DEVELOPMENT_TEAM = M48446ADTD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -649,7 +653,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CZXX5QRBG6;
+				DEVELOPMENT_TEAM = M48446ADTD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -788,6 +792,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3E1F3C122DF836A900582D3A /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/generative-ai-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.6;
+			};
+		};
 		68343B8D2DED761400BD34B4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -799,6 +811,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3E1F3C132DF836A900582D3A /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3E1F3C122DF836A900582D3A /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
+		};
 		68343B8E2DED761400BD34B4 /* FirebaseAI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 68343B8D2DED761400BD34B4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
