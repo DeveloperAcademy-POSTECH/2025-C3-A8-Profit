@@ -154,9 +154,33 @@ private struct MenuRow: View {
 }
 
 // MARK: - ProfitViewModel 헬퍼 타이틀
+//private extension ProfitViewModel {
+//    var sheetTitle: String {
+//        let weekday = weekdayKorean(selectedDate)
+//        return "\(selectedDate.formatted(.dateTime.month().day())) \(weekday)요일 판매량 수정"
+//    }
+//}
+
 private extension ProfitViewModel {
+
+//    /// "6월 10일 화요일 판매량 수정" 형식
+//    var sheetTitle: String {
+//        // ① 날짜(월·일) → "6월 10일"
+//        let df = DateFormatter()
+//        df.locale = Locale(identifier: "ko_KR")
+//        df.dateFormat = "M월 d일"
+//        let dayString = df.string(from: selectedDate)
+//
+//        // ② 요일 한글 ("화" 등) 가져오기
+//        let weekday = weekdayKorean(selectedDate)   // "화" 반환이라 가정
+//
+//        // ③ 최종 조합
+//        return "\(dayString) \(weekday)요일 판매량 수정"
+//    }
+    
     var sheetTitle: String {
-        let weekday = weekdayKorean(selectedDate)
-        return "\(selectedDate.formatted(.dateTime.month().day())) \(weekday)요일 판매량 수정"
+        let dayString = DateFormatter.korMonthDay.string(from: selectedDate)   // n월 xx일
+        let weekday   = weekdayKorean(selectedDate)                            // n요일
+        return "\(dayString) \(weekday) 판매량 수정"
     }
 }
