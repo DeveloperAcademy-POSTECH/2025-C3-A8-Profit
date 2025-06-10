@@ -18,7 +18,7 @@ struct IngredientListView: View {
                 List {
                     ForEach(ingredients) { ing in
                         HStack {
-                            Image(uiImage: UIImage(named: ing.name) ?? UIImage(named: "포항초")!)
+                            Image(uiImage: UIImage(named: ing.name) ?? UIImage(named: "양배추")!)
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: 24, height: 24)
