@@ -22,6 +22,13 @@ class ProfitViewModel: ObservableObject {
     @Published var tipText: String = ""
     @Published var isFixedCostSet: Bool = false
     
+    
+    // FixedCost 임시저장 값 추가
+    @Published var tempMonthlyFixedCost: Int?
+    @Published var tempOperatingDays: Int?
+    @Published var tempInputCost: String = ""
+    @Published var tempInputDays: String = ""
+    
     /// key: "yyyy-MM-dd", value: 하루 매출
     @Published var dailySalesData: [String: DailySales] = [:]
     

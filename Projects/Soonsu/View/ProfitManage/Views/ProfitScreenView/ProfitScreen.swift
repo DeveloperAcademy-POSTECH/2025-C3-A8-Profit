@@ -66,7 +66,7 @@ struct ProfitScreen: View {
             
             .navigationDestination(isPresented: $navigateToNextView) {
 //                NextView()
-                FixedCostManageView(viewModel: ProfitViewModel())
+                FixedCostManageView(viewModel: viewModel)
             }
         }
     }

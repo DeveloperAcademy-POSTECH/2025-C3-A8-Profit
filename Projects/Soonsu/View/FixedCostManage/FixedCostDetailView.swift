@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct FixedCostDetailView: View {
     @ObservedObject var vm: ProfitViewModel
+    @Environment(\.modelContext) private var context
+    @Query(sort: [SortDescriptor(\FixedCostTemporary.date, order: .reverse)])
+    private var savedFixedCosts: [FixedCostTemporary]
     
     @State private var totalFixedCost: String = ""
     

@@ -1,4 +1,3 @@
-
 //////
 //////  HambJaeryoModalApp.swift
 //////  HambJaeryoModal/System/Library/CoreServices/Finder.app/Contents/Resources/MyLibraries/myDocuments.cannedSearch
@@ -26,10 +25,12 @@ struct SoonsuApp: App {
         WindowGroup {
             MainTabViewCoulson()
                 .modelContainer(for: [
+                    FixedCostTemporary.self,
                     Ingredient.self,
                     SoldItemModel.self,  // ✅ SwiftData에 새로 등록
                     DailySalesRecord.self,
                     MonthlyFixedCostRecord.self
+                    
                 ])
         }
     }

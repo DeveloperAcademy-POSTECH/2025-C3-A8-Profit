@@ -16,9 +16,10 @@ struct FixedCostManageView: View {
     @ObservedObject var viewModel : ProfitViewModel
     @FocusState private var isInputFocused: Bool
     @State private var selectedTab: Tabs = .detailTab
+    @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        NavigationStack {
             ZStack {
                 VStack {
                     Picker("", selection: $selectedTab) {
@@ -32,7 +33,7 @@ struct FixedCostManageView: View {
                     
                     ScrollView {
                         if selectedTab == .detailTab {
-                            FixedCostDetailView(vm: ProfitViewModel())
+                            FixedCostDetailView(vm: viewModel)
                         } else if selectedTab == .temporaryTab {
                             FixedCostTemporaryComponent(vm: viewModel).focused($isInputFocused)
                                 .padding(.horizontal, 16)
@@ -46,13 +47,20 @@ struct FixedCostManageView: View {
             .toolbar(.hidden, for: .tabBar)
             .toolbar {
                 Button {
-                    //버튼 동작
+                    if let tempCost = viewModel.tempMonthlyFixedCost,
+                       let tempDays = viewModel.tempOperatingDays {
+                        viewModel.monthlyFixedCost = tempCost
+                        viewModel.operatingDays = tempDays
+                        viewModel.isFixedCostSet = true
+                        viewModel.objectWillChange.send()
+                        dismiss()
+                    }
                 } label: {
                     Text("적용")
                 }
             }
             
-        }
+        
     }
 }
 
