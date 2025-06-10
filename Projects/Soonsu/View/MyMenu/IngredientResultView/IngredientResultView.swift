@@ -151,7 +151,7 @@ struct IngredientResultView: View {
             .navigationDestination(
                 isPresented: $navigateToSearch,
                 destination: {
-                    IngredientAddView { selectedItemName in
+                    IngredientAddView(parsedIngredients: $ingredients) { selectedItemName in
                         // 네비게이션에서 돌아올 때 호출됨
                         // 유효한 재료명이라면 ingredients에 append
                         if !selectedItemName.isEmpty {

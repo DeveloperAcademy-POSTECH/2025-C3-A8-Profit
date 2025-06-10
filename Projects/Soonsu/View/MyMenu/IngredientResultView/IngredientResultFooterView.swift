@@ -22,6 +22,7 @@ struct IngredientResultFooterView: View {
             } label: {
                 HStack(spacing: 0) {
                     Image(systemName: "plus.circle.fill")
+                        .padding(.trailing, 4)
                     Text("재료 추가하기")
                 }
             }
@@ -63,50 +64,3 @@ struct IngredientResultFooterView: View {
 //        )
     }
 }
-/*
- VStack(spacing: 16) {
- HStack {
- Image(systemName: "plus.circle.fill")
- .foregroundStyle(.blue)
- NavigationLink("재료 추가하기") {
- IngredientAddView(parsedIngredients: $parsedIngredients, onIngredientSelected: { selectedName in
- guard !parsedIngredients.contains(where: { $0.name == selectedName }) else { return }
- let newInfo = IngredientInfo(name: selectedName, amount: 10, unit:"g", unitPrice: 100)
- parsedIngredients.append(newInfo)
- })
- }
- }
- 
- 
- //
- HStack(spacing:0) {
- Group {
- Text("재료원가는")
- .foregroundStyle(.gray)
- Text(totalCost.formatted())
- .foregroundStyle(.blue)
- Text("원입니다")
- .foregroundStyle(.gray)
- }
- .font(.title3)
- .fontWeight(.bold)
- }
- .padding(.bottom)
- 
- 
- 
- Button(mode == .create ? "메뉴 등록" : "확인") {
- showProgressPopover = true
- }
- .font(.headline)
- .frame(maxWidth: .infinity)
- .padding()
- .background(Color.blue)
- .foregroundColor(.white)
- .clipShape(RoundedRectangle(cornerRadius: 12))
- }
- .padding()
- }
- 
- }
- */
