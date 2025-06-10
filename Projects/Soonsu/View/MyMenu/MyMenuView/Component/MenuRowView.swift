@@ -39,29 +39,11 @@ struct MenuRowView: View {
         guard let data = headerEntity?.imageData else { return nil }
         return UIImage(data: data)
     }
-    /*
-     private var headerImage: UIImage? {
-     guard
-     let data = headerEntity?.imageData,
-     let uiImage = UIImage(data: data)
-     else { return nil }
-     return uiImage
-     }
-     */
     
     /// 헤더 가격(String) 준비
     private var priceString: String {
         headerEntity.map { String($0.menuPrice) } ?? ""
     }
-    /*
-     private var priceString: String {
-     if let price = headerEntity?.menuPrice {
-     return String(price)
-     } else {
-     return ""
-     }
-     }
-     */
     
     /// 재료 리스트용 IngredientInfo 배열
     private var infos: [IngredientInfo] {
@@ -96,7 +78,7 @@ struct MenuRowView: View {
         }
         label: {
             // Label: 썸네일 + 메뉴 이름 + 가격
-            HStack(spacing: 12) {
+            HStack(alignment: .center, spacing: 12) {
                 if let image = headerImage {
                     Image(uiImage: image)
                         .resizable()
@@ -111,56 +93,75 @@ struct MenuRowView: View {
                             Image(systemName: "fork.knife")
                         )
                 }
-                VStack {
-                    HStack {
-                        Text(menuName)
-                            .font(.system(size: 17))
-                            .fontWeight(.semibold)
-                        Spacer()
-//                        if let price = Int(totalCost) {
-                        if totalCost > 0 {
-                            Text("재료원가 \(totalCost.formatted())원")
-                                .font(.footnote)
-                                .fontWeight(.regular)
-                                .foregroundStyle(.secondary)
-                        } else {
-                            Text("재료원가 정보 없음")
-                                .font(.footnote)
-                                .fontWeight(.regular)
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                    HStack {
-                        ZStack {
-                            // 배경 원 (100%)
-                            Circle()
-                                .stroke(Color.gray.opacity(0.2), lineWidth: 6)
-                                .frame(width: 30, height: 30)
-                            
-                            // 원가율 표시 원
-                            Circle()
-                                .trim(from: 0, to: (Double(totalCost) / Double(headerEntity?.menuPrice ?? 1)))
-                                .stroke(
-                                    (Double(totalCost) / Double(headerEntity?.menuPrice ?? 1)) > 0.35 ? Color.red : Color.blue,
-                                    style: StrokeStyle(lineWidth: 6, lineCap: .round)
-                                )
-                                .frame(width: 30, height: 30)
-                                .rotationEffect(.degrees(-90))
-                            
-                            // % 숫자
-                            Text("\(costRateString)%")
-                                .font(.caption2)
-                                .fontWeight(.semibold)
-                                .foregroundColor((Double(totalCost) / Double(headerEntity?.menuPrice ?? 1)) > 0.35 ? .red : .blue)
-                        }
-
-                        Spacer()
-                        Text("원가율 \(costRateString)%")
+                VStack(alignment: .leading) {
+                    
+                    Text(menuName)
+                        .font(.system(size: 17))
+                        .fontWeight(.semibold)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                        .padding(.top, 12)
+                    
+                    Spacer()
+                    
+                    if totalCost > 0 {
+                        Text("재료비 \(totalCost.formatted())원")
                             .font(.footnote)
                             .fontWeight(.regular)
-                            .foregroundStyle(.blue)
+                            .foregroundStyle(.secondary)
+                    } else {
+                        Text("재료원가 정보 없음")
+                            .font(.footnote)
+                            .fontWeight(.regular)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    Text("판매비 \(headerEntity?.menuPrice ?? 1)원")
+                        .font(.footnote)
+                        .fontWeight(.regular)
+                        .foregroundStyle(.secondary)
+                        .padding(.bottom, 12)
+                    
+                }
+                .frame(height: 80)
+                Spacer()
+                ZStack {
+                    // 배경 원 (100%)
+                    Circle()
+                        .stroke(Color.gray.opacity(0.2), lineWidth: 12)
+                        .frame(width: 56, height: 56)
+                    
+                    // 원가율 표시 원
+                    Circle()
+                        .trim(from: 0, to: (Double(totalCost) / Double(headerEntity?.menuPrice ?? 1)))
+                        .stroke(
+                            (Double(totalCost) / Double(headerEntity?.menuPrice ?? 1)) > 0.35 ? Color.red : Color.blue,
+                            style: StrokeStyle(lineWidth: 12, lineCap: .square)
+                        )
+                        .frame(width: 56, height: 56)
+                        .rotationEffect(.degrees(-90))
+                    
+                    // % 숫자
+                    HStack(spacing:0) {
+                        Group {
+                            Text("\(costRateString)")
+                                .font(.caption2)
+                            Text("%")
+                                .font(.system(size: 4))
+                        }
+                        
+                        .fontWeight(.semibold)
+                        .foregroundColor((Double(totalCost) / Double(headerEntity?.menuPrice ?? 1)) > 0.35 ? .red : .blue)
+    
                     }
                 }
+                .padding(.top, 4)
+                .padding(.trailing, 4)
+                
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .foregroundStyle(.gray.opacity(0.4))
+
             }
             // ── “기존 확인 모드”로 IngredientResultView를 푸시 ──
             .navigationDestination(isPresented: $showDetail) {
@@ -176,74 +177,4 @@ struct MenuRowView: View {
             }
         }
     }
-    
-    
-    /*
-     NavigationLink {
-     NavigationStack {
-     IngredientResultView(
-     selectedMenuName: .constant(menuName),
-     showAddMenu:      .constant(false),
-     menuName:         menuName,
-     menuPrice:        priceString,
-     image:            headerImage,
-     parsedIngredients: infos,
-     mode: .edit(existingEntities: matchedEntities)
-     )
-     .navigationBarBackButtonHidden(false)
-     }
-     } label: {
-     // Label: 썸네일 + 메뉴 이름 + 가격
-     HStack(spacing: 12) {
-     if let thumb = headerImage {
-     Image(uiImage: thumb)
-     .resizable()
-     .scaledToFill()
-     .frame(width: 63, height: 63)
-     .clipShape(RoundedRectangle(cornerRadius: 12))
-     } else {
-     RoundedRectangle(cornerRadius: 12)
-     .fill(Color.gray.opacity(0.2))
-     .frame(width: 63, height: 63)
-     .overlay(
-     Image(systemName: "fork.knife")
-     )
-     }
-     VStack {
-     HStack {
-     Text(menuName)
-     .font(.system(size: 17))
-     .fontWeight(.semibold)
-     Spacer()
-     Text("재료원가 \(Int(totalCost))원")
-     .font(.footnote)
-     .fontWeight(.regular)
-     .foregroundStyle(.secondary)
-     
-     }
-     HStack {
-     //                        Text("그래프")
-     Spacer()
-     Text("원가율 \(costRateString)%")
-     .font(.footnote)
-     .fontWeight(.regular)
-     .foregroundStyle(.blue)
-     }
-     }
-     }
-     // ── “기존 확인 모드”로 IngredientResultView를 푸시 ──
-     .navigationDestination(isPresented: $showDetail) {
-     IngredientResultView(
-     selectedMenuName: .constant(menuName),
-     showAddMenu:      .constant(false),   // “기존 모드” 플래그
-     menuName:         menuName,
-     menuPrice:        priceString,
-     image:            headerImage,
-     parsedIngredients: infos,
-     mode: .create
-     )
-     }
-     }
-     }
-     */
 }
