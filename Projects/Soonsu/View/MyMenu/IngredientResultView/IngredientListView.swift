@@ -9,9 +9,7 @@ import SwiftUI
 
 struct IngredientListView: View {
     var ingredients: [IngredientInfo]
-    //    let isNew: Bool
-//    let onAddTapped: () -> Void
-    
+    let onRowTapped: (IngredientInfo) -> Void
     var body: some View {
         ZStack {
             VStack {
@@ -42,12 +40,15 @@ struct IngredientListView: View {
                                 .foregroundColor(.blue)
                         }
                         .listRowSeparator(.hidden)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            onRowTapped(ing)
+                        }
                     }
                 }
                 .listStyle(.plain)
             }
 
-            
             VStack{
                 LinearGradient(colors: [.white, .white.opacity(0)], startPoint: .top, endPoint: .bottom)
                     .frame(height: 64)
@@ -60,8 +61,6 @@ struct IngredientListView: View {
                     .allowsHitTesting(false)
             }
         }
-//        .padding(.vertical)
         .padding(.horizontal,8)
-        
     }
 }

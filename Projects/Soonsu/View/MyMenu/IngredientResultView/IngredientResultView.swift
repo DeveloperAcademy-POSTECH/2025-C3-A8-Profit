@@ -42,8 +42,12 @@ struct IngredientResultView: View {
     
     // 팝오버(원형 진행률) 표시 트리거
     @State private var showProgressPopover = false
-    //    @State private var selectedIngredient: IngredientInfo? = nil
-    //    @State private var showIngredientModifySheet = false
+    
+    
+    @State private var selectedIngredient: IngredientInfo? = nil
+    
+    // 재료 수정 바텀 시트 트리거
+    @State private var showIngredientModifySheet = false
     
     
     
@@ -104,10 +108,12 @@ struct IngredientResultView: View {
                 
                 // ── 재료 리스트 + “재료 추가하기” 버튼(신규 등록 모드일 때만)
                 IngredientListView(
-                    ingredients: ingredients
-//                    isNew: isNew,
-//                    onAddTapped: { navigateToSearch = true }
-                )
+                    ingredients: ingredients)
+                {
+                    selectedIng in
+                    showIngredientModifySheet = true
+                    selectedIngredient = selectedIng
+                }
                 
 //                Divider()
                 
@@ -136,8 +142,10 @@ struct IngredientResultView: View {
             //                .navigationBarBackButtonHidden(true)
             .navigationTitle("재료관리")
             
-            
-            //                .ingredientModifySheet(isPresented: $showIngredientModifySheet, parsedIngredients: $parsedIngredients, selectedIngredient: $selectedIngredient)
+            .ingredientModifySheet(
+                isPresented: $showIngredientModifySheet,
+                ingredients: $ingredients,
+                selectedIngredient: $selectedIngredient)
             
             .navigationDestination(
                 isPresented: $navigateToSearch,
@@ -156,6 +164,7 @@ struct IngredientResultView: View {
                     }
                 }
             )
+
             
             // ──────────────── 팝오버 (원형 진행률) ─────────────────
             if showProgressPopover {
