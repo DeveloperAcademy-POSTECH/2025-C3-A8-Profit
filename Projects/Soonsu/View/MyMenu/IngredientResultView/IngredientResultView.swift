@@ -9,11 +9,6 @@ import SwiftUI
 import SwiftData
 
 
-//enum ResultMode : Equatable {
-//    case create  // 새로 등록
-//    case edit(existingEntities: [Ingredient])  // 기존 편집
-//}
-
 struct IngredientResultView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
@@ -251,68 +246,6 @@ struct IngredientResultView: View {
             print("SwiftData save error:", error)
         }
     }
-    
-    /*
-     private func updateIfChanged(existingEntities: [Ingredient]) {
-     var changed = false
-     
-     for info in parsedIngredients {
-     // 기존 재료 중 같은 이름이 있는지 찾기
-     if let match = existingEntities.first(where: { $0.name == info.name }) {
-     // 수량 또는 단가가 변경되었을 경우 업데이트
-     if match.amount != info.amount || match.unitPrice != info.unitPrice {
-     match.amount = info.amount
-     match.unitPrice = info.unitPrice
-     changed = true
-     }
-     } else {
-     // 새로 추가된 재료인 경우 삽입
-     let entity = Ingredient(
-     menuName: menuName,
-     menuPrice: Int(menuPrice) ?? 0,
-     imageData: image?.jpegData(compressionQuality: 0.8),
-     info: info
-     )
-     context.insert(entity)
-     changed = true
-     }
-     }
-     
-     if changed {
-     do {
-     try context.save()
-     print("🔄 변경 사항 저장 완료")
-     } catch {
-     print("❌ 저장 실패: \(error)")
-     }
-     } else {
-     print("✅ 변경사항 없음 - 저장 생략")
-     }
-     dismiss()
-     }
-     }
-     
-     private extension View {
-     func ingredientModifySheet(
-     isPresented: Binding<Bool>,
-     parsedIngredients: Binding<[IngredientInfo]>,
-     selectedIngredient: Binding<IngredientInfo?>
-     ) -> some View {
-     self.sheet(isPresented: isPresented) {
-     if let selIngredient = selectedIngredient.wrappedValue,
-     let index = parsedIngredients.wrappedValue.firstIndex(where: { $0.id == selIngredient.id }) {
-     IngredientModifyComponent(
-     ingredient: parsedIngredients.wrappedValue[index],
-     parsedIngredients: parsedIngredients
-     )
-     }
-     }
-     .presentationDetents([.medium])
-     .presentationDragIndicator(.visible)
-     }
-     }
-     */
-    
 }
 /*
  #Preview {
