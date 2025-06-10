@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 import SwiftUI
 
-/*
+
 /// AI로부터 받은 재료 정보 (UIKit/SwiftUI에서 식별자로 사용됨)
 struct IngredientInfo: Identifiable, Codable {
     // 리스트에 사용될 고유 id (JSON에 없음)
@@ -38,8 +38,8 @@ struct IngredientInfo: Identifiable, Codable {
         self.unitPrice = unitPrice
     }
 }
-*/
 
+/*
 struct IngredientInfo: Identifiable, Codable {
     // 리스트에 사용될 고유 id (JSON에 없음)
     var id: UUID = UUID()
@@ -70,3 +70,4 @@ struct IngredientInfo: Identifiable, Codable {
         self.unitPrice = unitPrice
     }
 }
+*/
