@@ -13,9 +13,9 @@ struct IngredientModifyComponent: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var segmentMode: SegmentMode = .auto
-    @State private var purchasePrice: Double = 0
-    @State private var purchaseAmount: Double = 0
-    @State private var recipeAmount: Double = 0
+    @State private var purchasePrice: Int = 2000
+    @State private var purchaseAmount: String = "200g"
+    @State private var recipeAmount: String = ""
     @State private var editableIngredient: IngredientInfo = IngredientInfo(name: "", amount: "0", unitPrice: 0)
 
     enum SegmentMode: String, CaseIterable {
@@ -74,37 +74,27 @@ struct IngredientModifyComponent: View {
                     Divider()
                         .padding(.horizontal)
                     TextRowComponent(title: "단가", content: "\(ingredient.unitPrice)원")
+                    Text("Gemini가 예상한 메뉴의 수량과 단가입니다")
+                        .foregroundStyle(.secondary)
+                        .font(.caption2)
+                        .padding(.top)
                 }
+            } else {
+                TextFieldRowIntComponent(title: "구매 금액", content: $purchasePrice)
+                Divider()
+                    .padding(.horizontal)
+                
+                TextFieldRowStringComponent(title: "구매량", content: $purchaseAmount)
+                Divider()
+                    .padding(.horizontal)
+                TextFieldRowStringComponent(title: "레시피 수량", content: $recipeAmount)
             }
-
-
-
-//            if segmentMode == .auto {
-//                InputRowComponent(title: "레시피 수량", text: doubleToStringBinding(.constant(editableIngredient.amount)), isEnabled: false)
-//                Divider()
-//                    .padding(.horizontal)
-//                InputRowComponent(title: "단가", text: doubleToStringBinding(.constant(editableIngredient.unitPrice)), isEnabled: false)
-//            } else {
-//                Group {
-//                    InputRowComponent(title: "구매 금액", placeholder: "1000", text: doubleToStringBinding($purchasePrice), keyboardType: .numberPad, unit: "원")
-//                    Divider()
-//                        .padding(.horizontal)
-//                    InputRowComponent(title: "구매 수량", placeholder: "500", text: doubleToStringBinding($purchaseAmount), keyboardType: .numberPad, unit: "g")
-//                    Divider()
-//                        .padding(.horizontal)
-//                    InputRowComponent(title: "레시피 수량", placeholder: "30", text: doubleToStringBinding($recipeAmount), keyboardType: .numberPad, unit: "g")
-//                }
-//            }
-
             Spacer()
-
-
-
         }
         .padding()
         .onAppear {
             editableIngredient = ingredient
-//            recipeAmount = ingredient.amount
+            recipeAmount = ingredient.amount
         }
     }
 
