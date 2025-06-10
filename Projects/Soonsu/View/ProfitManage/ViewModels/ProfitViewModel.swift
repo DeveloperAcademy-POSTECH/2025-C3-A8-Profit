@@ -96,9 +96,13 @@ class ProfitViewModel: ObservableObject {
 //        }
     func updateSales(for date: Date, soldItems: [SoldItem]) {
         let revenue = soldItems.map { $0.price * $0.qty }.reduce(0, +)
-        let materialCost = soldItems.map {
-            let costPer = menuMaster.first(where: { $0.id == $0.id })?.materialCostPerUnit ?? 0
-            return costPer * $0.qty
+//        let materialCost = soldItems.map {
+//            let costPer = menuMaster.first(where: { $0.id == $0.id })?.materialCostPerUnit ?? 0
+//            return costPer * $0.qty
+//        }.reduce(0, +)
+        let materialCost = soldItems.map { item in
+            let costPer = menuMaster.first(where: { $0.id == item.id })?.materialCostPerUnit ?? 0
+            return costPer * item.qty
         }.reduce(0, +)
         
         let key = format(date)

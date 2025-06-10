@@ -18,6 +18,8 @@ struct SalesInputSheet: View {
     
     @State var items: [SoldItem]
     
+
+    
     
     var body: some View {
         NavigationView {
@@ -50,6 +52,12 @@ struct SalesInputSheet: View {
                 vm.updateSales(for: vm.selectedDate, soldItems: items)
                 vm.persistSalesData(context)          // SwiftData 저장
                 dismiss()
+                do {
+                        try context.save()
+                        print("✅ SwiftData 판매 데이터 저장 완료")   // ← 로그로 확인
+                    } catch {
+                        print("❌ 저장 실패:", error)
+                    }
             }
         }
     }
@@ -63,7 +71,7 @@ private struct MenuRow: View {
     @ObservedObject var vm: ProfitViewModel
     
     @Environment(\.modelContext) private var context
-    
+    @FocusState private var focusedFieldID: Int?
     @FocusState private var isFocused: Bool
     
     // MARK: 썸네일 로딩
@@ -79,20 +87,36 @@ private struct MenuRow: View {
         return nil
     }
     
-    // MARK: 수량 헬퍼
-    private func qty() -> Int {
-        items.first(where: { $0.id == menu.id })?.qty ?? 0
+    // MARK: - 수량 관련 함수
+    private func quantity(for id: Int) -> Int {
+        items.first(where: { $0.id == id })?.qty ?? 0
     }
-    private func setQty(_ q: Int) {
-        if let idx = items.firstIndex(where: { $0.id == menu.id }) {
-            //            q == 0 ? items.remove(at: idx) : (items[idx].qty = q)
-            if q == 0 {
-                items.remove(at: idx)          // 제거
+    
+    
+    private func updateQty(for id: Int, delta: Int) {
+        if let idx = items.firstIndex(where: { $0.id == id }) {
+            let newQty = max(items[idx].qty + delta, 0)
+            if newQty > 0 {
+                items[idx].qty = newQty
             } else {
-                items[idx].qty = q             // 수정
+                items.remove(at: idx)
             }
-        } else if q > 0 {
-            items.append(SoldItem(id: menu.id, name: menu.name, price: menu.price, qty: q, image: ""))
+        } else if delta > 0,
+                  let menu = vm.menuMaster.first(where: { $0.id == id }) {
+            items.append(SoldItem(id: menu.id, name: menu.name, price: menu.price, qty: delta, image: ""))
+        }
+    }
+    
+    
+    private func updateQtyDirect(for id: Int, to newQty: Int) {
+        if newQty <= 0 {
+            if let idx = items.firstIndex(where: { $0.id == id }) {
+                items.remove(at: idx)
+            }
+        } else if let idx = items.firstIndex(where: { $0.id == id }) {
+            items[idx].qty = newQty
+        } else if let menu = vm.menuMaster.first(where: { $0.id == id }) {
+            items.append(SoldItem(id: menu.id, name: menu.name, price: menu.price, qty: newQty, image: ""))
         }
     }
     
@@ -125,28 +149,40 @@ private struct MenuRow: View {
             
             // 수량 스테퍼
             HStack(spacing: 0) {
-                Button { setQty(max(qty() - 1, 0)) } label: {
+                Button {
+                    updateQty(for: menu.id, delta: -1)
+                } label: {
                     Image(systemName: "minus.circle.fill")
-                        .resizable().frame(width: 28, height: 28)
+                        .resizable()
+                        .frame(width: 30, height: 30)
                         .foregroundColor(.gray)
-                }.buttonStyle(.plain)
+                }
+                .buttonStyle(.plain)
                 
+                
+                // 수량 입력 필드
                 TextField("", value: Binding(
-                    get: { qty() },
-                    set: { setQty($0) }
+                    get: { quantity(for: menu.id) },
+                    set: { newVal in updateQtyDirect(for: menu.id, to: newVal) }
                 ), formatter: NumberFormatter())
                 .keyboardType(.numberPad)
-                .frame(width: 45)
-                .textFieldStyle(.roundedBorder)
                 .multilineTextAlignment(.center)
+                .frame(minWidth: 40)
+                .fixedSize(horizontal: true, vertical: false)
+                .textFieldStyle(.roundedBorder)
                 .font(.title3)
-                .focused($isFocused)
+                .focused($focusedFieldID, equals: menu.id)
                 
-                Button { setQty(qty() + 1) } label: {
+                
+                Button {
+                    updateQty(for: menu.id, delta: 1)
+                } label: {
                     Image(systemName: "plus.circle.fill")
-                        .resizable().frame(width: 28, height: 28)
+                        .resizable()
+                        .frame(width: 30, height: 30)
                         .foregroundColor(.blue)
-                }.buttonStyle(.plain)
+                }
+                .buttonStyle(.plain)
             }
         }
         .padding(.vertical, 6)
@@ -162,21 +198,6 @@ private struct MenuRow: View {
 //}
 
 private extension ProfitViewModel {
-
-//    /// "6월 10일 화요일 판매량 수정" 형식
-//    var sheetTitle: String {
-//        // ① 날짜(월·일) → "6월 10일"
-//        let df = DateFormatter()
-//        df.locale = Locale(identifier: "ko_KR")
-//        df.dateFormat = "M월 d일"
-//        let dayString = df.string(from: selectedDate)
-//
-//        // ② 요일 한글 ("화" 등) 가져오기
-//        let weekday = weekdayKorean(selectedDate)   // "화" 반환이라 가정
-//
-//        // ③ 최종 조합
-//        return "\(dayString) \(weekday)요일 판매량 수정"
-//    }
     
     var sheetTitle: String {
         let dayString = DateFormatter.korMonthDay.string(from: selectedDate)   // n월 xx일
