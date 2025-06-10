@@ -10,6 +10,10 @@ import SwiftUI
 struct TextFieldRowStringComponent: View {
     let title: String
     @Binding var content: String
+
+    
+    @State private var amountString: String = ""
+    @State private var unitString: String = ""
     
     var body: some View {
         HStack {
@@ -18,14 +22,34 @@ struct TextFieldRowStringComponent: View {
                 .fontWeight(.bold)
                 .foregroundStyle(.gray)
             Spacer()
-            TextField("", text: $content)
-                .multilineTextAlignment(.trailing)
-                .font(.body)
-                .fontWeight(.bold)
-                .foregroundStyle(.blue)
+            HStack(spacing: 0) {
+                TextField("", text: $amountString)
+                    .multilineTextAlignment(.trailing)
+                    .font(.body)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.blue)
+                
+                Text(unitString)
+                    .font(.body)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.blue)
+            }
+
         }
         .padding(.horizontal)
-//        .padding(.vertical,8)
+        .onChange(of: amountString) {
+            content = "\(amountString)\(unitString)"
+        }
+        .onAppear {
+            for char in content {
+                if char.isNumber {
+                    amountString.append(char)
+                } else {
+                    unitString.append(char)
+                }
+            }
+        }
     }
+
 }
 

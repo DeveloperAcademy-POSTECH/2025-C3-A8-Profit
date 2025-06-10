@@ -16,6 +16,10 @@ struct IngredientModifyComponent: View {
     @State private var purchasePrice: Int = 2000
     @State private var purchaseAmount: String = "200g"
     @State private var recipeAmount: String = ""
+    
+    @State private var amountString: String = ""
+    @State private var unitString: String = ""
+    
     @State private var editableIngredient: IngredientInfo = IngredientInfo(name: "", amount: "0", unitPrice: 0)
 
     enum SegmentMode: String, CaseIterable {
@@ -56,7 +60,7 @@ struct IngredientModifyComponent: View {
                 }
             }
             .pickerStyle(.segmented)
-            Image(uiImage: UIImage(named: ingredient.name) ?? UIImage(named: "포항초")!)
+            Image(uiImage: UIImage(named: ingredient.name) ?? UIImage(named: "양배추")!)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 128, height: 128)
@@ -77,7 +81,7 @@ struct IngredientModifyComponent: View {
                     Text("Gemini가 예상한 메뉴의 수량과 단가입니다")
                         .foregroundStyle(.secondary)
                         .font(.caption2)
-                        .padding(.top)
+                        .padding(.top, 24)
                 }
             } else {
                 TextFieldRowIntComponent(title: "구매 금액", content: $purchasePrice)
@@ -95,6 +99,8 @@ struct IngredientModifyComponent: View {
         .onAppear {
             editableIngredient = ingredient
             recipeAmount = ingredient.amount
+            purchasePrice = ingredient.unitPrice
+            purchaseAmount = recipeAmount
         }
     }
 

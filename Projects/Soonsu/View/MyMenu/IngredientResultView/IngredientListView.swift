@@ -10,6 +10,10 @@ import SwiftUI
 struct IngredientListView: View {
     var ingredients: [IngredientInfo]
     let onRowTapped: (IngredientInfo) -> Void
+    
+    @State private var amountString: String = ""
+    @State private var unitString: String = ""
+    
     var body: some View {
         ZStack {
             VStack {
@@ -27,14 +31,16 @@ struct IngredientListView: View {
                                 .font(.body)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             
+                                    
                             Text(ing.amount)
-                                .font(.subheadline)
-                                .frame(width: 60, alignment: .trailing)
+                                    .font(.subheadline)
+                                    .frame(width: 60, alignment: .trailing)
                             
                             Text("\(ing.unitPrice.formatted())원")
                                 .font(.subheadline)
                                 .foregroundStyle(.gray)
                                 .frame(width: 70, alignment: .trailing)
+                            
                             Image(systemName: "pencil")
                                 .font(.body)
                                 .foregroundColor(.blue)
@@ -44,6 +50,7 @@ struct IngredientListView: View {
                         .onTapGesture {
                             onRowTapped(ing)
                         }
+
                     }
                 }
                 .listStyle(.plain)
