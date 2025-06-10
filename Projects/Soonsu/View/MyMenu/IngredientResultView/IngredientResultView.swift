@@ -88,17 +88,6 @@ struct IngredientResultView: View {
         _ingredients = State(initialValue: parsedIngredients)
     }
     
-    
-    //    private func handleSave() {
-    //        print("📌 handleSave() 실행됨. mode: \(mode)")
-    //        switch mode {
-    //        case .create:
-    //            createMenuWithIngredients()
-    //        case .edit(let existingEntities):
-    //            updateIfChanged(existingEntities: existingEntities)
-    //        }
-    //    }
-    
     var body: some View {
         
         ZStack {
@@ -115,9 +104,9 @@ struct IngredientResultView: View {
                 
                 // ── 재료 리스트 + “재료 추가하기” 버튼(신규 등록 모드일 때만)
                 IngredientListView(
-                    ingredients: ingredients,
-                    isNew: isNew,
-                    onAddTapped: { navigateToSearch = true }
+                    ingredients: ingredients
+//                    isNew: isNew,
+//                    onAddTapped: { navigateToSearch = true }
                 )
                 
                 Divider()
@@ -196,20 +185,15 @@ struct IngredientResultView: View {
     private func closePopoverAndSave() {
         print("📌 closePopoverAndSave() 실행됨")
         showProgressPopover = false
-        //        handleSave()
         //        print("✅ [Debug] context.save() 성공, 총 엔티티 개수: \(context)")
         
         saveMenuWithIngredients()
         
     }
     
-    //    // MARK: 재료 슬라이드 삭제
-    //    private func deleteIngredient(at offsets: IndexSet) {
-    //        parsedIngredients.remove(atOffsets: offsets)
-    //    }
+
     
     // MARK: - 저장 & 루트 복귀
-    //    private func createMenuWithIngredients() {
     private func saveMenuWithIngredients() {
         do {
             // 1️⃣ 메뉴 가격(String → Int) 변환
@@ -247,31 +231,3 @@ struct IngredientResultView: View {
         }
     }
 }
-/*
- #Preview {
- struct IngredientResultPreview: View {
- @State private var selectedMenuName = "테스트메뉴"
- @State private var showAddMenu = false
- @State private var ingredients: [IngredientInfo] = [
- IngredientInfo(name: "양배추", amount: 30, unit: "g", unitPrice: 1000),
- IngredientInfo(name: "돼지고기", amount: 50, unit: "g", unitPrice: 2500)
- ]
- 
- var body: some View {
- NavigationStack {
- IngredientResultView(
- selectedMenuName: $selectedMenuName,
- showAddMenu: $showAddMenu,
- menuName: "함박스테이크",
- menuPrice: "12000",
- image: UIImage(systemName: "photo"),
- parsedIngredients: ingredients,
- mode: .create
- )
- }
- }
- }
- 
- return IngredientResultPreview()
- }
- */
