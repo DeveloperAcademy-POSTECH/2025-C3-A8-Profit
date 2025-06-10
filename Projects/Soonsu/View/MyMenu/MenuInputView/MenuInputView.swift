@@ -22,7 +22,7 @@ struct MenuInputView: View {
     @Binding var selectedMenuName: String
     
     
-    @Environment(\.modelContext) private var context
+
     @State private var isLoading = false
     @State private var navigateToResult = false
     //    @State private var showBackConfirmDialog = false
@@ -33,7 +33,7 @@ struct MenuInputView: View {
     @State private var parsedIngredients: [IngredientInfo] = []
     //    @FocusState private var focusedField: Field?
     
-    
+    @Environment(\.modelContext) private var context
     //    @Environment(\.dismiss) private var dismiss
     
     
@@ -202,7 +202,7 @@ struct MenuInputView: View {
                 
                 
             }
-            .padding()
+            .padding(.vertical,-40)
             .scrollContentBackground(.hidden)
             .background(Color(.systemGray6))
             

@@ -75,18 +75,18 @@ struct MenuRowView: View {
         }
     }
     
-    //    /// 총 원가(Int)
-    //    private var totalCost: Double {
-    //        matchedEntities.reduce(0) { $0 + $1.unitPrice }
-    //    }
+        /// 총 원가(Int)
+        private var totalCost: Int {
+            matchedEntities.reduce(0) { $0 + $1.unitPrice }
+        }
     
     
-    //    /// 원가율 (Double 백분율 값, 소수점 첫째자리까지)
-    //    private var costRateString: String {
-    //        guard let price = headerEntity?.menuPrice, price > 0 else { return "-" }
-    //        let rate = (Double(totalCost) / Double(price)) * 100
-    //        return String(format: "%.1f", rate)
-    //    }
+        /// 원가율 (Double 백분율 값, 소수점 첫째자리까지)
+        private var costRateString: String {
+            guard let price = headerEntity?.menuPrice, price > 0 else { return "-" }
+            let rate = (Double(totalCost) / Double(price)) * 100
+            return String(format: "%.1f", rate)
+        }
     
     var body: some View {
         
@@ -117,8 +117,9 @@ struct MenuRowView: View {
                             .font(.system(size: 17))
                             .fontWeight(.semibold)
                         Spacer()
-                        if let price = Int(priceString) {
-                            Text("재료원가 \(price.formatted())원")
+//                        if let price = Int(totalCost) {
+                        if totalCost > 0 {
+                            Text("재료원가 \(totalCost.formatted())원")
                                 .font(.footnote)
                                 .fontWeight(.regular)
                                 .foregroundStyle(.secondary)
@@ -130,9 +131,31 @@ struct MenuRowView: View {
                         }
                     }
                     HStack {
-                        Text("그래프")
+                        ZStack {
+                            // 배경 원 (100%)
+                            Circle()
+                                .stroke(Color.gray.opacity(0.2), lineWidth: 6)
+                                .frame(width: 30, height: 30)
+                            
+                            // 원가율 표시 원
+                            Circle()
+                                .trim(from: 0, to: (Double(totalCost) / Double(headerEntity?.menuPrice ?? 1)))
+                                .stroke(
+                                    (Double(totalCost) / Double(headerEntity?.menuPrice ?? 1)) > 0.35 ? Color.red : Color.blue,
+                                    style: StrokeStyle(lineWidth: 6, lineCap: .round)
+                                )
+                                .frame(width: 30, height: 30)
+                                .rotationEffect(.degrees(-90))
+                            
+                            // % 숫자
+                            Text("\(costRateString)%")
+                                .font(.caption2)
+                                .fontWeight(.semibold)
+                                .foregroundColor((Double(totalCost) / Double(headerEntity?.menuPrice ?? 1)) > 0.35 ? .red : .blue)
+                        }
+
                         Spacer()
-                        Text("원가율 \(priceString)%")
+                        Text("원가율 \(costRateString)%")
                             .font(.footnote)
                             .fontWeight(.regular)
                             .foregroundStyle(.blue)
