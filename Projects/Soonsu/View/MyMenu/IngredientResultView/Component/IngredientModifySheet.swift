@@ -12,6 +12,7 @@ extension View {
         isPresented: Binding<Bool>,
         ingredients: Binding<[IngredientInfo]>,
         selectedIngredient: Binding<IngredientInfo?>
+        
     ) -> some View {
         self.sheet(isPresented: isPresented) {
             if let selIngredient = selectedIngredient.wrappedValue,

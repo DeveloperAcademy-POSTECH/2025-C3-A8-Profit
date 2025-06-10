@@ -9,9 +9,8 @@ import SwiftUI
 
 struct TextFieldRowStringComponent: View {
     let title: String
-    @Binding var content: String
-
     
+    @Binding var content: String
     @State private var amountString: String = ""
     @State private var unitString: String = ""
     
@@ -41,13 +40,7 @@ struct TextFieldRowStringComponent: View {
             content = "\(amountString)\(unitString)"
         }
         .onAppear {
-            for char in content {
-                if char.isNumber {
-                    amountString.append(char)
-                } else {
-                    unitString.append(char)
-                }
-            }
+            (amountString, unitString) = splitContentIntoAmountAndUnit(text: $content.wrappedValue)
         }
     }
 

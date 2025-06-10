@@ -10,6 +10,7 @@ import SwiftUI
 struct IngredientModifyComponent: View {
     let ingredient: IngredientInfo
     @Binding var ingredients: [IngredientInfo]
+    
     @Environment(\.dismiss) private var dismiss
 
     @State private var segmentMode: SegmentMode = .auto
@@ -20,7 +21,9 @@ struct IngredientModifyComponent: View {
     @State private var amountString: String = ""
     @State private var unitString: String = ""
     
-    @State private var editableIngredient: IngredientInfo = IngredientInfo(name: "", amount: "0", unitPrice: 0)
+    @State private var editableIngredient: IngredientInfo = IngredientInfo(name: "", amount: "", unitPrice: 0)
+    
+    
 
     enum SegmentMode: String, CaseIterable {
         case auto = "자동계산"
@@ -43,7 +46,7 @@ struct IngredientModifyComponent: View {
 
                 Button("수정") {
                     if segmentMode == .manual {
-//                        updateUnitPrice()
+                        updateUnitPrice()
                     }
                     if let index = ingredients.firstIndex(where: { $0.id == editableIngredient.id }) {
                         ingredients[index] = editableIngredient
@@ -104,13 +107,22 @@ struct IngredientModifyComponent: View {
         }
     }
 
-//    private func updateUnitPrice() {
-//
-//        let pricePerGram = purchasePrice / purchaseAmount
-//        let calculatedUnitPrice = pricePerGram * recipeAmount
-//        editableIngredient.unitPrice = calculatedUnitPrice
-//        editableIngredient.amount = recipeAmount
-//    }
+    private func updateUnitPrice() {
+        var purchaseAmountString: String = ""
+        var recipeAmountString: String = ""
+        
+        (purchaseAmountString,_) = splitContentIntoAmountAndUnit(text: purchaseAmount)
+        (recipeAmountString,_) = splitContentIntoAmountAndUnit(text: recipeAmount)
+        
+        
+
+        let pricePerGram = purchasePrice / Int(purchaseAmountString)!
+        let calculatedUnitPrice = pricePerGram * Int(recipeAmountString)!
+        editableIngredient.unitPrice = calculatedUnitPrice
+        editableIngredient.amount = recipeAmount
+    }
+    
+    
 
     private func doubleToStringBinding(_ doubleBinding: Binding<Double>) -> Binding<String> {
         Binding<String>(

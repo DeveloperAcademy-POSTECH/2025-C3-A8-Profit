@@ -145,7 +145,8 @@ struct IngredientResultView: View {
             .ingredientModifySheet(
                 isPresented: $showIngredientModifySheet,
                 ingredients: $ingredients,
-                selectedIngredient: $selectedIngredient)
+                selectedIngredient: $selectedIngredient
+            )
             
             .navigationDestination(
                 isPresented: $navigateToSearch,
@@ -202,8 +203,6 @@ struct IngredientResultView: View {
         saveMenuWithIngredients()
         
     }
-    
-
     
     // MARK: - 저장 & 루트 복귀
     private func saveMenuWithIngredients() {
