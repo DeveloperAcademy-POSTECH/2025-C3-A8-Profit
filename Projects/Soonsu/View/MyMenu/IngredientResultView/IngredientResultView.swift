@@ -245,7 +245,7 @@ struct IngredientResultView: View {
             
             // 6️⃣ 저장 후 루트 복귀
             selectedMenuName = "\(menuName)-\(UUID().uuidString)"
-            //            dismiss()
+                        dismiss()
             
         } catch {
             print("SwiftData save error:", error)
