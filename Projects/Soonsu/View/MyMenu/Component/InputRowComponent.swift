@@ -18,7 +18,6 @@ struct InputRowComponent: View {
     @Binding var text: String
     var keyboardType: UIKeyboardType = .default
     var focusedField: FocusState<Field?>.Binding?
-    var isEnabled: Bool = true
     var unit: String? = nil
 
     var body: some View {
@@ -33,32 +32,37 @@ struct InputRowComponent: View {
                 if let binding = focusedField {
                     TextField(placeholder, text: $text)
                         .multilineTextAlignment(.trailing)
-                        .foregroundStyle(isEnabled ? .blue : .black)
+                        .foregroundStyle(.blue)
                         .font(.body)
                         .fontWeight(.bold)
                         .keyboardType(keyboardType)
                         .focused(binding, equals: title == "메뉴 이름" ? .menuName : .menuPrice)
-                        .disabled(!isEnabled)
                 } else {
                     TextField(placeholder, text: $text)
                         .multilineTextAlignment(.trailing)
-                        .foregroundStyle(isEnabled ? .blue : .black)
-                        .font(.body)
-                        .fontWeight(.bold)
-                        .keyboardType(keyboardType)
-                        .disabled(!isEnabled)
-                }
-                if let unit {
-                    Text(unit)
                         .foregroundStyle(.blue)
                         .font(.body)
                         .fontWeight(.bold)
-                } else {
-                    Text("g")
-                        .foregroundStyle(isEnabled ? .blue : .black)
+                        .keyboardType(keyboardType)
+                }
+//                if let unit {
+//                    Text(unit)
+//                        .foregroundStyle(.blue)
+//                        .font(.body)
+//                        .fontWeight(.bold)
+//                } else {
+//                    Text("g")
+//                        .foregroundStyle(isEnabled ? .blue : .black)
+//                        .font(.body)
+//                        .fontWeight(.bold)
+//                }
+                
+                if title == "메뉴 가격" {
+                    Text("원")
+                        .foregroundStyle(.gray)
                         .font(.body)
                         .fontWeight(.bold)
-                }
+            }
             }
             .padding(.horizontal)
             .padding(.vertical,4)
@@ -66,21 +70,3 @@ struct InputRowComponent: View {
 
     }
 }
-
-//
-//#Preview {
-//    struct Preview: View {
-//        @State private var value = "1000"
-//        var body: some View {
-//            InputRowComponent(
-//                title: "구매 금액",
-//                placeholder: "1000",
-//                text: $value,
-//                keyboardType: .numberPad,
-//                isEnabled: true,
-//                unit: "원"
-//            )
-//        }
-//    }
-//    return Preview()
-//}

@@ -110,6 +110,12 @@ struct MenuInputView: View {
                 }
                 
                 Group {
+//                    TextFieldRowStringComponent(
+//                        title: "메뉴 이름",
+//                        content: $menuName,
+//                        focusedField: $focusedField
+//                    )
+//                    .padding(.top)
                     InputRowComponent(
                         title: "메뉴 이름",
                         placeholder: "함박스테이크",
@@ -120,6 +126,12 @@ struct MenuInputView: View {
                     
                     Divider()
                     
+//                    TextFieldRowStringComponent(
+//                        title: "메뉴 가격",
+//                        content: $menuPrice,
+//                        focusedField: $focusedField
+//                    )
+//                    .padding(.top)
                     
                     InputRowComponent(
                         title: "메뉴 가격",

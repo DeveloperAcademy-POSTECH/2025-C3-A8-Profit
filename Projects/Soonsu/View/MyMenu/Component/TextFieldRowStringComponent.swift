@@ -13,6 +13,7 @@ struct TextFieldRowStringComponent: View {
     @Binding var content: String
     @State private var amountString: String = ""
     @State private var unitString: String = ""
+    @FocusState private var focusedField: Field?
     
     var body: some View {
         HStack {
