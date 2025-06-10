@@ -18,9 +18,11 @@ struct DailyProfitSummary: View {
                 let net = sales.revenue - Int(sales.materialCost) - dailyFixed
                 
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("\(vm.selectedDate.formatted(.dateTime.month().day())) \(vm.weekdayKorean(vm.selectedDate))요일 순이익")
+                    Text("\(DateFormatter.korMonthDay.string(from: vm.selectedDate)) " +
+                         "\(vm.weekdayKorean(vm.selectedDate))요일 순이익")
                         .font(.headline)
                         .padding(.top, 6)
+                
                     let netString = "\(net > 0 ? "+" : "-")\(abs(net).formatted(.number.grouping(.automatic))) 원"
                     Text(netString)
                         .font(.system(size: 32, weight: .bold))
