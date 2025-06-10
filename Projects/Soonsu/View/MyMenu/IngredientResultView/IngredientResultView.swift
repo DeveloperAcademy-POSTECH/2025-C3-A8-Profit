@@ -109,7 +109,7 @@ struct IngredientResultView: View {
 //                    onAddTapped: { navigateToSearch = true }
                 )
                 
-                Divider()
+//                Divider()
                 
                 // ── 하단 합계 + 등록 버튼 ────────────────────────
                 

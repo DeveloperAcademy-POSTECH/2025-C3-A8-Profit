@@ -15,8 +15,19 @@ struct IngredientResultFooterView: View {
     var body: some View {
         
         VStack(spacing: 16) {
-            Text("재료원가는 \(totalCost.formatted())원입니다")
-                .font(.subheadline)
+            HStack(spacing:0) {
+                Group {
+                    Text("재료원가는")
+                        .foregroundStyle(.gray)
+                    Text(totalCost.formatted())
+                        .foregroundStyle(.blue)
+                    Text("원입니다")
+                        .foregroundStyle(.gray)
+                }
+                .font(.title3)
+                .fontWeight(.bold)
+            }
+            .padding(.bottom)
             
             Button(isNew ? "메뉴 등록" : "확인") {
                 onPrimaryTapped()
@@ -24,15 +35,17 @@ struct IngredientResultFooterView: View {
             .font(.headline)
             .frame(maxWidth: .infinity)
             .padding()
-            .background(isNew ? Color.blue : Color.gray.opacity(0.3))
-            .foregroundColor(isNew ? .white : .black)
+            .background(Color.blue)
+//            .background(isNew ? Color.blue : Color.gray.opacity(0.3))
+            .foregroundColor(.white)
+//            .foregroundColor(isNew ? .white : .black)
             .clipShape(RoundedRectangle(cornerRadius: 12))
         }
         .padding()
-        .background(
-            Color(UIColor.systemBackground)
-                .shadow(color: .black.opacity(0.1), radius: 5, y: -2)
-        )
+//        .background(
+//            Color(UIColor.systemBackground)
+//                .shadow(color: .black.opacity(0.1), radius: 5, y: -2)
+//        )
     }
 }
 /*
