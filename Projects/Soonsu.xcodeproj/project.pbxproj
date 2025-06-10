@@ -109,6 +109,11 @@
 			path = FixedCostManage;
 			sourceTree = "<group>";
 		};
+		948D9EB02DF8587B003E4DF7 /* Common */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +235,7 @@
 		68343B962DED76BE00BD34B4 /* Soonsu */ = {
 			isa = PBXGroup;
 			children = (
+				948D9EB02DF8587B003E4DF7 /* Common */,
 				3EBF442F2DF17DF300C6F319 /* Utilities */,
 				68343BA32DED76D300BD34B4 /* Model */,
 				68343BA42DED76D900BD34B4 /* View */,
@@ -303,6 +309,7 @@
 				3EBF442F2DF17DF300C6F319 /* Utilities */,
 				3EBF44302DF17E0400C6F319 /* MyMenu */,
 				3EC4A2EB2DF0946C007CE029 /* FixedCostManage */,
+				948D9EB02DF8587B003E4DF7 /* Common */,
 			);
 			name = Soonsu;
 			packageProductDependencies = (
@@ -621,7 +628,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M48446ADTD;
+
+				DEVELOPMENT_TEAM = 5Z8G42AVKD;
+
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -653,7 +662,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M48446ADTD;
+
+				DEVELOPMENT_TEAM = 5Z8G42AVKD;
+
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

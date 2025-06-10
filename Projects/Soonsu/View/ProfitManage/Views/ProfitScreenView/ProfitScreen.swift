@@ -69,6 +69,14 @@ struct ProfitScreen: View {
                 FixedCostManageView(viewModel: viewModel)
             }
         }
+//        .onAppear {
+//            // 🔹 최초 진입 시 SwiftData → 메모리로 로드
+//            viewModel.loadPersistedSales(context)
+//        }
+        .task {
+//            await viewModel.loadPersistedSales(context)
+            viewModel.loadPersistedSales(context)
+        }
     }
     
     // MARK: - 고정비 입력/요약 섹션을 별도 View로 분리
@@ -112,46 +120,46 @@ struct ProfitScreen: View {
 }
 
 
-#Preview {
-    let profitVM = ProfitViewModel()
-    let menuVM = MenuViewModel()
-    
-    // 날짜 포맷 함수 (format private 대체)
-    func format(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: date)
-    }
-    
-    let today = Date()
-    
-    // 샘플 menuMaster
-    profitVM.menuMaster = [
-        MenuItem(id: 1, name: "돈까스", price: 8000, materialCostPerUnit: 2500, image: ""),
-        MenuItem(id: 2, name: "우동", price: 6000, materialCostPerUnit: 1800, image: "")
-    ]
-    
-    // 샘플 매출
-    profitVM.dailySalesData[format(today)] = DailySales(
-        revenue: 20000,
-        materialCost: 5500,
-        items: [
-            SoldItem(id: 1, name: "돈까스", price: 8000, qty: 2, image: ""),
-            SoldItem(id: 2, name: "우동", price: 6000, qty: 1, image: "")
-        ]
-    )
-    
-    // 기본 고정비 설정
-    profitVM.monthlyFixedCost = 3000000
-    profitVM.operatingDays = 30
-    profitVM.isFixedCostSet = true
-    
-    // selectedTab을 위한 @State
-    @State var tab: TabType = .profit
-    
-    return ProfitScreen(
-        viewModel: profitVM,
-        menuViewModel: menuVM,
-        selectedTab: .constant(tab)
-    )
-}
+//#Preview {
+//    let profitVM = ProfitViewModel()
+//    let menuVM = MenuViewModel()
+//    
+//    // 날짜 포맷 함수 (format private 대체)
+//    func format(_ date: Date) -> String {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "yyyy-MM-dd"
+//        return formatter.string(from: date)
+//    }
+//    
+//    let today = Date()
+//    
+//    // 샘플 menuMaster
+//    profitVM.menuMaster = [
+//        MenuItem(id: 1, name: "돈까스", price: 8000, materialCostPerUnit: 2500, image: ""),
+//        MenuItem(id: 2, name: "우동", price: 6000, materialCostPerUnit: 1800, image: "")
+//    ]
+//    
+//    // 샘플 매출
+//    profitVM.dailySalesData[format(today)] = DailySales(
+//        revenue: 20000,
+//        materialCost: 5500,
+//        items: [
+//            SoldItem(id: 1, name: "돈까스", price: 8000, qty: 2, image: ""),
+//            SoldItem(id: 2, name: "우동", price: 6000, qty: 1, image: "")
+//        ]
+//    )
+//    
+//    // 기본 고정비 설정
+//    profitVM.monthlyFixedCost = 3000000
+//    profitVM.operatingDays = 30
+//    profitVM.isFixedCostSet = true
+//    
+//    // selectedTab을 위한 @State
+//    @State var tab: TabType = .profit
+//    
+//    return ProfitScreen(
+//        viewModel: profitVM,
+//        menuViewModel: menuVM,
+//        selectedTab: .constant(tab)
+//    )
+//}

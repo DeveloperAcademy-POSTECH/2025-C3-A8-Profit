@@ -4,22 +4,25 @@
 //
 //  Created by ellllly on 5/30/25.
 //
- 
+
 import SwiftUI
 import SwiftData
 
 
 struct IngredientAddView: View {
-
+    
     @Environment(\.modelContext) private var context
-    @Binding var parsedIngredients: [IngredientInfo]
-    var onIngredientSelected: ((String) -> Void)? = nil
+    //    @Binding var parsedIngredients: [IngredientInfo]
+    //    var onIngredientSelected: ((String) -> Void)? = nil
+    @Environment(\.dismiss) private var dismiss
+    
     // 검색창 텍스트
     @State private var searchText: String = ""
-    private let ingredients = loadAllIngredientsFromJSON()
+    //    private let ingredients = loadAllIngredientsFromJSON()
     
     
-    
+    // 콜백: 선택된 재료명을 부모 뷰로 전달
+    var onSelect: (String) -> Void
     
     
     // MARK: - SwiftData에서 불러온 모든 고유 재료명
@@ -38,27 +41,58 @@ struct IngredientAddView: View {
         }
     }
     
-    private var filteredItems: [IngredientInfo] {
+    
+    // 검색 내용에 따른 필터 적용
+    private var filteredItems: [String] {
         let trimmed = searchText.trimmingCharacters(in: .whitespaces)
         if trimmed.isEmpty {
-            return []
+            return allItems
         } else {
-            return ingredients.map(\.self).filter {
-                $0.name.localizedStandardContains(trimmed)
+            return allItems.filter {
+                $0.localizedStandardContains(trimmed)
             }
         }
     }
+    
+    
+    /*
+     private var filteredItems: [IngredientInfo] {
+     let trimmed = searchText.trimmingCharacters(in: .whitespaces)
+     if trimmed.isEmpty {
+     return []
+     } else {
+     return ingredients.map(\.self).filter {
+     $0.name.localizedStandardContains(trimmed)
+     }
+     }
+     }
+     */
     var body: some View {
-            List(filteredItems, id: \.name) { item in
-                NavigationLink(destination: IngredientDetailView(ingredient: item, parsedIngredients: $parsedIngredients)) {
-                    Text(item.name)
-                }
-                .onTapGesture {
-                    onIngredientSelected?(item.name)
+        
+        List {
+            ForEach(filteredItems, id: \.self) { item in
+                Button(action: {
+                    // 재료명을 선택하면 부모 뷰로 전달 후 뒤로 팝
+                    onSelect(item)
+                    dismiss()
+                }) {
+                    Text(item)
                 }
             }
-            .navigationTitle("재료 추가")
-            .searchable(text: $searchText, placement: .toolbar, prompt: "검색어를 입력하세요")
+        }
+        
+        /*
+         List(filteredItems, id: \.name) { item in
+         NavigationLink(destination: IngredientDetailView(ingredient: item, parsedIngredients: $parsedIngredients)) {
+         Text(item.name)
+         }
+         .onTapGesture {
+         onIngredientSelected?(item.name)
+         }
+         }
+         */
+        .navigationTitle("재료 추가")
+        .searchable(text: $searchText, placement: .toolbar, prompt: "검색어를 입력하세요")
     }
 }
 //

@@ -42,7 +42,7 @@ struct MainTabViewCoulson: View {
             case .menu:
                 // 두 번째 탭: 메뉴관리 → MyMenuView
                 NavigationStack {
-                    MyMenuView()
+                    MyMenuView(viewModel: menuVM)
                 }
                 
             case .profit:
