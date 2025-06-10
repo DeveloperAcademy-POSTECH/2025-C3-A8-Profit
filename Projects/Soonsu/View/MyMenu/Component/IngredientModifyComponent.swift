@@ -1,72 +1,84 @@
-////
-////  IngredientModifySheetComponent.swift
-////  Soonsu
-////
-////  Created by Choi Jung In on 6/6/25.
-////
 //
-//import SwiftUI
+//  IngredientModifySheetComponent.swift
+//  Soonsu
 //
-//struct IngredientModifyComponent: View {
-//    let ingredient: IngredientInfo
-//    @Binding var parsedIngredients: [IngredientInfo]
-//    @Environment(\.dismiss) private var dismiss
+//  Created by Choi Jung In on 6/6/25.
 //
-//    @State private var segmentMode: SegmentMode = .auto
-//    @State private var purchasePrice: Double = 0
-//    @State private var purchaseAmount: Double = 0
-//    @State private var recipeAmount: Double = 0
-//    @State private var editableIngredient: IngredientInfo = IngredientInfo(name: "", amount: 0,  unit: "g" ,unitPrice: 0)
-//
-//    enum SegmentMode: String, CaseIterable {
-//        case auto = "자동계산"
-//        case manual = "직접입력"
-//    }
-//
-//    var body: some View {
-//        VStack(spacing: 16) {
-//
-//            HStack {
-//                Button("삭제") {
-//                    if let index = parsedIngredients.firstIndex(where: { $0.id == editableIngredient.id }) {
-//                        parsedIngredients.remove(at: index)
-//                    }
-//                    dismiss()
-//                }
-//                .foregroundStyle(Color.red)
-//
-//                Spacer()
-//
-//                Button("수정") {
-//                    if segmentMode == .manual {
+
+import SwiftUI
+
+struct IngredientModifyComponent: View {
+    let ingredient: IngredientInfo
+    @Binding var ingredients: [IngredientInfo]
+    @Environment(\.dismiss) private var dismiss
+
+    @State private var segmentMode: SegmentMode = .auto
+    @State private var purchasePrice: Double = 0
+    @State private var purchaseAmount: Double = 0
+    @State private var recipeAmount: Double = 0
+    @State private var editableIngredient: IngredientInfo = IngredientInfo(name: "", amount: "0", unitPrice: 0)
+
+    enum SegmentMode: String, CaseIterable {
+        case auto = "자동계산"
+        case manual = "직접입력"
+    }
+
+    var body: some View {
+        VStack(spacing: 16) {
+
+            HStack {
+                Button("삭제") {
+                    if let index = ingredients.firstIndex(where: { $0.id == editableIngredient.id }) {
+                        ingredients.remove(at: index)
+                    }
+                    dismiss()
+                }
+                .foregroundStyle(Color.red)
+
+                Spacer()
+
+                Button("수정") {
+                    if segmentMode == .manual {
 //                        updateUnitPrice()
-//                    }
-//                    if let index = parsedIngredients.firstIndex(where: { $0.id == editableIngredient.id }) {
-//                        parsedIngredients[index] = editableIngredient
-//                    }
-//                    dismiss()
-//                }
-//
-//            }
-//            .padding(.vertical)
-//
-//            Picker("모드", selection: $segmentMode) {
-//                ForEach(SegmentMode.allCases, id: \.self) {
-//                    segmentMode in Text(segmentMode.rawValue).tag(segmentMode)
-//                }
-//            }
-//            .pickerStyle(.segmented)
-//            Image(uiImage: UIImage(named: ingredient.name) ?? UIImage(named: "포항초")!)
-//                .resizable()
-//                .scaledToFill()
-//                .frame(width: 128, height: 128)
-//
-//            Text(editableIngredient.name)
-//                .font(.title)
-//                .bold()
-//
-//
-//
+                    }
+                    if let index = ingredients.firstIndex(where: { $0.id == editableIngredient.id }) {
+                        ingredients[index] = editableIngredient
+                    }
+                    dismiss()
+                }
+
+            }
+            .padding(.vertical)
+
+            Picker("모드", selection: $segmentMode) {
+                ForEach(SegmentMode.allCases, id: \.self) {
+                    segmentMode in Text(segmentMode.rawValue).tag(segmentMode)
+                }
+            }
+            .pickerStyle(.segmented)
+            Image(uiImage: UIImage(named: ingredient.name) ?? UIImage(named: "포항초")!)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 128, height: 128)
+
+            Text(ingredient.name)
+                .font(.title)
+                .bold()
+                .padding(.bottom)
+            
+            
+            if segmentMode == .auto {
+                
+                VStack {
+                    TextRowComponent(title: "레시피 수량", content: ingredient.amount)
+                    Divider()
+                        .padding(.horizontal)
+                    TextRowComponent(title: "단가", content: "\(ingredient.unitPrice)원")
+                }
+            }
+
+
+
 //            if segmentMode == .auto {
 //                InputRowComponent(title: "레시피 수량", text: doubleToStringBinding(.constant(editableIngredient.amount)), isEnabled: false)
 //                Divider()
@@ -83,19 +95,19 @@
 //                    InputRowComponent(title: "레시피 수량", placeholder: "30", text: doubleToStringBinding($recipeAmount), keyboardType: .numberPad, unit: "g")
 //                }
 //            }
-//
-//            Spacer()
-//
-//
-//
-//        }
-//        .padding()
-//        .onAppear {
-//            editableIngredient = ingredient
+
+            Spacer()
+
+
+
+        }
+        .padding()
+        .onAppear {
+            editableIngredient = ingredient
 //            recipeAmount = ingredient.amount
-//        }
-//    }
-//
+        }
+    }
+
 //    private func updateUnitPrice() {
 //
 //        let pricePerGram = purchasePrice / purchaseAmount
@@ -103,20 +115,20 @@
 //        editableIngredient.unitPrice = calculatedUnitPrice
 //        editableIngredient.amount = recipeAmount
 //    }
-//
-//    private func doubleToStringBinding(_ doubleBinding: Binding<Double>) -> Binding<String> {
-//        Binding<String>(
-//            get: {
-//                String(format: "%.0f", doubleBinding.wrappedValue)
-//            },
-//            set: { newValue in
-//                if let value = Double(newValue) {
-//                    doubleBinding.wrappedValue = value
-//                }
-//            }
-//        )
-//    }
-//}
+
+    private func doubleToStringBinding(_ doubleBinding: Binding<Double>) -> Binding<String> {
+        Binding<String>(
+            get: {
+                String(format: "%.0f", doubleBinding.wrappedValue)
+            },
+            set: { newValue in
+                if let value = Double(newValue) {
+                    doubleBinding.wrappedValue = value
+                }
+            }
+        )
+    }
+}
 //#Preview {
 //    IngredientModifyComponent(
 //        ingredient: IngredientInfo(

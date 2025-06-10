@@ -17,11 +17,10 @@ extension View {
             if let selIngredient = selectedIngredient.wrappedValue,
                let index = ingredients.wrappedValue.firstIndex(where: { $0.id == selIngredient.id }) {
                 
-                Text("\(selIngredient.name)")
-//                IngredientModifyComponent(
-//                    ingredient: ingredients.wrappedValue[index],
-//                    parsedIngredients: ingredients
-//                )
+                IngredientModifyComponent(
+                    ingredient: ingredients.wrappedValue[index],
+                    ingredients: ingredients
+                )
             }
         }
         .presentationDetents([.medium])
