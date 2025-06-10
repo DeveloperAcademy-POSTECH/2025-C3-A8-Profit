@@ -24,6 +24,7 @@ struct TextFieldRowStringComponent: View {
             HStack(spacing: 0) {
                 TextField("", text: $amountString)
                     .multilineTextAlignment(.trailing)
+                    .keyboardType(.numberPad)
                     .font(.body)
                     .fontWeight(.bold)
                     .foregroundStyle(.blue)

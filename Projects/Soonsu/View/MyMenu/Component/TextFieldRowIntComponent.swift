@@ -24,6 +24,7 @@ struct TextFieldRowIntComponent: View {
                 Group {
                     TextField("", value: $content, formatter: NumberFormatter())
                         .multilineTextAlignment(.trailing)
+                        .keyboardType(.numberPad)
                     Text("원")
                 }
                 .font(.body)

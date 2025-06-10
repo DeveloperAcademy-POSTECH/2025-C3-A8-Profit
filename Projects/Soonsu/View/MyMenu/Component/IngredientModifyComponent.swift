@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct IngredientModifyComponent: View {
+    
+    @Environment(\.modelContext) private var context
+    
     let ingredient: IngredientInfo
     @Binding var ingredients: [IngredientInfo]
     
@@ -52,6 +56,7 @@ struct IngredientModifyComponent: View {
                         ingredients[index] = editableIngredient
                     }
                     dismiss()
+                    
                 }
 
             }
@@ -137,21 +142,3 @@ struct IngredientModifyComponent: View {
         )
     }
 }
-//#Preview {
-//    IngredientModifyComponent(
-//        ingredient: IngredientInfo(
-//            name: "양배추",
-//            amount: 30,
-//            unit: "g",
-//            unitPrice: 1000
-//        ),
-//        parsedIngredients: .constant([
-//            IngredientInfo(
-//                name: "양배추",
-//                amount: 30,
-//                unit: "g",
-//                unitPrice: 1000
-//            )
-//        ])
-//    )
-//}

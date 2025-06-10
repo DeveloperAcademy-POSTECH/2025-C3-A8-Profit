@@ -53,7 +53,7 @@ struct IngredientDetailView: View {
             if segmentMode == .auto {
                 
                 VStack {
-                    TextRowComponent(title: "레시피 수량", content: ingredient.amount)
+                    TextRowComponent(title: "수량", content: ingredient.amount)
                     Divider()
                         .padding(.horizontal)
                     TextRowComponent(title: "단가", content: "\(ingredient.unitPrice)원")

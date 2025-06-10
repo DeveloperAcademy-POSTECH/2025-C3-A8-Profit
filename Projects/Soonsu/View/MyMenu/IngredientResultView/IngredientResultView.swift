@@ -127,8 +127,16 @@ struct IngredientResultView: View {
                             // 신규 등록 모드: 팝오버 띄우기
                             showProgressPopover = true
                         } else {
-                            // 기존 확인 모드: 그냥 뒤로 팝
-                            dismiss()
+                            // MARK: 질문 - 수정 사항이 반영이 안됨 
+                            // 기존 확인 모드: 저장 후 뒤로 팝
+                            do {
+                                try context.save()
+                                print("✅ 수정 저장됨")
+                                selectedMenuName = "\(menuName)-\(UUID().uuidString)" // MyMenu 갱신 유도
+                                dismiss()
+                            } catch {
+                                print("❌ 저장 실패:", error)
+                            }
                         }
                     },
                     onAddTapped: {
@@ -165,6 +173,7 @@ struct IngredientResultView: View {
                     }
                 }
             )
+            
 
             
             // ──────────────── 팝오버 (원형 진행률) ─────────────────
