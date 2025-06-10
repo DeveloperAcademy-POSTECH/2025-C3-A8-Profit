@@ -6,196 +6,157 @@
 //
 
 import SwiftUI
+import SwiftData
 
 /// 일별 판매량을 입력/수정하기 위한 시트 화면
 struct SalesInputSheet: View {
     @ObservedObject var vm: ProfitViewModel
-    @Environment(\.dismiss) var dismiss
+    //    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     
     @Environment(\.modelContext) private var context
-
+    
     @State var items: [SoldItem]
-    
-    @FocusState private var focusedFieldID: Int?
-    
-    
-    // MARK: - 수량 관련 함수
-    private func quantity(for id: Int) -> Int {
-        items.first(where: { $0.id == id })?.qty ?? 0
-    }
-    
-    
-    private func updateQty(for id: Int, delta: Int) {
-        if let idx = items.firstIndex(where: { $0.id == id }) {
-            let newQty = max(items[idx].qty + delta, 0)
-            if newQty > 0 {
-                items[idx].qty = newQty
-            } else {
-                items.remove(at: idx)
-            }
-        } else if delta > 0,
-                  let menu = vm.menuMaster.first(where: { $0.id == id }) {
-            items.append(SoldItem(id: menu.id, name: menu.name, price: menu.price, qty: delta, image: ""))
-        }
-    }
-    
-    
-    private func updateQtyDirect(for id: Int, to newQty: Int) {
-        if newQty <= 0 {
-            if let idx = items.firstIndex(where: { $0.id == id }) {
-                items.remove(at: idx)
-            }
-        } else if let idx = items.firstIndex(where: { $0.id == id }) {
-            items[idx].qty = newQty
-        } else if let menu = vm.menuMaster.first(where: { $0.id == id }) {
-            items.append(SoldItem(id: menu.id, name: menu.name, price: menu.price, qty: newQty, image: ""))
-        }
-    }
     
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(vm.menuMaster) { menu in
-                    HStack(spacing: 14) {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color(.systemGray5))
-                            .frame(width: 44, height: 44)
-                            .overlay(
-                                Text("❓❓❓")
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
-                            )
-                        
-                        
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(menu.name)
-                                .font(.headline)
-                            Text("단가: \(menu.price.formatted(.number.grouping(.automatic))) 원")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                            Text("원가: \(menu.materialCostPerUnit.formatted(.number.grouping(.automatic))) 원")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        }
-                        
-                        
-                        Spacer()
-                        
-                        
-                        HStack(spacing: 0) {
-                            Button {
-                                updateQty(for: menu.id, delta: -1)
-                            } label: {
-                                Image(systemName: "minus.circle.fill")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                                    .foregroundColor(.gray)
-                            }
-                            .buttonStyle(.plain)
-                            
-                            
-                            // 수량 입력 필드
-                            TextField("", value: Binding(
-                                get: { quantity(for: menu.id) },
-                                set: { newVal in updateQtyDirect(for: menu.id, to: newVal) }
-                            ), formatter: NumberFormatter())
-                            .keyboardType(.numberPad)
-                            .multilineTextAlignment(.center)
-                            .frame(minWidth: 40)
-                            .fixedSize(horizontal: true, vertical: false)
-                            .textFieldStyle(.roundedBorder)
-                            .font(.title3)
-                            .focused($focusedFieldID, equals: menu.id)
-                            
-                            
-                            Button {
-                                updateQty(for: menu.id, delta: 1)
-                            } label: {
-                                Image(systemName: "plus.circle.fill")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                                    .foregroundColor(.blue)
-                            }
-                            .buttonStyle(.plain)
-                        }
-                        Button(action: {
-                            // 설명 생성 기능(추후 AI 연동)
-                        }) {
-                            HStack(alignment: .top, spacing: 2) {
-                                Text("✨")
-                                VStack(alignment: .leading, spacing: 0) {
-                                    Text("설명")
-                                    Text("생성")
-                                }
-                            }
-                            .font(.caption)
-                            .foregroundColor(.primary)
-                            .padding(6)
-                            .background(Color.purple.opacity(0.15))
-                            .cornerRadius(8)
-                        }
-                    }
-                    .padding(.vertical, 6)
+                    
+                    MenuRow(menu: menu,
+                            items: $items,
+                            vm: vm
+                    )
                 }
             }
+            
             .listStyle(.plain)
-            .navigationTitle("\(vm.selectedDate.formatted(.dateTime.month().day())) \(vm.weekdayKorean(vm.selectedDate))요일 판매량 수정")
+            .navigationTitle(vm.sheetTitle)
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("닫기") { dismiss() }
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("등록") {
-                        vm.updateSales(for: vm.selectedDate, soldItems: items)
-                        
-                        // ✅ SwiftData에 판매 데이터 저장
-                        vm.persistSalesData(context)
-                        
-                        dismiss()
-                    }
-                }
-                ToolbarItemGroup(placement: .keyboard) {
-                    Spacer()
-                    Button("완료") {
-                        focusedFieldID = nil // 키보드 숨기기
-                    }
-                }
+            .toolbar { toolbarContent }
+        }
+    }
+    
+    
+    // MARK: - Toolbar
+    @ToolbarContentBuilder
+    private var toolbarContent: some ToolbarContent {
+        ToolbarItem(placement: .cancellationAction) {
+            Button("닫기") { dismiss() }
+        }
+        ToolbarItem(placement: .confirmationAction) {
+            Button("등록") {
+                vm.updateSales(for: vm.selectedDate, soldItems: items)
+                vm.persistSalesData(context)          // SwiftData 저장
+                dismiss()
             }
         }
     }
 }
 
-//
-//#Preview {
-//    struct SalesInputSheetPreview: View {
-//        @StateObject private var vm = ProfitViewModel()
-//        @State private var items: [SoldItem] = []
-//
-//        var body: some View {
-//            SalesInputSheet(vm: vm, items: items)
-//        }
-//
-//        init() {
-//            let previewVM = ProfitViewModel()
-//            
-//            // 💡 미리보기용 메뉴 데이터 구성
-//            previewVM.menuMaster = [
-//                MenuItem(id: 1, name: "김치찌개", price: 9000, materialCostPerUnit: 2500, image: ""),
-//                MenuItem(id: 2, name: "된장찌개", price: 8500, materialCostPerUnit: 2300, image: "")
-//            ]
-//            previewVM.selectedDate = Date()
-//            
-//            _vm = StateObject(wrappedValue: previewVM)
-//            
-//            // ⚙️ 초기 판매 수량 세팅
-//            let initialItems = previewVM.menuMaster.map {
-//                SoldItem(id: $0.id, name: $0.name, price: $0.price, qty: 1, image: "")
-//            }
-//            _items = State(initialValue: initialItems)
-//        }
-//    }
-//
-//    return SalesInputSheetPreview()
-//}
+// MARK: - 개별 메뉴 Row 컴포넌트
+private struct MenuRow: View {
+    let menu: MenuItem
+    
+    @Binding var items: [SoldItem]
+    @ObservedObject var vm: ProfitViewModel
+    
+    @Environment(\.modelContext) private var context
+    
+    @FocusState private var isFocused: Bool
+    
+    // MARK: 썸네일 로딩
+    private func thumbnail() -> UIImage? {
+        if let ui = UIImage(named: menu.image), !menu.image.isEmpty { return ui }
+        let predicate = #Predicate<Ingredient> { $0.menuName == menu.name && $0.imageData != nil }
+        if let first = try? context.fetch(FetchDescriptor(predicate: predicate)).first,
+           let data = first.imageData,
+           let ui   = UIImage(data: data) { return ui }
+        if let url = URL(string: menu.image),
+           let data = try? Data(contentsOf: url),
+           let ui   = UIImage(data: data) { return ui }
+        return nil
+    }
+    
+    // MARK: 수량 헬퍼
+    private func qty() -> Int {
+        items.first(where: { $0.id == menu.id })?.qty ?? 0
+    }
+    private func setQty(_ q: Int) {
+        if let idx = items.firstIndex(where: { $0.id == menu.id }) {
+            //            q == 0 ? items.remove(at: idx) : (items[idx].qty = q)
+            if q == 0 {
+                items.remove(at: idx)          // 제거
+            } else {
+                items[idx].qty = q             // 수정
+            }
+        } else if q > 0 {
+            items.append(SoldItem(id: menu.id, name: menu.name, price: menu.price, qty: q, image: ""))
+        }
+    }
+    
+    // MARK: View
+    var body: some View {
+        HStack(spacing: 14) {
+            // 썸네일
+            if let img = thumbnail() {
+                Image(uiImage: img)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 44, height: 44)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            } else {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color(.systemGray5))
+                    .frame(width: 44, height: 44)
+                    .overlay(Text("❓❓❓").font(.caption).foregroundColor(.gray))
+            }
+            
+            // 메뉴 정보
+            VStack(alignment: .leading, spacing: 2) {
+                Text(menu.name).font(.headline)
+                Text("단가 \(menu.price.formatted())원")
+                    .font(.caption).foregroundColor(.gray)
+                Text("원가 \(menu.materialCostPerUnit.formatted())원")
+                    .font(.caption).foregroundColor(.gray)
+            }
+            Spacer()
+            
+            // 수량 스테퍼
+            HStack(spacing: 0) {
+                Button { setQty(max(qty() - 1, 0)) } label: {
+                    Image(systemName: "minus.circle.fill")
+                        .resizable().frame(width: 28, height: 28)
+                        .foregroundColor(.gray)
+                }.buttonStyle(.plain)
+                
+                TextField("", value: Binding(
+                    get: { qty() },
+                    set: { setQty($0) }
+                ), formatter: NumberFormatter())
+                .keyboardType(.numberPad)
+                .frame(width: 45)
+                .textFieldStyle(.roundedBorder)
+                .multilineTextAlignment(.center)
+                .font(.title3)
+                .focused($isFocused)
+                
+                Button { setQty(qty() + 1) } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .resizable().frame(width: 28, height: 28)
+                        .foregroundColor(.blue)
+                }.buttonStyle(.plain)
+            }
+        }
+        .padding(.vertical, 6)
+    }
+}
+
+// MARK: - ProfitViewModel 헬퍼 타이틀
+private extension ProfitViewModel {
+    var sheetTitle: String {
+        let weekday = weekdayKorean(selectedDate)
+        return "\(selectedDate.formatted(.dateTime.month().day())) \(weekday)요일 판매량 수정"
+    }
+}
