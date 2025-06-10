@@ -124,6 +124,9 @@ struct IngredientResultView: View {
                             // 기존 확인 모드: 그냥 뒤로 팝
                             dismiss()
                         }
+                    },
+                    onAddTapped: {
+                        navigateToSearch = true
                     }
                 )
             }

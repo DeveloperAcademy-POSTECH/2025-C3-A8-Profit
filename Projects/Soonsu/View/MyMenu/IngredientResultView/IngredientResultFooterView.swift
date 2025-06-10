@@ -11,10 +11,22 @@ struct IngredientResultFooterView: View {
     let totalCost: Int
     let isNew: Bool
     let onPrimaryTapped: () -> Void
+    let onAddTapped: () -> Void
     
     var body: some View {
         
         VStack(spacing: 16) {
+            
+            Button {
+                onAddTapped()
+            } label: {
+                HStack(spacing: 0) {
+                    Image(systemName: "plus.circle.fill")
+                    Text("재료 추가하기")
+                }
+            }
+            
+            
             HStack(spacing:0) {
                 Group {
                     Text("재료원가는")
@@ -40,6 +52,9 @@ struct IngredientResultFooterView: View {
             .foregroundColor(.white)
 //            .foregroundColor(isNew ? .white : .black)
             .clipShape(RoundedRectangle(cornerRadius: 12))
+            
+            
+            
         }
         .padding()
 //        .background(

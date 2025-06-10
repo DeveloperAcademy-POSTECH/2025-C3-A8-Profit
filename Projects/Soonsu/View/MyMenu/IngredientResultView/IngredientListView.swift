@@ -10,7 +10,7 @@ import SwiftUI
 struct IngredientListView: View {
     var ingredients: [IngredientInfo]
     //    let isNew: Bool
-    //    let onAddTapped: () -> Void
+//    let onAddTapped: () -> Void
     
     var body: some View {
         ZStack {
