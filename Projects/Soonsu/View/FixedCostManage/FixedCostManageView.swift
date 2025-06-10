@@ -58,6 +58,7 @@ struct FixedCostManageView: View {
                         viewModel.operatingDays = latest.operatingDays
                         viewModel.isFixedCostSet = true
                         viewModel.lastFixedCostUpdate = Date()
+                        viewModel.saveMonthlyFixedCost(to: context)
                         print("🟢 적용 완료: \(viewModel.monthlyFixedCost), \(viewModel.operatingDays)")
                         dismiss()
                     } else {
