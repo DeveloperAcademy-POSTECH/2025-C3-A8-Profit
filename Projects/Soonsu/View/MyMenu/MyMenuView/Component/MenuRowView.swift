@@ -147,7 +147,7 @@ struct MenuRowView: View {
                             Text("\(costRateString)")
                                 .font(.caption2)
                             Text("%")
-                                .font(.system(size: 4))
+                                .font(.system(size: 8))
                         }
                         
                         .fontWeight(.semibold)
