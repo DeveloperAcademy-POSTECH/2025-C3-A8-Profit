@@ -31,12 +31,23 @@ struct FixedCostTemporaryComponent: View {
             case cost, days
         }
     
+    private var isInputValid: Bool {
+        if let num = Int(inputCost), num > 0,
+           let days = Int(inputDays), days > 0 {
+            return true
+        }
+        return false
+    }
+    
     var latestTemporary: FixedCostTemporary? {
         temporaries.first
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading) {
+            Text("임시 고정비")
+                .padding(.bottom, 15)
+            
             HStack {
                 Text("총 고정비")
                     .font(.title2)
@@ -47,7 +58,7 @@ struct FixedCostTemporaryComponent: View {
                     .font(.title2)
                     .fontWeight(.bold)
             }
-            .padding(.bottom, 16)
+//            .padding(.bottom, 16)
             
             HStack {
                 Text("하루 고정비")
@@ -61,10 +72,11 @@ struct FixedCostTemporaryComponent: View {
             }
             
             Divider()
+                .padding(.bottom, 12)
             
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading) {
                 HStack {
-                    Text("영업 일수:")
+                    Text("영업일수")
                     Spacer()
                     Text("\(displayedOperatingDays != 0 ? displayedOperatingDays : vm.operatingDays)일")
                 }
@@ -75,7 +87,6 @@ struct FixedCostTemporaryComponent: View {
         .padding()
         .background(Color.white)
         .cornerRadius(16)
-        .padding(.horizontal)
         .onChange(of: temporaries) { _ in
             print("Temporary fixed cost updated. UI will refresh.")
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -167,11 +178,12 @@ struct FixedCostTemporaryComponent: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .foregroundColor(.white)
-                    .background(Color.blue)
+                    .background(isInputValid ? Color.blue : Color.gray)
                     .cornerRadius(6)
                     .font(.headline)
             }
             .padding(.top, 3)
+            .disabled(!isInputValid)
             
             Text("마지막 업데이트: \(koreaDateFormatter.string(from: vm.lastFixedCostUpdate))")
                 .font(.caption2)

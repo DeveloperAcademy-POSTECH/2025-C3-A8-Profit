@@ -15,8 +15,13 @@ struct FixedCostDetailView: View {
     private var savedFixedCosts: [FixedCostTemporary]
     
     @State private var totalFixedCost: String = ""
-    
-    
+    @State private var inputDays: String = ""
+    @State private var displayedOperatingDays: Int = 0
+
+
+    private var isInputValid: Bool {
+        Int(inputDays) ?? 0 > 0
+    }
     
     var body: some View {
         let dailyFixed = vm.dailyFixedCost(for: vm.selectedDate)
@@ -24,7 +29,10 @@ struct FixedCostDetailView: View {
 
         
             VStack {
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading) {
+                    Text("상세 고정비")
+                        .padding(.bottom, 15)
+                        
                     HStack {
                         Text("총 고정비")
                             .font(.title2)
@@ -35,7 +43,6 @@ struct FixedCostDetailView: View {
                             .font(.title2)
                             .fontWeight(.bold)
                     }
-                    .padding(.bottom, 16)
                     
                     HStack {
                         Text("하루 고정비")
@@ -48,24 +55,26 @@ struct FixedCostDetailView: View {
                             .fontWeight(.bold)
                     }
                     
+                    Divider()
+                        .padding(.bottom, 12)
                     
                     VStack(alignment: .leading, spacing: 4) {
                         HStack {
-                            Text("인건비:")
+                            Text("인건비")
                             Spacer()
                             Text("800,000원")
                         }
                         
                         HStack {
-                            Text("간접비:")
+                            Text("간접비")
                             Spacer()
                             Text("1,500,000원")
                         }
                         
                         HStack {
-                            Text("감가상각비:")
+                            Text("영업일수")
                             Spacer()
-                            Text("300,000원")
+                            Text("\(displayedOperatingDays != 0 ? displayedOperatingDays : vm.operatingDays)일")
                         }
                     }
                     .font(.subheadline)
@@ -77,11 +86,11 @@ struct FixedCostDetailView: View {
                 .padding(.horizontal)
                 
                 
-                VStack(spacing: 12) {
+                VStack {
                     NavigationLink(destination: LaborCostManageView()) {
                         HStack {
-                            Text("인건비 입력하기(월간)")
-                                .font(.title2)
+                            Text("인건비 입력하기")
+                                .font(.system(size: 15))
                                 .fontWeight(.bold)
                                 .foregroundStyle(.black)
                             Spacer()
@@ -89,16 +98,17 @@ struct FixedCostDetailView: View {
                                 .foregroundColor(.secondary)
                         }
                         .padding(20)
-                        .frame(width: 360, height: 84)
+                        .frame(height: 41)
                         .background(Color.white)
-                        .cornerRadius(16)
+                        .cornerRadius(8)
                     }
-                    .padding(.top, 28)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 14)
                     
                     NavigationLink(destination: OverheadCostManageView()) {
                         HStack {
-                            Text("간접비 입력하기(월간)")
-                                .font(.title2)
+                            Text("간접비 입력하기")
+                                .font(.system(size: 15))
                                 .fontWeight(.bold)
                                 .foregroundStyle(.black)
                             Spacer()
@@ -106,30 +116,47 @@ struct FixedCostDetailView: View {
                                 .foregroundColor(.secondary)
                         }
                         .padding(20)
-                        .frame(width: 360, height: 84)
+                        .frame(height: 41)
                         .background(Color.white)
-                        .cornerRadius(16)
+                        .cornerRadius(8)
                     }
-                    .padding(.top, 16)
-                    
-                    NavigationLink(destination: Text("감가상각비 입력 화면")) {
-                        HStack {
-                            Text("감가상각비 입력하기")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                                .foregroundStyle(.black)
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(.secondary)
-                        }
-                        .padding(20)
-                        .frame(width: 360, height: 84)
-                        .background(Color.white)
-                        .cornerRadius(16)
-                    }
-                    .padding(.top, 16)
+                    .padding(.horizontal, 16)
                 }
                 
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("이번달 영업일수")
+                        .font(.caption)
+                    HStack {
+
+                        HStack {
+                            TextField("영업일수", text: $inputDays)
+                                .keyboardType(.numberPad)
+                                .padding(12)
+                                .background(Color(.systemGray6))
+                                .cornerRadius(8)
+                            Text("일")
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    Button {
+                        inputDays = ""
+                    } label: {
+                        Text("저장")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .foregroundColor(.white)
+                            .cornerRadius(6)
+                            .font(.headline)
+                    }
+                    .disabled(!isInputValid)
+                    .background(isInputValid ? Color.blue : Color.gray)
+                    .cornerRadius(6)
+                    .padding(.top, 3)
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(7)
+                .padding()
             }
             .background(Color(UIColor.systemGroupedBackground))
     }

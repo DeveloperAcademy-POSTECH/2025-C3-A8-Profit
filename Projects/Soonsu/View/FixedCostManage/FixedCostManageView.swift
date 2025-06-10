@@ -17,6 +17,7 @@ struct FixedCostManageView: View {
     @ObservedObject var viewModel : ProfitViewModel
     @FocusState private var isInputFocused: Bool
     @State private var selectedTab: Tabs = .detailTab
+    @State private var showConfirmationAlert = false
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
     
@@ -44,8 +45,19 @@ struct FixedCostManageView: View {
             }
             .background(Color(UIColor.systemGroupedBackground))
             .navigationTitle("고정비 관리")
+            .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(.hidden, for: .tabBar)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.blue)
+                    }
+                }
+            }
             .toolbar {
                 Button {
                     print("툴바 버튼 클릭됨")
@@ -60,13 +72,24 @@ struct FixedCostManageView: View {
                         viewModel.lastFixedCostUpdate = Date()
                         viewModel.saveMonthlyFixedCost(to: context)
                         print("🟢 적용 완료: \(viewModel.monthlyFixedCost), \(viewModel.operatingDays)")
-                        dismiss()
+                        showConfirmationAlert = true
                     } else {
                         print("❌ 최신 임시 고정비 데이터를 찾을 수 없음")
                     }
                 } label: {
                     Text("적용")
                 }
+            }
+            .alert("적용 완료", isPresented: $showConfirmationAlert) {
+                Button("확인") {
+                    dismiss()
+                }
+            } message: {
+                Text(
+                        selectedTab == .detailTab
+                        ? "상세 고정비 설정이 순이익 계산에 적용되었습니다."
+                        : "임시 고정비 설정이 순이익 계산에 적용되었습니다."
+                    )
             }
             
         
