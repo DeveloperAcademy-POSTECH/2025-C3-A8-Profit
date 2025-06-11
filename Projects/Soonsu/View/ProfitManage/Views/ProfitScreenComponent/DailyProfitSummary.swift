@@ -94,18 +94,25 @@ struct DailyProfitSummary: View {
                 let dailyFixed = vm.dailyFixedCost(for: vm.selectedDate)
                 
                 
-                VStack {
-                    HStack {
-                        Text("고정비 (일별):")
-                            .padding(.trailing, 8)
-                        Text("- \(dailyFixed.formatted(.number.grouping(.automatic))) 원")
-                            .foregroundColor(.red)
-                    }
-                    
+                VStack() {
                     if !vm.isFixedCostSet {
-                        Text("※ 임시 고정비 300만원(일할 \(dailyFixed.formatted(.number.grouping(.automatic)))원) 기준입니다.")
-                            .font(.caption2)
-                            .foregroundColor(.gray)
+                        HStack {
+                            Text("※ 임시 고정비 300만원(일할 \(dailyFixed.formatted(.number.grouping(.automatic)))원) 기준입니다.")
+                                .font(.caption2)
+                                .foregroundColor(.gray)
+                                .padding(.vertical,4)
+                            
+                            Spacer()
+                        }
+                    }
+                    HStack {
+                        Text("고정비(일별)")
+                            .padding(.trailing, 8)
+                            .font(.headline)
+                        Spacer()
+                        Text("-\(dailyFixed.formatted(.number.grouping(.automatic)))원")
+                            .font(.headline)
+                            .foregroundColor(.red)
                     }
                     Button {
                         vm.showSalesInputSheet = true
@@ -114,20 +121,22 @@ struct DailyProfitSummary: View {
                             Image(systemName: "plus")
                             Text("판매량 입력")
                         }
-                        .frame(width: 140, height: 48)
-                        .background(Color.blue)
+                        .frame(width: 140, height: 56)
+                        .background(Color.primaryColor700)
                         .foregroundColor(.white)
-                        .cornerRadius(24)
+                        .cornerRadius(28)
                         .font(.headline)
                     }
-                    .padding(.top, 16)
+                    .padding(.top, 8)
+                    .padding(.trailing,-8)
                 }
-                .padding()
+                .padding(.horizontal)
                 .frame(maxWidth: .infinity)
                 .background(Color.white)
             }
         }
-        .padding()
+        .padding(.vertical)
+        .padding(.bottom, 8)
         .background(Color.white)
         .cornerRadius(14)
         .shadow(color: .black.opacity(0.03), radius: 4, x: 0, y: 2)

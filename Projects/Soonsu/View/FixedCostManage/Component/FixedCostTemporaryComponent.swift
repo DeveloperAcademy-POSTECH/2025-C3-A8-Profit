@@ -47,32 +47,35 @@ struct FixedCostTemporaryComponent: View {
         VStack(alignment: .leading) {
             Text("임시 고정비")
                 .padding(.bottom, 15)
+                .font(.headline)
             
             HStack {
                 Text("총 고정비")
-                    .font(.title2)
+                    .font(.headline)
                     .fontWeight(.bold)
+                    .foregroundStyle(.gray)
                 Spacer()
-                Text("-\(self.totalFixed) 원")
+                Text("-\(self.totalFixed)원")
                     .foregroundColor(.red)
-                    .font(.title2)
+                    .font(.headline)
                     .fontWeight(.bold)
             }
-            //            .padding(.bottom, 16)
+            .padding(.bottom,2)
             
             HStack {
                 Text("하루 고정비")
-                    .font(.title2)
+                    .font(.headline)
                     .fontWeight(.bold)
+                    .foregroundStyle(.gray)
                 Spacer()
-                Text("- \(self.dailyFixed.formatted(.number.grouping(.automatic))) 원")
+                Text("-\(self.dailyFixed.formatted(.number.grouping(.automatic)))원")
                     .foregroundColor(.red)
-                    .font(.title2)
+                    .font(.headline)
                     .fontWeight(.bold)
             }
             
             Divider()
-                .padding(.bottom, 12)
+                .padding(.bottom, 8)
             
             VStack(alignment: .leading) {
                 HStack {
@@ -191,6 +194,7 @@ struct FixedCostTemporaryComponent: View {
                     .font(.caption2)
                     .foregroundColor(.gray)
                     .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.bottom, -4)
                 Text("고정비는 매월 초 또는 변경 시 한 번만 입력하시면 됩니다.")
                     .font(.caption2)
                     .foregroundColor(.gray)
@@ -204,7 +208,7 @@ struct FixedCostTemporaryComponent: View {
             }
             .padding()
             .background(Color.white)
-            .cornerRadius(7)
+            .cornerRadius(16)
             
             if focusedField != nil {
                         Color.clear

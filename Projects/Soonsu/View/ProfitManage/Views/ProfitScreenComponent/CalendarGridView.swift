@@ -95,7 +95,7 @@ struct CalendarGridView: View {
                             }
                         }
                         .frame(maxWidth: .infinity, minHeight: 38)
-                        .background(isSelected ? Color.blue : Color.clear)
+                        .background(isSelected ? Color.primaryColor700 : Color.clear)
                         .cornerRadius(10)
                         .onTapGesture { vm.selectedDate = date }
                     }

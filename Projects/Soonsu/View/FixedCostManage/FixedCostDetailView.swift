@@ -42,23 +42,25 @@ struct FixedCostDetailView: View {
                     
                     HStack {
                         Text("총 고정비")
-                            .font(.title2)
+                            .font(.headline)
                             .fontWeight(.bold)
+                            .foregroundStyle(.gray)
                         Spacer()
-                        Text("-\(totalFixed) 원")
+                        Text("-\(totalFixed)원")
                             .foregroundColor(.red)
-                            .font(.title2)
+                            .font(.headline)
                             .fontWeight(.bold)
                     }
                     
                     HStack {
                         Text("하루 고정비")
-                            .font(.title2)
+                            .font(.headline)
                             .fontWeight(.bold)
+                            .foregroundStyle(.gray)
                         Spacer()
                         Text("- \(dailyFixed.formatted(.number.grouping(.automatic))) 원")
                             .foregroundColor(.red)
-                            .font(.title2)
+                            .font(.headline)
                             .fontWeight(.bold)
                     }
                     
