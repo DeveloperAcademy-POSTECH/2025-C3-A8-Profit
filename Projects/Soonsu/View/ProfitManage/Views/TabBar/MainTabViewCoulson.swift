@@ -14,16 +14,13 @@ struct MainTabViewCoulson: View {
     
     @State private var selectedTab: TabType = .home
     
-    //    @Query(sort: \IngredientEntity.createdAt, order: .reverse)
-    //    private var allIngredients: [IngredientEntity]
-    
-    //    @StateObject private var menuVM = MenuViewModel()
     @StateObject private var profitVM = ProfitViewModel()
-//    @StateObject private var menuVM = MenuViewModel.empty
     @StateObject private var menuVM: MenuViewModel
     
     // 최초 1회만 저장된 데이터 로드용 플래그
     @State private var isLoaded = false
+    
+    @StateObject private var keyboardObserver = KeyboardObserver()
     
     init() {
         _menuVM = StateObject(wrappedValue: MenuViewModel())
@@ -41,24 +38,21 @@ struct MainTabViewCoulson: View {
                 
             case .menu:
                 // 두 번째 탭: 메뉴관리 → MyMenuView
-//                NavigationStack {
                     MyMenuView(viewModel: menuVM)
-//                }
-//                
+
             case .profit:
                 ProfitScreen(viewModel: profitVM, menuViewModel: menuVM, selectedTab: $selectedTab)
                     .onAppear {
                         profitVM.loadMenuMaster(from: menuVM.allIngredients)
                     }
-//            case .cost:
-//                // 네 번째 탭: 비용관리 (임시로 Text로 처리)
-//                Text("비용관리 화면")
-//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                    .background(Color(.systemBackground))
             }
             
             // 2) 하단 탭 바
-            TabBarViewCoulson(selectedTab: $selectedTab)
+//            TabBarViewCoulson(selectedTab: $selectedTab)
+            // 탭바는 키보드가 숨겨져 있을 때만 표시
+            if !keyboardObserver.isKeyboardVisible {
+                TabBarViewCoulson(selectedTab: $selectedTab)
+            }
         }
         .onAppear {
             menuVM.setContextIfNeeded(context)
@@ -69,20 +63,6 @@ struct MainTabViewCoulson: View {
                 isLoaded = true
             }
         }
-        //        .onAppear {
-        //            profitVM.loadMenuMaster(from: allIngredients)
-        //        }
-        // 이 부분에서 SwiftData의 modelContainer를 전달해야 MyMenuView가 정상 동작합니다.
-            
-            //
-        //        .modelContainer(for: [Ingredient.self])
-        .modelContainer(for: [
-            Ingredient.self,
-            SoldItemModel.self,
-            DailySalesRecord.self,
-            MonthlyFixedCostRecord.self,
-            FixedCostTemporary.self
-        ])
     }
 }
 

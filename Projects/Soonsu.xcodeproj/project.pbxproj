@@ -108,6 +108,11 @@
 			path = FixedCostManage;
 			sourceTree = "<group>";
 		};
+		6872E4D32DF998B700B4A62D /* Launch */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Launch;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +283,7 @@
 				3EBF44302DF17E0400C6F319 /* MyMenu */,
 				3EC4A2EB2DF0946C007CE029 /* FixedCostManage */,
 				265FB4682DF5A00A00D171FA /* ProfitManage */,
+				6872E4D32DF998B700B4A62D /* Launch */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -301,6 +307,7 @@
 				3EBF442F2DF17DF300C6F319 /* Utilities */,
 				3EBF44302DF17E0400C6F319 /* MyMenu */,
 				3EC4A2EB2DF0946C007CE029 /* FixedCostManage */,
+				6872E4D32DF998B700B4A62D /* Launch */,
 			);
 			name = Soonsu;
 			packageProductDependencies = (
@@ -618,7 +625,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CZXX5QRBG6;
+				DEVELOPMENT_TEAM = 5Z8G42AVKD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -651,7 +658,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CZXX5QRBG6;
+				DEVELOPMENT_TEAM = 5Z8G42AVKD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
