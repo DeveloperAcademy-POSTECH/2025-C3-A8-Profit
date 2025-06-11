@@ -13,11 +13,17 @@ struct FixedCostDetailView: View {
     @Environment(\.modelContext) private var context
     @Query(sort: [SortDescriptor(\FixedCostTemporary.date, order: .reverse)])
     private var savedFixedCosts: [FixedCostTemporary]
+    @FocusState private var focusedField: Field?
     
     @State private var totalFixedCost: String = ""
     @State private var inputDays: String = ""
     @State private var displayedOperatingDays: Int = 0
-
+    
+    @Query private var savedLabors: [LaborCost]
+    
+    private enum Field: Hashable {
+        case days
+    }
 
     private var isInputValid: Bool {
         Int(inputDays) ?? 0 > 0
@@ -26,13 +32,14 @@ struct FixedCostDetailView: View {
     var body: some View {
         let dailyFixed = vm.dailyFixedCost(for: vm.selectedDate)
         let totalFixed = vm.monthlyFixedCost
-
         
+        
+        ZStack {
             VStack {
                 VStack(alignment: .leading) {
                     Text("상세 고정비")
                         .padding(.bottom, 15)
-                        
+                    
                     HStack {
                         Text("총 고정비")
                             .font(.title2)
@@ -58,11 +65,13 @@ struct FixedCostDetailView: View {
                     Divider()
                         .padding(.bottom, 12)
                     
+                    let totalCost = savedLabors.reduce(0) { $0 + ($1.employeeTime * $1.employeeSalary) }
+                    
                     VStack(alignment: .leading, spacing: 4) {
                         HStack {
                             Text("인건비")
                             Spacer()
-                            Text("800,000원")
+                            Text("\(totalCost.formatted())원")
                         }
                         
                         HStack {
@@ -107,7 +116,7 @@ struct FixedCostDetailView: View {
                     
                     NavigationLink(destination: OverheadCostManageView()) {
                         HStack {
-                            Text("간접비 입력하기")
+                            Text("간접비 입력하기 (⚠️공사중🚧)")
                                 .font(.system(size: 15))
                                 .fontWeight(.bold)
                                 .foregroundStyle(.black)
@@ -127,9 +136,10 @@ struct FixedCostDetailView: View {
                     Text("이번달 영업일수")
                         .font(.caption)
                     HStack {
-
+                        
                         HStack {
                             TextField("영업일수", text: $inputDays)
+                                .focused($focusedField, equals: .days)
                                 .keyboardType(.numberPad)
                                 .padding(12)
                                 .background(Color(.systemGray6))
@@ -139,7 +149,17 @@ struct FixedCostDetailView: View {
                         }
                     }
                     Button {
-                        inputDays = ""
+                        if let days = Int(inputDays), days > 0 {
+                            let newTemporary = FixedCostTemporary(
+                                date: vm.selectedDate,
+                                monthlyFixedCost: vm.monthlyFixedCost,
+                                operatingDays: days
+                            )
+                            context.insert(newTemporary)
+                            try? context.save()
+                            displayedOperatingDays = days
+                            inputDays = ""
+                        }
                     } label: {
                         Text("저장")
                             .frame(maxWidth: .infinity)
@@ -159,6 +179,16 @@ struct FixedCostDetailView: View {
                 .padding()
             }
             .background(Color(UIColor.systemGroupedBackground))
+            
+            if focusedField != nil {
+                        Color.clear
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                focusedField = nil
+                            }
+                    }
+
+        }
     }
 }
 

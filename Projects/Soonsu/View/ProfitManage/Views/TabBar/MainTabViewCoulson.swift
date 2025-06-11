@@ -10,6 +10,8 @@ import SwiftData
 
 struct MainTabViewCoulson: View {
     
+    @EnvironmentObject var tabBarState: TabBarState
+    
     @Environment(\.modelContext) private var context
     
     @State private var selectedTab: TabType = .home
@@ -50,11 +52,12 @@ struct MainTabViewCoulson: View {
             // 2) 하단 탭 바
 //            TabBarViewCoulson(selectedTab: $selectedTab)
             // 탭바는 키보드가 숨겨져 있을 때만 표시
-            if !keyboardObserver.isKeyboardVisible {
+            if !keyboardObserver.isKeyboardVisible && tabBarState.isVisible {
                 TabBarViewCoulson(selectedTab: $selectedTab)
             }
         }
         .onAppear {
+            tabBarState.isVisible = true
             menuVM.setContextIfNeeded(context)
             
             // ✅ ProfitViewModel의 데이터는 앱 실행 시 1회만 불러오도록
@@ -70,4 +73,5 @@ struct MainTabViewCoulson: View {
     // SwiftData in-memory 컨테이너를 연결해서 미리보기도 가능합니다.
     MainTabViewCoulson()
         .modelContainer(for: [Ingredient.self], inMemory: true)
+        .environmentObject(TabBarState())
 }

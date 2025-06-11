@@ -9,11 +9,12 @@ import SwiftUI
 
 struct OverheadCostManageView: View {
     @State private var selectedItem: String = "+ 간접비 추가"
-    let options = ["임차료", "공과금", "인터넷/통신비", "렌탈료", "보험료", "소모품비", "광고선전비", "이자비용", "카드결제수수료", "기타/잡비"]
+    let options = ["임차료", "공과금", "인터넷/통신비", "보험료", "소모품비", "광고선전비", "감가상각비", "수도광열비", "렌탈료", "이자비용", "기타/잡비"]
     
     @State private var tempCosts: [(OverheadCost, BasicCost)] = []
     @State private var initializedDefaults = false
     @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) private var dismiss
     @State private var isEditing = false
     @State private var selectedToDelete: Set<UUID> = []
     
@@ -46,7 +47,7 @@ var body: some View {
                 } label: {
                     HStack {
                         Text(selectedItem)
-                            .fontWeight(.semibold)
+                            .fontWeight(.regular)
                             .foregroundColor(.black)
                         Image(systemName: "chevron.down")
                             .foregroundColor(.gray)
@@ -57,7 +58,7 @@ var body: some View {
                     .cornerRadius(8)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.blue, lineWidth: 1)
+                            .stroke(Color.white, lineWidth: 1)
                     )
                 }
             }
@@ -68,8 +69,10 @@ var body: some View {
                         NavigationLink(destination: OverheadBasicView(category: overhead.category, tempCosts: $tempCosts)) {
                             VStack(spacing: 8) {
                                 Image(systemName: iconName(for: overhead.category.rawValue))
+                                    .foregroundStyle(.black)
                                     .font(.largeTitle)
                                 Text(overhead.category.rawValue)
+                                    .foregroundStyle(.black)
                                     .fontWeight(.semibold)
                                 Text("\(basic.amount) 원")
                                     .font(.caption)
@@ -113,11 +116,11 @@ var body: some View {
                         context.insert(overhead)
                         context.insert(basic)
                     }
-                    tempCosts.removeAll()
+                    // 저장만 하고 리스트는 유지
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 48)
-                .background(Color.gray.opacity(0.5))
+                .background(Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(8)
             }
@@ -151,6 +154,17 @@ var body: some View {
         .padding(16)
         .navigationTitle(Text("간접비 관리"))
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.blue)
+                        }
+                    }
+                }
         .onAppear {
             if !initializedDefaults {
                 tempCosts = defaultTempCosts()
@@ -163,8 +177,16 @@ var body: some View {
     private func iconName(for item: String) -> String {
         switch item {
         case "임차료": return "house.fill"
-        case "공과금": return "bolt.fill"
-        case "인터넷/통신비": return "dot.radiowaves.left.and.right"
+        case "공과금": return "folder.fill"
+        case "인터넷/통신비": return "antenna.radiowaves.left.and.right"
+        case "보험료": return "shield.pattern.checkered"
+        case "소모품비": return "archivebox.circle.fill"
+        case "광고선전비": return "megaphone.fill"
+        case "감가상각비": return "clock.arrow.trianglehead.counterclockwise.rotate.90"
+        case "수도광열비": return "bolt.fill"
+        case "렌탈료": return "tray.circle.fill"
+        case "이자비용": return "banknote.fill"
+        case "기타/잡비": return "tag.fill"
         default: return "info.circle"
         }
     }
@@ -174,11 +196,14 @@ var body: some View {
         case "임차료": return .rent
         case "공과금": return .tax
         case "인터넷/통신비": return .internet
-        case "렌탈료": return .rental
         case "보험료": return .insurance
+        case "소모품비": return .supply
         case "광고선전비": return .advertising
+        case "감가상각비": return .depreciation
+        case "수도광열비": return .utilities
+        case "렌탈료": return .rental
         case "이자비용": return .interest
-        case "소모품비", "카드결제수수료", "기타/잡비": return .etc
+        case "기타/잡비": return .etc
         default: return nil
         }
     }

@@ -7,6 +7,7 @@ struct ProfitScreen: View {
     @ObservedObject var menuViewModel: MenuViewModel
     @Binding var selectedTab: TabType
     @Environment(\.modelContext) private var context
+    @EnvironmentObject var tabBarState: TabBarState
     
     @State private var showFixedCostEditor: Bool = false
     @FocusState private var isInputFocused: Bool
@@ -46,13 +47,15 @@ struct ProfitScreen: View {
                 SalesInputSheet(vm: viewModel, items: items)
             }
             .onAppear {
+                tabBarState.isVisible = true
+
                 menuViewModel.$allIngredients
                     .receive(on: DispatchQueue.main)
                     .sink { ingredients in
                         viewModel.loadMenuMaster(from: ingredients)
                     }
                     .store(in: &cancellables)
-                
+
                 // ✅ 앱 시작 시 현재 월 고정비도 불러오기
                 viewModel.loadMonthlyFixedCost(from: context)
             }
@@ -65,7 +68,6 @@ struct ProfitScreen: View {
             
             
             .navigationDestination(isPresented: $navigateToNextView) {
-//                NextView()
                 FixedCostManageView(viewModel: viewModel)
             }
         }
@@ -123,22 +125,22 @@ struct ProfitScreen: View {
 //#Preview {
 //    let profitVM = ProfitViewModel()
 //    let menuVM = MenuViewModel()
-//    
+//
 //    // 날짜 포맷 함수 (format private 대체)
 //    func format(_ date: Date) -> String {
 //        let formatter = DateFormatter()
 //        formatter.dateFormat = "yyyy-MM-dd"
 //        return formatter.string(from: date)
 //    }
-//    
+//
 //    let today = Date()
-//    
+//
 //    // 샘플 menuMaster
 //    profitVM.menuMaster = [
 //        MenuItem(id: 1, name: "돈까스", price: 8000, materialCostPerUnit: 2500, image: ""),
 //        MenuItem(id: 2, name: "우동", price: 6000, materialCostPerUnit: 1800, image: "")
 //    ]
-//    
+//
 //    // 샘플 매출
 //    profitVM.dailySalesData[format(today)] = DailySales(
 //        revenue: 20000,
@@ -148,18 +150,22 @@ struct ProfitScreen: View {
 //            SoldItem(id: 2, name: "우동", price: 6000, qty: 1, image: "")
 //        ]
 //    )
-//    
+//
 //    // 기본 고정비 설정
 //    profitVM.monthlyFixedCost = 3000000
 //    profitVM.operatingDays = 30
 //    profitVM.isFixedCostSet = true
-//    
+//
 //    // selectedTab을 위한 @State
 //    @State var tab: TabType = .profit
-//    
+//
+//    // showFixedCostManage for TabBar visibility
+//    @State var showFixedCostManage = false
+//
 //    return ProfitScreen(
 //        viewModel: profitVM,
 //        menuViewModel: menuVM,
-//        selectedTab: .constant(tab)
+//        selectedTab: .constant(tab),
+//        showFixedCostManage: $showFixedCostManage
 //    )
 //}

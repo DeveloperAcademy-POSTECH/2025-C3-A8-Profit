@@ -18,38 +18,46 @@ struct TempLaborCost: Identifiable {
 struct LaborCostManageView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var tabBarState: TabBarState
     @Query private var savedLabors: [LaborCost]
     @State private var showAddEmployee = false
     @State private var laborCosts: [TempLaborCost] = []
     @State private var isModified: Bool = false
     @State private var didLoad: Bool = false
     
+    
     @State private var selectedLabor: TempLaborCost? = nil
     @State private var showEditView: Bool = false
+    @FocusState private var focusedField: Field?
     
     private func loadLaborCosts() {
         do {
-            let descriptor = FetchDescriptor<LaborCost>(sortBy: [SortDescriptor(\.createdAt, order: .forward)])
-            
-            laborCosts =  try modelContext
-                .fetch(descriptor)
-                .map { labor in
-                    return TempLaborCost(
-                        employeeName: labor.employeeName,
-                        employeeTime: labor.employeeTime,
-                        employeeSalary: labor.employeeSalary
-                    )
-                }
+            // 단순한 fetch로 변경
+            let descriptor = FetchDescriptor<LaborCost>()
+            let results = try modelContext.fetch(descriptor)
+
+            print("🔍 불러온 인건비 개수: \(results.count)")
+            for result in results {
+                print("👤 \(result.employeeName), \(result.employeeTime)시간, \(result.employeeSalary)원")
+            }
+
+            laborCosts = results.map { labor in
+                TempLaborCost(
+                    employeeName: labor.employeeName,
+                    employeeTime: labor.employeeTime,
+                    employeeSalary: labor.employeeSalary
+                )
+            }
+
             isModified = false
         } catch {
-            print("Failed to fetch LaborCosts: \(error)")
+            print("❌ Failed to fetch LaborCosts: \(error)")
         }
     }
     
     var body: some View {
         ZStack {
             Color(UIColor.systemGroupedBackground)
-                .ignoresSafeArea()
             
             VStack {
                 
@@ -91,6 +99,7 @@ struct LaborCostManageView: View {
                                             .foregroundColor(.gray)
                                     }
                                 }
+                                .frame(minHeight: 60)
                             }
                         }
                         .onDelete { indexSet in
@@ -99,20 +108,13 @@ struct LaborCostManageView: View {
                         }
                     }
                     .padding(.horizontal, -16)
-                    //                    .listStyle()
-                    //                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+
                 }
                 
                 let totalHours = laborCosts.reduce(0) { $0 + $1.employeeTime }
                 let totalCost = laborCosts.reduce(0) { $0 + ($1.employeeTime * $1.employeeSalary) }
                 
                 VStack(alignment: .leading, spacing: 4) {
-//                    ForEach(laborCosts, id: \.id) { labor in
-//                        let cost = labor.employeeTime * labor.employeeSalary
-//                        Text("\(labor.employeeName): \(labor.employeeTime)시간 * \(labor.employeeSalary.formatted())원 = \(cost.formatted())원")
-//                            .font(.caption)
-//                            .foregroundColor(.gray)
-//                    }
                     
                     HStack {
                         Text("월 총 근무시간")
@@ -234,7 +236,12 @@ struct LaborCostManageView: View {
                 loadLaborCosts()
                 didLoad = true
             }
+            tabBarState.isVisible = false
         }
+        // Remove onDisappear to prevent tab bar from reappearing when this view disappears
+        // .onDisappear {
+        //     tabBarState.isVisible = true
+        // }
         //            .toolbar(.hidden, for: .tabBar)
     }
 }
@@ -242,5 +249,6 @@ struct LaborCostManageView: View {
 #Preview {
     NavigationStack {
         LaborCostManageView()
+            .environmentObject(TabBarState())
     }
 }

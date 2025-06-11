@@ -21,18 +21,30 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct SoonsuApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject var tabBarState = TabBarState()
+    
     var body: some Scene {
         WindowGroup {
             SplashView() // Soonsu->View->Launch
 //            MainTabViewCoulson()
                 .modelContainer(for: [
-                    FixedCostTemporary.self,
                     Ingredient.self,
                     SoldItemModel.self,  // ✅ SwiftData에 새로 등록
                     DailySalesRecord.self,
-                    MonthlyFixedCostRecord.self
-                    
+                    MonthlyFixedCostRecord.self,
+                    FixedCostTemporary.self,
+                    LaborCost.self,
+                    // 여기부터
+                    OverheadCost.self,
+                    BasicCost.self,
+                    UtilityCost.self,
+                    InsuranceCost.self,
+                    DepreciationCost.self,
+                    RentalCost.self,
+                    TaxCost.self
+                    // 여기까지 간접비 관련 모델
                 ])
+                .environmentObject(tabBarState)
         }
     }
 }
