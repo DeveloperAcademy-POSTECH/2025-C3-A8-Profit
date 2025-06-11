@@ -129,13 +129,30 @@ struct IngredientResultView: View {
                         } else {
                             // MARK: 질문 - 수정 사항이 반영이 안됨 
                             // 기존 확인 모드: 저장 후 뒤로 팝
-                            do {
-                                try context.save()
-                                print("✅ 수정 저장됨")
-                                selectedMenuName = "\(menuName)-\(UUID().uuidString)" // MyMenu 갱신 유도
+//                            do {
+//                                try context.save()
+//                                print("✅ 수정 저장됨")
+//                                selectedMenuName = "\(menuName)-\(UUID().uuidString)" // MyMenu 갱신 유도
+//                                dismiss()
+//                            } catch {
+//                                print("❌ 저장 실패:", error)
+//                            }
+                            // 🆕 Delete existing ingredients for this menuName before saving new ones
+                            let fetchDescriptor = FetchDescriptor<Ingredient>(predicate: #Predicate { $0.menuName == menuName })
+                            if let existing = try? context.fetch(fetchDescriptor) {
+                                for item in existing {
+                                    context.delete(item)
+                                }
+                            }
+                            for info in ingredients {
+                                let entity = Ingredient(
+                                    menuName: menuName,
+                                    menuPrice: Int(menuPrice) ?? 0,
+                                    imageData: image?.jpegData(compressionQuality: 0.8),
+                                    info: info
+                                )
+                                context.insert(entity)
                                 dismiss()
-                            } catch {
-                                print("❌ 저장 실패:", error)
                             }
                         }
                     },

@@ -23,6 +23,16 @@ struct IngredientDetailView: View {
     
     @State private var editableIngredient: IngredientInfo = IngredientInfo(name: "", amount: "", unitPrice: 100)
     
+    private func calculateUnitPrice(purchasePrice: Int, purchaseAmount: String, recipeAmount: String) -> Int {
+        // 예: "200g" -> 200
+        let purchaseValue = Int(purchaseAmount.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)) ?? 1
+        let recipeValue = Int(recipeAmount.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)) ?? 1
+        
+        guard purchaseValue > 0 else { return 0 }
+        let unitPrice = Double(purchasePrice) / Double(purchaseValue) * Double(recipeValue)
+        return Int(unitPrice.rounded())
+    }
+    
     
 
     enum SegmentMode: String, CaseIterable {
@@ -75,7 +85,15 @@ struct IngredientDetailView: View {
             Spacer()
             Button {
                 // MARK: 재료 추가하는 코드
-                dismiss()
+                let newIngredient = IngredientInfo(
+                    name: ingredient.name,
+                    amount: recipeAmount.isEmpty ? "0g" : recipeAmount,
+                    unitPrice: segmentMode == .auto
+                        ? ingredient.unitPrice
+                        : calculateUnitPrice(purchasePrice: purchasePrice, purchaseAmount: purchaseAmount, recipeAmount: recipeAmount)
+                )
+                ingredients.append(newIngredient)
+
             } label: {
                 Text("재료추가하기")
                     .font(.body)

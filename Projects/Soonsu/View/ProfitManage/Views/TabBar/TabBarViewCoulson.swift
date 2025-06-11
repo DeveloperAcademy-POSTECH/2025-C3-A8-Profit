@@ -51,7 +51,7 @@ struct TabBarViewCoulson: View {
                 }
             }
         }
-        .background(Color.white.ignoresSafeArea(edges: .bottom))
+//        .background(Color.white.ignoresSafeArea(edges: .bottom))
         .shadow(color: .black.opacity(0.04), radius: 4, x: 0, y: -1)
     }
 }

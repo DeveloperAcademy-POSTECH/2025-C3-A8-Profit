@@ -41,10 +41,10 @@ struct MainTabViewCoulson: View {
                 
             case .menu:
                 // 두 번째 탭: 메뉴관리 → MyMenuView
-                NavigationStack {
+//                NavigationStack {
                     MyMenuView(viewModel: menuVM)
-                }
-                
+//                }
+//                
             case .profit:
                 ProfitScreen(viewModel: profitVM, menuViewModel: menuVM, selectedTab: $selectedTab)
                     .onAppear {

@@ -9,6 +9,7 @@ import SwiftUI
 import PhotosUI
 import FirebaseAI
 import SwiftData
+//import Lottie
 
 struct MenuInputView: View {
     
@@ -173,6 +174,7 @@ struct MenuInputView: View {
             
             .padding()
             .scrollContentBackground(.hidden)
+            .ignoresSafeArea(.keyboard, edges: .bottom)
             .background(Color(.systemGray6))
             .overlay {
                 if isLoading {
@@ -187,6 +189,8 @@ struct MenuInputView: View {
                             ProgressView()
                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                                 .scaleEffect(2)
+//                            LottieView(animation: .named("loading"))
+//                                .playing()
                         }
                         .padding()
                     }
