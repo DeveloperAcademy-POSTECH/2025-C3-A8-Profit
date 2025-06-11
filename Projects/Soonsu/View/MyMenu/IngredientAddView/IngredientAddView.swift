@@ -12,85 +12,41 @@ import SwiftData
 struct IngredientAddView: View {
     
     @Environment(\.modelContext) private var context
-    //    @Binding var parsedIngredients: [IngredientInfo]
-    //    var onIngredientSelected: ((String) -> Void)? = nil
+    @Binding var parsedIngredients: [IngredientInfo]
+    var onIngredientSelected: ((String) -> Void)? = nil
     @Environment(\.dismiss) private var dismiss
     
     // 검색창 텍스트
     @State private var searchText: String = ""
-    //    private let ingredients = loadAllIngredientsFromJSON()
     
-    
-    // 콜백: 선택된 재료명을 부모 뷰로 전달
-    var onSelect: (String) -> Void
-    
-    
-    // MARK: - SwiftData에서 불러온 모든 고유 재료명
-    private var allItems: [String] {
-        let descriptor = FetchDescriptor<Ingredient>(
-            predicate: nil,
-            sortBy: [SortDescriptor(\.name, order: .forward)]
-        )
-        do {
-            let entities = try context.fetch(descriptor)
-            let names = entities.map(\.name)
-            return Array(Set(names)).sorted()
-        } catch {
-            print("❌ Fetch error IngredientAddView:", error)
-            return []
-        }
-    }
-    
-    
-    // 검색 내용에 따른 필터 적용
-    private var filteredItems: [String] {
+    private let ingredients = loadAllIngredientsFromJSON()
+    private var filteredItems: [IngredientInfo] {
         let trimmed = searchText.trimmingCharacters(in: .whitespaces)
         if trimmed.isEmpty {
-            return allItems
+            return []
         } else {
-            return allItems.filter {
-                $0.localizedStandardContains(trimmed)
+            return ingredients.map(\.self).filter {
+                $0.name.localizedStandardContains(trimmed)
             }
         }
     }
-    
-    
-    /*
-     private var filteredItems: [IngredientInfo] {
-     let trimmed = searchText.trimmingCharacters(in: .whitespaces)
-     if trimmed.isEmpty {
-     return []
-     } else {
-     return ingredients.map(\.self).filter {
-     $0.name.localizedStandardContains(trimmed)
-     }
-     }
-     }
-     */
+     
     var body: some View {
-        
-        List {
-            ForEach(filteredItems, id: \.self) { item in
-                Button(action: {
-                    // 재료명을 선택하면 부모 뷰로 전달 후 뒤로 팝
-                    onSelect(item)
-                    dismiss()
-                }) {
-                    Text(item)
-                }
+
+        List(filteredItems, id: \.name) { item in
+            NavigationLink(
+                destination:
+                    IngredientDetailView(
+                ingredient: item,
+                ingredients: $parsedIngredients)
+            )
+            {
+                Text(item.name)
+            }
+            .onTapGesture {
+                onIngredientSelected?(item.name)
             }
         }
-        
-        /*
-         List(filteredItems, id: \.name) { item in
-         NavigationLink(destination: IngredientDetailView(ingredient: item, parsedIngredients: $parsedIngredients)) {
-         Text(item.name)
-         }
-         .onTapGesture {
-         onIngredientSelected?(item.name)
-         }
-         }
-         */
         .navigationTitle("재료 추가")
         .searchable(text: $searchText, placement: .toolbar, prompt: "검색어를 입력하세요")
     }
@@ -100,3 +56,4 @@ struct IngredientAddView: View {
 //    IngredientAddView()
 //        .modelContainer(for: Ingredient.self)
 //}
+

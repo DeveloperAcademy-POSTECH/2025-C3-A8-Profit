@@ -9,11 +9,6 @@ import SwiftUI
 import SwiftData
 
 
-//enum ResultMode : Equatable {
-//    case create  // 새로 등록
-//    case edit(existingEntities: [Ingredient])  // 기존 편집
-//}
-
 struct IngredientResultView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) var dismiss
@@ -47,8 +42,12 @@ struct IngredientResultView: View {
     
     // 팝오버(원형 진행률) 표시 트리거
     @State private var showProgressPopover = false
-    //    @State private var selectedIngredient: IngredientInfo? = nil
-    //    @State private var showIngredientModifySheet = false
+    
+    
+    @State private var selectedIngredient: IngredientInfo? = nil
+    
+    // 재료 수정 바텀 시트 트리거
+    @State private var showIngredientModifySheet = false
     
     
     
@@ -93,17 +92,6 @@ struct IngredientResultView: View {
         _ingredients = State(initialValue: parsedIngredients)
     }
     
-    
-    //    private func handleSave() {
-    //        print("📌 handleSave() 실행됨. mode: \(mode)")
-    //        switch mode {
-    //        case .create:
-    //            createMenuWithIngredients()
-    //        case .edit(let existingEntities):
-    //            updateIfChanged(existingEntities: existingEntities)
-    //        }
-    //    }
-    
     var body: some View {
         
         ZStack {
@@ -120,12 +108,14 @@ struct IngredientResultView: View {
                 
                 // ── 재료 리스트 + “재료 추가하기” 버튼(신규 등록 모드일 때만)
                 IngredientListView(
-                    ingredients: ingredients,
-                    isNew: isNew,
-                    onAddTapped: { navigateToSearch = true }
-                )
+                    ingredients: ingredients)
+                {
+                    selectedIng in
+                    showIngredientModifySheet = true
+                    selectedIngredient = selectedIng
+                }
                 
-                Divider()
+//                Divider()
                 
                 // ── 하단 합계 + 등록 버튼 ────────────────────────
                 
@@ -137,9 +127,37 @@ struct IngredientResultView: View {
                             // 신규 등록 모드: 팝오버 띄우기
                             showProgressPopover = true
                         } else {
-                            // 기존 확인 모드: 그냥 뒤로 팝
-                            dismiss()
+                            // MARK: 질문 - 수정 사항이 반영이 안됨 
+                            // 기존 확인 모드: 저장 후 뒤로 팝
+//                            do {
+//                                try context.save()
+//                                print("✅ 수정 저장됨")
+//                                selectedMenuName = "\(menuName)-\(UUID().uuidString)" // MyMenu 갱신 유도
+//                                dismiss()
+//                            } catch {
+//                                print("❌ 저장 실패:", error)
+//                            }
+                            // 🆕 Delete existing ingredients for this menuName before saving new ones
+                            let fetchDescriptor = FetchDescriptor<Ingredient>(predicate: #Predicate { $0.menuName == menuName })
+                            if let existing = try? context.fetch(fetchDescriptor) {
+                                for item in existing {
+                                    context.delete(item)
+                                }
+                            }
+                            for info in ingredients {
+                                let entity = Ingredient(
+                                    menuName: menuName,
+                                    menuPrice: Int(menuPrice) ?? 0,
+                                    imageData: image?.jpegData(compressionQuality: 0.8),
+                                    info: info
+                                )
+                                context.insert(entity)
+                                dismiss()
+                            }
                         }
+                    },
+                    onAddTapped: {
+                        navigateToSearch = true
                     }
                 )
             }
@@ -149,13 +167,16 @@ struct IngredientResultView: View {
             //                .navigationBarBackButtonHidden(true)
             .navigationTitle("재료관리")
             
-            
-            //                .ingredientModifySheet(isPresented: $showIngredientModifySheet, parsedIngredients: $parsedIngredients, selectedIngredient: $selectedIngredient)
+            .ingredientModifySheet(
+                isPresented: $showIngredientModifySheet,
+                ingredients: $ingredients,
+                selectedIngredient: $selectedIngredient
+            )
             
             .navigationDestination(
                 isPresented: $navigateToSearch,
                 destination: {
-                    IngredientAddView { selectedItemName in
+                    IngredientAddView(parsedIngredients: $ingredients) { selectedItemName in
                         // 네비게이션에서 돌아올 때 호출됨
                         // 유효한 재료명이라면 ingredients에 append
                         if !selectedItemName.isEmpty {
@@ -169,6 +190,8 @@ struct IngredientResultView: View {
                     }
                 }
             )
+            
+
             
             // ──────────────── 팝오버 (원형 진행률) ─────────────────
             if showProgressPopover {
@@ -201,20 +224,13 @@ struct IngredientResultView: View {
     private func closePopoverAndSave() {
         print("📌 closePopoverAndSave() 실행됨")
         showProgressPopover = false
-        //        handleSave()
         //        print("✅ [Debug] context.save() 성공, 총 엔티티 개수: \(context)")
         
         saveMenuWithIngredients()
         
     }
     
-    //    // MARK: 재료 슬라이드 삭제
-    //    private func deleteIngredient(at offsets: IndexSet) {
-    //        parsedIngredients.remove(atOffsets: offsets)
-    //    }
-    
     // MARK: - 저장 & 루트 복귀
-    //    private func createMenuWithIngredients() {
     private func saveMenuWithIngredients() {
         do {
             // 1️⃣ 메뉴 가격(String → Int) 변환
@@ -245,100 +261,10 @@ struct IngredientResultView: View {
             
             // 6️⃣ 저장 후 루트 복귀
             selectedMenuName = "\(menuName)-\(UUID().uuidString)"
-                        dismiss()
+//                        dismiss()
             
         } catch {
             print("SwiftData save error:", error)
         }
     }
-    
-    /*
-     private func updateIfChanged(existingEntities: [Ingredient]) {
-     var changed = false
-     
-     for info in parsedIngredients {
-     // 기존 재료 중 같은 이름이 있는지 찾기
-     if let match = existingEntities.first(where: { $0.name == info.name }) {
-     // 수량 또는 단가가 변경되었을 경우 업데이트
-     if match.amount != info.amount || match.unitPrice != info.unitPrice {
-     match.amount = info.amount
-     match.unitPrice = info.unitPrice
-     changed = true
-     }
-     } else {
-     // 새로 추가된 재료인 경우 삽입
-     let entity = Ingredient(
-     menuName: menuName,
-     menuPrice: Int(menuPrice) ?? 0,
-     imageData: image?.jpegData(compressionQuality: 0.8),
-     info: info
-     )
-     context.insert(entity)
-     changed = true
-     }
-     }
-     
-     if changed {
-     do {
-     try context.save()
-     print("🔄 변경 사항 저장 완료")
-     } catch {
-     print("❌ 저장 실패: \(error)")
-     }
-     } else {
-     print("✅ 변경사항 없음 - 저장 생략")
-     }
-     dismiss()
-     }
-     }
-     
-     private extension View {
-     func ingredientModifySheet(
-     isPresented: Binding<Bool>,
-     parsedIngredients: Binding<[IngredientInfo]>,
-     selectedIngredient: Binding<IngredientInfo?>
-     ) -> some View {
-     self.sheet(isPresented: isPresented) {
-     if let selIngredient = selectedIngredient.wrappedValue,
-     let index = parsedIngredients.wrappedValue.firstIndex(where: { $0.id == selIngredient.id }) {
-     IngredientModifyComponent(
-     ingredient: parsedIngredients.wrappedValue[index],
-     parsedIngredients: parsedIngredients
-     )
-     }
-     }
-     .presentationDetents([.medium])
-     .presentationDragIndicator(.visible)
-     }
-     }
-     */
-    
 }
-/*
- #Preview {
- struct IngredientResultPreview: View {
- @State private var selectedMenuName = "테스트메뉴"
- @State private var showAddMenu = false
- @State private var ingredients: [IngredientInfo] = [
- IngredientInfo(name: "양배추", amount: 30, unit: "g", unitPrice: 1000),
- IngredientInfo(name: "돼지고기", amount: 50, unit: "g", unitPrice: 2500)
- ]
- 
- var body: some View {
- NavigationStack {
- IngredientResultView(
- selectedMenuName: $selectedMenuName,
- showAddMenu: $showAddMenu,
- menuName: "함박스테이크",
- menuPrice: "12000",
- image: UIImage(systemName: "photo"),
- parsedIngredients: ingredients,
- mode: .create
- )
- }
- }
- }
- 
- return IngredientResultPreview()
- }
- */
