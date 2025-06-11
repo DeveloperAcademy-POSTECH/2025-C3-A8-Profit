@@ -11,11 +11,11 @@ import FirebaseCore
 import SwiftData
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-    return true
-  }
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+        return true
+    }
 }
 
 @main
@@ -23,7 +23,8 @@ struct SoonsuApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            MainTabViewCoulson()
+            SplashView() // Soonsu->View->Launch
+//            MainTabViewCoulson()
                 .modelContainer(for: [
                     FixedCostTemporary.self,
                     Ingredient.self,
