@@ -23,6 +23,7 @@
 		265FB4712DF5A00A00D171FA /* SoonsuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4672DF5A00A00D171FA /* SoonsuApp.swift */; };
 		265FB4722DF5A00A00D171FA /* TabBarViewCoulson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4642DF5A00A00D171FA /* TabBarViewCoulson.swift */; };
 		265FB4732DF5A00A00D171FA /* ProfitViewModelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4592DF5A00A00D171FA /* ProfitViewModelStorage.swift */; };
+		26B152682DFA28D6000BDB30 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B152672DFA28D6000BDB30 /* DesignSystem.swift */; };
 		3E6688EA2DF5799E00DE2298 /* IngredientsCham.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E22DF5799E00DE2298 /* IngredientsCham.json */; };
 		3E6688EB2DF5799E00DE2298 /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E72DF5799E00DE2298 /* MockData.json */; };
 		3E6688EC2DF5799E00DE2298 /* IngredientsKamis.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E32DF5799E00DE2298 /* IngredientsKamis.json */; };
@@ -74,6 +75,7 @@
 		265FB4632DF5A00A00D171FA /* MainTabViewCoulson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewCoulson.swift; sourceTree = "<group>"; };
 		265FB4642DF5A00A00D171FA /* TabBarViewCoulson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewCoulson.swift; sourceTree = "<group>"; };
 		265FB4672DF5A00A00D171FA /* SoonsuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuApp.swift; sourceTree = "<group>"; };
+		26B152672DFA28D6000BDB30 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		3E6688DE2DF5799E00DE2298 /* DailySales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySales.swift; sourceTree = "<group>"; };
 		3E6688E22DF5799E00DE2298 /* IngredientsCham.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IngredientsCham.json; sourceTree = "<group>"; };
 		3E6688E32DF5799E00DE2298 /* IngredientsKamis.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IngredientsKamis.json; sourceTree = "<group>"; };
@@ -207,6 +209,14 @@
 			path = ProfitManage;
 			sourceTree = "<group>";
 		};
+		26B152662DFA28C1000BDB30 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				26B152672DFA28D6000BDB30 /* DesignSystem.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		68343B562DED74BD00BD34B4 = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +243,7 @@
 		68343B962DED76BE00BD34B4 /* Soonsu */ = {
 			isa = PBXGroup;
 			children = (
+				26B152662DFA28C1000BDB30 /* Common */,
 				3EBF442F2DF17DF300C6F319 /* Utilities */,
 				68343BA32DED76D300BD34B4 /* Model */,
 				68343BA42DED76D900BD34B4 /* View */,
@@ -454,6 +465,7 @@
 				265FB4722DF5A00A00D171FA /* TabBarViewCoulson.swift in Sources */,
 				265FB4732DF5A00A00D171FA /* ProfitViewModelStorage.swift in Sources */,
 				3E6688F02DF5799E00DE2298 /* OverheadCost.swift in Sources */,
+				26B152682DFA28D6000BDB30 /* DesignSystem.swift in Sources */,
 				265FB4522DF59FB600D171FA /* Ingredient.swift in Sources */,
 				265FB4542DF59FBC00D171FA /* IngredientInfo.swift in Sources */,
 				3E6688F22DF5799E00DE2298 /* SoldItem.swift in Sources */,
