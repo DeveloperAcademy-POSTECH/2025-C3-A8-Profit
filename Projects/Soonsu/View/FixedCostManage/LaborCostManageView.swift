@@ -17,6 +17,7 @@ struct TempLaborCost: Identifiable {
 
 struct LaborCostManageView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     @Query private var savedLabors: [LaborCost]
     @State private var showAddEmployee = false
     @State private var laborCosts: [TempLaborCost] = []
@@ -51,12 +52,6 @@ struct LaborCostManageView: View {
                 .ignoresSafeArea()
             
             VStack {
-                HStack {
-                    Text("인건비")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    Spacer()
-                }
                 
                 if laborCosts.isEmpty {
                     Spacer()
@@ -74,24 +69,24 @@ struct LaborCostManageView: View {
                                 showEditView = true
                             } label: {
                                 VStack(alignment: .leading, spacing: 8) {
-                                    HStack {
+                                    HStack(spacing: 4) {
                                         Image(systemName: "person.circle.fill")
                                             .resizable()
                                             .frame(width: 33, height: 33)
                                             .foregroundColor(.black)
-                                        Text(labor.employeeName)
-                                            .foregroundStyle(.black)
-                                            .font(.headline)
-                                            .fontWeight(.bold)
-                                        Spacer()
-                                        VStack(alignment: .trailing, spacing: 4) {
-                                            Text("월 \(labor.employeeTime)시간")
-                                                .font(.subheadline)
-                                                .foregroundColor(.gray)
-                                            Text("시급 \(labor.employeeSalary.formatted())원")
-                                                .font(.subheadline)
+                                        VStack(alignment: .leading) {
+                                            Text(labor.employeeName)
+                                                .foregroundStyle(.black)
+                                                .font(.caption)
+                                                .fontWeight(.bold)
+                                            Text("월 \(labor.employeeTime)시간 * 시급 \(labor.employeeSalary.formatted())원")
+                                                .font(.caption2)
                                                 .foregroundColor(.gray)
                                         }
+                                        Spacer()
+                                        Text("월 \((labor.employeeTime * labor.employeeSalary).formatted())원")
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
                                         Image(systemName: "chevron.right")
                                             .foregroundColor(.gray)
                                     }
@@ -103,6 +98,7 @@ struct LaborCostManageView: View {
                             isModified = true
                         }
                     }
+                    .padding(.horizontal, -16)
                     //                    .listStyle()
                     //                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                 }
@@ -111,12 +107,12 @@ struct LaborCostManageView: View {
                 let totalCost = laborCosts.reduce(0) { $0 + ($1.employeeTime * $1.employeeSalary) }
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    ForEach(laborCosts, id: \.id) { labor in
-                        let cost = labor.employeeTime * labor.employeeSalary
-                        Text("\(labor.employeeName): \(labor.employeeTime)시간 * \(labor.employeeSalary.formatted())원 = \(cost.formatted())원")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                    }
+//                    ForEach(laborCosts, id: \.id) { labor in
+//                        let cost = labor.employeeTime * labor.employeeSalary
+//                        Text("\(labor.employeeName): \(labor.employeeTime)시간 * \(labor.employeeSalary.formatted())원 = \(cost.formatted())원")
+//                            .font(.caption)
+//                            .foregroundColor(.gray)
+//                    }
                     
                     HStack {
                         Text("월 총 근무시간")
@@ -136,7 +132,7 @@ struct LaborCostManageView: View {
                 }
                 .padding(.top)
                 
-                Button("인건비 저장") {
+                Button("인건비 등록") {
                     do {
                         let existing = try modelContext.fetch(FetchDescriptor<LaborCost>())
                         
@@ -222,6 +218,17 @@ struct LaborCostManageView: View {
         
         .navigationTitle(Text("인건비 관리"))
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.blue)
+                        }
+                    }
+                }
         .onAppear {
             if !didLoad {
                 loadLaborCosts()

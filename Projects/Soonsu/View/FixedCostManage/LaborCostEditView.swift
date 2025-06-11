@@ -12,6 +12,8 @@ struct LaborCostEditView: View {
     @State private var employeeTime: String
     @State private var employeeSalary: String
     @State private var isModified: Bool = false
+    @Environment(\.dismiss) private var dismiss
+
 
     var labor: TempLaborCost
     var onSave: (TempLaborCost) -> Void
@@ -99,6 +101,17 @@ struct LaborCostEditView: View {
             .padding(16)
             .navigationTitle("인건비 수정")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.blue)
+                    }
+                }
+            }
         }
     }
 

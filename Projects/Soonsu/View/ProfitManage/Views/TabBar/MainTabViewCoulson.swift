@@ -80,7 +80,8 @@ struct MainTabViewCoulson: View {
             Ingredient.self,
             SoldItemModel.self,
             DailySalesRecord.self,
-            MonthlyFixedCostRecord.self
+            MonthlyFixedCostRecord.self,
+            FixedCostTemporary.self
         ])
     }
 }
