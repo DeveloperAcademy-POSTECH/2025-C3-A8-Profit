@@ -30,7 +30,8 @@ struct SoonsuApp: App {
                     SoldItemModel.self,  // ✅ SwiftData에 새로 등록
                     DailySalesRecord.self,
                     MonthlyFixedCostRecord.self,
-                    FixedCostTemporary.self
+                    FixedCostTemporary.self,
+                    LaborCost.self
                 ])
         }
     }

@@ -29,20 +29,26 @@ struct LaborCostManageView: View {
     
     private func loadLaborCosts() {
         do {
-            let descriptor = FetchDescriptor<LaborCost>(sortBy: [SortDescriptor(\.createdAt, order: .forward)])
-            
-            laborCosts =  try modelContext
-                .fetch(descriptor)
-                .map { labor in
-                    return TempLaborCost(
-                        employeeName: labor.employeeName,
-                        employeeTime: labor.employeeTime,
-                        employeeSalary: labor.employeeSalary
-                    )
-                }
+            // 단순한 fetch로 변경
+            let descriptor = FetchDescriptor<LaborCost>()
+            let results = try modelContext.fetch(descriptor)
+
+            print("🔍 불러온 인건비 개수: \(results.count)")
+            for result in results {
+                print("👤 \(result.employeeName), \(result.employeeTime)시간, \(result.employeeSalary)원")
+            }
+
+            laborCosts = results.map { labor in
+                TempLaborCost(
+                    employeeName: labor.employeeName,
+                    employeeTime: labor.employeeTime,
+                    employeeSalary: labor.employeeSalary
+                )
+            }
+
             isModified = false
         } catch {
-            print("Failed to fetch LaborCosts: \(error)")
+            print("❌ Failed to fetch LaborCosts: \(error)")
         }
     }
     
@@ -99,20 +105,13 @@ struct LaborCostManageView: View {
                         }
                     }
                     .padding(.horizontal, -16)
-                    //                    .listStyle()
-                    //                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+
                 }
                 
                 let totalHours = laborCosts.reduce(0) { $0 + $1.employeeTime }
                 let totalCost = laborCosts.reduce(0) { $0 + ($1.employeeTime * $1.employeeSalary) }
                 
                 VStack(alignment: .leading, spacing: 4) {
-//                    ForEach(laborCosts, id: \.id) { labor in
-//                        let cost = labor.employeeTime * labor.employeeSalary
-//                        Text("\(labor.employeeName): \(labor.employeeTime)시간 * \(labor.employeeSalary.formatted())원 = \(cost.formatted())원")
-//                            .font(.caption)
-//                            .foregroundColor(.gray)
-//                    }
                     
                     HStack {
                         Text("월 총 근무시간")
