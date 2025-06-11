@@ -97,6 +97,7 @@ struct LaborCostManageView: View {
                                             .foregroundColor(.gray)
                                     }
                                 }
+                                .frame(minHeight: 60)
                             }
                         }
                         .onDelete { indexSet in
