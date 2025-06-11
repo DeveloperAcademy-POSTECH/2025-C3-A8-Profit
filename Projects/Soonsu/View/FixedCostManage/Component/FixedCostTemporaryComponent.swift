@@ -28,8 +28,8 @@ struct FixedCostTemporaryComponent: View {
     @FocusState private var focusedField: Field?
     
     enum Field: Hashable {
-            case cost, days
-        }
+        case cost, days
+    }
     
     private var isInputValid: Bool {
         if let num = Int(inputCost), num > 0,
@@ -58,7 +58,7 @@ struct FixedCostTemporaryComponent: View {
                     .font(.title2)
                     .fontWeight(.bold)
             }
-//            .padding(.bottom, 16)
+            //            .padding(.bottom, 16)
             
             HStack {
                 Text("하루 고정비")
@@ -125,84 +125,95 @@ struct FixedCostTemporaryComponent: View {
         }
         
         
-        
-        VStack(alignment: .leading, spacing: 8) {
-            Text("임시 고정비")
-                .font(.headline)
-            HStack {
-                HStack {
-                    TextField("총 고정비", text: $inputCost)
-                        .keyboardType(.numberPad)
-                        .padding(12)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(8)
-                    Text("만원")
-                        .foregroundColor(.gray)
-                }
-                HStack {
-                    TextField("영업일수", text: $inputDays)
-                        .keyboardType(.numberPad)
-                        .padding(12)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(8)
-                    Text("일")
-                        .foregroundColor(.gray)
-                }
-            }
-            Button {
-                if let num = Int(inputCost), num >= 0,
-                   let days = Int(inputDays), days > 0   {
-                    let newTemporary = FixedCostTemporary(
-                        date: vm.selectedDate,
-                        monthlyFixedCost: num * 10_000,
-                        operatingDays: days
-                    )
-                    modelContext.insert(newTemporary)
-                    print("Saved temporary fixed cost: \(newTemporary.monthlyFixedCost), days: \(newTemporary.operatingDays), date: \(String(describing: newTemporary.date))")
-                    inputCost = ""
-                    inputDays = ""
-                    saveMsg = "고정비가 저장되었습니다."
-                    refreshTrigger.toggle()
-                    totalFixed = newTemporary.monthlyFixedCost
-                    dailyFixed = newTemporary.operatingDays > 0 ? newTemporary.monthlyFixedCost / newTemporary.operatingDays : 0
-                    displayedOperatingDays = newTemporary.operatingDays
-                    try? modelContext.save()
-                } else {
-                    saveMsg = "유효한 금액과 영업일수를 입력하세요."
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now()+1.2) {
-                    saveMsg = ""
-                }
-            } label: {
-                Text("저장")
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(isInputValid ? Color.blue : Color.gray)
-                    .cornerRadius(6)
+        ZStack {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("임시 고정비")
                     .font(.headline)
-            }
-            .padding(.top, 3)
-            .disabled(!isInputValid)
-            
-            Text("마지막 업데이트: \(koreaDateFormatter.string(from: vm.lastFixedCostUpdate))")
-                .font(.caption2)
-                .foregroundColor(.gray)
-                .frame(maxWidth: .infinity, alignment: .center)
-            Text("고정비는 매월 초 또는 변경 시 한 번만 입력하시면 됩니다.")
-                .font(.caption2)
-                .foregroundColor(.gray)
-                .frame(maxWidth: .infinity, alignment: .center)
-            if !saveMsg.isEmpty {
-                Text(saveMsg)
-                    .font(.caption)
-                    .foregroundColor(.green)
+                HStack {
+                    HStack {
+                        TextField("총 고정비", text: $inputCost)
+                            .focused($focusedField, equals: .cost)
+                            .keyboardType(.numberPad)
+                            .padding(12)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(8)
+                        Text("만원")
+                            .foregroundColor(.gray)
+                    }
+                    HStack {
+                        TextField("영업일수", text: $inputDays)
+                            .focused($focusedField, equals: .days)
+                            .keyboardType(.numberPad)
+                            .padding(12)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(8)
+                        Text("일")
+                            .foregroundColor(.gray)
+                    }
+                }
+                Button {
+                    if let num = Int(inputCost), num >= 0,
+                       let days = Int(inputDays), days > 0   {
+                        let newTemporary = FixedCostTemporary(
+                            date: vm.selectedDate,
+                            monthlyFixedCost: num * 10_000,
+                            operatingDays: days
+                        )
+                        modelContext.insert(newTemporary)
+                        print("Saved temporary fixed cost: \(newTemporary.monthlyFixedCost), days: \(newTemporary.operatingDays), date: \(String(describing: newTemporary.date))")
+                        inputCost = ""
+                        inputDays = ""
+                        saveMsg = "고정비가 저장되었습니다."
+                        refreshTrigger.toggle()
+                        totalFixed = newTemporary.monthlyFixedCost
+                        dailyFixed = newTemporary.operatingDays > 0 ? newTemporary.monthlyFixedCost / newTemporary.operatingDays : 0
+                        displayedOperatingDays = newTemporary.operatingDays
+                        try? modelContext.save()
+                    } else {
+                        saveMsg = "유효한 금액과 영업일수를 입력하세요."
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now()+1.2) {
+                        saveMsg = ""
+                    }
+                } label: {
+                    Text("저장")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(isInputValid ? Color.blue : Color.gray)
+                        .cornerRadius(6)
+                        .font(.headline)
+                }
+                .padding(.top, 3)
+                .disabled(!isInputValid)
+                
+                Text("마지막 업데이트: \(koreaDateFormatter.string(from: vm.lastFixedCostUpdate))")
+                    .font(.caption2)
+                    .foregroundColor(.gray)
                     .frame(maxWidth: .infinity, alignment: .center)
+                Text("고정비는 매월 초 또는 변경 시 한 번만 입력하시면 됩니다.")
+                    .font(.caption2)
+                    .foregroundColor(.gray)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                if !saveMsg.isEmpty {
+                    Text(saveMsg)
+                        .font(.caption)
+                        .foregroundColor(.green)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                }
             }
+            .padding()
+            .background(Color.white)
+            .cornerRadius(7)
+            
+            if focusedField != nil {
+                        Color.clear
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                focusedField = nil
+                            }
+                    }
         }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(7)
     }
 }
 

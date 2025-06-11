@@ -13,11 +13,15 @@ struct FixedCostDetailView: View {
     @Environment(\.modelContext) private var context
     @Query(sort: [SortDescriptor(\FixedCostTemporary.date, order: .reverse)])
     private var savedFixedCosts: [FixedCostTemporary]
+    @FocusState private var focusedField: Field?
     
     @State private var totalFixedCost: String = ""
     @State private var inputDays: String = ""
     @State private var displayedOperatingDays: Int = 0
-
+    
+    private enum Field: Hashable {
+        case days
+    }
 
     private var isInputValid: Bool {
         Int(inputDays) ?? 0 > 0
@@ -26,13 +30,14 @@ struct FixedCostDetailView: View {
     var body: some View {
         let dailyFixed = vm.dailyFixedCost(for: vm.selectedDate)
         let totalFixed = vm.monthlyFixedCost
-
         
+        
+        ZStack {
             VStack {
                 VStack(alignment: .leading) {
                     Text("상세 고정비")
                         .padding(.bottom, 15)
-                        
+                    
                     HStack {
                         Text("총 고정비")
                             .font(.title2)
@@ -127,9 +132,10 @@ struct FixedCostDetailView: View {
                     Text("이번달 영업일수")
                         .font(.caption)
                     HStack {
-
+                        
                         HStack {
                             TextField("영업일수", text: $inputDays)
+                                .focused($focusedField, equals: .days)
                                 .keyboardType(.numberPad)
                                 .padding(12)
                                 .background(Color(.systemGray6))
@@ -159,6 +165,16 @@ struct FixedCostDetailView: View {
                 .padding()
             }
             .background(Color(UIColor.systemGroupedBackground))
+            
+            if focusedField != nil {
+                        Color.clear
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                focusedField = nil
+                            }
+                    }
+
+        }
     }
 }
 

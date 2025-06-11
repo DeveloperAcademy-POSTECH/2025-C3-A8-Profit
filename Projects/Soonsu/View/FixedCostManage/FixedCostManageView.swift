@@ -42,6 +42,7 @@ struct FixedCostManageView: View {
                         }
                     }
                 }
+                
             }
             .background(Color(UIColor.systemGroupedBackground))
             .navigationTitle("고정비 관리")

@@ -26,12 +26,11 @@ struct SoonsuApp: App {
             SplashView() // Soonsu->View->Launch
 //            MainTabViewCoulson()
                 .modelContainer(for: [
-                    FixedCostTemporary.self,
                     Ingredient.self,
                     SoldItemModel.self,  // ✅ SwiftData에 새로 등록
                     DailySalesRecord.self,
-                    MonthlyFixedCostRecord.self
-                    
+                    MonthlyFixedCostRecord.self,
+                    FixedCostTemporary.self
                 ])
         }
     }
