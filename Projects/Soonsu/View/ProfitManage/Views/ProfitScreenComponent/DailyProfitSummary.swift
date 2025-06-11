@@ -19,31 +19,48 @@ struct DailyProfitSummary: View {
                 
                 VStack(alignment: .leading, spacing: 6) {
                     Text("\(DateFormatter.korMonthDay.string(from: vm.selectedDate)) " +
-                         "\(vm.weekdayKorean(vm.selectedDate))요일 순이익")
+                         "\(vm.weekdayKorean(vm.selectedDate))요일")
                         .font(.headline)
-                        .padding(.top, 6)
+                        .foregroundStyle(.gray.opacity(0.4))
+//                        .padding(.top, 6)
                 
-                    let netString = "\(net > 0 ? "+" : "-")\(abs(net).formatted(.number.grouping(.automatic))) 원"
-                    Text(netString)
-                        .font(.system(size: 32, weight: .bold))
-                        .foregroundColor(net > 0 ? .blue : .red)
-                        .padding(.bottom, 2)
+                    let netString = "\(net > 0 ? "+" : "-")\(abs(net).formatted(.number.grouping(.automatic)))원"
+                    
                     HStack {
-                        Text("매출:")
+                        Text("순이익")
+                            .font(.title3)
+                            .fontWeight(.bold)
                         Spacer()
-                        Text("+ \(sales.revenue.formatted(.number.grouping(.automatic))) 원")
+                        Text(netString)
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundColor(net > 0 ? .blue : .red)
+                    }
+                    .padding(.vertical, 8)
+                    
+                    Divider()
+                        .foregroundStyle(.gray.opacity(0.2))
+                        .padding(.bottom, 8)
+
+                    HStack {
+                        Text("매출")
+                            .foregroundStyle(.gray)
+                        Spacer()
+                        Text("+\(sales.revenue.formatted(.number.grouping(.automatic)))원")
                             .foregroundColor(.green)
                     }
                     HStack {
-                        Text("재료비:")
+                        Text("재료비")
+                            .foregroundStyle(.gray)
                         Spacer()
-                        Text("- \(sales.materialCost.formatted(.number.grouping(.automatic))) 원")
+                        Text("-\(sales.materialCost.formatted(.number.grouping(.automatic)))원")
                             .foregroundColor(.red)
                     }
                     HStack {
-                        Text("고정비 (일할):")
+                        Text("고정비(일별)")
+                            .foregroundStyle(.gray)
                         Spacer()
-                        Text("- \(dailyFixed.formatted(.number.grouping(.automatic))) 원")
+                        Text("-\(dailyFixed.formatted(.number.grouping(.automatic)))원")
                             .foregroundColor(.red)
                     }
                     if !vm.isFixedCostSet {
@@ -52,6 +69,7 @@ struct DailyProfitSummary: View {
                             .foregroundColor(.gray)
                     }
                 }
+                
                 .font(.system(size: 15, weight: .medium))
                 
                 Button {
@@ -70,17 +88,21 @@ struct DailyProfitSummary: View {
                     vm.showTips.toggle()
                 } label: {
                     HStack {
-                        Text("✨ 오늘의 경영 팁 보기")
-                        Spacer()
+                        Image("Coin")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height:24)
+                            .padding(.vertical, 24)
+                        Text("오늘의 경영 팁 보기")
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding()
+                    .frame(maxWidth: .infinity, maxHeight: 48)
+                    .padding(.horizontal)
+                    .padding(.vertical,4)
                     .background(Color.purple.opacity(0.9))
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .font(.headline)
                 }
-                .padding(.top, 2)
                 
                 if vm.showTips {
                     Text("오늘의 경영 팁(여기에 AI 연동 예정!)")
@@ -94,7 +116,7 @@ struct DailyProfitSummary: View {
                 let dailyFixed = vm.dailyFixedCost(for: vm.selectedDate)
                 
                 
-                VStack() {
+                VStack {
                     if !vm.isFixedCostSet {
                         HStack {
                             Text("※ 임시 고정비 300만원(일할 \(dailyFixed.formatted(.number.grouping(.automatic)))원) 기준입니다.")
@@ -130,11 +152,12 @@ struct DailyProfitSummary: View {
                     .padding(.top, 8)
                     .padding(.trailing,-8)
                 }
-                .padding(.horizontal)
+//                .padding(.horizontal)
                 .frame(maxWidth: .infinity)
                 .background(Color.white)
             }
         }
+        .padding(.horizontal)
         .padding(.vertical)
         .padding(.bottom, 8)
         .background(Color.white)
