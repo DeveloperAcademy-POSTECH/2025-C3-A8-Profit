@@ -152,7 +152,17 @@ struct IngredientResultView: View {
                                     info: info
                                 )
                                 context.insert(entity)
-                                dismiss()
+                                
+                            }
+                            do {
+                                try context.save()
+                                print("✅ 수정 저장됨")
+                                selectedMenuName = "\(menuName)-\(UUID().uuidString)"
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    dismiss()
+                                }
+                            } catch {
+                                print("❌ 저장 실패:", error)
                             }
                         }
                     },
