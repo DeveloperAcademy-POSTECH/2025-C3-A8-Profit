@@ -20,6 +20,7 @@ struct FixedCostManageView: View {
     @State private var showConfirmationAlert = false
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var tabBarState: TabBarState
     
     var body: some View {
             ZStack {
@@ -92,7 +93,9 @@ struct FixedCostManageView: View {
                         : "임시 고정비 설정이 순이익 계산에 적용되었습니다."
                     )
             }
-            
+            .onAppear {
+                tabBarState.isVisible = false
+            }
         
     }
 }
@@ -100,5 +103,6 @@ struct FixedCostManageView: View {
 #Preview {
     NavigationStack {
         FixedCostManageView(viewModel: ProfitViewModel())
+            .environmentObject(TabBarState())
     }
 }

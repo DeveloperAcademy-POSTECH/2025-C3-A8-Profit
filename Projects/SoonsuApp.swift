@@ -21,6 +21,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct SoonsuApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject var tabBarState = TabBarState()
+    
     var body: some Scene {
         WindowGroup {
             SplashView() // Soonsu->View->Launch
@@ -42,6 +44,7 @@ struct SoonsuApp: App {
                     TaxCost.self
                     // 여기까지 간접비 관련 모델
                 ])
+                .environmentObject(tabBarState)
         }
     }
 }

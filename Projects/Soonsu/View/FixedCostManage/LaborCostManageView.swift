@@ -18,11 +18,13 @@ struct TempLaborCost: Identifiable {
 struct LaborCostManageView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var tabBarState: TabBarState
     @Query private var savedLabors: [LaborCost]
     @State private var showAddEmployee = false
     @State private var laborCosts: [TempLaborCost] = []
     @State private var isModified: Bool = false
     @State private var didLoad: Bool = false
+    
     
     @State private var selectedLabor: TempLaborCost? = nil
     @State private var showEditView: Bool = false
@@ -56,7 +58,6 @@ struct LaborCostManageView: View {
     var body: some View {
         ZStack {
             Color(UIColor.systemGroupedBackground)
-                .ignoresSafeArea()
             
             VStack {
                 
@@ -235,7 +236,12 @@ struct LaborCostManageView: View {
                 loadLaborCosts()
                 didLoad = true
             }
+            tabBarState.isVisible = false
         }
+        // Remove onDisappear to prevent tab bar from reappearing when this view disappears
+        // .onDisappear {
+        //     tabBarState.isVisible = true
+        // }
         //            .toolbar(.hidden, for: .tabBar)
     }
 }
@@ -243,5 +249,6 @@ struct LaborCostManageView: View {
 #Preview {
     NavigationStack {
         LaborCostManageView()
+            .environmentObject(TabBarState())
     }
 }
