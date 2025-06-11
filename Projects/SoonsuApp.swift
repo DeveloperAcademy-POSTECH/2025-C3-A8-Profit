@@ -31,7 +31,16 @@ struct SoonsuApp: App {
                     DailySalesRecord.self,
                     MonthlyFixedCostRecord.self,
                     FixedCostTemporary.self,
-                    LaborCost.self
+                    LaborCost.self,
+                    // 여기부터
+                    OverheadCost.self,
+                    BasicCost.self,
+                    UtilityCost.self,
+                    InsuranceCost.self,
+                    DepreciationCost.self,
+                    RentalCost.self,
+                    TaxCost.self
+                    // 여기까지 간접비 관련 모델
                 ])
         }
     }

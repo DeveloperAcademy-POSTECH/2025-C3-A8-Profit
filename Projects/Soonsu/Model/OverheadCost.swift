@@ -25,15 +25,16 @@ class OverheadCost: Identifiable {
 
 enum OverheadCategory: String, Codable, CaseIterable {
     case rent = "임차료"
+    case tax = "공과금"
     case internet = "인터넷/통신비"
+    case insurance = "보험료"
+    case supply = "소모품비"
     case advertising = "광고선전비"
+    case depreciation = "감가상각비"
+    case utilities = "수도광열비"
+    case rental = "렌탈료"
     case interest = "이자비용"
     case etc = "기타/잡비"
-    case utilities = "수도광열비"
-    case insurance = "보험료"
-    case depreciation = "감가상각비"
-    case tax = "공과금"
-    case rental = "렌탈료"
 }
 
 @Model
