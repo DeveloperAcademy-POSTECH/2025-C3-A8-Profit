@@ -97,6 +97,10 @@ struct MyMenuView: View {
             }
         }
         
+        .onChange(of: allIngredients.map { "\($0.menuName)-\($0.menuPrice)-\($0.id)" }) { _, _ in
+            viewModel.fetchAllIngredients()
+        }
+        
         
         // ── 디버그: allIngredients의 변화 감지
         .onChange(of: allIngredients.count) { _, newCount in
