@@ -26,6 +26,7 @@ struct LaborCostManageView: View {
     
     @State private var selectedLabor: TempLaborCost? = nil
     @State private var showEditView: Bool = false
+    @FocusState private var focusedField: Field?
     
     private func loadLaborCosts() {
         do {
