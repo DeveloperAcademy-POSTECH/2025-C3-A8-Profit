@@ -77,6 +77,7 @@ struct MyMenuView: View {
                     showAddMenu = true
                 } label: {
                     Image(systemName: "plus")
+                        .foregroundStyle(Color.primaryColor700)
                         .fontWeight(.bold)
                 }
             }

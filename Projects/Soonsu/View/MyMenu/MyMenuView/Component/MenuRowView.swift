@@ -135,7 +135,7 @@ struct MenuRowView: View {
                     Circle()
                         .trim(from: 0, to: (Double(totalCost) / Double(headerEntity?.menuPrice ?? 1)))
                         .stroke(
-                            (Double(totalCost) / Double(headerEntity?.menuPrice ?? 1)) > 0.35 ? Color.red : Color.blue,
+                            (Double(totalCost) / Double(headerEntity?.menuPrice ?? 1)) > 0.35 ? Color.warning700 : Color.primaryColor700,
                             style: StrokeStyle(lineWidth: 12, lineCap: .square)
                         )
                         .frame(width: 56, height: 56)
@@ -151,7 +151,7 @@ struct MenuRowView: View {
                         }
                         
                         .fontWeight(.semibold)
-                        .foregroundColor((Double(totalCost) / Double(headerEntity?.menuPrice ?? 1)) > 0.35 ? .red : .blue)
+                        .foregroundColor((Double(totalCost) / Double(headerEntity?.menuPrice ?? 1)) > 0.35 ? Color.warning700 : Color.primaryColor700)
     
                     }
                 }
