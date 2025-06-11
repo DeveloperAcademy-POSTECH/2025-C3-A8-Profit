@@ -107,11 +107,12 @@ struct ProfitScreen: View {
                         }
                         Image(systemName: "chevron.right")
                             .foregroundColor(.gray.opacity(0.4))
+                            .font(.caption)
                     }
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(
-                        RoundedRectangle(cornerRadius: 14)
+                        RoundedRectangle(cornerRadius: 12)
                             .fill(Color.white)
                             .shadow(color: .black.opacity(0.03), radius: 2, x: 0, y: 1)
                     )

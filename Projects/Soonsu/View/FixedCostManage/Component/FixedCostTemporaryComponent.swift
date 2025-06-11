@@ -46,7 +46,7 @@ struct FixedCostTemporaryComponent: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("임시 고정비")
-                .padding(.bottom, 15)
+                .padding(.bottom, 16)
                 .font(.headline)
             
             HStack {
