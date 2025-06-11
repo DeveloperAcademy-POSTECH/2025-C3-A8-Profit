@@ -116,7 +116,7 @@ struct FixedCostDetailView: View {
                     
                     NavigationLink(destination: OverheadCostManageView()) {
                         HStack {
-                            Text("간접비 입력하기")
+                            Text("간접비 입력하기 (⚠️공사중🚧)")
                                 .font(.system(size: 15))
                                 .fontWeight(.bold)
                                 .foregroundStyle(.black)
@@ -149,7 +149,17 @@ struct FixedCostDetailView: View {
                         }
                     }
                     Button {
-                        inputDays = ""
+                        if let days = Int(inputDays), days > 0 {
+                            let newTemporary = FixedCostTemporary(
+                                date: vm.selectedDate,
+                                monthlyFixedCost: vm.monthlyFixedCost,
+                                operatingDays: days
+                            )
+                            context.insert(newTemporary)
+                            try? context.save()
+                            displayedOperatingDays = days
+                            inputDays = ""
+                        }
                     } label: {
                         Text("저장")
                             .frame(maxWidth: .infinity)
