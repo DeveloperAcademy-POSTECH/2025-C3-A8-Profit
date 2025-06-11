@@ -19,6 +19,8 @@ struct FixedCostDetailView: View {
     @State private var inputDays: String = ""
     @State private var displayedOperatingDays: Int = 0
     
+    @Query private var savedLabors: [LaborCost]
+    
     private enum Field: Hashable {
         case days
     }
@@ -63,11 +65,13 @@ struct FixedCostDetailView: View {
                     Divider()
                         .padding(.bottom, 12)
                     
+                    let totalCost = savedLabors.reduce(0) { $0 + ($1.employeeTime * $1.employeeSalary) }
+                    
                     VStack(alignment: .leading, spacing: 4) {
                         HStack {
                             Text("인건비")
                             Spacer()
-                            Text("800,000원")
+                            Text("\(totalCost.formatted())원")
                         }
                         
                         HStack {
