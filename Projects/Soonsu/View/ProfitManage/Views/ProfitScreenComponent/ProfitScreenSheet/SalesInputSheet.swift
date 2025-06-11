@@ -180,7 +180,7 @@ private struct MenuRow: View {
                     Image(systemName: "plus.circle.fill")
                         .resizable()
                         .frame(width: 24, height: 24)
-                        .foregroundColor(.primaryColor700)
+                        .foregroundColor(.primaryColor200)
                 }
                 .buttonStyle(.plain)
             }

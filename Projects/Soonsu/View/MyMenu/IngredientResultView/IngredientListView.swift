@@ -34,16 +34,18 @@ struct IngredientListView: View {
                                     
                             Text(ing.amount)
                                     .font(.subheadline)
+                                    .foregroundStyle(.gray)
                                     .frame(width: 60, alignment: .trailing)
                             
                             Text("\(ing.unitPrice.formatted())원")
                                 .font(.subheadline)
-                                .foregroundStyle(.gray)
+                                .fontWeight(.semibold)
+//                                .foregroundStyle(.gray)
                                 .frame(width: 70, alignment: .trailing)
                             
                             Image(systemName: "pencil")
                                 .font(.body)
-                                .foregroundColor(.blue)
+                                .foregroundColor(Color.primaryColor700)
                         }
                         .listRowSeparator(.hidden)
                         .contentShape(Rectangle())
