@@ -138,7 +138,7 @@ struct DailyProfitSummary: View {
         .padding(.vertical)
         .padding(.bottom, 8)
         .background(Color.white)
-        .cornerRadius(14)
+        .cornerRadius(12)
         .shadow(color: .black.opacity(0.03), radius: 4, x: 0, y: 2)
     }
 }
