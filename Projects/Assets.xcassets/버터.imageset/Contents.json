@@ -1,11 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "버터.png",
+      "filename" : "버터.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "버터 2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

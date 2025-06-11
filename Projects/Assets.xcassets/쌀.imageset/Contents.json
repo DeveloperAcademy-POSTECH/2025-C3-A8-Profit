@@ -1,11 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "쌀.png",
+      "filename" : "쌀.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "쌀 2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

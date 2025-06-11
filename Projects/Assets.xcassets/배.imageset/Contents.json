@@ -1,11 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "배.png",
+      "filename" : "배.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "배 2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

@@ -1,11 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "딸기.png",
+      "filename" : "딸기.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "딸기 2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

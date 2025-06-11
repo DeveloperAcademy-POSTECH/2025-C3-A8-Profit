@@ -1,11 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "토마토.png",
+      "filename" : "토마토.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "토마토 2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

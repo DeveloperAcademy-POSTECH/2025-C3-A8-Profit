@@ -1,11 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "머스타드.png",
+      "filename" : "머스타드.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "머스타드 2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
