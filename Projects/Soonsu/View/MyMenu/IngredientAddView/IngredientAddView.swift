@@ -12,7 +12,6 @@ import SwiftData
 struct IngredientAddView: View {
     
     @Environment(\.modelContext) private var context
-    @EnvironmentObject var navState: NavigationState
     @Binding var parsedIngredients: [IngredientInfo]
     var onIngredientSelected: ((String) -> Void)? = nil
     @Environment(\.dismiss) private var dismiss
@@ -31,33 +30,24 @@ struct IngredientAddView: View {
             }
         }
     }
-     
+    
     var body: some View {
-
+        
         List(filteredItems, id: \.name) { item in
-//            NavigationLink(
-//                destination:
-//                    IngredientDetailView(
-//                ingredient: item,
-//                ingredients: $parsedIngredients)
-//            )
-//            {
-//                Text(item.name)
-//            }
-//            .onTapGesture {
-//                onIngredientSelected?(item.name)
-//            }
-            Text(item.name)
-                .onTapGesture {
-                    navState.myMenuPath.append(item)
-                    onIngredientSelected?(item.name)
-                }
-        }
-        .navigationDestination(for: IngredientInfo.self) { item in
-            IngredientDetailView(
-                ingredient: item,
-                ingredients: $parsedIngredients
+            NavigationLink(
+                destination:
+                    IngredientDetailView(
+                        ingredient: item,
+                        ingredients: $parsedIngredients
+                    )
             )
+            {
+                Text(item.name)
+            }
+            .onTapGesture {
+                onIngredientSelected?(item.name)
+                
+            }
         }
         .navigationTitle("재료 추가")
         .searchable(text: $searchText, placement: .toolbar, prompt: "검색어를 입력하세요")
