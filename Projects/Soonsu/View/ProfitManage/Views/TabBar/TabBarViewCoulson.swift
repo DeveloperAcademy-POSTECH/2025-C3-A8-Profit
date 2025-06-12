@@ -36,12 +36,12 @@ struct TabBarViewCoulson: View {
                 VStack(spacing: 4) {
                     Image(systemName: tab.iconName)
                         .font(.system(size: 22, weight: .medium))
-                        .foregroundColor(selectedTab == tab ? .blue : .gray)
+                        .foregroundColor(selectedTab == tab ? .primaryColor700 : .gray)
                     
                     
                     Text(tab.rawValue)
                         .font(.caption)
-                        .foregroundColor(selectedTab == tab ? .blue : .gray)
+                        .foregroundColor(selectedTab == tab ? .primaryColor700 : .gray)
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 8)

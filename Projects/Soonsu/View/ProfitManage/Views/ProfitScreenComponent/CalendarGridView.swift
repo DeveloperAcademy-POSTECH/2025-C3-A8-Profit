@@ -43,7 +43,7 @@ struct CalendarGridView: View {
                 Text(headerTitle)
                     .font(.title3)
                     .fontWeight(.semibold)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.primaryColor700)
                 Spacer()
                 Button {
                     vm.currentMonth = calendar.date(byAdding: .month, value: 1, to: vm.currentMonth)!
@@ -95,7 +95,7 @@ struct CalendarGridView: View {
                             }
                         }
                         .frame(maxWidth: .infinity, minHeight: 38)
-                        .background(isSelected ? Color.blue : Color.clear)
+                        .background(isSelected ? Color.primaryColor700 : Color.clear)
                         .cornerRadius(10)
                         .onTapGesture { vm.selectedDate = date }
                     }

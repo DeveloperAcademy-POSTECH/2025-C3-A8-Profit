@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		262AB3412DFA5D3A00F0E161 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 262AB3402DFA5D3A00F0E161 /* Lottie */; };
 		263319CF2DF9520F0089614C /* FixedCostTemporary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263319CE2DF9520F0089614C /* FixedCostTemporary.swift */; };
 		265FB4502DF59FA500D171FA /* DailySalesRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB44F2DF59FA500D171FA /* DailySalesRecord.swift */; };
 		265FB4522DF59FB600D171FA /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4512DF59FB600D171FA /* Ingredient.swift */; };
@@ -124,6 +125,7 @@
 			files = (
 				68343B912DED761400BD34B4 /* FirebaseAnalytics in Frameworks */,
 				68343B8F2DED761400BD34B4 /* FirebaseAI in Frameworks */,
+				262AB3412DFA5D3A00F0E161 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +326,7 @@
 			packageProductDependencies = (
 				68343B8E2DED761400BD34B4 /* FirebaseAI */,
 				68343B902DED761400BD34B4 /* FirebaseAnalytics */,
+				262AB3402DFA5D3A00F0E161 /* Lottie */,
 			);
 			productName = Soonsu;
 			productReference = 68343B5F2DED74BD00BD34B4 /* Soonsu.app */;
@@ -403,6 +406,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				68343B8D2DED761400BD34B4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				262AB33F2DFA5D3A00F0E161 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 68343B602DED74BD00BD34B4 /* Products */;
@@ -637,7 +641,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M48446ADTD;
+				DEVELOPMENT_TEAM = CZXX5QRBG6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -670,7 +674,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M48446ADTD;
+				DEVELOPMENT_TEAM = CZXX5QRBG6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -809,6 +813,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		262AB33F2DFA5D3A00F0E161 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.2;
+			};
+		};
 		68343B8D2DED761400BD34B4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -820,6 +832,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		262AB3402DFA5D3A00F0E161 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 262AB33F2DFA5D3A00F0E161 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		68343B8E2DED761400BD34B4 /* FirebaseAI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 68343B8D2DED761400BD34B4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

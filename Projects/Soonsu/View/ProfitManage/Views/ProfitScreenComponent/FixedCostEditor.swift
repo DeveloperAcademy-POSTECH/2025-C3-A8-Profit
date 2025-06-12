@@ -41,7 +41,7 @@ struct FixedCostEditor: View {
                 HStack {
                     TextField("영업일수", text: $inputDays)
                         .keyboardType(.numberPad)
-                        .padding(12)
+                        .padding(16)
                         .background(Color(.systemGray6))
                         .cornerRadius(8)
                     Text("일")
@@ -77,11 +77,12 @@ struct FixedCostEditor: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(10)
+                    .background(Color.primaryColor700)
+                    .cornerRadius(12)
                     .font(.headline)
             }
-            .padding(.top, 3)
+            .padding(.top, 8)
+            
             
             
             // --- 총 고정비/영업일수 요약 (저장 후)
@@ -89,12 +90,15 @@ struct FixedCostEditor: View {
                 VStack(alignment: .leading, spacing: 6) {
                     HStack {
                         Text("총 고정비")
+                            .foregroundStyle(.gray)
                         Spacer()
-                        Text("\(vm.monthlyFixedCost.formatted(.number.grouping(.automatic))) 원")
+                        Text("\(vm.monthlyFixedCost.formatted(.number.grouping(.automatic)))원")
                             .fontWeight(.semibold)
+                            
                     }
                     HStack {
                         Text("영업일수")
+                            .foregroundStyle(.gray)
                         Spacer()
                         Text("\(vm.operatingDays)일")
                             .fontWeight(.semibold)
@@ -109,6 +113,7 @@ struct FixedCostEditor: View {
                 .font(.caption2)
                 .foregroundColor(.gray)
                 .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.bottom, -4)
             Text("고정비는 매월 초 또는 변경 시 한 번만 입력하시면 됩니다.")
                 .font(.caption2)
                 .foregroundColor(.gray)
@@ -138,7 +143,7 @@ struct FixedCostEditor: View {
 #Preview {
     // ProfitViewModel을 초기화하여 미리보기에 전달
     FixedCostEditor(vm: ProfitViewModel())
-        .previewLayout(.sizeThatFits)
+//        .previewLayout(.sizeThatFits)
         .padding()
         .background(Color(.systemGray6).ignoresSafeArea())
 }

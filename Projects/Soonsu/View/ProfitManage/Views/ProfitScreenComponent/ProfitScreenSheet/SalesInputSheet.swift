@@ -122,27 +122,27 @@ private struct MenuRow: View {
     
     // MARK: View
     var body: some View {
-        HStack(spacing: 14) {
+        HStack(spacing: 16) {
             // 썸네일
             if let img = thumbnail() {
                 Image(uiImage: img)
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 44, height: 44)
+                    .frame(width: 64, height: 64)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             } else {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color(.systemGray5))
-                    .frame(width: 44, height: 44)
+                    .frame(width: 64, height: 64)
                     .overlay(Text("❓❓❓").font(.caption).foregroundColor(.gray))
             }
             
             // 메뉴 정보
             VStack(alignment: .leading, spacing: 2) {
                 Text(menu.name).font(.headline)
-                Text("단가 \(menu.price.formatted())원")
+                Text("판매비 \(menu.price.formatted())원")
                     .font(.caption).foregroundColor(.gray)
-                Text("원가 \(menu.materialCostPerUnit.formatted())원")
+                Text("재료비 \(menu.materialCostPerUnit.formatted())원")
                     .font(.caption).foregroundColor(.gray)
             }
             Spacer()
@@ -154,8 +154,8 @@ private struct MenuRow: View {
                 } label: {
                     Image(systemName: "minus.circle.fill")
                         .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.gray)
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(.gray.opacity(0.4))
                 }
                 .buttonStyle(.plain)
                 
@@ -169,7 +169,7 @@ private struct MenuRow: View {
                 .multilineTextAlignment(.center)
                 .frame(minWidth: 40)
                 .fixedSize(horizontal: true, vertical: false)
-                .textFieldStyle(.roundedBorder)
+//                .textFieldStyle(.roundedBorder)
                 .font(.title3)
                 .focused($focusedFieldID, equals: menu.id)
                 
@@ -179,13 +179,13 @@ private struct MenuRow: View {
                 } label: {
                     Image(systemName: "plus.circle.fill")
                         .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.blue)
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(.primaryColor200)
                 }
                 .buttonStyle(.plain)
             }
         }
-        .padding(.vertical, 6)
+        .padding(.vertical, 8)
     }
 }
 
@@ -202,6 +202,6 @@ private extension ProfitViewModel {
     var sheetTitle: String {
         let dayString = DateFormatter.korMonthDay.string(from: selectedDate)   // n월 xx일
         let weekday   = weekdayKorean(selectedDate)                            // n요일
-        return "\(dayString) \(weekday) 판매량 수정"
+        return "\(dayString)(\(weekday)) 판매량 수정"
     }
 }

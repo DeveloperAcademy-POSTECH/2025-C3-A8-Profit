@@ -15,6 +15,8 @@ struct MyMenuView: View {
     @State private var showAddMenu      = false
     @State private var selectedMenuName = ""
     
+    @StateObject private var navState = NavigationState()
+    
     init(viewModel: MenuViewModel) {
         self.viewModel = viewModel
         self._showAddMenu = State(initialValue: false)
@@ -37,7 +39,7 @@ struct MyMenuView: View {
     
     var body: some View {
         let menuNames = Set(viewModel.allIngredients.map(\.menuName)).sorted(by: >)
-        NavigationStack {
+        NavigationStack(path: $navState.myMenuPath) {
             VStack {
                 
                 if menuNames.isEmpty {
@@ -74,21 +76,35 @@ struct MyMenuView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 Button {
+                    navState.myMenuPath.append("MenuInputView")
                     showAddMenu = true
                 } label: {
                     Image(systemName: "plus")
+                        .foregroundStyle(Color.primaryColor700)
                         .fontWeight(.bold)
+                }
+            }
+            .navigationDestination(for: String.self) { value in
+                switch value {
+                case "MenuInputView":
+                    MenuInputView(
+                        showAddMenu:      $showAddMenu,
+                        selectedMenuName: $selectedMenuName
+                    )
+                default:
+                    EmptyView()
                 }
             }
             
             // ── “나의 메뉴 +” → IngredientSheetView ─────────
-            .navigationDestination(isPresented: $showAddMenu) {
-                MenuInputView(
-                    showAddMenu:      $showAddMenu,
-                    selectedMenuName: $selectedMenuName
-                )
-            }
+//            .navigationDestination(isPresented: $showAddMenu) {
+//                MenuInputView(
+//                    showAddMenu:      $showAddMenu,
+//                    selectedMenuName: $selectedMenuName
+//                )
+//            }
         }
+        .environmentObject(navState)
 
         .onChange(of: selectedMenuName) { _, newValue in
             if !newValue.isEmpty {

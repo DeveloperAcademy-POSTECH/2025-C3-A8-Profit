@@ -39,7 +39,7 @@ struct IngredientHeaderView: View {
                     .font(.title3).bold()
                 Text("\(menuPrice)원")
                     .font(.title3).bold()
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(Color.primaryColor700)
             }
             
             Spacer()

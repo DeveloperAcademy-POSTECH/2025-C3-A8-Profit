@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Lottie
 
 struct MainTabViewCoulson: View {
     
@@ -34,9 +35,16 @@ struct MainTabViewCoulson: View {
             switch selectedTab {
             case .home:
                 // 첫 번째 탭: 홈 화면 (임시로 Text로 처리, 필요 시 별도 뷰를 만들어 주세요)
-                Text("홈 화면")
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color(.systemBackground))
+//                Text("홈 화면")
+//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                    .background(Color(.systemBackground))
+                LottieView(animation: .named("working"))
+                    .looping()
+                Text("홈 화면을 구성 중이에요")
+                    .font(.caption2)
+                    .foregroundStyle(.gray)
+                    .padding(.bottom,32)
+                
                 
             case .menu:
                 // 두 번째 탭: 메뉴관리 → MyMenuView

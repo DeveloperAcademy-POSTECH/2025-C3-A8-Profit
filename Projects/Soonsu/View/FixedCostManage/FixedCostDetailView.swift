@@ -38,27 +38,32 @@ struct FixedCostDetailView: View {
             VStack {
                 VStack(alignment: .leading) {
                     Text("상세 고정비")
-                        .padding(.bottom, 15)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .padding(.bottom, 16)
                     
                     HStack {
                         Text("총 고정비")
-                            .font(.title2)
+                            .font(.headline)
                             .fontWeight(.bold)
+                            .foregroundStyle(.gray)
                         Spacer()
-                        Text("-\(totalFixed) 원")
+                        Text("-\(totalFixed)원")
                             .foregroundColor(.red)
-                            .font(.title2)
+                            .font(.headline)
                             .fontWeight(.bold)
                     }
+                    .padding(.bottom,2)
                     
                     HStack {
                         Text("하루 고정비")
-                            .font(.title2)
+                            .font(.headline)
                             .fontWeight(.bold)
+                            .foregroundStyle(.gray)
                         Spacer()
-                        Text("- \(dailyFixed.formatted(.number.grouping(.automatic))) 원")
+                        Text("-\(dailyFixed.formatted(.number.grouping(.automatic)))원")
                             .foregroundColor(.red)
-                            .font(.title2)
+                            .font(.headline)
                             .fontWeight(.bold)
                     }
                     
@@ -93,48 +98,53 @@ struct FixedCostDetailView: View {
                 .background(Color.white)
                 .cornerRadius(12)
                 .padding(.horizontal)
+//                .padding(.bottom, -12)
                 
                 
                 VStack {
                     NavigationLink(destination: LaborCostManageView()) {
                         HStack {
                             Text("인건비 입력하기")
-                                .font(.system(size: 15))
+                                .font(.headline)
                                 .fontWeight(.bold)
                                 .foregroundStyle(.black)
                             Spacer()
                             Image(systemName: "chevron.right")
-                                .foregroundColor(.secondary)
+                                .font(.caption)
+                                .foregroundColor(.gray.opacity(0.4))
                         }
                         .padding(20)
-                        .frame(height: 41)
+                        .frame(height: 64)
                         .background(Color.white)
-                        .cornerRadius(8)
+                        .cornerRadius(12)
                     }
                     .padding(.horizontal, 16)
-                    .padding(.top, 14)
+//                    .padding(.top, 14)
                     
                     NavigationLink(destination: OverheadCostManageView()) {
                         HStack {
                             Text("간접비 입력하기 (⚠️공사중🚧)")
-                                .font(.system(size: 15))
+                                .font(.headline)
                                 .fontWeight(.bold)
                                 .foregroundStyle(.black)
                             Spacer()
                             Image(systemName: "chevron.right")
-                                .foregroundColor(.secondary)
+                                .font(.caption)
+                                .foregroundColor(.gray.opacity(0.4))
                         }
                         .padding(20)
-                        .frame(height: 41)
+                        .frame(height: 64)
                         .background(Color.white)
-                        .cornerRadius(8)
+                        .cornerRadius(12)
                     }
-                    .padding(.horizontal, 16)
+                    .padding(.horizontal)
                 }
+                
                 
                 VStack(alignment: .leading, spacing: 8) {
                     Text("이번달 영업일수")
-                        .font(.caption)
+                        .font(.headline)
+                        .fontWeight(.bold)
                     HStack {
                         
                         HStack {
@@ -147,6 +157,7 @@ struct FixedCostDetailView: View {
                             Text("일")
                                 .foregroundColor(.gray)
                         }
+                        .padding(.top,4)
                     }
                     Button {
                         if let days = Int(inputDays), days > 0 {
@@ -165,18 +176,18 @@ struct FixedCostDetailView: View {
                             .frame(maxWidth: .infinity)
                             .padding()
                             .foregroundColor(.white)
-                            .cornerRadius(6)
+                            .cornerRadius(12)
                             .font(.headline)
                     }
                     .disabled(!isInputValid)
-                    .background(isInputValid ? Color.blue : Color.gray)
+                    .background(isInputValid ? Color.primaryColor700 : Color.gray)
                     .cornerRadius(6)
-                    .padding(.top, 3)
+                    .padding(.top, 8)
                 }
                 .padding()
                 .background(Color.white)
-                .cornerRadius(7)
-                .padding()
+                .cornerRadius(12)
+                .padding(.horizontal)
             }
             .background(Color(UIColor.systemGroupedBackground))
             

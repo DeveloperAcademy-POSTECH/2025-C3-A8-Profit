@@ -23,7 +23,11 @@ struct IngredientResultFooterView: View {
                 HStack(spacing: 0) {
                     Image(systemName: "plus.circle.fill")
                         .padding(.trailing, 4)
+//                        .foregroundStyle(Color.primaryColor700)
+                        .foregroundStyle(.blue)
                     Text("재료 추가하기")
+                        .foregroundStyle(.blue)
+//                        .foregroundStyle(Color.primaryColor700)
                 }
             }
             
@@ -48,11 +52,11 @@ struct IngredientResultFooterView: View {
             .font(.headline)
             .frame(maxWidth: .infinity)
             .padding()
-            .background(Color.blue)
+            .background(Color.primaryColor700)
 //            .background(isNew ? Color.blue : Color.gray.opacity(0.3))
             .foregroundColor(.white)
 //            .foregroundColor(isNew ? .white : .black)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: 24))
             
             
             

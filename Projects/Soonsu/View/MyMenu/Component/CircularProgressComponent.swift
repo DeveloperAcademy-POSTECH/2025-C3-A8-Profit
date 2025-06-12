@@ -58,7 +58,7 @@ struct CircularProgressComponent: View {
             }
         }
         .font(.system(size: 20, weight: .bold))
-        .padding(.bottom, 10)
+        .padding(.vertical, 16)
     }
     
     // MARK: - Body

@@ -92,22 +92,27 @@ struct ProfitScreen: View {
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("총 고정비")
+                                .bold()
+                                .foregroundStyle(.gray)
                             Text("영업일수")
+                                .bold()
+                                .foregroundStyle(.gray)
                         }
                         Spacer()
                         VStack(alignment: .trailing, spacing: 4) {
-                            Text(viewModel.monthlyFixedCost.formatted(.number.grouping(.automatic)) + " 원")
+                            Text(viewModel.monthlyFixedCost.formatted(.number.grouping(.automatic)) + "원")
                                 .fontWeight(.semibold)
                             Text("\(viewModel.operatingDays)일")
                                 .fontWeight(.semibold)
                         }
                         Image(systemName: "chevron.right")
-                            .foregroundColor(.gray)
+                            .foregroundColor(.gray.opacity(0.4))
+                            .font(.caption)
                     }
-                    .padding(12)
+                    .padding()
                     .frame(maxWidth: .infinity)
                     .background(
-                        RoundedRectangle(cornerRadius: 14)
+                        RoundedRectangle(cornerRadius: 12)
                             .fill(Color.white)
                             .shadow(color: .black.opacity(0.03), radius: 2, x: 0, y: 1)
                     )
