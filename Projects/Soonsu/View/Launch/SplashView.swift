@@ -30,7 +30,7 @@ struct SplashView: View {
                              꽉 채우되 잘릴 수 있음    .scaledToFill().ignoresSafeArea()
                              */
                             .ignoresSafeArea()
-                            .background(Color.black)
+//                            .background(Color.black)
                     } else {
                         Text("이익봤쥬팀 수고했어요")
                             .font(.title)

@@ -11,7 +11,8 @@ struct IngredientDetailView: View {
     let ingredient: IngredientInfo
     @Binding var ingredients: [IngredientInfo]
     
-    @Environment(\.dismiss) private var dismiss
+//    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var navState: NavigationState
 
     @State private var segmentMode: SegmentMode = .auto
     @State private var purchasePrice: Int = 2000
@@ -94,9 +95,9 @@ struct IngredientDetailView: View {
                 )
                 ingredients.append(newIngredient)
                 
-                dismiss()
-                dismiss()
-                dismiss()
+//                dismiss()
+                navState.myMenuPath.removeLast(1)
+
 
             } label: {
                 Text("재료추가하기")
