@@ -15,7 +15,7 @@ struct MyMenuView: View {
     @State private var showAddMenu      = false
     @State private var selectedMenuName = ""
     
-    @StateObject private var navState = NavigationState()
+//    @StateObject private var navState = NavigationState()
     
     init(viewModel: MenuViewModel) {
         self.viewModel = viewModel
@@ -39,7 +39,7 @@ struct MyMenuView: View {
     
     var body: some View {
         let menuNames = Set(viewModel.allIngredients.map(\.menuName)).sorted(by: >)
-        NavigationStack(path: $navState.myMenuPath) {
+        NavigationStack {
             VStack {
                 
                 if menuNames.isEmpty {
@@ -76,7 +76,7 @@ struct MyMenuView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 Button {
-                    navState.myMenuPath.append("MenuInputView")
+//                    navState.myMenuPath.append("MenuInputView")
                     showAddMenu = true
                 } label: {
                     Image(systemName: "plus")
@@ -97,14 +97,14 @@ struct MyMenuView: View {
             }
             
             // ── “나의 메뉴 +” → IngredientSheetView ─────────
-//            .navigationDestination(isPresented: $showAddMenu) {
-//                MenuInputView(
-//                    showAddMenu:      $showAddMenu,
-//                    selectedMenuName: $selectedMenuName
-//                )
-//            }
+            .navigationDestination(isPresented: $showAddMenu) {
+                MenuInputView(
+                    showAddMenu:      $showAddMenu,
+                    selectedMenuName: $selectedMenuName
+                )
+            }
         }
-        .environmentObject(navState)
+//        .environmentObject(navState)
 
         .onChange(of: selectedMenuName) { _, newValue in
             if !newValue.isEmpty {

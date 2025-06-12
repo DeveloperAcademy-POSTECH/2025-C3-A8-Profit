@@ -36,7 +36,7 @@ struct IngredientResultView: View {
     @State private var navigateToSearch = false
     
     
-    //    @State private var showIngredientAddView = false
+//    @State private var showIngredientAddView = false
     //    @State private var navigateToIngredientAddView = false
     
     
