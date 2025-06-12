@@ -34,6 +34,7 @@ struct SalesInputSheet: View {
             }
             
             .listStyle(.plain)
+            .listRowSeparator(.hidden)
             .navigationTitle(vm.sheetTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { toolbarContent }
@@ -155,7 +156,7 @@ private struct MenuRow: View {
                     Image(systemName: "minus.circle.fill")
                         .resizable()
                         .frame(width: 24, height: 24)
-                        .foregroundColor(.gray.opacity(0.4))
+                        .foregroundColor(.gray.opacity(0.3))
                 }
                 .buttonStyle(.plain)
                 
@@ -180,7 +181,7 @@ private struct MenuRow: View {
                     Image(systemName: "plus.circle.fill")
                         .resizable()
                         .frame(width: 24, height: 24)
-                        .foregroundColor(.primaryColor200)
+                        .foregroundColor(.blue.opacity(0.3))
                 }
                 .buttonStyle(.plain)
             }
