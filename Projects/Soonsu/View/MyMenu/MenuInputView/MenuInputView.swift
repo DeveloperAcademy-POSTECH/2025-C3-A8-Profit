@@ -84,7 +84,7 @@ struct MenuInputView: View {
                                         .font(.system(size: 20))
                                         .foregroundColor(.blue)
                                 }
-                                .padding(.bottom, 52)
+                                .padding(.bottom, 40)
                                 Text(
                                                           """
                                                           사진을 등록하면 자동으로
@@ -94,8 +94,10 @@ struct MenuInputView: View {
                                 .multilineTextAlignment(.center)
                                 .font(.title3)
                                 .fontWeight(.bold)
+                                .padding(.bottom, -8)
                             }
                         }
+                        .padding(.bottom)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .contentShape(Rectangle())
                     }
@@ -126,6 +128,7 @@ struct MenuInputView: View {
                     .padding(.top)
                     
                     Divider()
+                        .padding(.horizontal)
                     
 //                    TextFieldRowStringComponent(
 //                        title: "메뉴 가격",
@@ -145,6 +148,7 @@ struct MenuInputView: View {
                     .padding(.top)
                     
                     Divider()
+                        .padding(.horizontal)
                         .padding(.bottom, 32)
                 }
                 
@@ -161,9 +165,9 @@ struct MenuInputView: View {
                         .foregroundStyle(.white)
                 }
                 .frame(maxWidth: .infinity)
-                .frame(height: 50)
-                .background((isLoading || selectedImage == nil || menuName.isEmpty || menuPrice.isEmpty) ? Color.gray : Color.blue)
-                .cornerRadius(10)
+                .frame(height: 56)
+                .background((isLoading || selectedImage == nil || menuName.isEmpty || menuPrice.isEmpty) ? Color.gray : Color.primaryColor700)
+                .cornerRadius(28)
                 .disabled(isLoading || selectedImage == nil || menuName.isEmpty || menuPrice.isEmpty)
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
