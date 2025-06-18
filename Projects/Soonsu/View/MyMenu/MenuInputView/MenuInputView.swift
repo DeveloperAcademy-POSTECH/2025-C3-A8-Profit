@@ -165,7 +165,7 @@ struct MenuInputView: View {
             
             .padding()
             .scrollContentBackground(.hidden)
-            .ignoresSafeArea(.keyboard, edges: .bottom)
+//            .ignoresSafeArea(.keyboard, edges: .bottom)
             .background(Color(.systemGray6))
             .overlay {
                 if isLoading {

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SwiftData
+//import SwiftData
 import Lottie
 
 struct MainTabViewCoulson: View {
