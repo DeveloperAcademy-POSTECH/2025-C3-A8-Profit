@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import Combine
+//import Combine
 import SwiftData
 
 /// 수익(달력/고정비/일별매출) 화면 전용 ViewModel

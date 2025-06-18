@@ -10,9 +10,10 @@ import SwiftData
 
 struct MenuRowView: View {
     let menuName: String
+    let onTap: () -> Void
     
     @Environment(\.modelContext) private var context
-    @State private var showDetail = false
+//    @State private var showDetail = false
     
     /// 해당 메뉴명에 속한 IngredientEntity를 모두 가져오는 computed 프로퍼티
     private var matchedEntities: [Ingredient] {
@@ -74,7 +75,8 @@ struct MenuRowView: View {
         
         
         Button {
-            showDetail = true
+//            showDetail = true
+            onTap()
         }
         label: {
             // Label: 썸네일 + 메뉴 이름 + 가격
@@ -163,18 +165,18 @@ struct MenuRowView: View {
                     .foregroundStyle(.gray.opacity(0.4))
 
             }
-            // ── “기존 확인 모드”로 IngredientResultView를 푸시 ──
-            .navigationDestination(isPresented: $showDetail) {
-                IngredientResultView(
-                    isNew: false,
-                    selectedMenuName: .constant(menuName),
-                    showAddMenu:      .constant(false),   // “기존 모드” 플래그
-                    menuName:         menuName,
-                    menuPrice:        priceString,
-                    image:            headerImage,
-                    parsedIngredients: infos
-                )
-            }
+//            // ── “기존 확인 모드”로 IngredientResultView를 푸시 ──
+//            .navigationDestination(isPresented: $showDetail) {
+//                IngredientResultView(
+//                    isNew: false,
+//                    selectedMenuName: .constant(menuName),
+//                    showAddMenu:      .constant(false),   // “기존 모드” 플래그
+//                    menuName:         menuName,
+//                    menuPrice:        priceString,
+//                    image:            headerImage,
+//                    parsedIngredients: infos
+//                )
+//            }
         }
     }
 }
