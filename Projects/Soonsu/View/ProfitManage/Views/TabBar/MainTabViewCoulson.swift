@@ -16,6 +16,7 @@ struct MainTabViewCoulson: View {
     @Environment(\.modelContext) private var context
     
     @State private var selectedTab: TabType = .home
+    @State private var showSplash = true
     
     @StateObject private var profitVM = ProfitViewModel()
     @StateObject private var menuVM: MenuViewModel
@@ -38,13 +39,28 @@ struct MainTabViewCoulson: View {
 //                Text("홈 화면")
 //                    .frame(maxWidth: .infinity, maxHeight: .infinity)
 //                    .background(Color(.systemBackground))
+                /*
                 LottieView(animation: .named("working"))
                     .looping()
                 Text("홈 화면을 구성 중이에요")
                     .font(.caption2)
                     .foregroundStyle(.gray)
                     .padding(.bottom,32)
-                
+                */
+                if showSplash {
+                    VStack {
+                        LottieView(animation: .named("working"))
+                            .looping()
+                        Text("홈 화면을 구성 중이에요")
+                            .font(.caption2)
+                            .foregroundStyle(.gray)
+                            .padding(.bottom,32)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color(.systemBackground))
+                } else {
+                    HomeDashboardView()
+                }
                 
             case .menu:
                 // 두 번째 탭: 메뉴관리 → MyMenuView
@@ -72,6 +88,11 @@ struct MainTabViewCoulson: View {
             if !isLoaded {
                 profitVM.loadFromStorage(context: context)
                 isLoaded = true
+            }
+            
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                showSplash = false
             }
         }
     }

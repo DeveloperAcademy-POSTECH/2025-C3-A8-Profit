@@ -118,6 +118,11 @@
 			path = Launch;
 			sourceTree = "<group>";
 		};
+		6872E8C52E04377500B4A62D /* Home */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Home;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +301,7 @@
 		68343BA42DED76D900BD34B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6872E8C52E04377500B4A62D /* Home */,
 				3EBF44302DF17E0400C6F319 /* MyMenu */,
 				3EC4A2EB2DF0946C007CE029 /* FixedCostManage */,
 				265FB4682DF5A00A00D171FA /* ProfitManage */,
@@ -324,6 +330,7 @@
 				3EBF44302DF17E0400C6F319 /* MyMenu */,
 				3EC4A2EB2DF0946C007CE029 /* FixedCostManage */,
 				6872E4D32DF998B700B4A62D /* Launch */,
+				6872E8C52E04377500B4A62D /* Home */,
 			);
 			name = Soonsu;
 			packageProductDependencies = (
