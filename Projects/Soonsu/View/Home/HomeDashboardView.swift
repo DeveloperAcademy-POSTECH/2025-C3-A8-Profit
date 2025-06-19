@@ -16,6 +16,7 @@ struct HomeDashboardView: View {
                 RetailPriceSectionView()
             }
             .padding()
+            
         }
         .navigationTitle("홈")
         .navigationBarTitleDisplayMode(.inline)
@@ -23,15 +24,26 @@ struct HomeDashboardView: View {
 
     private var greetingSection: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text("안녕하세요, 누나함박님!")
-                .font(.title3)
-                .fontWeight(.bold)
+            Spacer()
+                .frame(height: 32)
+            Group {
+                Text("안녕하세요, 누나함박님!")
+                    .padding(.bottom)
+                    .foregroundStyle(Color.neutral400)
+                
+                Text("6월 평균 순수익은 ")
+                Text("120,000원")
+                    .foregroundStyle(Color.primary700)
 
-            Text("6월 현재까지의 평균 순수익은 ")
-            + Text("120,000원")
-                .foregroundColor(.blue)
-                .fontWeight(.semibold)
-            + Text(" 입니다.")
+                + Text("입니다.")
+            }
+            .font(.title)
+            .fontWeight(.bold)
         }
+        
     }
+}
+
+#Preview {
+    HomeDashboardView()
 }

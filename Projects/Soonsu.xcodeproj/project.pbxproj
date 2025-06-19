@@ -25,6 +25,13 @@
 		265FB4722DF5A00A00D171FA /* TabBarViewCoulson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4642DF5A00A00D171FA /* TabBarViewCoulson.swift */; };
 		265FB4732DF5A00A00D171FA /* ProfitViewModelStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265FB4592DF5A00A00D171FA /* ProfitViewModelStorage.swift */; };
 		26B152682DFA28D6000BDB30 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B152672DFA28D6000BDB30 /* DesignSystem.swift */; };
+		26D0109D2E045FE5008EB502 /* IngredientNavigationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D0109C2E045FE5008EB502 /* IngredientNavigationData.swift */; };
+		26D010A82E046037008EB502 /* RetailItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D0109F2E046037008EB502 /* RetailItemCellView.swift */; };
+		26D010A92E046037008EB502 /* HomeDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D010A62E046037008EB502 /* HomeDashboardView.swift */; };
+		26D010AA2E046037008EB502 /* RetailPriceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D010A22E046037008EB502 /* RetailPriceSectionView.swift */; };
+		26D010AB2E046037008EB502 /* IngredientRetailCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D0109E2E046037008EB502 /* IngredientRetailCellView.swift */; };
+		26D010AC2E046037008EB502 /* NetProfitChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D010A12E046037008EB502 /* NetProfitChartView.swift */; };
+		26D010AD2E046037008EB502 /* RetailPriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D010A42E046037008EB502 /* RetailPriceViewModel.swift */; };
 		3E6688EA2DF5799E00DE2298 /* IngredientsCham.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E22DF5799E00DE2298 /* IngredientsCham.json */; };
 		3E6688EB2DF5799E00DE2298 /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E72DF5799E00DE2298 /* MockData.json */; };
 		3E6688EC2DF5799E00DE2298 /* IngredientsKamis.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E6688E32DF5799E00DE2298 /* IngredientsKamis.json */; };
@@ -40,7 +47,6 @@
 		68343B9D2DED76C100BD34B4 /* SoonsuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68343B9B2DED76C100BD34B4 /* SoonsuTests.swift */; };
 		68343BA12DED76C400BD34B4 /* SoonsuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68343B9E2DED76C400BD34B4 /* SoonsuUITests.swift */; };
 		68343BA22DED76C400BD34B4 /* SoonsuUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68343B9F2DED76C400BD34B4 /* SoonsuUITestsLaunchTests.swift */; };
-		6872E8BD2E042A3300B4A62D /* IngredientNavigationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6872E8BC2E042A2D00B4A62D /* IngredientNavigationData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +84,13 @@
 		265FB4642DF5A00A00D171FA /* TabBarViewCoulson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewCoulson.swift; sourceTree = "<group>"; };
 		265FB4672DF5A00A00D171FA /* SoonsuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuApp.swift; sourceTree = "<group>"; };
 		26B152672DFA28D6000BDB30 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		26D0109C2E045FE5008EB502 /* IngredientNavigationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientNavigationData.swift; sourceTree = "<group>"; };
+		26D0109E2E046037008EB502 /* IngredientRetailCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientRetailCellView.swift; sourceTree = "<group>"; };
+		26D0109F2E046037008EB502 /* RetailItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetailItemCellView.swift; sourceTree = "<group>"; };
+		26D010A12E046037008EB502 /* NetProfitChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetProfitChartView.swift; sourceTree = "<group>"; };
+		26D010A22E046037008EB502 /* RetailPriceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetailPriceSectionView.swift; sourceTree = "<group>"; };
+		26D010A42E046037008EB502 /* RetailPriceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetailPriceViewModel.swift; sourceTree = "<group>"; };
+		26D010A62E046037008EB502 /* HomeDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDashboardView.swift; sourceTree = "<group>"; };
 		3E6688DE2DF5799E00DE2298 /* DailySales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySales.swift; sourceTree = "<group>"; };
 		3E6688E22DF5799E00DE2298 /* IngredientsCham.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IngredientsCham.json; sourceTree = "<group>"; };
 		3E6688E32DF5799E00DE2298 /* IngredientsKamis.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = IngredientsKamis.json; sourceTree = "<group>"; };
@@ -94,7 +107,6 @@
 		68343B9B2DED76C100BD34B4 /* SoonsuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuTests.swift; sourceTree = "<group>"; };
 		68343B9E2DED76C400BD34B4 /* SoonsuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuUITests.swift; sourceTree = "<group>"; };
 		68343B9F2DED76C400BD34B4 /* SoonsuUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		6872E8BC2E042A2D00B4A62D /* IngredientNavigationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientNavigationData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -116,11 +128,6 @@
 		6872E4D32DF998B700B4A62D /* Launch */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Launch;
-			sourceTree = "<group>";
-		};
-		6872E8C52E04377500B4A62D /* Home */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -226,6 +233,43 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		26D010A02E046037008EB502 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				26D0109E2E046037008EB502 /* IngredientRetailCellView.swift */,
+				26D0109F2E046037008EB502 /* RetailItemCellView.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		26D010A32E046037008EB502 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				26D010A02E046037008EB502 /* Cell */,
+				26D010A12E046037008EB502 /* NetProfitChartView.swift */,
+				26D010A22E046037008EB502 /* RetailPriceSectionView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		26D010A52E046037008EB502 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				26D010A42E046037008EB502 /* RetailPriceViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		26D010A72E046037008EB502 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				26D010A32E046037008EB502 /* Component */,
+				26D010A52E046037008EB502 /* ViewModel */,
+				26D010A62E046037008EB502 /* HomeDashboardView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		68343B562DED74BD00BD34B4 = {
 			isa = PBXGroup;
 			children = (
@@ -280,7 +324,6 @@
 		68343BA32DED76D300BD34B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6872E8BC2E042A2D00B4A62D /* IngredientNavigationData.swift */,
 				3E6688DE2DF5799E00DE2298 /* DailySales.swift */,
 				265FB44F2DF59FA500D171FA /* DailySalesRecord.swift */,
 				263319CE2DF9520F0089614C /* FixedCostTemporary.swift */,
@@ -289,6 +332,7 @@
 				3E6688E22DF5799E00DE2298 /* IngredientsCham.json */,
 				3E6688E32DF5799E00DE2298 /* IngredientsKamis.json */,
 				3E6688E72DF5799E00DE2298 /* MockData.json */,
+				26D0109C2E045FE5008EB502 /* IngredientNavigationData.swift */,
 				3E6688E52DF5799E00DE2298 /* LaborCost.swift */,
 				3E6688E62DF5799E00DE2298 /* MenuItem.swift */,
 				3E6688E82DF5799E00DE2298 /* OverheadCost.swift */,
@@ -301,11 +345,11 @@
 		68343BA42DED76D900BD34B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6872E8C52E04377500B4A62D /* Home */,
 				3EBF44302DF17E0400C6F319 /* MyMenu */,
 				3EC4A2EB2DF0946C007CE029 /* FixedCostManage */,
 				265FB4682DF5A00A00D171FA /* ProfitManage */,
 				6872E4D32DF998B700B4A62D /* Launch */,
+				26D010A72E046037008EB502 /* Home */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -330,7 +374,6 @@
 				3EBF44302DF17E0400C6F319 /* MyMenu */,
 				3EC4A2EB2DF0946C007CE029 /* FixedCostManage */,
 				6872E4D32DF998B700B4A62D /* Launch */,
-				6872E8C52E04377500B4A62D /* Home */,
 			);
 			name = Soonsu;
 			packageProductDependencies = (
@@ -467,7 +510,6 @@
 				3E6688EE2DF5799E00DE2298 /* MenuItem.swift in Sources */,
 				3E6688EF2DF5799E00DE2298 /* DailySales.swift in Sources */,
 				265FB4692DF5A00A00D171FA /* ProfitViewModel.swift in Sources */,
-				6872E8BD2E042A3300B4A62D /* IngredientNavigationData.swift in Sources */,
 				265FB46A2DF5A00A00D171FA /* MenuViewModel.swift in Sources */,
 				265FB46B2DF5A00A00D171FA /* FixedCostEditor.swift in Sources */,
 				265FB46C2DF5A00A00D171FA /* SalesInputSheet.swift in Sources */,
@@ -477,12 +519,19 @@
 				263319CF2DF9520F0089614C /* FixedCostTemporary.swift in Sources */,
 				265FB4702DF5A00A00D171FA /* CalendarGridView.swift in Sources */,
 				265FB4712DF5A00A00D171FA /* SoonsuApp.swift in Sources */,
+				26D010A82E046037008EB502 /* RetailItemCellView.swift in Sources */,
+				26D010A92E046037008EB502 /* HomeDashboardView.swift in Sources */,
+				26D010AA2E046037008EB502 /* RetailPriceSectionView.swift in Sources */,
+				26D010AB2E046037008EB502 /* IngredientRetailCellView.swift in Sources */,
+				26D010AC2E046037008EB502 /* NetProfitChartView.swift in Sources */,
+				26D010AD2E046037008EB502 /* RetailPriceViewModel.swift in Sources */,
 				265FB4722DF5A00A00D171FA /* TabBarViewCoulson.swift in Sources */,
 				265FB4732DF5A00A00D171FA /* ProfitViewModelStorage.swift in Sources */,
 				3E6688F02DF5799E00DE2298 /* OverheadCost.swift in Sources */,
 				26B152682DFA28D6000BDB30 /* DesignSystem.swift in Sources */,
 				265FB4522DF59FB600D171FA /* Ingredient.swift in Sources */,
 				265FB4542DF59FBC00D171FA /* IngredientInfo.swift in Sources */,
+				26D0109D2E045FE5008EB502 /* IngredientNavigationData.swift in Sources */,
 				3E6688F22DF5799E00DE2298 /* SoldItem.swift in Sources */,
 				265FB4502DF59FA500D171FA /* DailySalesRecord.swift in Sources */,
 				265FB4562DF59FC900D171FA /* SoldItemModel.swift in Sources */,
@@ -652,7 +701,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5Z8G42AVKD;
+				DEVELOPMENT_TEAM = CZXX5QRBG6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -685,7 +734,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5Z8G42AVKD;
+				DEVELOPMENT_TEAM = CZXX5QRBG6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
