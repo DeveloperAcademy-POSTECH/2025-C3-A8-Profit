@@ -55,8 +55,11 @@ struct IngredientEditView: View {
             IngredientListView(
                 ingredients: ingredients
             ) { selected in
+//                DispatchQueue.main.async {
+//                    selectedIngredient = selected
+//                    showIngredientModifySheet = true
+//                }
                 selectedIngredient = selected
-                showIngredientModifySheet = true
             }
 
             // 하단 푸터 (총 원가, 확인 버튼)
@@ -72,9 +75,11 @@ struct IngredientEditView: View {
         .ignoresSafeArea(.keyboard)
         .navigationTitle("재료관리")
         .ingredientModifySheet(
-            isPresented: $showIngredientModifySheet,
-            ingredients: $ingredients,
-            selectedIngredient: $selectedIngredient
+//            isPresented: $showIngredientModifySheet,
+//            ingredients: $ingredients,
+//            selectedIngredient: $selectedIngredient
+            selectedIngredient: $selectedIngredient,
+            ingredients: $ingredients
         )
         .navigationDestination(isPresented: $navigateToSearch) {
             IngredientAddView(parsedIngredients: $ingredients) { selectedItemName in

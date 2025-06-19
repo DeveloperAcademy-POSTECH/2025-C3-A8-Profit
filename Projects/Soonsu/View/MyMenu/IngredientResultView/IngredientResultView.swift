@@ -180,10 +180,14 @@ struct IngredientResultView: View {
             //                .navigationBarBackButtonHidden(true)
             .navigationTitle("재료관리")
             
+//            .ingredientModifySheet(
+//                isPresented: $showIngredientModifySheet,
+//                ingredients: $ingredients,
+//                selectedIngredient: $selectedIngredient
+//            )
             .ingredientModifySheet(
-                isPresented: $showIngredientModifySheet,
-                ingredients: $ingredients,
-                selectedIngredient: $selectedIngredient
+                selectedIngredient: $selectedIngredient,
+                ingredients: $ingredients
             )
             
             .navigationDestination(
