@@ -19,6 +19,9 @@ struct IngredientResultView: View {
     @Binding var showAddMenu: Bool      // MyMenuView 쪽에서 이 바인딩을 false로 바꿔가며 pop 처리
     
     
+    @State private var selectedExistingMenuName: String? = nil
+    
+    
     let menuName: String
     let menuPrice: String
     let image: UIImage?

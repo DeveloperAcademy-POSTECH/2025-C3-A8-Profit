@@ -17,6 +17,9 @@ struct MyMenuView: View {
     @State private var showAddMenu      = false
     @State private var selectedMenuName = ""
     
+    @State private var selectedToEditMenuName = ""
+    @State private var showEditView = false
+    
     
     // 선택된 메뉴 데이터
     @State private var navigationTarget: IngredientNavigationData? = nil
@@ -50,7 +53,7 @@ struct MyMenuView: View {
     }
     
     var body: some View {
-//        let menuNames = Set(viewModel.allIngredients.map(\.menuName)).sorted(by: >)
+        //        let menuNames = Set(viewModel.allIngredients.map(\.menuName)).sorted(by: >)
         NavigationStack {
             VStack {
                 
@@ -72,20 +75,9 @@ struct MyMenuView: View {
                     List {
                         ForEach(menuNames, id: \.self) { name in
                             MenuRowView(menuName: name) {
-                                // 클릭 시 필요한 데이터 수집
-                                let matched = allIngredients.filter { $0.menuName == name }
-                                guard let header = matched.first else { return }
-                                let infoList = matched.map {
-                                    IngredientInfo(name: $0.name, amount: $0.amount, unitPrice: $0.unitPrice)
-                                }
-                                navigationTarget = IngredientNavigationData(
-                                    menuName: name,
-                                    menuPrice: String(header.menuPrice),
-                                    image: header.imageData.flatMap { UIImage(data: $0) },
-                                    ingredients: infoList
-                                )
+                                handleMenuTap(name)
                             }
-                                .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+                            .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
                             
                         }
                         .onDelete(perform: deleteMenus)
@@ -98,7 +90,7 @@ struct MyMenuView: View {
             }
             .padding(16)
             .navigationTitle("나의 메뉴")
-//            .navigationBarTitleDisplayMode(.inline)
+            //            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {    //
                     Button {
@@ -110,17 +102,17 @@ struct MyMenuView: View {
                     }
                 }
             }   //
-//            .navigationDestination(for: String.self) { value in
-//                switch value {
-//                case "MenuInputView":
-//                    MenuInputView(
-//                        showAddMenu:      $showAddMenu,
-//                        selectedMenuName: $selectedMenuName
-//                    )
-//                default:
-//                    EmptyView()
-//                }
-//            }
+            //            .navigationDestination(for: String.self) { value in
+            //                switch value {
+            //                case "MenuInputView":
+            //                    MenuInputView(
+            //                        showAddMenu:      $showAddMenu,
+            //                        selectedMenuName: $selectedMenuName
+            //                    )
+            //                default:
+            //                    EmptyView()
+            //                }
+            //            }
             
             // ── “나의 메뉴 +” → IngredientSheetView ─────────
             .navigationDestination(isPresented: $showAddMenu) {
@@ -132,46 +124,43 @@ struct MyMenuView: View {
             
             
             // 상세 재료 정보 화면으로 이동
-                        .navigationDestination(item: $navigationTarget) { data in
-                            IngredientResultView(
-                                isNew: false,
-                                selectedMenuName: .constant(data.menuName),
-                                showAddMenu:      .constant(false),
-                                menuName:         data.menuName,
-                                menuPrice:        data.menuPrice,
-                                image:            data.image,
-                                parsedIngredients: data.ingredients
-                            )
-                        }
-        }
-//        .environmentObject(navState)
-
-        .onChange(of: selectedMenuName) { _, newValue in
-            if !newValue.isEmpty {
-                showAddMenu = false
-                viewModel.fetchAllIngredients() // 새로 등록한 메뉴 반영
+            .navigationDestination(item: $navigationTarget) { data in
+                NavigationTargetView(
+                    data: data,
+                    selectedMenuName: $selectedMenuName,
+                    showAddMenu: $showAddMenu
+                )
             }
+            
+            //        .environmentObject(navState)
+            
+            .onChange(of: selectedMenuName) { _, newValue in
+                if !newValue.isEmpty {
+                    showAddMenu = false
+                    viewModel.fetchAllIngredients() // 새로 등록한 메뉴 반영
+                }
+            }
+            
+            .onChange(of: allIngredients.map { "\($0.menuName)-\($0.menuPrice)-\($0.id)" }) { _, _ in
+                viewModel.fetchAllIngredients()
+            }
+            
+            
+            // ── 디버그: allIngredients의 변화 감지
+            .onChange(of: allIngredients.count) { _, newCount in
+                print("🔵 [Debug] allIngredients.count changed to \(newCount)")
+            }
+            
+            
+            // ── 디버그: selectedMenuName이 바뀌면 showAddMenu를 false로 (IngredientSheetView를 강제 팝)
+            //        .onChange(of: selectedMenuName) { _, newValue in
+            //            if !newValue.isEmpty {
+            //                // “메뉴 등록” 직후: 이 코드를 통해 showAddMenu가 false가 되어
+            //                // IngredientSheetView + IngredientResultView가 모두 팝됩니다.
+            //                showAddMenu = false
+            //            }
+            //        }
         }
-        
-        .onChange(of: allIngredients.map { "\($0.menuName)-\($0.menuPrice)-\($0.id)" }) { _, _ in
-            viewModel.fetchAllIngredients()
-        }
-        
-        
-        // ── 디버그: allIngredients의 변화 감지
-        .onChange(of: allIngredients.count) { _, newCount in
-            print("🔵 [Debug] allIngredients.count changed to \(newCount)")
-        }
-        
-        
-        // ── 디버그: selectedMenuName이 바뀌면 showAddMenu를 false로 (IngredientSheetView를 강제 팝)
-//        .onChange(of: selectedMenuName) { _, newValue in
-//            if !newValue.isEmpty {
-//                // “메뉴 등록” 직후: 이 코드를 통해 showAddMenu가 false가 되어
-//                // IngredientSheetView + IngredientResultView가 모두 팝됩니다.
-//                showAddMenu = false
-//            }
-//        }
     }
     
     private func deleteMenus(at offsets: IndexSet) {
@@ -188,13 +177,20 @@ struct MyMenuView: View {
             print("❌ 삭제 실패: \(error)")
         }
     }
-}
+    
+    private func handleMenuTap(_ name: String) {
+        let matched = allIngredients.filter { $0.menuName == name }
+        guard let header = matched.first else { return }
+        let infoList = matched.map {
+            IngredientInfo(name: $0.name, amount: $0.amount, unitPrice: $0.unitPrice)
+        }
 
-// 메뉴 상세화면으로 네비게이션하기 위한 구조체
-struct IngredientNavigationData: Identifiable, Hashable {
-    var id: String { menuName } // 메뉴명 기준으로 구분
-    let menuName: String
-    let menuPrice: String
-    let image: UIImage?
-    let ingredients: [IngredientInfo]
+        navigationTarget = IngredientNavigationData(
+            menuName: name,
+            menuPrice: String(header.menuPrice),
+            image: header.imageData.flatMap { UIImage(data: $0) },
+            ingredients: infoList,
+            isNew: false
+        )
+    }
 }

@@ -40,6 +40,7 @@
 		68343B9D2DED76C100BD34B4 /* SoonsuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68343B9B2DED76C100BD34B4 /* SoonsuTests.swift */; };
 		68343BA12DED76C400BD34B4 /* SoonsuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68343B9E2DED76C400BD34B4 /* SoonsuUITests.swift */; };
 		68343BA22DED76C400BD34B4 /* SoonsuUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68343B9F2DED76C400BD34B4 /* SoonsuUITestsLaunchTests.swift */; };
+		6872E8BD2E042A3300B4A62D /* IngredientNavigationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6872E8BC2E042A2D00B4A62D /* IngredientNavigationData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		68343B9B2DED76C100BD34B4 /* SoonsuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuTests.swift; sourceTree = "<group>"; };
 		68343B9E2DED76C400BD34B4 /* SoonsuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuUITests.swift; sourceTree = "<group>"; };
 		68343B9F2DED76C400BD34B4 /* SoonsuUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoonsuUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6872E8BC2E042A2D00B4A62D /* IngredientNavigationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientNavigationData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -273,6 +275,7 @@
 		68343BA32DED76D300BD34B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6872E8BC2E042A2D00B4A62D /* IngredientNavigationData.swift */,
 				3E6688DE2DF5799E00DE2298 /* DailySales.swift */,
 				265FB44F2DF59FA500D171FA /* DailySalesRecord.swift */,
 				263319CE2DF9520F0089614C /* FixedCostTemporary.swift */,
@@ -457,6 +460,7 @@
 				3E6688EE2DF5799E00DE2298 /* MenuItem.swift in Sources */,
 				3E6688EF2DF5799E00DE2298 /* DailySales.swift in Sources */,
 				265FB4692DF5A00A00D171FA /* ProfitViewModel.swift in Sources */,
+				6872E8BD2E042A3300B4A62D /* IngredientNavigationData.swift in Sources */,
 				265FB46A2DF5A00A00D171FA /* MenuViewModel.swift in Sources */,
 				265FB46B2DF5A00A00D171FA /* FixedCostEditor.swift in Sources */,
 				265FB46C2DF5A00A00D171FA /* SalesInputSheet.swift in Sources */,

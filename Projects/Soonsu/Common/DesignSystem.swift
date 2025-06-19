@@ -25,7 +25,6 @@ extension Color {
     static let neutralColor200 = Color("Neutral200")
     static let neutralColor100 = Color("Neutral100")
     static let neutralColor50 = Color("Neutral50")
-    
     static let warningColor50 = Color("Warning700")
     
     static let backgroundColorSeleted = Color("Selected700")
